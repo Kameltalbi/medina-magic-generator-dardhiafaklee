@@ -40,14 +40,6 @@ const BookingHeader = () => {
               alt="Dar Dhiafa Klee" 
               className="h-10 w-auto object-contain"
             />
-            <div>
-              <h1 className="text-white drop-shadow-sm font-playfair font-bold text-xl leading-tight">
-                Dar Dhiafa Klee
-              </h1>
-              <p className="text-white/90 drop-shadow-sm text-xs">
-                Kairouan
-              </p>
-            </div>
           </Link>
 
           {/* Navigation */}

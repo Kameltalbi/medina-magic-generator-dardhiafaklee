@@ -87,26 +87,6 @@ const Header = () => {
               alt="Dar Dhiafa Klee" 
               className="h-8 w-auto sm:h-10 object-contain"
             />
-            <div className="hidden sm:block">
-              <h1 className={`font-playfair font-bold text-lg sm:text-xl leading-tight ${
-                isScrolled 
-                  ? "text-indigo-medina" 
-                  : isHomePage 
-                    ? "text-white drop-shadow-sm"
-                    : "text-white drop-shadow-sm"
-              }`}>
-                Dar Dhiafa Klee
-              </h1>
-              <p className={`text-xs ${
-                isScrolled 
-                  ? "text-muted-foreground" 
-                  : isHomePage 
-                    ? "text-white/80 drop-shadow-sm"
-                    : "text-white/90 drop-shadow-sm"
-              }`}>
-                Kairouan
-              </p>
-            </div>
           </motion.div>
 
           {/* Desktop Mega Menu Navigation */}
