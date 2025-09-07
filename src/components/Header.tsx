@@ -85,7 +85,7 @@ const Header = () => {
             <img 
               src="/logo Dar Dhiafa klee.png" 
               alt="Dar Dhiafa Klee" 
-              className="h-12 w-auto sm:h-16 object-contain drop-shadow-lg"
+              className="h-16 w-auto sm:h-20 object-contain drop-shadow-lg"
             />
           </motion.div>
 

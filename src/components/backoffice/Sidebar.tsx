@@ -121,7 +121,7 @@ const Sidebar = ({ activeSection, onSectionChange, isOpen, onToggle, userRole }:
                 <img 
                   src="/logo Dar Dhiafa klee.png" 
                   alt="Dar Dhiafa Klee" 
-                  className="h-8 w-auto object-contain"
+                  className="h-12 w-auto object-contain"
                 />
                 <span className="font-playfair font-bold text-indigo-medina">
                   Back Office

@@ -52,7 +52,7 @@ const BackOfficeLogin = () => {
               <img 
                 src="/logo Dar Dhiafa klee.png" 
                 alt="Dar Dhiafa Klee" 
-                className="h-16 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
             <CardTitle className="text-2xl font-playfair font-bold text-indigo-medina">
