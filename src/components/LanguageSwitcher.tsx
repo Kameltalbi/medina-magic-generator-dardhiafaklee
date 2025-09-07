@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Languages } from 'lucide-react';
+import { useEffect } from 'react';
 
 const languages = [
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
@@ -19,6 +20,7 @@ const LanguageSwitcher = () => {
 
   const changeLanguage = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
+    localStorage.setItem('i18nextLng', languageCode);
     // Set RTL for Arabic
     if (languageCode === 'ar') {
       document.documentElement.dir = 'rtl';
@@ -29,7 +31,19 @@ const LanguageSwitcher = () => {
     }
   };
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language);
+  // Initialize direction on component mount
+  useEffect(() => {
+    const currentLang = i18n.language || 'fr';
+    if (currentLang === 'ar') {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'ar';
+    } else {
+      document.documentElement.dir = 'ltr';
+      document.documentElement.lang = currentLang;
+    }
+  }, [i18n.language]);
+
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   return (
     <DropdownMenu>

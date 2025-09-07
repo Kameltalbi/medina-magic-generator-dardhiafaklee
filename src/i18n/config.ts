@@ -173,6 +173,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'fr',
+    lng: 'fr', // Set default language explicitly
     debug: false,
     interpolation: {
       escapeValue: false,

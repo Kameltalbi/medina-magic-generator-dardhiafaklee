@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { Link, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = () => {
@@ -23,13 +24,13 @@ const Header = () => {
   }, []);
 
   const menuItems = [
-    { label: t("nav.home"), href: "#home" },
-    { label: t("about.title"), href: "#about" },
-    { label: t("nav.rooms"), href: "#rooms" },
-    { label: t("nav.experiences"), href: "#experiences" },
-    { label: t("nav.gallery"), href: "#gallery" },
-    { label: t("nav.tour360"), href: "#virtual-tour" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.home"), href: "/" },
+    { label: t("about.title"), href: "/#about" },
+    { label: t("nav.rooms"), href: "/rooms" },
+    { label: t("nav.experiences"), href: "/experiences" },
+    { label: t("nav.gallery"), href: "/gallery" },
+    { label: t("nav.tour360"), href: "/gallery#virtual-tour" },
+    { label: t("nav.contact"), href: "/#contact" },
   ];
 
   return (
@@ -65,27 +66,41 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item, index) => (
-              <motion.a
+              <motion.div
                 key={item.href}
-                href={item.href}
-                className="text-foreground hover:text-terre-cuite transition-colors font-inter font-medium"
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.2 }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {item.label}
-              </motion.a>
+                {item.href.startsWith('/') && !item.href.includes('#') ? (
+                  <Link
+                    to={item.href}
+                    className="text-foreground hover:text-terre-cuite transition-colors font-inter font-medium"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="text-foreground hover:text-terre-cuite transition-colors font-inter font-medium"
+                  >
+                    {item.label}
+                  </a>
+                )}
+              </motion.div>
             ))}
           </nav>
 
           {/* Language Switcher & CTA Button Desktop */}
           <div className="hidden lg:flex items-center gap-4">
             <LanguageSwitcher />
-            <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 py-2 transition-all duration-300 shadow-soft hover:shadow-medium">
-              {t("nav.booking")}
-            </Button>
+            <Link to="/booking">
+              <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 py-2 transition-all duration-300 shadow-soft hover:shadow-medium">
+                {t("nav.booking")}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -114,21 +129,34 @@ const Header = () => {
         >
           <div className="flex flex-col space-y-4 py-4 border-t border-border">
             {menuItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-foreground hover:text-terre-cuite transition-colors font-inter font-medium py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.label}
-              </a>
+              <div key={item.href}>
+                {item.href.startsWith('/') && !item.href.includes('#') ? (
+                  <Link
+                    to={item.href}
+                    className="text-foreground hover:text-terre-cuite transition-colors font-inter font-medium py-2 block"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="text-foreground hover:text-terre-cuite transition-colors font-inter font-medium py-2 block"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                )}
+              </div>
             ))}
             <div className="pt-4 border-t border-border">
               <LanguageSwitcher />
             </div>
-            <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold mt-4 w-full">
-              {t("nav.booking")}
-            </Button>
+            <Link to="/booking" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold mt-4 w-full">
+                {t("nav.booking")}
+              </Button>
+            </Link>
           </div>
         </motion.nav>
       </div>
