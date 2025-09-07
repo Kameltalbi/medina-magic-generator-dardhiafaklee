@@ -40,11 +40,7 @@ const QuickBooking = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="text-center mb-6">
                 <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2">
-<<<<<<< HEAD
                   {t("booking.title")}
-=======
-                  {t("booking.quickBooking")}
->>>>>>> a026293847e70f3c705c2a5dd7d71727056a23e4
                 </h2>
                 <p className="text-muted-foreground font-inter">
                   {t("booking.checkAvailability")}
