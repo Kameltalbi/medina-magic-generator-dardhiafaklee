@@ -16,7 +16,9 @@ import {
   RefreshCw,
   AlertTriangle,
   CheckCircle,
-  Plus
+  Plus,
+  Edit,
+  Trash2
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
