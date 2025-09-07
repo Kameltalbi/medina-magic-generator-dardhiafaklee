@@ -35,9 +35,11 @@ const BookingHeader = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-full flex items-center justify-center">
-              <span className="text-white font-playfair font-bold text-lg">D</span>
-            </div>
+            <img 
+              src="/logo Dar Dhiafa klee.png" 
+              alt="Dar Dhiafa Klee" 
+              className="h-10 w-auto object-contain"
+            />
             <div>
               <h1 className="text-white drop-shadow-sm font-playfair font-bold text-xl leading-tight">
                 Dar Dhiafa Klee

@@ -82,9 +82,11 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-full flex items-center justify-center">
-              <span className="text-white font-playfair font-bold text-sm sm:text-lg">D</span>
-            </div>
+            <img 
+              src="/logo Dar Dhiafa klee.png" 
+              alt="Dar Dhiafa Klee" 
+              className="h-8 w-auto sm:h-10 object-contain"
+            />
             <div className="hidden sm:block">
               <h1 className={`font-playfair font-bold text-lg sm:text-xl leading-tight ${
                 isScrolled 
