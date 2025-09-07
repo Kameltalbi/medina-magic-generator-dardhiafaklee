@@ -74,7 +74,7 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-2 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div
@@ -89,8 +89,8 @@ const Header = () => {
             />
           </motion.div>
 
-          {/* Desktop Mega Menu Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+                      {/* Desktop Mega Menu Navigation */}
+                      <nav className="hidden lg:flex items-center space-x-6">
             {megaMenuItems.map((category, index) => (
               <div
                 key={category.id}
@@ -169,10 +169,10 @@ const Header = () => {
           </nav>
 
           {/* Language Switcher & CTA Button Desktop */}
-               <div className="hidden lg:flex items-center gap-4">
+               <div className="hidden lg:flex items-center gap-3">
                  <LanguageSwitcher isScrolled={isScrolled} isHomePage={isHomePage} />
                  <Link to="/booking">
-                   <Button className={`font-inter font-semibold px-6 py-2 transition-all duration-300 ${
+                   <Button className={`font-inter font-semibold px-4 py-2 transition-all duration-300 ${
                      isScrolled 
                        ? "bg-terre-cuite hover:bg-terre-cuite-hover text-white shadow-soft hover:shadow-medium"
                        : isHomePage 
