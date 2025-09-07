@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Languages } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { useEffect } from 'react';
 
 const languages = [
@@ -15,7 +15,11 @@ const languages = [
   { code: 'ar', name: 'العربية', flag: '🇹🇳' },
 ];
 
-const LanguageSwitcher = () => {
+interface LanguageSwitcherProps {
+  isScrolled?: boolean;
+}
+
+const LanguageSwitcher = ({ isScrolled = false }: LanguageSwitcherProps) => {
   const { i18n } = useTranslation();
 
   const changeLanguage = (languageCode: string) => {
@@ -48,8 +52,16 @@ const LanguageSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
-          <Languages className="h-4 w-4" />
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className={`gap-2 transition-colors ${
+            isScrolled 
+              ? "text-foreground hover:text-terre-cuite" 
+              : "text-white hover:text-terre-cuite drop-shadow-sm"
+          }`}
+        >
+          <Globe className="h-4 w-4" />
           {currentLanguage?.flag} {currentLanguage?.name}
         </Button>
       </DropdownMenuTrigger>

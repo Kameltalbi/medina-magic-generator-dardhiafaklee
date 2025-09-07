@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { slideInLeft } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 import type { BookingRequest } from "@/lib/types";
 
 const QuickBooking = () => {
+  const { t } = useTranslation();
   const [bookingData, setBookingData] = useState<BookingRequest>({
     checkIn: "",
     checkOut: "",
@@ -37,10 +39,10 @@ const QuickBooking = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="text-center mb-6">
                 <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2">
-                  الحجز السريع
+                  {t("booking.title")}
                 </h2>
                 <p className="text-muted-foreground font-inter">
-                  تحقق من التوفر لإقامتك
+                  {t("booking.checkAvailability")}
                 </p>
               </div>
 
@@ -48,7 +50,7 @@ const QuickBooking = () => {
                 {/* Check-in Date */}
                 <div className="space-y-2">
                   <Label htmlFor="checkin" className="text-indigo-medina font-inter font-medium">
-                    تاريخ الوصول
+                    {t("booking.checkin")}
                   </Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -68,7 +70,7 @@ const QuickBooking = () => {
                 {/* Check-out Date */}
                 <div className="space-y-2">
                   <Label htmlFor="checkout" className="text-indigo-medina font-inter font-medium">
-                    تاريخ المغادرة
+                    {t("booking.checkout")}
                   </Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -88,7 +90,7 @@ const QuickBooking = () => {
                 {/* Guests */}
                 <div className="space-y-2">
                   <Label htmlFor="guests" className="text-indigo-medina font-inter font-medium">
-                    الضيوف
+                    {t("booking.guests")}
                   </Label>
                   <div className="relative">
                     <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -102,7 +104,7 @@ const QuickBooking = () => {
                     >
                       {[1, 2, 3, 4, 5, 6].map((num) => (
                         <option key={num} value={num}>
-                          {num} {num === 1 ? "ضيف" : "ضيوف"}
+                          {num} {num === 1 ? t("booking.guest") : t("booking.guests_plural")}
                         </option>
                       ))}
                     </select>
@@ -116,7 +118,7 @@ const QuickBooking = () => {
                   className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-inter font-semibold px-6 py-3 transition-all duration-300 shadow-soft hover:shadow-medium h-[42px]"
                 >
                   <Search className="w-4 h-4 mr-2" />
-                  تحقق من التوفر
+                  {t("booking.checkAvailability")}
                 </Button>
               </div>
             </form>

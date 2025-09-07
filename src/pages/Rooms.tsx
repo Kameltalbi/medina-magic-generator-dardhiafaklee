@@ -158,7 +158,7 @@ const Rooms = () => {
     <div className="min-h-screen bg-background">
       <Header />
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-br from-indigo-medina/10 to-vert-porte/10">
+      <section className="relative pt-24 pb-20 px-4 bg-gradient-to-br from-indigo-medina/10 to-vert-porte/10">
         <div className="container mx-auto">
           <motion.div
             className="max-w-4xl mx-auto text-center"

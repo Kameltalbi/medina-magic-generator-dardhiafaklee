@@ -4,28 +4,31 @@
 import { motion } from "framer-motion";
 import { Palette, Heart, Star, Award } from "lucide-react";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
+  const { t } = useTranslation();
+  
   const features = [
     {
       icon: Palette,
-      title: "الإلهام الفني",
-      description: "مستوحى من ألوان بول كلي المائية التونسية (1914)",
+      title: t("about.feature1.title"),
+      description: t("about.feature1.description"),
     },
     {
       icon: Heart,
-      title: "الضيافة الأصيلة",
-      description: "فن الترحيب التونسي التقليدي في المدينة العتيقة",
+      title: t("about.feature2.title"),
+      description: t("about.feature2.description"),
     },
     {
       icon: Star,
-      title: "التراث التاريخي",
-      description: "في قلب القيروان، أول عاصمة لإفريقية",
+      title: t("about.feature3.title"),
+      description: t("about.feature3.description"),
     },
     {
       icon: Award,
-      title: "التميز المعترف به",
-      description: "تجربة فريدة تجمع بين الفن والثقافة والراحة",
+      title: t("about.feature4.title"),
+      description: t("about.feature4.description"),
     },
   ];
 
@@ -45,16 +48,13 @@ const About = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={fadeInUp}
             >
-              حيث يلتقي الفن{" "}
-              <span className="text-terre-cuite">بالضيافة</span>
+              {t("about.title")}
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={fadeInUp}
             >
-              في عام 1914، اكتشف بول كلي ضوء وألوان تونس، 
-              مما غيّر فنه إلى الأبد. اليوم، تواصل دار ضيافة كلي 
-              هذا التراث في بيت ضيافة استثنائي في قلب مدينة القيروان العتيقة.
+              {t("about.description1")}
             </motion.p>
           </div>
 
@@ -63,19 +63,13 @@ const About = () => {
             <motion.div className="space-y-8" variants={staggerItem}>
               <div>
                 <h3 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-4">
-                  رحلة عبر الزمن والفن
+                  {t("about.subtitle")}
                 </h3>
                 <p className="text-foreground font-inter leading-relaxed mb-6">
-                  يستمد بيت ضيافتنا إلهامه من إقامة بول كلي التحويلية 
-                  في تونس. كل مساحة تعكس الثراء اللوني 
-                  والهندسة التي ميزت أشهر أعماله، مع 
-                  الحفاظ على أصالة العمارة 
-                  القيروانية التقليدية.
+                  {t("about.description2")}
                 </p>
                 <p className="text-foreground font-inter leading-relaxed">
-                  في المدينة التاريخية للقيروان، أول عاصمة لإفريقية، 
-                  نقدم تجربة فريدة حيث يمتزج الفن المعاصر 
-                  والتراث الألفي والضيافة التونسية الأسطورية معاً.
+                  {t("about.description3")}
                 </p>
               </div>
 

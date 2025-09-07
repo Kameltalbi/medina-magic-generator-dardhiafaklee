@@ -4,16 +4,19 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, fadeIn } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 import heroImage from "@/assets/hero-dar-dhiafa.jpg";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="دار ضيافة كلي - بيت ضيافة تقليدي في مدينة القيروان"
+          alt={t("hero.alt")}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 gradient-hero" />
@@ -40,8 +43,7 @@ const Hero = () => {
             className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold leading-tight mb-6"
             variants={fadeInUp}
           >
-            الفن والضيافة في قلب{" "}
-            <span className="text-sable">القيروان</span>
+            {t("hero.title")}
           </motion.h1>
 
           {/* Subtitle */}
@@ -49,8 +51,7 @@ const Hero = () => {
             className="text-lg md:text-xl lg:text-2xl font-inter font-light mb-8 max-w-2xl mx-auto leading-relaxed opacity-95"
             variants={fadeInUp}
           >
-            اكتشف بيت ضيافة فريد حيث يلتقي الإرث الفني لبول كلي 
-            مع تقليد الضيافة التونسية العريق الذي يمتد لألف عام.
+            {t("hero.subtitle")}
           </motion.p>
 
           {/* Call-to-Action Buttons */}
@@ -62,14 +63,14 @@ const Hero = () => {
               size="lg"
               className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-4 text-lg transition-all duration-300 shadow-medium hover:shadow-strong hover:scale-105"
             >
-              احجز الآن
+              {t("hero.bookNow")}
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-2 border-vert-porte bg-vert-porte/10 hover:bg-vert-porte hover:border-vert-porte text-white hover:text-white font-inter font-semibold px-8 py-4 text-lg transition-all duration-300 backdrop-blur-sm"
             >
-              استكشف بزاوية 360°
+              {t("hero.explore360")}
             </Button>
           </motion.div>
 

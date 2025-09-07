@@ -5,35 +5,38 @@ import { motion } from "framer-motion";
 import { MapPin, Utensils, Palette, Camera, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 import type { Experience } from "@/lib/types";
 
 const Experiences = () => {
+  const { t } = useTranslation();
+  
   const experiences: Experience[] = [
     {
       id: "souk-tour",
-      title: "جولة مرشدة في الأسواق",
-      description: "اكتشف كنوز المدينة المخفية مع مرشدينا المحليين المتحمسين",
+      title: t("experiences.soukTour.title"),
+      description: t("experiences.soukTour.description"),
       image: "🏛️",
       duration: "3h",
     },
     {
       id: "heritage",
-      title: "التراث والعمارة",
-      description: "استكشف الثراء المعماري للقيروان، مهد الحضارة الإسلامية",
+      title: t("experiences.heritage.title"),
+      description: t("experiences.heritage.description"),
       image: "🕌",
       duration: "4h",
     },
     {
       id: "gastronomy",
-      title: "ورشة طبخ",
-      description: "تعلم طبخ الأطباق المحلية مع طباخينا التقليديين",
+      title: t("experiences.gastronomy.title"),
+      description: t("experiences.gastronomy.description"),
       image: "🍽️",
       duration: "2h",
     },
     {
       id: "art-workshop",
-      title: "ورشة فن كلي",
-      description: "أبدع عملك الفني الخاص مستوحى من تقنيات بول كلي في تونس",
+      title: t("experiences.artWorkshop.title"),
+      description: t("experiences.artWorkshop.description"),
       image: "🎨",
       duration: "3h",
     },
@@ -70,14 +73,13 @@ const Experiences = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={fadeInUp}
             >
-              تجارب <span className="text-vert-porte">أصيلة</span>
+              {t("experiences.title")}
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={fadeInUp}
             >
-              انغمس في الثقافة القيروانية من خلال تجارب فريدة 
-              ستوقظ جميع حواسك وتثري إقامتك.
+              {t("experiences.subtitle")}
             </motion.p>
           </div>
 
@@ -86,26 +88,20 @@ const Experiences = () => {
             {/* Description Text */}
             <motion.div variants={staggerItem} className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina">
-                اكتشف القيروان بطريقة مختلفة
+                {t("experiences.discoverTitle")}
               </h3>
               
               <div className="space-y-4">
                 <p className="text-foreground font-inter leading-relaxed">
-                  <strong className="text-terre-cuite">الأسواق التقليدية</strong> ستكشف 
-                  أسرارها العريقة، من التوابل إلى الأقمشة المطرزة يدوياً، 
-                  بما في ذلك الحرف المحلية المتوارثة عبر الأجيال.
+                  <strong className="text-terre-cuite">{t("experiences.traditionalMarkets.title")}</strong> {t("experiences.traditionalMarkets.description")}
                 </p>
                 
                 <p className="text-foreground font-inter leading-relaxed">
-                  <strong className="text-vert-porte">التراث المعماري</strong> للقيروان، 
-                  أول عاصمة لإفريقية، يحكي 13 قرناً من التاريخ الإسلامي 
-                  من خلال مساجده ومدارسه ومساكنه التقليدية.
+                  <strong className="text-vert-porte">{t("experiences.architecturalHeritage.title")}</strong> {t("experiences.architecturalHeritage.description")}
                 </p>
                 
                 <p className="text-foreground font-inter leading-relaxed">
-                  <strong className="text-indigo-medina">فن الطبخ المحلي</strong> و 
-                  <strong className="text-terre-cuite"> الورش الفنية</strong> تكمل 
-                  هذا الانغماس الثقافي الفريد، مما يخلق ذكريات لا تُنسى.
+                  <strong className="text-indigo-medina">{t("experiences.localCuisine.title")}</strong> {t("experiences.localCuisine.description")}
                 </p>
               </div>
 
@@ -113,7 +109,7 @@ const Experiences = () => {
                 size="lg"
                 className="bg-vert-porte hover:bg-vert-porte-hover text-white font-inter font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium group"
               >
-                اعرف المزيد
+                {t("experiences.learnMore")}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </motion.div>
@@ -164,18 +160,17 @@ const Experiences = () => {
             variants={staggerItem}
           >
             <h3 className="text-2xl font-playfair font-bold text-indigo-medina mb-4">
-              أنشئ تجربتك المصممة خصيصاً
+              {t("experiences.cta.title")}
             </h3>
             <p className="text-muted-foreground font-inter mb-6 max-w-2xl mx-auto">
-              سيسعد موظفو الاستقبال لدينا بإعداد برنامج شخصي 
-              وفقاً لاهتماماتك ومدة إقامتك.
+              {t("experiences.cta.description")}
             </p>
             <Button
               variant="outline"
               size="lg"
               className="border-2 border-indigo-medina text-indigo-medina hover:bg-indigo-medina hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
             >
-              اتصل بموظف الاستقبال
+              {t("experiences.cta.button")}
             </Button>
           </motion.div>
         </motion.div>

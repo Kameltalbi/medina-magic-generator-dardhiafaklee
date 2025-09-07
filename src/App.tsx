@@ -9,7 +9,6 @@ import Rooms from "./pages/Rooms";
 import Experiences from "./pages/Experiences";
 import Gallery from "./pages/Gallery";
 import NotFound from "./pages/NotFound";
-import "./i18n/config";
 
 const queryClient = new QueryClient();
 

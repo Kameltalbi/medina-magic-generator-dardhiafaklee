@@ -9,9 +9,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { slideInLeft, slideInRight, staggerContainer, staggerItem } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 import type { ContactForm } from "@/lib/types";
 
 const ContactMap = () => {
+  const { t } = useTranslation();
+  
   const [formData, setFormData] = useState<ContactForm>({
     name: "",
     email: "",
@@ -38,26 +41,26 @@ const ContactMap = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: "Address",
-      details: ["Medina of Kairouan", "3100 Kairouan, Tunisia"],
+      title: t("contact.address.title"),
+      details: [t("contact.address.line1"), t("contact.address.line2")],
       color: "text-terre-cuite",
     },
     {
       icon: Phone,
-      title: "Phone",
-      details: ["+216 77 123 456", "+216 20 987 654"],
+      title: t("contact.phone.title"),
+      details: [t("contact.phone.line1"), t("contact.phone.line2")],
       color: "text-vert-porte",
     },
     {
       icon: Mail,
-      title: "Email",
-      details: ["info@dardhiafaklee.tn", "reservation@dardhiafaklee.tn"],
+      title: t("contact.email.title"),
+      details: [t("contact.email.line1"), t("contact.email.line2")],
       color: "text-indigo-medina",
     },
     {
       icon: Clock,
-      title: "Hours",
-      details: ["24/7", "Reception available"],
+      title: t("contact.hours.title"),
+      details: [t("contact.hours.line1"), t("contact.hours.line2")],
       color: "text-terre-cuite",
     },
   ];
@@ -78,14 +81,13 @@ const ContactMap = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
-              التواصل و <span className="text-terre-cuite">الموقع</span>
+              {t("contact.title")}
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={staggerItem}
             >
-              تواصل معنا أو اعثر علينا في قلب المدينة التاريخية في القيروان. 
-              نحن هنا لجعل إقامتك لا تُنسى.
+              {t("contact.subtitle")}
             </motion.p>
           </div>
 
@@ -100,7 +102,7 @@ const ContactMap = () => {
                   <MessageSquare className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
-                  أرسل لنا رسالة
+                  {t("contact.form.title")}
                 </h3>
               </div>
 
@@ -108,7 +110,7 @@ const ContactMap = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-indigo-medina font-inter font-medium">
-                      الاسم الكامل
+                      {t("contact.form.name")}
                     </Label>
                     <Input
                       id="name"
@@ -117,12 +119,12 @@ const ContactMap = () => {
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
                       required
-                      placeholder="اسمك الكامل"
+                      placeholder={t("contact.form.namePlaceholder")}
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-indigo-medina font-inter font-medium">
-                      البريد الإلكتروني
+                      {t("contact.form.email")}
                     </Label>
                     <Input
                       id="email"
@@ -131,14 +133,14 @@ const ContactMap = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
                       required
-                      placeholder="بريدك.الإلكتروني@مثال.com"
+                      placeholder={t("contact.form.emailPlaceholder")}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-indigo-medina font-inter font-medium">
-                    Phone
+                    {t("contact.form.phone")}
                   </Label>
                   <Input
                     id="phone"
@@ -146,13 +148,13 @@ const ContactMap = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
-                    placeholder="+216 XX XXX XXX"
+                    placeholder={t("contact.form.phonePlaceholder")}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-indigo-medina font-inter font-medium">
-                    الرسالة
+                    {t("contact.form.message")}
                   </Label>
                   <Textarea
                     id="message"
@@ -160,7 +162,7 @@ const ContactMap = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina min-h-[120px] resize-none"
                     required
-                    placeholder="أخبرنا عن مشروعك، تواريخك، احتياجاتك الخاصة..."
+                    placeholder={t("contact.form.messagePlaceholder")}
                   />
                 </div>
 
@@ -173,12 +175,12 @@ const ContactMap = () => {
                   {isSubmitting ? (
                     <div className="flex items-center space-x-2">
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>إرسال...</span>
+                      <span>{t("contact.form.sending")}</span>
                     </div>
                   ) : (
                     <div className="flex items-center space-x-2">
                       <Send className="w-4 h-4" />
-                      <span>إرسال الرسالة</span>
+                      <span>{t("contact.form.send")}</span>
                     </div>
                   )}
                 </Button>
@@ -199,10 +201,10 @@ const ContactMap = () => {
                       <MapPin className="w-16 h-16 mx-auto opacity-80" />
                       <div>
                         <h4 className="font-playfair font-bold text-xl mb-2">
-                          شارع الجامع الكبير، المدينة
+                          {t("contact.map.title")}
                         </h4>
                         <p className="font-inter text-sm opacity-90 max-w-xs mx-auto">
-                          سيتم دمج الخريطة التفاعلية هنا
+                          {t("contact.map.description")}
                         </p>
                       </div>
                     </div>

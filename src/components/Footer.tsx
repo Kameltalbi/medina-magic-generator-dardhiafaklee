@@ -4,8 +4,10 @@
 import { motion } from "framer-motion";
 import { Facebook, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -30,23 +32,23 @@ const Footer = () => {
   ];
 
   const footerLinks = {
-    "اكتشف": [
-      { name: "غرفنا", href: "#rooms" },
-      { name: "التجارب", href: "#experiences" },
-      { name: "المعرض", href: "#gallery" },
-      { name: "جولة 360°", href: "#gallery" },
+    [t("footer.discover")]: [
+      { name: t("footer.ourRooms"), href: "#rooms" },
+      { name: t("footer.experiences"), href: "#experiences" },
+      { name: t("footer.gallery"), href: "#gallery" },
+      { name: t("footer.tour360"), href: "#gallery" },
     ],
-    "الخدمات": [
-      { name: "الحجز", href: "#booking" },
-      { name: "الكونسيرج", href: "#contact" },
-      { name: "المطعم", href: "#restaurant" },
-      { name: "العافية", href: "#wellness" },
+    [t("footer.services")]: [
+      { name: t("footer.booking"), href: "#booking" },
+      { name: t("footer.concierge"), href: "#contact" },
+      { name: t("footer.restaurant"), href: "#restaurant" },
+      { name: t("footer.wellness"), href: "#wellness" },
     ],
-    "المعلومات": [
-      { name: "من نحن", href: "#about" },
-      { name: "التواصل", href: "#contact" },
-      { name: "شروط الخدمة", href: "/terms" },
-      { name: "سياسة الخصوصية", href: "/privacy" },
+    [t("footer.information")]: [
+      { name: t("footer.aboutUs"), href: "#about" },
+      { name: t("footer.contact"), href: "#contact" },
+      { name: t("footer.termsOfService"), href: "/terms" },
+      { name: t("footer.privacyPolicy"), href: "/privacy" },
     ],
   };
 
@@ -77,22 +79,22 @@ const Footer = () => {
               </div>
               
               <p className="text-sable/90 font-inter leading-relaxed mb-6 text-sm">
-                تكريم لإرث بول كلي الفني في قلب مدينة القيروان العتيقة.
+                {t("footer.brandDescription")}
               </p>
 
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
                   <MapPin className="w-4 h-4 text-terre-cuite" />
-                  <span className="text-sable/90 font-inter">شارع الجامع الكبير، المدينة<br />3100 القيروان، تونس</span>
+                  <span className="text-sable/90 font-inter" dangerouslySetInnerHTML={{ __html: t("footer.address") }} />
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Phone className="w-4 h-4 text-vert-porte" />
-                  <span className="text-sable/90 font-inter">+216 77 123 456</span>
+                  <span className="text-sable/90 font-inter">{t("footer.phone")}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Mail className="w-4 h-4 text-terre-cuite" />
-                  <span className="text-sable/90 font-inter">info@dardhiafaklee.tn</span>
+                  <span className="text-sable/90 font-inter">{t("footer.email")}</span>
                 </div>
               </div>
             </motion.div>
@@ -128,17 +130,17 @@ const Footer = () => {
               {/* Copyright */}
               <div className="text-sable/80 font-inter text-sm text-center md:text-left">
                 <p>
-                  © 2024 دار ضيافة كلي. جميع الحقوق محفوظة.
+                  {t("footer.copyright")}
                 </p>
                 <p className="mt-1">
-                  تكريم لإرث بول كلي الفني في قلب مدينة القيروان العتيقة.
+                  {t("footer.brandDescription")}
                 </p>
               </div>
 
               {/* Social Links */}
               <div className="flex items-center space-x-4">
                 <span className="text-sable/80 font-inter text-sm mr-2">
-                  تابعنا:
+                  {t("footer.followUsText")}
                 </span>
                 {socialLinks.map((social) => (
                   <motion.a
@@ -162,7 +164,7 @@ const Footer = () => {
             variants={fadeInUp}
           >
             <p className="text-sable/60 font-inter text-xs">
-              ابق على تواصل مع دار ضيافة كلي للأخبار والعروض الخاصة والتجارب الحصرية.
+              {t("footer.attribution")}
             </p>
           </motion.div>
         </motion.div>

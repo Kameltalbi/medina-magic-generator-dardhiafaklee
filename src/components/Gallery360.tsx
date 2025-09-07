@@ -5,45 +5,48 @@ import { motion } from "framer-motion";
 import { Camera, Play, Maximize2, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 
 const Gallery360 = () => {
+  const { t } = useTranslation();
+  
   // Mock gallery images - in real app, these would be fetched from API
   const galleryImages = [
     {
       id: 1,
       src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "فناء داخلي تقليدي مع نافورة",
-      category: "عمارة",
+      alt: t("gallery.image1.alt"),
+      category: t("gallery.image1.category"),
     },
     {
       id: 2,
       src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "غرفة مزينة بالطراز التقليدي",
-      category: "الغرف",
+      alt: t("gallery.image2.alt"),
+      category: t("gallery.image2.category"),
     },
     {
       id: 3,
       src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "مطعم مع إطلالة على المدينة",
-      category: "مطعم",
+      alt: t("gallery.image3.alt"),
+      category: t("gallery.image3.category"),
     },
     {
       id: 4,
       src: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "شرفة بانورامية عند غروب الشمس",
-      category: "شرفة",
+      alt: t("gallery.image4.alt"),
+      category: t("gallery.image4.category"),
     },
     {
       id: 5,
       src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "تفصيل معماري أندلسي",
-      category: "عمارة",
+      alt: t("gallery.image5.alt"),
+      category: t("gallery.image5.category"),
     },
     {
       id: 6,
       src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "صالة تقليدية مع سجاد بربري",
-      category: "داخلية",
+      alt: t("gallery.image6.alt"),
+      category: t("gallery.image6.category"),
     },
   ];
 
@@ -63,14 +66,13 @@ const Gallery360 = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
-              المعرض و <span className="text-terre-cuite">جولة 360°</span>
+              {t("gallery.title")}
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={staggerItem}
             >
-              اكتشف جمال دار ضيافة كلي من خلال معرض الصور و 
-              استكشف كل زاوية مع جولتنا الافتراضية الغامرة.
+              {t("gallery.subtitle")}
             </motion.p>
           </div>
 
@@ -79,7 +81,7 @@ const Gallery360 = () => {
             <motion.div variants={staggerItem}>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
-                  معرض الصور
+                  {t("gallery.photoGallery")}
                 </h3>
                 <Button
                   variant="outline"
@@ -87,7 +89,7 @@ const Gallery360 = () => {
                   className="border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter"
                 >
                   <Camera className="w-4 h-4 mr-2" />
-                  عرض الكل
+                  {t("gallery.viewAll")}
                 </Button>
               </div>
 
@@ -138,7 +140,7 @@ const Gallery360 = () => {
             <motion.div variants={staggerItem}>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
-                  جولة افتراضية 360°
+                  {t("gallery.virtualTour")}
                 </h3>
                 <Button
                   variant="outline"
@@ -146,7 +148,7 @@ const Gallery360 = () => {
                   className="border-terre-cuite text-terre-cuite hover:bg-terre-cuite hover:text-white font-inter"
                 >
                   <Eye className="w-4 h-4 mr-2" />
-                  شاشة كاملة
+                  {t("gallery.fullscreen")}
                 </Button>
               </div>
 
@@ -160,17 +162,17 @@ const Gallery360 = () => {
                     </div>
                     <div>
                       <h4 className="font-playfair font-bold text-xl mb-2">
-                        جولة افتراضية 360°
+                        {t("gallery.tourTitle")}
                       </h4>
                       <p className="font-inter text-sm opacity-90 max-w-xs mx-auto">
-                        استكشف دار ضيافة كلي وكأنك هناك مع جولتنا الغامرة
+                        {t("gallery.tourDescription")}
                       </p>
                     </div>
                     <Button
                       size="lg"
                       className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 py-3"
                     >
-                      ابدأ الجولة
+                      {t("gallery.startTour")}
                     </Button>
                   </div>
                 </div>
@@ -193,15 +195,15 @@ const Gallery360 = () => {
               <div className="mt-6 space-y-4">
                 <div className="flex items-center space-x-3 text-sm font-inter">
                   <div className="w-2 h-2 bg-terre-cuite rounded-full"></div>
-                  <span className="text-muted-foreground">تنقل بديهي من نقطة إلى أخرى</span>
+                  <span className="text-muted-foreground">{t("gallery.feature1")}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm font-inter">
                   <div className="w-2 h-2 bg-vert-porte rounded-full"></div>
-                  <span className="text-muted-foreground">نقاط معلومات تفاعلية</span>
+                  <span className="text-muted-foreground">{t("gallery.feature2")}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm font-inter">
                   <div className="w-2 h-2 bg-indigo-medina rounded-full"></div>
-                  <span className="text-muted-foreground">جودة عالية لتجربة غامرة</span>
+                  <span className="text-muted-foreground">{t("gallery.feature3")}</span>
                 </div>
               </div>
             </motion.div>
@@ -213,25 +215,24 @@ const Gallery360 = () => {
             variants={staggerItem}
           >
             <h3 className="text-2xl font-playfair font-bold text-indigo-medina mb-4">
-              مقتنع بما تراه؟
+              {t("gallery.ctaTitle")}
             </h3>
             <p className="text-muted-foreground font-inter mb-6 max-w-2xl mx-auto">
-              احجز إقامتك في دار ضيافة كلي الآن واستمتع 
-              بالضيافة التونسية الأصيلة في بيئة استثنائية.
+              {t("gallery.ctaDescription")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
                 className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
               >
-                احجز الآن
+                {t("gallery.bookNow")}
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
               >
-                اطلب عرض سعر
+                {t("gallery.requestQuote")}
               </Button>
             </div>
           </motion.div>
