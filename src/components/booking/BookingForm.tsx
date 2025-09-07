@@ -49,15 +49,15 @@ const BookingForm = ({ onSearch }: BookingFormProps) => {
           <div className="gradient-card rounded-2xl shadow-strong p-6 md:p-8 border border-border/20">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="text-center mb-6">
-                <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2 px-4">
                   {t("booking.form.title")}
                 </h2>
-                <p className="text-muted-foreground font-inter">
+                <p className="text-sm sm:text-base text-muted-foreground font-inter px-4">
                   {t("booking.form.subtitle")}
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-end">
                 {/* Check-in Date */}
                 <div className="space-y-2">
                   <Label htmlFor="checkin" className="text-indigo-medina font-inter font-medium">

@@ -167,7 +167,7 @@ const Rooms = () => {
             variants={staggerContainer}
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Chambres & Suites'}
@@ -175,7 +175,7 @@ const Rooms = () => {
               {currentLang === 'ar' && 'الغرف والأجنحة'}
             </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Découvrez nos chambres et suites élégamment décorées, alliant confort moderne et charme traditionnel tunisien dans le cœur historique de Kairouan.'}
@@ -196,7 +196,7 @@ const Rooms = () => {
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {rooms.map((room, index) => (
                 <motion.div
                   key={room.id}

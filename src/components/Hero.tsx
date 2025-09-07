@@ -39,7 +39,7 @@ const Hero = () => {
         >
           {/* Main Title */}
           <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold leading-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold leading-tight mb-4 sm:mb-6 px-4"
             variants={fadeInUp}
           >
             {t("hero.title")}
@@ -47,7 +47,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl font-inter font-light mb-8 max-w-2xl mx-auto leading-relaxed opacity-95"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-inter font-light mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed opacity-95 px-4"
             variants={fadeInUp}
           >
             {t("hero.subtitle")}
@@ -55,19 +55,19 @@ const Hero = () => {
 
           {/* Call-to-Action Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
             variants={fadeIn}
           >
             <Button
               size="lg"
-              className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-4 text-lg transition-all duration-300 shadow-medium hover:shadow-strong hover:scale-105"
+              className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 shadow-medium hover:shadow-strong hover:scale-105 w-full sm:w-auto"
             >
               {t("hero.bookNow")}
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-vert-porte bg-vert-porte/10 hover:bg-vert-porte hover:border-vert-porte text-white hover:text-white font-inter font-semibold px-8 py-4 text-lg transition-all duration-300 backdrop-blur-sm"
+              className="border-2 border-vert-porte bg-vert-porte/10 hover:bg-vert-porte hover:border-vert-porte text-white hover:text-white font-inter font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
             >
               {t("hero.explore360")}
             </Button>

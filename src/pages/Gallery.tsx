@@ -167,7 +167,7 @@ const Gallery = () => {
             variants={staggerContainer}
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Galerie & Visite Virtuelle'}
@@ -175,7 +175,7 @@ const Gallery = () => {
               {currentLang === 'ar' && 'المعرض والجولة الافتراضية'}
             </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Découvrez la beauté de Dar Dhiafa Klee à travers notre galerie photo HD et explorez chaque recoin avec notre visite virtuelle 360° immersive.'}

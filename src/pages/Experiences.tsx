@@ -185,7 +185,7 @@ const Experiences = () => {
             variants={staggerContainer}
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Expériences & Activités'}
@@ -193,7 +193,7 @@ const Experiences = () => {
               {currentLang === 'ar' && 'التجارب والأنشطة'}
             </motion.h1>
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Plongez dans la richesse culturelle de Kairouan à travers nos expériences authentiques : visites de la médina, ateliers artistiques et découvertes gastronomiques.'}

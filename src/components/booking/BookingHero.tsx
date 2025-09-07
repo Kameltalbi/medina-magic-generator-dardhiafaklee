@@ -17,12 +17,12 @@ const BookingHero = () => {
           variants={fadeInUp}
           className="max-w-3xl mx-auto"
         >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4">
             {t("booking.hero.title")}{" "}
             <span className="text-terre-cuite">Dar Dhiafa Klee</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed px-4">
             {t("booking.hero.description")}
           </p>
         </motion.div>

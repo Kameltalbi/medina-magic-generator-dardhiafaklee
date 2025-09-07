@@ -70,13 +70,13 @@ const Experiences = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={fadeInUp}
             >
               {t("experiences.title")}
             </motion.h2>
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
               variants={fadeInUp}
             >
               {t("experiences.subtitle")}
@@ -84,7 +84,7 @@ const Experiences = () => {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
             {/* Description Text */}
             <motion.div variants={staggerItem} className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina">

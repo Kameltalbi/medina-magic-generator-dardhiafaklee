@@ -77,13 +77,13 @@ const RoomsPreview = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {t("rooms.title")}
             </motion.h2>
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {t("rooms.subtitle")}
@@ -92,7 +92,7 @@ const RoomsPreview = () => {
 
           {/* Rooms Grid */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
             variants={staggerContainer}
           >
             {rooms.map((room, index) => (

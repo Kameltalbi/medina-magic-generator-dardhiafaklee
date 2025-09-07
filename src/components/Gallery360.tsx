@@ -63,20 +63,20 @@ const Gallery360 = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {t("gallery.title")}
             </motion.h2>
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {t("gallery.subtitle")}
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
             {/* Photo Gallery */}
             <motion.div variants={staggerItem}>
               <div className="flex items-center justify-between mb-6">
@@ -94,7 +94,7 @@ const Gallery360 = () => {
               </div>
 
               <motion.div
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-2 sm:gap-4"
                 variants={staggerContainer}
               >
                 {galleryImages.slice(0, 6).map((image, index) => (

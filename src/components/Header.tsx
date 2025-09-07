@@ -82,11 +82,11 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-full flex items-center justify-center">
-              <span className="text-white font-playfair font-bold text-lg">D</span>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-full flex items-center justify-center">
+              <span className="text-white font-playfair font-bold text-sm sm:text-lg">D</span>
             </div>
-            <div>
-              <h1 className={`font-playfair font-bold text-xl leading-tight ${
+            <div className="hidden sm:block">
+              <h1 className={`font-playfair font-bold text-lg sm:text-xl leading-tight ${
                 isScrolled 
                   ? "text-indigo-medina" 
                   : isHomePage 
@@ -226,26 +226,26 @@ const Header = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.nav
-              className="lg:hidden mt-4"
+              className="lg:hidden mt-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-gray-200"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="flex flex-col space-y-2 py-4 border-t border-border">
+              <div className="flex flex-col space-y-1 py-4">
                 {megaMenuItems.map((category) => (
                   <div key={category.id} className="space-y-1">
-                    <div className="flex items-center space-x-2 py-2 px-3 text-indigo-medina font-inter font-semibold">
+                    <div className="flex items-center space-x-2 py-2 px-4 text-indigo-medina font-inter font-semibold text-sm">
                       <category.icon className="w-4 h-4" />
                       <span>{category.label}</span>
                     </div>
-                    <div className="ml-6 space-y-1">
+                    <div className="ml-4 space-y-1">
                       {category.items.map((item) => (
                         <div key={item.href}>
                           {item.href.startsWith('/') && !item.href.includes('#') ? (
                             <Link
                               to={item.href}
-                              className="flex items-center space-x-2 text-foreground hover:text-terre-cuite transition-colors font-inter font-medium py-2 px-3 rounded-lg hover:bg-gray-50"
+                              className="flex items-center space-x-2 text-gray-700 hover:text-terre-cuite transition-colors font-inter font-medium py-2 px-4 rounded-lg hover:bg-gray-50 text-sm"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               <item.icon className="w-4 h-4" />
@@ -254,7 +254,7 @@ const Header = () => {
                           ) : (
                             <a
                               href={item.href}
-                              className="flex items-center space-x-2 text-foreground hover:text-terre-cuite transition-colors font-inter font-medium py-2 px-3 rounded-lg hover:bg-gray-50"
+                              className="flex items-center space-x-2 text-gray-700 hover:text-terre-cuite transition-colors font-inter font-medium py-2 px-4 rounded-lg hover:bg-gray-50 text-sm"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               <item.icon className="w-4 h-4" />
@@ -266,14 +266,16 @@ const Header = () => {
                     </div>
                   </div>
                 ))}
-                     <div className="pt-4 border-t border-border">
-                       <LanguageSwitcher isScrolled={isScrolled} isHomePage={isHomePage} />
-                     </div>
-                <Link to="/booking" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold mt-4 w-full">
-                    {t("nav.booking")}
-                  </Button>
-                </Link>
+                <div className="pt-4 border-t border-gray-200 px-4">
+                  <LanguageSwitcher isScrolled={isScrolled} isHomePage={isHomePage} />
+                </div>
+                <div className="px-4">
+                  <Link to="/booking" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold mt-4 w-full text-sm py-3">
+                      {t("nav.booking")}
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </motion.nav>
           )}
