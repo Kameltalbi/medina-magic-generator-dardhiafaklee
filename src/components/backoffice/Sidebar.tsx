@@ -118,11 +118,11 @@ const Sidebar = ({ activeSection, onSectionChange, isOpen, onToggle, userRole }:
                 animate={{ opacity: 1 }}
                 className="flex items-center space-x-2"
               >
-                <img 
-                  src="/logo Dar Dhiafa klee.png" 
-                  alt="Dar Dhiafa Klee" 
-                  className="h-12 w-auto object-contain"
-                />
+                          <img
+                            src="/logo Dar Dhiafa klee.png"
+                            alt="Dar Dhiafa Klee"
+                            className="h-16 w-auto object-contain"
+                          />
                 <span className="font-playfair font-bold text-indigo-medina">
                   Back Office
                 </span>

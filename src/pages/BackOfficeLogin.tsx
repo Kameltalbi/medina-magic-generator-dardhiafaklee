@@ -49,11 +49,11 @@ const BackOfficeLogin = () => {
         <Card className="shadow-lg">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
-              <img 
-                src="/logo Dar Dhiafa klee.png" 
-                alt="Dar Dhiafa Klee" 
-                className="h-20 w-auto object-contain"
-              />
+                          <img
+                            src="/logo Dar Dhiafa klee.png"
+                            alt="Dar Dhiafa Klee"
+                            className="h-24 w-auto object-contain"
+                          />
             </div>
             <CardTitle className="text-2xl font-playfair font-bold text-indigo-medina">
               Back Office
