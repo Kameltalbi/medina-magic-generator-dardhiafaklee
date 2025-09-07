@@ -11,7 +11,8 @@ import {
   Bell, 
   User as UserIcon, 
   LogOut,
-  Menu
+  Menu,
+  Settings
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -131,7 +132,7 @@ const Header = ({ onMenuToggle, user, role }: HeaderProps) => {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-full flex items-center justify-center">
-                  <User className="w-4 h-4 text-white" />
+                  <UserIcon className="w-4 h-4 text-white" />
                 </div>
                 <div className="hidden sm:block text-left">
                   <div className="text-sm font-medium">{user?.name}</div>
