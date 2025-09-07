@@ -38,7 +38,7 @@ const BookingHeader = () => {
                         <img
                           src="/logo Dar Dhiafa klee.png"
                           alt="Dar Dhiafa Klee"
-                          className="h-20 w-auto sm:h-24 object-contain drop-shadow-lg"
+                          className="h-22 w-auto sm:h-24 object-contain drop-shadow-lg"
                         />
           </Link>
 
