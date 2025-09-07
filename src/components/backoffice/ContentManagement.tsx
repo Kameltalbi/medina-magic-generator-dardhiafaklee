@@ -179,9 +179,9 @@ const ContentManagement = () => {
       {/* Content Management Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="pricing">{t("backoffice.content.tabs.pricing")}</TabsTrigger>
-          <TabsTrigger value="images">{t("backoffice.content.tabs.images")}</TabsTrigger>
-          <TabsTrigger value="promotions">{t("backoffice.content.tabs.promotions")}</TabsTrigger>
+          <TabsTrigger value="pricing">Tarification</TabsTrigger>
+          <TabsTrigger value="images">Images</TabsTrigger>
+          <TabsTrigger value="promotions">Promotions</TabsTrigger>
         </TabsList>
 
         {/* Pricing Tab */}
@@ -189,10 +189,10 @@ const ContentManagement = () => {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{t("backoffice.content.pricing.title")}</CardTitle>
+                <CardTitle>Gestion des tarifs</CardTitle>
                 <Button size="sm" className="bg-terre-cuite hover:bg-terre-cuite-hover">
                   <Plus className="w-4 h-4 mr-2" />
-                  {t("backoffice.content.pricing.addPrice")}
+                  Ajouter un tarif
                 </Button>
               </div>
             </CardHeader>
@@ -200,13 +200,13 @@ const ContentManagement = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>{t("backoffice.content.pricing.roomType")}</TableHead>
-                    <TableHead>{t("backoffice.content.pricing.basePrice")}</TableHead>
-                    <TableHead>{t("backoffice.content.pricing.minNights")}</TableHead>
-                    <TableHead>{t("backoffice.content.pricing.maxNights")}</TableHead>
-                    <TableHead>{t("backoffice.content.pricing.status")}</TableHead>
-                    <TableHead>{t("backoffice.content.pricing.lastModified")}</TableHead>
-                    <TableHead className="text-right">{t("backoffice.content.pricing.actions")}</TableHead>
+                    <TableHead>Type de chambre</TableHead>
+                    <TableHead>Prix de base</TableHead>
+                    <TableHead>Nuits min</TableHead>
+                    <TableHead>Nuits max</TableHead>
+                    <TableHead>Statut</TableHead>
+                    <TableHead>Dernière modification</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -224,7 +224,7 @@ const ContentManagement = () => {
                       <TableCell>{price.maxNights}</TableCell>
                       <TableCell>
                         <Badge variant={price.isActive ? "default" : "secondary"}>
-                          {price.isActive ? t("backoffice.content.pricing.active") : t("backoffice.content.pricing.inactive")}
+                          {price.isActive ? "Actif" : "Inactif"}
                         </Badge>
                       </TableCell>
                       <TableCell>{price.lastModified}</TableCell>
@@ -254,15 +254,15 @@ const ContentManagement = () => {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{t("backoffice.content.images.title")}</CardTitle>
+                <CardTitle>Gestion des images</CardTitle>
                 <div className="flex space-x-2">
                   <Button variant="outline" size="sm">
                     <Upload className="w-4 h-4 mr-2" />
-                    {t("backoffice.content.images.upload")}
+                    Télécharger
                   </Button>
                   <Button size="sm" className="bg-terre-cuite hover:bg-terre-cuite-hover">
                     <Plus className="w-4 h-4 mr-2" />
-                    {t("backoffice.content.images.addImage")}
+                    Ajouter une image
                   </Button>
                 </div>
               </div>
@@ -281,7 +281,7 @@ const ContentManagement = () => {
                         <div className="absolute top-2 left-2">
                           <Badge className="bg-terre-cuite">
                             <Star className="w-3 h-3 mr-1" />
-                            {t("backoffice.content.images.featured")}
+                            En vedette
                           </Badge>
                         </div>
                       )}
@@ -323,10 +323,10 @@ const ContentManagement = () => {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{t("backoffice.content.promotions.title")}</CardTitle>
+                <CardTitle>Gestion des promotions</CardTitle>
                 <Button size="sm" className="bg-terre-cuite hover:bg-terre-cuite-hover">
                   <Plus className="w-4 h-4 mr-2" />
-                  {t("backoffice.content.promotions.addPromotion")}
+                  Ajouter une promotion
                 </Button>
               </div>
             </CardHeader>
@@ -343,7 +343,7 @@ const ContentManagement = () => {
                               {getPromotionTypeIcon(promotion.type)}{promotion.value}
                             </Badge>
                             <Badge variant={promotion.isActive ? "default" : "secondary"}>
-                              {promotion.isActive ? t("backoffice.content.promotions.active") : t("backoffice.content.promotions.inactive")}
+                              {promotion.isActive ? "Actif" : "Inactif"}
                             </Badge>
                           </div>
                           <p className="text-muted-foreground">{promotion.description}</p>
@@ -354,11 +354,11 @@ const ContentManagement = () => {
                             </div>
                             <div className="flex items-center space-x-1">
                               <Tag className="w-4 h-4" />
-                              <span>{promotion.applicableRooms.length} {t("backoffice.content.promotions.rooms")}</span>
+                              <span>{promotion.applicableRooms.length} chambres</span>
                             </div>
                             <div className="flex items-center space-x-1">
                               <DollarSign className="w-4 h-4" />
-                              <span>{promotion.minNights} {t("backoffice.content.promotions.minNights")}</span>
+                              <span>{promotion.minNights} nuits min</span>
                             </div>
                           </div>
                         </div>

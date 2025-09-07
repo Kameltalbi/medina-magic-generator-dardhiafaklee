@@ -181,17 +181,17 @@ const UserManagement = () => {
               <DialogHeader>
                 <DialogTitle>{"Ajouter Utilisateur"}</DialogTitle>
                 <DialogDescription>
-                  {t("backoffice.users.addUserDescription")}
+                  Créer un nouvel utilisateur avec des permissions spécifiques
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">{t("backoffice.users.name")}</Label>
+                    <Label htmlFor="name">Nom complet</Label>
                     <Input id="name" placeholder="John Doe" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">{t("backoffice.users.email")}</Label>
+                    <Label htmlFor="email">Adresse email</Label>
                     <Input id="email" type="email" placeholder="john@example.com" />
                   </div>
                 </div>
@@ -230,10 +230,10 @@ const UserManagement = () => {
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsAddUserOpen(false)}>
-                  {t("backoffice.users.cancel")}
+                  Annuler
                 </Button>
                 <Button className="bg-terre-cuite hover:bg-terre-cuite-hover">
-                  {t("backoffice.users.createUser")}
+                  Créer l'utilisateur
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -246,14 +246,14 @@ const UserManagement = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.users.stats.totalUsers")}
+              Utilisateurs totaux
             </CardTitle>
             <Users className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{usersData.length}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.users.stats.registeredUsers")}
+              Utilisateurs enregistrés
             </p>
           </CardContent>
         </Card>
@@ -261,7 +261,7 @@ const UserManagement = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.users.stats.activeUsers")}
+              Utilisateurs actifs
             </CardTitle>
             <UserCheck className="w-4 h-4 text-green-600" />
           </CardHeader>
@@ -270,7 +270,7 @@ const UserManagement = () => {
               {usersData.filter(u => u.status === "active").length}
             </div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.users.stats.currentlyActive")}
+              Actuellement actifs
             </p>
           </CardContent>
         </Card>
@@ -278,7 +278,7 @@ const UserManagement = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.users.stats.superadmins")}
+              Super administrateurs
             </CardTitle>
             <ShieldCheck className="w-4 h-4 text-red-600" />
           </CardHeader>
@@ -287,7 +287,7 @@ const UserManagement = () => {
               {usersData.filter(u => u.role === "superadmin").length}
             </div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.users.stats.fullAccess")}
+              Accès complet
             </p>
           </CardContent>
         </Card>
@@ -295,7 +295,7 @@ const UserManagement = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.users.stats.admins")}
+              Administrateurs
             </CardTitle>
             <Shield className="w-4 h-4 text-blue-600" />
           </CardHeader>
@@ -304,7 +304,7 @@ const UserManagement = () => {
               {usersData.filter(u => u.role === "admin").length}
             </div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.users.stats.limitedAccess")}
+              Accès limité
             </p>
           </CardContent>
         </Card>

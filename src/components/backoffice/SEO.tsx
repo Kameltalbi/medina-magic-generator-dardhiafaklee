@@ -224,23 +224,23 @@ const SEO = () => {
       {/* SEO Management Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="meta">{t("backoffice.seo.tabs.meta")}</TabsTrigger>
-          <TabsTrigger value="sitemap">{t("backoffice.seo.tabs.sitemap")}</TabsTrigger>
-          <TabsTrigger value="redirects">{t("backoffice.seo.tabs.redirects")}</TabsTrigger>
-          <TabsTrigger value="jsonld">{t("backoffice.seo.tabs.jsonld")}</TabsTrigger>
-          <TabsTrigger value="audit">{t("backoffice.seo.tabs.audit")}</TabsTrigger>
+          <TabsTrigger value="meta">Méta</TabsTrigger>
+          <TabsTrigger value="sitemap">Plan du site</TabsTrigger>
+          <TabsTrigger value="redirects">Redirections</TabsTrigger>
+          <TabsTrigger value="jsonld">JSON-LD</TabsTrigger>
+          <TabsTrigger value="audit">Audit</TabsTrigger>
         </TabsList>
 
         {/* Meta Tags Tab */}
         <TabsContent value="meta" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>{t("backoffice.seo.metaTags.title")}</CardTitle>
+              <CardTitle>Balises méta</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="page-select">{t("backoffice.seo.metaTags.selectPage")}</Label>
+                  <Label htmlFor="page-select">Sélectionner une page</Label>
                   <Select value={selectedPage} onValueChange={setSelectedPage}>
                     <SelectTrigger>
                       <SelectValue />
@@ -255,40 +255,40 @@ const SEO = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="canonical">{t("backoffice.seo.metaTags.canonical")}</Label>
+                  <Label htmlFor="canonical">URL canonique</Label>
                   <Input id="canonical" defaultValue={metaData.canonical} />
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="title">{t("backoffice.seo.metaTags.titleTag")}</Label>
+                  <Label htmlFor="title">Titre de la page</Label>
                   <Input id="title" defaultValue={metaData.title} />
                   <p className="text-xs text-muted-foreground">
-                    {metaData.title.length}/60 {t("backoffice.seo.metaTags.characters")}
+                    {metaData.title.length}/60 caractères
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="description">{t("backoffice.seo.metaTags.metaDescription")}</Label>
+                  <Label htmlFor="description">Description méta</Label>
                   <Textarea 
                     id="description" 
                     defaultValue={metaData.description}
                     rows={3}
                   />
                   <p className="text-xs text-muted-foreground">
-                    {metaData.description.length}/160 {t("backoffice.seo.metaTags.characters")}
+                    {metaData.description.length}/160 caractères
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="keywords">{t("backoffice.seo.metaTags.keywords")}</Label>
+                  <Label htmlFor="keywords">Mots-clés</Label>
                   <Input id="keywords" defaultValue={metaData.keywords} />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="robots">{t("backoffice.seo.metaTags.robots")}</Label>
+                    <Label htmlFor="robots">Directives robots</Label>
                     <Select defaultValue={metaData.robots}>
                       <SelectTrigger>
                         <SelectValue />
@@ -302,7 +302,7 @@ const SEO = () => {
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="twitter-card">{t("backoffice.seo.metaTags.twitterCard")}</Label>
+                    <Label htmlFor="twitter-card">Carte Twitter</Label>
                     <Select defaultValue={metaData.twitterCard}>
                       <SelectTrigger>
                         <SelectValue />
@@ -317,18 +317,18 @@ const SEO = () => {
               </div>
 
               <div className="border-t pt-4">
-                <h3 className="text-lg font-semibold mb-4">{t("backoffice.seo.metaTags.openGraph")}</h3>
+                <h3 className="text-lg font-semibold mb-4">Open Graph</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="og-title">{t("backoffice.seo.metaTags.ogTitle")}</Label>
+                    <Label htmlFor="og-title">Titre Open Graph</Label>
                     <Input id="og-title" defaultValue={metaData.ogTitle} />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="og-image">{t("backoffice.seo.metaTags.ogImage")}</Label>
+                    <Label htmlFor="og-image">Image Open Graph</Label>
                     <Input id="og-image" defaultValue={metaData.ogImage} />
                   </div>
                   <div className="space-y-2 md:col-span-2">
-                    <Label htmlFor="og-description">{t("backoffice.seo.metaTags.ogDescription")}</Label>
+                    <Label htmlFor="og-description">Description Open Graph</Label>
                     <Textarea 
                       id="og-description" 
                       defaultValue={metaData.ogDescription}
@@ -346,15 +346,15 @@ const SEO = () => {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{t("backoffice.seo.sitemap.title")}</CardTitle>
+                <CardTitle>Plan du site</CardTitle>
                 <div className="flex space-x-2">
                   <Button variant="outline" size="sm">
                     <Upload className="w-4 h-4 mr-2" />
-                    {t("backoffice.seo.sitemap.upload")}
+                    Télécharger
                   </Button>
                   <Button size="sm" className="bg-terre-cuite hover:bg-terre-cuite-hover">
                     <Download className="w-4 h-4 mr-2" />
-                    {t("backoffice.seo.sitemap.download")}
+                    Télécharger
                   </Button>
                 </div>
               </div>
@@ -363,22 +363,22 @@ const SEO = () => {
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-4 bg-muted/30 rounded-lg">
                   <div>
-                    <p className="font-medium">{t("backoffice.seo.sitemap.currentSitemap")}</p>
+                    <p className="font-medium">Plan du site actuel</p>
                     <p className="text-sm text-muted-foreground">
-                      {t("backoffice.seo.sitemap.lastUpdated")}: {new Date().toLocaleDateString()}
+                      Dernière mise à jour: {new Date().toLocaleDateString()}
                     </p>
                   </div>
-                  <Badge variant="outline">{sitemapData.length} {t("backoffice.seo.sitemap.pages")}</Badge>
+                  <Badge variant="outline">{sitemapData.length} pages</Badge>
                 </div>
 
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>{t("backoffice.seo.sitemap.url")}</TableHead>
-                      <TableHead>{t("backoffice.seo.sitemap.priority")}</TableHead>
-                      <TableHead>{t("backoffice.seo.sitemap.changeFreq")}</TableHead>
-                      <TableHead>{t("backoffice.seo.sitemap.lastMod")}</TableHead>
-                      <TableHead className="text-right">{t("backoffice.seo.sitemap.actions")}</TableHead>
+                      <TableHead>URL</TableHead>
+                      <TableHead>Priorité</TableHead>
+                      <TableHead>Fréquence de changement</TableHead>
+                      <TableHead>Dernière modification</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -407,9 +407,9 @@ const SEO = () => {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{t("backoffice.seo.redirects.title")}</CardTitle>
+                <CardTitle>Redirections</CardTitle>
                 <Button size="sm" className="bg-terre-cuite hover:bg-terre-cuite-hover">
-                  {t("backoffice.seo.redirects.addRedirect")}
+                  Ajouter une redirection
                 </Button>
               </div>
             </CardHeader>
@@ -417,11 +417,11 @@ const SEO = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>{t("backoffice.seo.redirects.from")}</TableHead>
-                    <TableHead>{t("backoffice.seo.redirects.to")}</TableHead>
-                    <TableHead>{t("backoffice.seo.redirects.code")}</TableHead>
-                    <TableHead>{t("backoffice.seo.redirects.note")}</TableHead>
-                    <TableHead className="text-right">{t("backoffice.seo.redirects.actions")}</TableHead>
+                    <TableHead>De</TableHead>
+                    <TableHead>Vers</TableHead>
+                    <TableHead>Code</TableHead>
+                    <TableHead>Note</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -452,12 +452,12 @@ const SEO = () => {
         <TabsContent value="jsonld" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>{t("backoffice.seo.jsonld.title")}</CardTitle>
+              <CardTitle>Données structurées JSON-LD</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="jsonld-type">{t("backoffice.seo.jsonld.schemaType")}</Label>
+                  <Label htmlFor="jsonld-type">Type de schéma</Label>
                   <Select defaultValue="Organization">
                     <SelectTrigger>
                       <SelectValue />
@@ -473,7 +473,7 @@ const SEO = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="jsonld-code">{t("backoffice.seo.jsonld.jsonCode")}</Label>
+                  <Label htmlFor="jsonld-code">Code JSON</Label>
                   <Textarea 
                     id="jsonld-code" 
                     rows={10}
@@ -499,11 +499,11 @@ const SEO = () => {
                 <div className="flex space-x-2">
                   <Button variant="outline" size="sm">
                     <Eye className="w-4 h-4 mr-2" />
-                    {t("backoffice.seo.jsonld.preview")}
+                    Aperçu
                   </Button>
                   <Button variant="outline" size="sm">
                     <Code className="w-4 h-4 mr-2" />
-                    {t("backoffice.seo.jsonld.validate")}
+                    Valider
                   </Button>
                 </div>
               </div>
@@ -516,9 +516,9 @@ const SEO = () => {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>{t("backoffice.seo.audit.title")}</CardTitle>
+                <CardTitle>Audit SEO</CardTitle>
                 <Button size="sm" className="bg-terre-cuite hover:bg-terre-cuite-hover">
-                  {t("backoffice.seo.audit.runAudit")}
+                  Lancer l'audit
                 </Button>
               </div>
             </CardHeader>

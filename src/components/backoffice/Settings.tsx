@@ -163,12 +163,12 @@ const Settings = () => {
       {/* Settings Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
         <TabsList className="grid w-full grid-cols-6">
-          <TabsTrigger value="general">{t("backoffice.settings.tabs.general")}</TabsTrigger>
-          <TabsTrigger value="payment">{t("backoffice.settings.tabs.payment")}</TabsTrigger>
-          <TabsTrigger value="email">{t("backoffice.settings.tabs.email")}</TabsTrigger>
-          <TabsTrigger value="security">{t("backoffice.settings.tabs.security")}</TabsTrigger>
-          <TabsTrigger value="analytics">{t("backoffice.settings.tabs.analytics")}</TabsTrigger>
-          <TabsTrigger value="webhooks">{t("backoffice.settings.tabs.webhooks")}</TabsTrigger>
+          <TabsTrigger value="general">Général</TabsTrigger>
+          <TabsTrigger value="payment">Paiement</TabsTrigger>
+          <TabsTrigger value="email">Email</TabsTrigger>
+          <TabsTrigger value="security">Sécurité</TabsTrigger>
+          <TabsTrigger value="analytics">Analytiques</TabsTrigger>
+          <TabsTrigger value="webhooks">Webhooks</TabsTrigger>
         </TabsList>
 
         {/* General Settings */}
@@ -177,13 +177,13 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Globe className="w-5 h-5" />
-                <span>{t("backoffice.settings.general.title")}</span>
+                <span>Paramètres généraux</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="siteName">{t("backoffice.settings.general.siteName")}</Label>
+                  <Label htmlFor="siteName">Nom du site</Label>
                   <Input 
                     id="siteName" 
                     defaultValue={generalSettings.siteName}
@@ -191,7 +191,7 @@ const Settings = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="siteUrl">{t("backoffice.settings.general.siteUrl")}</Label>
+                  <Label htmlFor="siteUrl">URL du site</Label>
                   <Input 
                     id="siteUrl" 
                     defaultValue={generalSettings.siteUrl}
@@ -202,7 +202,7 @@ const Settings = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="defaultLanguage">{t("backoffice.settings.general.defaultLanguage")}</Label>
+                  <Label htmlFor="defaultLanguage">Langue par défaut</Label>
                   <Select defaultValue={generalSettings.defaultLanguage}>
                     <SelectTrigger>
                       <SelectValue />
@@ -215,7 +215,7 @@ const Settings = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="timezone">{t("backoffice.settings.general.timezone")}</Label>
+                  <Label htmlFor="timezone">Fuseau horaire</Label>
                   <Select defaultValue={generalSettings.timezone}>
                     <SelectTrigger>
                       <SelectValue />
@@ -228,7 +228,7 @@ const Settings = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="currency">{t("backoffice.settings.general.currency")}</Label>
+                  <Label htmlFor="currency">Devise</Label>
                   <Select defaultValue={generalSettings.currency}>
                     <SelectTrigger>
                       <SelectValue />
@@ -248,7 +248,7 @@ const Settings = () => {
                   defaultChecked={generalSettings.maintenanceMode}
                   onCheckedChange={() => setHasChanges(true)}
                 />
-                <Label htmlFor="maintenanceMode">{t("backoffice.settings.general.maintenanceMode")}</Label>
+                <Label htmlFor="maintenanceMode">Mode maintenance</Label>
               </div>
             </CardContent>
           </Card>
@@ -260,15 +260,15 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <CreditCard className="w-5 h-5" />
-                <span>{t("backoffice.settings.payment.title")}</span>
+                <span>Paramètres de paiement</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold">{t("backoffice.settings.payment.stripe")}</h3>
+                <h3 className="text-lg font-semibold">Stripe</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="stripePublicKey">{t("backoffice.settings.payment.stripePublicKey")}</Label>
+                    <Label htmlFor="stripePublicKey">Clé publique Stripe</Label>
                     <Input 
                       id="stripePublicKey" 
                       type="password"
@@ -277,7 +277,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="stripeSecretKey">{t("backoffice.settings.payment.stripeSecretKey")}</Label>
+                    <Label htmlFor="stripeSecretKey">Clé secrète Stripe</Label>
                     <Input 
                       id="stripeSecretKey" 
                       type="password"
@@ -289,10 +289,10 @@ const Settings = () => {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold">{t("backoffice.settings.payment.paypal")}</h3>
+                <h3 className="text-lg font-semibold">PayPal</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="paypalClientId">{t("backoffice.settings.payment.paypalClientId")}</Label>
+                    <Label htmlFor="paypalClientId">ID client PayPal</Label>
                     <Input 
                       id="paypalClientId" 
                       type="password"
@@ -301,7 +301,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="paypalSecret">{t("backoffice.settings.payment.paypalSecret")}</Label>
+                    <Label htmlFor="paypalSecret">Secret PayPal</Label>
                     <Input 
                       id="paypalSecret" 
                       type="password"
@@ -313,10 +313,10 @@ const Settings = () => {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold">{t("backoffice.settings.payment.tax")}</h3>
+                <h3 className="text-lg font-semibold">Taxes</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="vatRate">{t("backoffice.settings.payment.vatRate")}</Label>
+                    <Label htmlFor="vatRate">Taux de TVA</Label>
                     <Input 
                       id="vatRate" 
                       type="number"
@@ -325,7 +325,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="bankAccount">{t("backoffice.settings.payment.bankAccount")}</Label>
+                    <Label htmlFor="bankAccount">Compte bancaire</Label>
                     <Input 
                       id="bankAccount" 
                       defaultValue={paymentSettings.bankAccount}
@@ -338,7 +338,7 @@ const Settings = () => {
                       defaultChecked={paymentSettings.taxIncluded}
                       onCheckedChange={() => setHasChanges(true)}
                     />
-                    <Label htmlFor="taxIncluded">{t("backoffice.settings.payment.taxIncluded")}</Label>
+                    <Label htmlFor="taxIncluded">Taxes incluses</Label>
                   </div>
                 </div>
               </div>
@@ -352,15 +352,15 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Mail className="w-5 h-5" />
-                <span>{t("backoffice.settings.email.title")}</span>
+                <span>Paramètres email</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold">{t("backoffice.settings.email.smtp")}</h3>
+                <h3 className="text-lg font-semibold">SMTP</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="smtpHost">{t("backoffice.settings.email.smtpHost")}</Label>
+                    <Label htmlFor="smtpHost">Hôte SMTP</Label>
                     <Input 
                       id="smtpHost" 
                       defaultValue={emailSettings.smtpHost}
@@ -368,7 +368,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="smtpPort">{t("backoffice.settings.email.smtpPort")}</Label>
+                    <Label htmlFor="smtpPort">Port SMTP</Label>
                     <Input 
                       id="smtpPort" 
                       type="number"
@@ -377,7 +377,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="smtpUser">{t("backoffice.settings.email.smtpUser")}</Label>
+                    <Label htmlFor="smtpUser">Utilisateur SMTP</Label>
                     <Input 
                       id="smtpUser" 
                       defaultValue={emailSettings.smtpUser}
@@ -385,7 +385,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="smtpPassword">{t("backoffice.settings.email.smtpPassword")}</Label>
+                    <Label htmlFor="smtpPassword">Mot de passe SMTP</Label>
                     <Input 
                       id="smtpPassword" 
                       type="password"
@@ -397,10 +397,10 @@ const Settings = () => {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold">{t("backoffice.settings.email.sender")}</h3>
+                <h3 className="text-lg font-semibold">Expéditeur</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="fromName">{t("backoffice.settings.email.fromName")}</Label>
+                    <Label htmlFor="fromName">Nom d'expéditeur</Label>
                     <Input 
                       id="fromName" 
                       defaultValue={emailSettings.fromName}
@@ -408,7 +408,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="fromEmail">{t("backoffice.settings.email.fromEmail")}</Label>
+                    <Label htmlFor="fromEmail">Email d'expéditeur</Label>
                     <Input 
                       id="fromEmail" 
                       type="email"
@@ -417,7 +417,7 @@ const Settings = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="replyTo">{t("backoffice.settings.email.replyTo")}</Label>
+                    <Label htmlFor="replyTo">Répondre à</Label>
                     <Input 
                       id="replyTo" 
                       type="email"
@@ -437,13 +437,13 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Shield className="w-5 h-5" />
-                <span>{t("backoffice.settings.security.title")}</span>
+                <span>Paramètres de sécurité</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="sessionTimeout">{t("backoffice.settings.security.sessionTimeout")}</Label>
+                  <Label htmlFor="sessionTimeout">Délai d'expiration de session</Label>
                   <Input 
                     id="sessionTimeout" 
                     type="number"
@@ -452,7 +452,7 @@ const Settings = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="maxLoginAttempts">{t("backoffice.settings.security.maxLoginAttempts")}</Label>
+                  <Label htmlFor="maxLoginAttempts">Tentatives de connexion max</Label>
                   <Input 
                     id="maxLoginAttempts" 
                     type="number"
@@ -461,7 +461,7 @@ const Settings = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="passwordMinLength">{t("backoffice.settings.security.passwordMinLength")}</Label>
+                  <Label htmlFor="passwordMinLength">Longueur min du mot de passe</Label>
                   <Input 
                     id="passwordMinLength" 
                     type="number"
@@ -470,7 +470,7 @@ const Settings = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="ipWhitelist">{t("backoffice.settings.security.ipWhitelist")}</Label>
+                  <Label htmlFor="ipWhitelist">Liste blanche IP</Label>
                   <Input 
                     id="ipWhitelist" 
                     placeholder="192.168.1.0/24, 10.0.0.0/8"
@@ -487,7 +487,7 @@ const Settings = () => {
                     defaultChecked={securitySettings.require2FA}
                     onCheckedChange={() => setHasChanges(true)}
                   />
-                  <Label htmlFor="require2FA">{t("backoffice.settings.security.require2FA")}</Label>
+                  <Label htmlFor="require2FA">Exiger 2FA</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Switch 
@@ -495,7 +495,7 @@ const Settings = () => {
                     defaultChecked={securitySettings.enableAuditLog}
                     onCheckedChange={() => setHasChanges(true)}
                   />
-                  <Label htmlFor="enableAuditLog">{t("backoffice.settings.security.enableAuditLog")}</Label>
+                  <Label htmlFor="enableAuditLog">Activer le journal d'audit</Label>
                 </div>
               </div>
             </CardContent>
@@ -508,13 +508,13 @@ const Settings = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <Database className="w-5 h-5" />
-                <span>{t("backoffice.settings.analytics.title")}</span>
+                <span>Paramètres analytiques</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="googleAnalyticsId">{t("backoffice.settings.analytics.googleAnalyticsId")}</Label>
+                  <Label htmlFor="googleAnalyticsId">ID Google Analytics</Label>
                   <Input 
                     id="googleAnalyticsId" 
                     defaultValue={analyticsSettings.googleAnalyticsId}
@@ -522,7 +522,7 @@ const Settings = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="googleTagManagerId">{t("backoffice.settings.analytics.googleTagManagerId")}</Label>
+                  <Label htmlFor="googleTagManagerId">ID Google Tag Manager</Label>
                   <Input 
                     id="googleTagManagerId" 
                     defaultValue={analyticsSettings.googleTagManagerId}
@@ -530,7 +530,7 @@ const Settings = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="facebookPixelId">{t("backoffice.settings.analytics.facebookPixelId")}</Label>
+                  <Label htmlFor="facebookPixelId">ID Facebook Pixel</Label>
                   <Input 
                     id="facebookPixelId" 
                     defaultValue={analyticsSettings.facebookPixelId}
@@ -538,7 +538,7 @@ const Settings = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="hotjarId">{t("backoffice.settings.analytics.hotjarId")}</Label>
+                  <Label htmlFor="hotjarId">ID Hotjar</Label>
                   <Input 
                     id="hotjarId" 
                     defaultValue={analyticsSettings.hotjarId}
@@ -554,7 +554,7 @@ const Settings = () => {
                     defaultChecked={analyticsSettings.enableCookies}
                     onCheckedChange={() => setHasChanges(true)}
                   />
-                  <Label htmlFor="enableCookies">{t("backoffice.settings.analytics.enableCookies")}</Label>
+                  <Label htmlFor="enableCookies">Activer les cookies</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Switch 
@@ -562,7 +562,7 @@ const Settings = () => {
                     defaultChecked={analyticsSettings.cookieConsent}
                     onCheckedChange={() => setHasChanges(true)}
                   />
-                  <Label htmlFor="cookieConsent">{t("backoffice.settings.analytics.cookieConsent")}</Label>
+                  <Label htmlFor="cookieConsent">Consentement cookies</Label>
                 </div>
               </div>
             </CardContent>
@@ -576,11 +576,11 @@ const Settings = () => {
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center space-x-2">
                   <Webhook className="w-5 h-5" />
-                  <span>{t("backoffice.settings.webhooks.title")}</span>
+                  <span>Webhooks</span>
                 </CardTitle>
                 <Button size="sm" className="bg-terre-cuite hover:bg-terre-cuite-hover">
                   <Plus className="w-4 h-4 mr-2" />
-                  {t("backoffice.settings.webhooks.addWebhook")}
+                  Ajouter un webhook
                 </Button>
               </div>
             </CardHeader>
@@ -594,13 +594,13 @@ const Settings = () => {
                           <div className="flex items-center space-x-2">
                             <h3 className="font-semibold">{webhook.name}</h3>
                             <Badge variant={webhook.isActive ? "default" : "secondary"}>
-                              {webhook.isActive ? t("backoffice.settings.webhooks.active") : t("backoffice.settings.webhooks.inactive")}
+                              {webhook.isActive ? "Actif" : "Inactif"}
                             </Badge>
                           </div>
                           <p className="text-sm text-muted-foreground">{webhook.url}</p>
                           <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                             <span>{webhook.events.join(", ")}</span>
-                            <span>{t("backoffice.settings.webhooks.lastTriggered")}: {webhook.lastTriggered}</span>
+                            <span>Dernière exécution: {webhook.lastTriggered}</span>
                           </div>
                         </div>
                         <div className="flex items-center space-x-2">

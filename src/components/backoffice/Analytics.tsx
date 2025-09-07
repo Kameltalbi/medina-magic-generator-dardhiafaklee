@@ -119,14 +119,14 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.analytics.kpis.sessions")}
+              Sessions
             </CardTitle>
             <Eye className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{trafficData.sessions.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.analytics.kpis.totalSessions")}
+              Sessions totales
             </p>
           </CardContent>
         </Card>
@@ -134,14 +134,14 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.analytics.kpis.uniqueVisitors")}
+              Visiteurs uniques
             </CardTitle>
             <Users className="w-4 h-4 text-green-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{trafficData.uniqueVisitors.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.analytics.kpis.uniqueUsers")}
+              Utilisateurs uniques
             </p>
           </CardContent>
         </Card>
@@ -149,14 +149,14 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.analytics.kpis.pageViews")}
+              Pages vues
             </CardTitle>
             <MousePointer className="w-4 h-4 text-purple-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{trafficData.pageViews.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.analytics.kpis.totalPageViews")}
+              Pages vues totales
             </p>
           </CardContent>
         </Card>
@@ -164,14 +164,14 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.analytics.kpis.avgDuration")}
+              Durée moyenne
             </CardTitle>
             <TrendingUp className="w-4 h-4 text-orange-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{trafficData.avgSessionDuration}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.analytics.kpis.perSession")}
+              Par session
             </p>
           </CardContent>
         </Card>
@@ -179,14 +179,14 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.analytics.kpis.bounceRate")}
+              Taux de rebond
             </CardTitle>
             <TrendingUp className="w-4 h-4 text-red-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{trafficData.bounceRate}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.analytics.kpis.singlePageSessions")}
+              Sessions d'une page
             </p>
           </CardContent>
         </Card>
@@ -194,14 +194,14 @@ const Analytics = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.analytics.kpis.conversionRate")}
+              Taux de conversion
             </CardTitle>
             <MousePointer className="w-4 h-4 text-teal-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{trafficData.conversionRate}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.analytics.kpis.sessionsToPurchase")}
+              Sessions vers achat
             </p>
           </CardContent>
         </Card>
