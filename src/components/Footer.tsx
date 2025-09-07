@@ -49,6 +49,7 @@ const Footer = () => {
       { name: t("footer.contact"), href: "#contact" },
       { name: t("footer.termsOfService"), href: "/terms" },
       { name: t("footer.privacyPolicy"), href: "/privacy" },
+      { name: "Administration", href: "/backoffice" },
     ],
   };
 
