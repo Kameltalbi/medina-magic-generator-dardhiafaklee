@@ -27,7 +27,8 @@ const BackOfficeLogin = () => {
     try {
       const result = await login(email, password);
       if (result.success) {
-        window.location.href = "/backoffice";
+        // Force page reload to ensure state is updated
+        window.location.reload();
       } else {
         setError(result.error || "Erreur de connexion");
       }

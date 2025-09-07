@@ -44,15 +44,19 @@ const useAuth = () => {
 
   const login = async (email: string, password: string) => {
     try {
+      console.log("Attempting login with:", email);
       // Simulate API call
       const response = await mockLogin(email, password);
+      console.log("Login response:", response);
       if (response.success) {
         localStorage.setItem("auth_token", response.token);
         setUser(response.user);
+        console.log("User set:", response.user);
         return { success: true };
       }
       return { success: false, error: response.error };
     } catch (error) {
+      console.error("Login error:", error);
       return { success: false, error: "Login failed" };
     }
   };
