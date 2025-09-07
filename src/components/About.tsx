@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Palette, Heart, Star, Award } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
-import { useTranslation } from "react-i18next";
 
 const About = () => {
   const { t } = useTranslation();

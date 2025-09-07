@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTranslation } from "react-i18next";
 import { slideInLeft } from "@/lib/animations";
-import { useTranslation } from "react-i18next";
 import type { BookingRequest } from "@/lib/types";
 
 const QuickBooking = () => {

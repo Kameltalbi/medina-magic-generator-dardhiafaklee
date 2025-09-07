@@ -6,7 +6,6 @@ import { Wifi, Coffee, Tv, Bath, Eye, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
-import { useTranslation } from "react-i18next";
 import type { Room } from "@/lib/types";
 import roomTraditional from "@/assets/room-traditional.jpg";
 import roomSuite from "@/assets/room-suite.jpg";

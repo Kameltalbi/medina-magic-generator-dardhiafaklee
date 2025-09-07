@@ -35,6 +35,16 @@ const resources = {
       "booking.checkAvailability": "Check Availability",
       "booking.guest": "guest",
       "booking.guests_plural": "guests",
+      "booking.backHome": "Back to Home",
+      "booking.hero.title": "Book your stay at",
+      "booking.hero.description": "Immerse yourself in art and Tunisian hospitality in the heart of the historic medina of Kairouan",
+      "booking.form.title": "Search for a room",
+      "booking.form.subtitle": "Select your dates and number of guests",
+      "booking.form.checkIn": "Check-in",
+      "booking.form.checkOut": "Check-out",
+      "booking.form.guests": "Guests",
+      "booking.form.guest": "guest",
+      "booking.form.checkAvailability": "Check Availability",
       
       // About
       "about.title": "Where Art Meets Hospitality",
@@ -211,7 +221,12 @@ const resources = {
       "footer.email": "info@dardhiafaklee.tn",
       "footer.followUsText": "Follow us:",
       "footer.copyright": "© 2024 Dar Dhiafa Klee. All rights reserved.",
-      "footer.attribution": "Stay connected with Dar Dhiafa Klee for news, special offers and exclusive experiences."
+      "footer.attribution": "Stay connected with Dar Dhiafa Klee for news, special offers and exclusive experiences.",
+      
+      // 404 Not Found
+      "notFound.title": "Page Not Found",
+      "notFound.description": "The page you are looking for does not exist.",
+      "notFound.backHome": "Back to Home"
     }
   },
   fr: {
@@ -245,6 +260,16 @@ const resources = {
       "booking.checkAvailability": "Vérifier la disponibilité",
       "booking.guest": "personne",
       "booking.guests_plural": "personnes",
+      "booking.backHome": "Retour à l'accueil",
+      "booking.hero.title": "Réservez votre séjour à",
+      "booking.hero.description": "Plongez dans l'art et l'hospitalité tunisienne au cœur de la médina historique de Kairouan",
+      "booking.form.title": "Rechercher une chambre",
+      "booking.form.subtitle": "Sélectionnez vos dates et le nombre d'hôtes",
+      "booking.form.checkIn": "Arrivée",
+      "booking.form.checkOut": "Départ",
+      "booking.form.guests": "Hôtes",
+      "booking.form.guest": "hôte",
+      "booking.form.checkAvailability": "Vérifier la disponibilité",
       
       // About
       "about.title": "Où l'Art Rencontre l'Hospitalité",
@@ -421,7 +446,12 @@ const resources = {
       "footer.email": "info@dardhiafaklee.tn",
       "footer.followUsText": "Suivez-nous :",
       "footer.copyright": "© 2024 Dar Dhiafa Klee. Tous droits réservés.",
-      "footer.attribution": "Restez connecté avec Dar Dhiafa Klee pour les actualités, offres spéciales et expériences exclusives."
+      "footer.attribution": "Restez connecté avec Dar Dhiafa Klee pour les actualités, offres spéciales et expériences exclusives.",
+      
+      // 404 Not Found
+      "notFound.title": "Page introuvable",
+      "notFound.description": "La page que vous recherchez n'existe pas.",
+      "notFound.backHome": "Retour à l'accueil"
     }
   },
   ar: {
@@ -455,6 +485,16 @@ const resources = {
       "booking.checkAvailability": "تحقق من التوفر",
       "booking.guest": "ضيف",
       "booking.guests_plural": "ضيوف",
+      "booking.backHome": "العودة للرئيسية",
+      "booking.hero.title": "احجز إقامتك في",
+      "booking.hero.description": "انغمس في الفن والضيافة التونسية في قلب المدينة العتيقة التاريخية للقيروان",
+      "booking.form.title": "البحث عن غرفة",
+      "booking.form.subtitle": "اختر تواريخك وعدد الضيوف",
+      "booking.form.checkIn": "تاريخ الوصول",
+      "booking.form.checkOut": "تاريخ المغادرة",
+      "booking.form.guests": "الضيوف",
+      "booking.form.guest": "ضيف",
+      "booking.form.checkAvailability": "تحقق من التوفر",
       
       // About
       "about.title": "حيث يلتقي الفن بالضيافة",
@@ -631,7 +671,12 @@ const resources = {
       "footer.email": "info@dardhiafaklee.tn",
       "footer.followUsText": "تابعنا:",
       "footer.copyright": "© 2024 دار ضيافة كلي. جميع الحقوق محفوظة.",
-      "footer.attribution": "ابق على تواصل مع دار ضيافة كلي للأخبار والعروض الخاصة والتجارب الحصرية."
+      "footer.attribution": "ابق على تواصل مع دار ضيافة كلي للأخبار والعروض الخاصة والتجارب الحصرية.",
+      
+      // 404 Not Found
+      "notFound.title": "الصفحة غير موجودة",
+      "notFound.description": "الصفحة التي تبحث عنها غير موجودة.",
+      "notFound.backHome": "العودة للرئيسية"
     }
   }
 };

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { slideInLeft } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 import type { BookingRequest } from "@/lib/types";
 
 interface BookingFormProps {
@@ -15,6 +16,7 @@ interface BookingFormProps {
 }
 
 const BookingForm = ({ onSearch }: BookingFormProps) => {
+  const { t } = useTranslation();
   const [bookingData, setBookingData] = useState<BookingRequest>({
     checkIn: "",
     checkOut: "",
@@ -48,10 +50,10 @@ const BookingForm = ({ onSearch }: BookingFormProps) => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="text-center mb-6">
                 <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2">
-                  Rechercher une chambre
+                  {t("booking.form.title")}
                 </h2>
                 <p className="text-muted-foreground font-inter">
-                  Sélectionnez vos dates et le nombre d'hôtes
+                  {t("booking.form.subtitle")}
                 </p>
               </div>
 
@@ -59,7 +61,7 @@ const BookingForm = ({ onSearch }: BookingFormProps) => {
                 {/* Check-in Date */}
                 <div className="space-y-2">
                   <Label htmlFor="checkin" className="text-indigo-medina font-inter font-medium">
-                    Arrivée
+                    {t("booking.form.checkIn")}
                   </Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -79,7 +81,7 @@ const BookingForm = ({ onSearch }: BookingFormProps) => {
                 {/* Check-out Date */}
                 <div className="space-y-2">
                   <Label htmlFor="checkout" className="text-indigo-medina font-inter font-medium">
-                    Départ
+                    {t("booking.form.checkOut")}
                   </Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -99,7 +101,7 @@ const BookingForm = ({ onSearch }: BookingFormProps) => {
                 {/* Guests */}
                 <div className="space-y-2">
                   <Label htmlFor="guests" className="text-indigo-medina font-inter font-medium">
-                    Hôtes
+                    {t("booking.form.guests")}
                   </Label>
                   <div className="relative">
                     <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -113,7 +115,7 @@ const BookingForm = ({ onSearch }: BookingFormProps) => {
                     >
                       {[1, 2, 3, 4, 5, 6].map((num) => (
                         <option key={num} value={num}>
-                          {num} {num === 1 ? "hôte" : "hôtes"}
+                          {num} {num === 1 ? t("booking.form.guest") : t("booking.form.guests")}
                         </option>
                       ))}
                     </select>
@@ -136,7 +138,7 @@ const BookingForm = ({ onSearch }: BookingFormProps) => {
                   ) : (
                     <>
                       <Search className="w-4 h-4 mr-2" />
-                      Vérifier la disponibilité
+                      {t("booking.form.checkAvailability")}
                     </>
                   )}
                 </Button>

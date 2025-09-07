@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const BookingHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,19 +49,19 @@ const BookingHeader = () => {
               to="/"
               className="text-indigo-medina hover:text-terre-cuite transition-colors font-inter"
             >
-              Accueil
+              {t("nav.home")}
             </Link>
             <Link
               to="/#chambres"
               className="text-indigo-medina hover:text-terre-cuite transition-colors font-inter"
             >
-              Chambres
+              {t("nav.rooms")}
             </Link>
             <Link
               to="/#contact"
               className="text-indigo-medina hover:text-terre-cuite transition-colors font-inter"
             >
-              Contact
+              {t("nav.contact")}
             </Link>
           </nav>
 
@@ -69,7 +71,7 @@ const BookingHeader = () => {
             className="flex items-center space-x-2 px-4 py-2 bg-transparent border border-indigo-medina text-indigo-medina rounded-lg hover:bg-indigo-medina hover:text-white transition-all duration-300 font-inter"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span className="hidden sm:inline">Retour accueil</span>
+            <span className="hidden sm:inline">{t("booking.backHome")}</span>
           </Link>
         </div>
       </div>

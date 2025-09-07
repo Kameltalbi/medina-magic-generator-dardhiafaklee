@@ -3,8 +3,11 @@
 
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
+import { useTranslation } from "react-i18next";
 
 const BookingHero = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="relative pt-24 pb-16 px-4 bg-gradient-subtle">
       <div className="container mx-auto text-center">
@@ -15,12 +18,12 @@ const BookingHero = () => {
           className="max-w-3xl mx-auto"
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-6">
-            Réservez votre séjour à{" "}
+            {t("booking.hero.title")}{" "}
             <span className="text-terre-cuite">Dar Dhiafa Klee</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground font-inter max-w-2xl mx-auto leading-relaxed">
-            Plongez dans l'art et l'hospitalité tunisienne au cœur de la médina historique de Kairouan
+            {t("booking.hero.description")}
           </p>
         </motion.div>
       </div>
