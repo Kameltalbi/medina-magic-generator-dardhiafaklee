@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { Wifi, Coffee, Tv, Bath, Eye, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
 import type { Room } from "@/lib/types";
 import roomTraditional from "@/assets/room-traditional.jpg";
@@ -11,30 +12,32 @@ import roomSuite from "@/assets/room-suite.jpg";
 import roomDeluxe from "@/assets/room-deluxe.jpg";
 
 const RoomsPreview = () => {
+  const { t } = useTranslation();
+  
   const rooms: Room[] = [
     {
       id: "traditional",
-      title: "غرفة تقليدية",
+      title: t("rooms.traditional.title"),
       pricePerNight: "120€",
       image: roomTraditional,
-      description: "الأصالة والراحة في ديكور تونسي تقليدي",
-      amenities: ["واي فاي مجاني", "تكييف هواء", "حمام خاص", "شرفة"],
+      description: t("rooms.traditional.description"),
+      amenities: [t("rooms.amenities.wifi"), t("rooms.amenities.ac"), t("rooms.amenities.bathroom"), t("rooms.amenities.balcony")],
     },
     {
-      id: "suite",
-      title: "Suite Klee",
+      id: "suite", 
+      title: t("rooms.suite.title"),
       pricePerNight: "180€",
       image: roomSuite,
-      description: "أناقة عصرية مستوحاة من فن بول كلي",
-      amenities: ["صالة خاصة", "حوض استحمام", "إطلالة على المدينة", "خدمة الشاي"],
+      description: t("rooms.suite.description"),
+      amenities: [t("rooms.amenities.livingroom"), t("rooms.amenities.bathtub"), t("rooms.amenities.cityview"), t("rooms.amenities.teaservice")],
     },
     {
       id: "deluxe",
-      title: "غرفة فاخرة",
+      title: t("rooms.deluxe.title"),
       pricePerNight: "220€",
       image: roomDeluxe,
-      description: "فخامة وأناقة مع شرفة بانورامية",
-      amenities: ["شرفة خاصة", "ميني بار", "خدمة الغرف", "إطلالة بانورامية"],
+      description: t("rooms.deluxe.description"),
+      amenities: [t("rooms.amenities.privateterrace"), t("rooms.amenities.minibar"), t("rooms.amenities.roomservice"), t("rooms.amenities.panoramicview")],
     },
   ];
 
@@ -62,14 +65,13 @@ const RoomsPreview = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
-              الغرف و <span className="text-terre-cuite">الأجنحة</span>
+              {t("rooms.title")}
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={staggerItem}
             >
-              كل غرفة تحكي قصة، تمزج بين الراحة العصرية والسحر التقليدي 
-              في بيئة مستوحاة من الفن والضيافة التونسية.
+              {t("rooms.subtitle")}
             </motion.p>
           </div>
 
@@ -99,7 +101,7 @@ const RoomsPreview = () => {
                   
                   {/* Price Badge */}
                   <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
-                    {room.pricePerNight}/ليلة
+                    {room.pricePerNight}{t("rooms.perNight")}
                   </div>
                 </div>
 
@@ -136,14 +138,14 @@ const RoomsPreview = () => {
                       className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-medium transition-all duration-300"
                     >
                       <Eye className="w-4 h-4 mr-2" />
-                      التفاصيل
+                      {t("rooms.details")}
                     </Button>
                     <Button
                       size="sm"
                       className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-medium transition-all duration-300"
                     >
                       <Calendar className="w-4 h-4 mr-2" />
-                      احجز
+                      {t("rooms.book")}
                     </Button>
                   </div>
                 </div>
@@ -160,7 +162,7 @@ const RoomsPreview = () => {
               size="lg"
               className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-inter font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium"
             >
-              اعرض جميع غرفنا
+              {t("rooms.viewAll")}
             </Button>
           </motion.div>
         </motion.div>
