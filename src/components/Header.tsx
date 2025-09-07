@@ -5,10 +5,13 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,13 +23,13 @@ const Header = () => {
   }, []);
 
   const menuItems = [
-    { label: "Accueil", href: "#home" },
-    { label: "À propos", href: "#about" },
-    { label: "Chambres", href: "#rooms" },
-    { label: "Expériences", href: "#experiences" },
+    { label: t("nav.home"), href: "#home" },
+    { label: t("about.title"), href: "#about" },
+    { label: t("nav.rooms"), href: "#rooms" },
+    { label: t("nav.experiences"), href: "#experiences" },
     { label: "Galerie", href: "#gallery" },
     { label: "Visite 360°", href: "#virtual-tour" },
-    { label: "Contact", href: "#contact" },
+    { label: t("nav.contact"), href: "#contact" },
   ];
 
   return (
@@ -77,10 +80,11 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button Desktop */}
-          <div className="hidden lg:block">
+          {/* Language Switcher & CTA Button Desktop */}
+          <div className="hidden lg:flex items-center gap-4">
+            <LanguageSwitcher />
             <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 py-2 transition-all duration-300 shadow-soft hover:shadow-medium">
-              Réserver
+              {t("nav.booking")}
             </Button>
           </div>
 
@@ -119,8 +123,11 @@ const Header = () => {
                 {item.label}
               </a>
             ))}
+            <div className="pt-4 border-t border-border">
+              <LanguageSwitcher />
+            </div>
             <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold mt-4 w-full">
-              Réserver
+              {t("nav.booking")}
             </Button>
           </div>
         </motion.nav>
