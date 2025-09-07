@@ -24,6 +24,7 @@ const resources = {
       "hero.explore360": "Explore in 360°",
       
       // Quick Booking
+      "booking.quickBooking": "Quick Booking",
       "booking.checkin": "Check-in",
       "booking.checkout": "Check-out",
       "booking.guests": "Number of guests",
@@ -98,6 +99,7 @@ const resources = {
       "hero.explore360": "Explorer en 360°",
       
       // Quick Booking
+      "booking.quickBooking": "Réservation rapide",
       "booking.checkin": "Arrivée",
       "booking.checkout": "Départ",
       "booking.guests": "Nombre d'hôtes",
@@ -172,6 +174,7 @@ const resources = {
       "hero.explore360": "استكشف بزاوية 360°",
       
       // Quick Booking
+      "booking.quickBooking": "الحجز السريع",
       "booking.checkin": "تاريخ الوصول",
       "booking.checkout": "تاريخ المغادرة",
       "booking.guests": "عدد الضيوف",
