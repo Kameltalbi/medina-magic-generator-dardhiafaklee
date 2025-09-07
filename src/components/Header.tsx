@@ -63,13 +63,13 @@ const Header = () => {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-medium"
-          : isHomePage 
-            ? "bg-white/10 backdrop-blur-sm"
-            : "bg-vert-porte/95 backdrop-blur-md shadow-medium"
-      }`}
+                  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                    isScrolled
+                      ? "bg-card/95 backdrop-blur-md shadow-medium"
+                      : isHomePage
+                        ? "bg-gray-100/90 backdrop-blur-sm"
+                        : "bg-vert-porte/95 backdrop-blur-md shadow-medium"
+                  }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -82,13 +82,11 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
-              <img 
-                src="/logo Dar Dhiafa klee.png" 
-                alt="Dar Dhiafa Klee" 
-                className="h-12 w-auto sm:h-16 object-contain"
-              />
-            </div>
+            <img 
+              src="/logo Dar Dhiafa klee.png" 
+              alt="Dar Dhiafa Klee" 
+              className="h-12 w-auto sm:h-16 object-contain drop-shadow-lg"
+            />
           </motion.div>
 
           {/* Desktop Mega Menu Navigation */}
