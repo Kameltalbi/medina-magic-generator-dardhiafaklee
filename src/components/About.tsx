@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import { Palette, Heart, Star, Award } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
 
@@ -17,7 +18,11 @@ const About = () => {
     },
     {
       icon: Heart,
+<<<<<<< HEAD
       title: t("about.feature2.title"),
+=======
+      title: t("about.feature2.title"), 
+>>>>>>> a026293847e70f3c705c2a5dd7d71727056a23e4
       description: t("about.feature2.description"),
     },
     {

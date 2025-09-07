@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { Wifi, Coffee, Tv, Bath, Eye, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
 import type { Room } from "@/lib/types";
@@ -21,6 +22,7 @@ const RoomsPreview = () => {
       pricePerNight: "120€",
       image: roomTraditional,
       description: t("rooms.traditional.description"),
+<<<<<<< HEAD
       amenities: [
         t("rooms.amenities.wifi"),
         t("rooms.amenities.ac"),
@@ -30,16 +32,26 @@ const RoomsPreview = () => {
     },
     {
       id: "suite",
+=======
+      amenities: [t("rooms.amenities.wifi"), t("rooms.amenities.ac"), t("rooms.amenities.bathroom"), t("rooms.amenities.balcony")],
+    },
+    {
+      id: "suite", 
+>>>>>>> a026293847e70f3c705c2a5dd7d71727056a23e4
       title: t("rooms.suite.title"),
       pricePerNight: "180€",
       image: roomSuite,
       description: t("rooms.suite.description"),
+<<<<<<< HEAD
       amenities: [
         t("rooms.amenities.privateLounge"),
         t("rooms.amenities.bathtub"),
         t("rooms.amenities.cityView"),
         t("rooms.amenities.teaService")
       ],
+=======
+      amenities: [t("rooms.amenities.livingroom"), t("rooms.amenities.bathtub"), t("rooms.amenities.cityview"), t("rooms.amenities.teaservice")],
+>>>>>>> a026293847e70f3c705c2a5dd7d71727056a23e4
     },
     {
       id: "deluxe",
@@ -47,12 +59,16 @@ const RoomsPreview = () => {
       pricePerNight: "220€",
       image: roomDeluxe,
       description: t("rooms.deluxe.description"),
+<<<<<<< HEAD
       amenities: [
         t("rooms.amenities.privateBalcony"),
         t("rooms.amenities.minibar"),
         t("rooms.amenities.roomService"),
         t("rooms.amenities.panoramicView")
       ],
+=======
+      amenities: [t("rooms.amenities.privateterrace"), t("rooms.amenities.minibar"), t("rooms.amenities.roomservice"), t("rooms.amenities.panoramicview")],
+>>>>>>> a026293847e70f3c705c2a5dd7d71727056a23e4
     },
   ];
 
@@ -116,7 +132,11 @@ const RoomsPreview = () => {
                   
                   {/* Price Badge */}
                   <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
+<<<<<<< HEAD
                     {room.pricePerNight}/{t("rooms.perNight")}
+=======
+                    {room.pricePerNight}{t("rooms.perNight")}
+>>>>>>> a026293847e70f3c705c2a5dd7d71727056a23e4
                   </div>
                 </div>
 

@@ -9,7 +9,11 @@ import heroImage from "@/assets/hero-dar-dhiafa.jpg";
 
 const Hero = () => {
   const { t } = useTranslation();
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> a026293847e70f3c705c2a5dd7d71727056a23e4
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
