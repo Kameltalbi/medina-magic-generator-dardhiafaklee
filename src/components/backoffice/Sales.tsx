@@ -184,14 +184,14 @@ const Sales = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.sales.kpis.revenue")}
+              Revenus
             </CardTitle>
             <DollarSign className="w-4 h-4 text-green-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">€{totalRevenue.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.sales.kpis.totalRevenue")}
+              Revenus totaux
             </p>
           </CardContent>
         </Card>
@@ -199,14 +199,14 @@ const Sales = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.sales.kpis.totalSales")}
+              Ventes totales
             </CardTitle>
             <CheckCircle className="w-4 h-4 text-blue-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalSales}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.sales.kpis.successfulOrders")}
+              Commandes réussies
             </p>
           </CardContent>
         </Card>
@@ -214,14 +214,14 @@ const Sales = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.sales.kpis.averageOrder")}
+              Panier moyen
             </CardTitle>
             <DollarSign className="w-4 h-4 text-purple-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">€{averageOrderValue.toFixed(2)}</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.sales.kpis.perOrder")}
+              Par commande
             </p>
           </CardContent>
         </Card>
@@ -229,14 +229,14 @@ const Sales = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {t("backoffice.sales.kpis.refundRate")}
+              Taux de remboursement
             </CardTitle>
             <XCircle className="w-4 h-4 text-orange-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{refundRate.toFixed(1)}%</div>
             <p className="text-xs text-muted-foreground">
-              {t("backoffice.sales.kpis.refundedOrders")}
+              Commandes remboursées
             </p>
           </CardContent>
         </Card>
@@ -311,7 +311,9 @@ const Sales = () => {
                       <div className="flex items-center space-x-2">
                         {getStatusIcon(sale.status)}
                         <Badge className={getStatusBadge(sale.status)}>
-                          {t(`backoffice.sales.${sale.status}`)}
+                          {sale.status === "paid" ? "Payé" : 
+                           sale.status === "failed" ? "Échoué" : 
+                           sale.status === "refunded" ? "Remboursé" : sale.status}
                         </Badge>
                       </div>
                     </TableCell>
