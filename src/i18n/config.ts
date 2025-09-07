@@ -9,6 +9,8 @@ const resources = {
         "home": "Home",
         "rooms": "Rooms",
         "experiences": "Experiences",
+        "gallery": "Gallery",
+        "tour360": "360° Tour",
         "contact": "Contact",
         "booking": "Booking"
       },
@@ -61,6 +63,8 @@ const resources = {
         "home": "Accueil",
         "rooms": "Chambres",
         "experiences": "Expériences",
+        "gallery": "Galerie",
+        "tour360": "Visite 360°",
         "contact": "Contact",
         "booking": "Réservation"
       },
@@ -113,6 +117,8 @@ const resources = {
         "home": "الرئيسية",
         "rooms": "الغرف",
         "experiences": "التجارب",
+        "gallery": "المعرض",
+        "tour360": "جولة 360°",
         "contact": "اتصل بنا",
         "booking": "الحجز"
       },

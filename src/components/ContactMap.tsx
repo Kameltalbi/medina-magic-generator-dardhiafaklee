@@ -38,13 +38,13 @@ const ContactMap = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: "Adresse",
-      details: ["Médina de Kairouan", "3100 Kairouan, Tunisie"],
+      title: "Address",
+      details: ["Medina of Kairouan", "3100 Kairouan, Tunisia"],
       color: "text-terre-cuite",
     },
     {
       icon: Phone,
-      title: "Téléphone",
+      title: "Phone",
       details: ["+216 77 123 456", "+216 20 987 654"],
       color: "text-vert-porte",
     },
@@ -56,8 +56,8 @@ const ContactMap = () => {
     },
     {
       icon: Clock,
-      title: "Horaires",
-      details: ["24h/24 - 7j/7", "Accueil disponible"],
+      title: "Hours",
+      details: ["24/7", "Reception available"],
       color: "text-terre-cuite",
     },
   ];
@@ -78,14 +78,14 @@ const ContactMap = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
-              Contact & <span className="text-vert-porte">Localisation</span>
+              التواصل و <span className="text-terre-cuite">الموقع</span>
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={staggerItem}
             >
-              Nous sommes là pour vous accompagner dans l'organisation de votre séjour. 
-              N'hésitez pas à nous contacter pour toute question ou demande spéciale.
+              تواصل معنا أو اعثر علينا في قلب المدينة التاريخية في القيروان. 
+              نحن هنا لجعل إقامتك لا تُنسى.
             </motion.p>
           </div>
 
@@ -100,7 +100,7 @@ const ContactMap = () => {
                   <MessageSquare className="w-5 h-5 text-white" />
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
-                  Envoyez-nous un message
+                  أرسل لنا رسالة
                 </h3>
               </div>
 
@@ -108,7 +108,7 @@ const ContactMap = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-indigo-medina font-inter font-medium">
-                      Nom complet *
+                      الاسم الكامل
                     </Label>
                     <Input
                       id="name"
@@ -117,12 +117,12 @@ const ContactMap = () => {
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
                       required
-                      placeholder="Votre nom"
+                      placeholder="اسمك الكامل"
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-indigo-medina font-inter font-medium">
-                      Email *
+                      البريد الإلكتروني
                     </Label>
                     <Input
                       id="email"
@@ -131,14 +131,14 @@ const ContactMap = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
                       required
-                      placeholder="votre@email.com"
+                      placeholder="بريدك.الإلكتروني@مثال.com"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-indigo-medina font-inter font-medium">
-                    Téléphone
+                    Phone
                   </Label>
                   <Input
                     id="phone"
@@ -152,7 +152,7 @@ const ContactMap = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-indigo-medina font-inter font-medium">
-                    Message *
+                    الرسالة
                   </Label>
                   <Textarea
                     id="message"
@@ -160,7 +160,7 @@ const ContactMap = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina min-h-[120px] resize-none"
                     required
-                    placeholder="Décrivez votre demande, vos dates de séjour, le nombre de personnes..."
+                    placeholder="أخبرنا عن مشروعك، تواريخك، احتياجاتك الخاصة..."
                   />
                 </div>
 
@@ -173,12 +173,12 @@ const ContactMap = () => {
                   {isSubmitting ? (
                     <div className="flex items-center space-x-2">
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      <span>Envoi en cours...</span>
+                      <span>إرسال...</span>
                     </div>
                   ) : (
                     <div className="flex items-center space-x-2">
                       <Send className="w-4 h-4" />
-                      <span>Envoyer le message</span>
+                      <span>إرسال الرسالة</span>
                     </div>
                   )}
                 </Button>
@@ -199,10 +199,10 @@ const ContactMap = () => {
                       <MapPin className="w-16 h-16 mx-auto opacity-80" />
                       <div>
                         <h4 className="font-playfair font-bold text-xl mb-2">
-                          Médina de Kairouan
+                          شارع الجامع الكبير، المدينة
                         </h4>
                         <p className="font-inter text-sm opacity-90 max-w-xs mx-auto">
-                          Carte interactive disponible bientôt
+                          سيتم دمج الخريطة التفاعلية هنا
                         </p>
                       </div>
                     </div>

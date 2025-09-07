@@ -37,10 +37,10 @@ const QuickBooking = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="text-center mb-6">
                 <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2">
-                  Réservation rapide
+                  الحجز السريع
                 </h2>
                 <p className="text-muted-foreground font-inter">
-                  Vérifiez la disponibilité pour votre séjour
+                  تحقق من التوفر لإقامتك
                 </p>
               </div>
 
@@ -48,7 +48,7 @@ const QuickBooking = () => {
                 {/* Check-in Date */}
                 <div className="space-y-2">
                   <Label htmlFor="checkin" className="text-indigo-medina font-inter font-medium">
-                    Arrivée
+                    تاريخ الوصول
                   </Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -68,7 +68,7 @@ const QuickBooking = () => {
                 {/* Check-out Date */}
                 <div className="space-y-2">
                   <Label htmlFor="checkout" className="text-indigo-medina font-inter font-medium">
-                    Départ
+                    تاريخ المغادرة
                   </Label>
                   <div className="relative">
                     <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -88,7 +88,7 @@ const QuickBooking = () => {
                 {/* Guests */}
                 <div className="space-y-2">
                   <Label htmlFor="guests" className="text-indigo-medina font-inter font-medium">
-                    Hôtes
+                    الضيوف
                   </Label>
                   <div className="relative">
                     <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -102,7 +102,7 @@ const QuickBooking = () => {
                     >
                       {[1, 2, 3, 4, 5, 6].map((num) => (
                         <option key={num} value={num}>
-                          {num} {num === 1 ? "hôte" : "hôtes"}
+                          {num} {num === 1 ? "ضيف" : "ضيوف"}
                         </option>
                       ))}
                     </select>
@@ -116,7 +116,7 @@ const QuickBooking = () => {
                   className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-inter font-semibold px-6 py-3 transition-all duration-300 shadow-soft hover:shadow-medium h-[42px]"
                 >
                   <Search className="w-4 h-4 mr-2" />
-                  Vérifier la disponibilité
+                  تحقق من التوفر
                 </Button>
               </div>
             </form>

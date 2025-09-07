@@ -9,23 +9,23 @@ const About = () => {
   const features = [
     {
       icon: Palette,
-      title: "Inspiration artistique",
-      description: "Inspirée par les aquarelles tunisiennes de Paul Klee (1914)",
+      title: "الإلهام الفني",
+      description: "مستوحى من ألوان بول كلي المائية التونسية (1914)",
     },
     {
       icon: Heart,
-      title: "Hospitalité authentique",
-      description: "L'art traditionnel de l'accueil tunisien dans la médina",
+      title: "الضيافة الأصيلة",
+      description: "فن الترحيب التونسي التقليدي في المدينة العتيقة",
     },
     {
       icon: Star,
-      title: "Patrimoine historique",
-      description: "Au cœur de Kairouan, première capitale de l'Ifriqiya",
+      title: "التراث التاريخي",
+      description: "في قلب القيروان، أول عاصمة لإفريقية",
     },
     {
       icon: Award,
-      title: "Excellence reconnue",
-      description: "Une expérience unique alliant art, culture et confort",
+      title: "التميز المعترف به",
+      description: "تجربة فريدة تجمع بين الفن والثقافة والراحة",
     },
   ];
 
@@ -45,16 +45,16 @@ const About = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={fadeInUp}
             >
-              Où l'art rencontre{" "}
-              <span className="text-terre-cuite">l'hospitalité</span>
+              حيث يلتقي الفن{" "}
+              <span className="text-terre-cuite">بالضيافة</span>
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={fadeInUp}
             >
-              En 1914, Paul Klee découvrait la lumière et les couleurs de la Tunisie, 
-              transformant à jamais son art. Aujourd'hui, Dar Dhiafa Klee perpétue 
-              cet héritage dans une maison d'hôtes exceptionnelle au cœur de la médina de Kairouan.
+              في عام 1914، اكتشف بول كلي ضوء وألوان تونس، 
+              مما غيّر فنه إلى الأبد. اليوم، تواصل دار ضيافة كلي 
+              هذا التراث في بيت ضيافة استثنائي في قلب مدينة القيروان العتيقة.
             </motion.p>
           </div>
 
@@ -63,19 +63,19 @@ const About = () => {
             <motion.div className="space-y-8" variants={staggerItem}>
               <div>
                 <h3 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-4">
-                  Un voyage dans le temps et l'art
+                  رحلة عبر الزمن والفن
                 </h3>
                 <p className="text-foreground font-inter leading-relaxed mb-6">
-                  Notre maison d'hôtes tire son inspiration du séjour transformateur 
-                  de Paul Klee en Tunisie. Chaque espace reflète la richesse 
-                  chromatique et la géométrie qui ont marqué ses œuvres les plus 
-                  célèbres, tout en préservant l'authenticité de l'architecture 
-                  traditionnelle kairouanaise.
+                  يستمد بيت ضيافتنا إلهامه من إقامة بول كلي التحويلية 
+                  في تونس. كل مساحة تعكس الثراء اللوني 
+                  والهندسة التي ميزت أشهر أعماله، مع 
+                  الحفاظ على أصالة العمارة 
+                  القيروانية التقليدية.
                 </p>
                 <p className="text-foreground font-inter leading-relaxed">
-                  Dans la médina historique de Kairouan, première capitale de l'Ifriqiya, 
-                  nous offrons une expérience unique où se mêlent art contemporain, 
-                  patrimoine millénaire et hospitalité tunisienne légendaire.
+                  في المدينة التاريخية للقيروان، أول عاصمة لإفريقية، 
+                  نقدم تجربة فريدة حيث يمتزج الفن المعاصر 
+                  والتراث الألفي والضيافة التونسية الأسطورية معاً.
                 </p>
               </div>
 

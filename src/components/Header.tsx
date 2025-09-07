@@ -27,8 +27,8 @@ const Header = () => {
     { label: t("about.title"), href: "#about" },
     { label: t("nav.rooms"), href: "#rooms" },
     { label: t("nav.experiences"), href: "#experiences" },
-    { label: "Galerie", href: "#gallery" },
-    { label: "Visite 360°", href: "#virtual-tour" },
+    { label: t("nav.gallery"), href: "#gallery" },
+    { label: t("nav.tour360"), href: "#virtual-tour" },
     { label: t("nav.contact"), href: "#contact" },
   ];
 

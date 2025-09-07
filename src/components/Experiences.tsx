@@ -11,29 +11,29 @@ const Experiences = () => {
   const experiences: Experience[] = [
     {
       id: "souk-tour",
-      title: "Visite guidée des souks",
-      description: "Découvrez les trésors cachés de la médina avec nos guides locaux passionnés",
+      title: "جولة مرشدة في الأسواق",
+      description: "اكتشف كنوز المدينة المخفية مع مرشدينا المحليين المتحمسين",
       image: "🏛️",
       duration: "3h",
     },
     {
       id: "heritage",
-      title: "Patrimoine et architecture",
-      description: "Explorez la richesse architecturale de Kairouan, berceau de la civilisation islamique",
+      title: "التراث والعمارة",
+      description: "استكشف الثراء المعماري للقيروان، مهد الحضارة الإسلامية",
       image: "🕌",
       duration: "4h",
     },
     {
       id: "gastronomy",
-      title: "Atelier gastronomique",
-      description: "Apprenez à cuisiner les spécialités locales avec nos chefs traditionnels",
+      title: "ورشة طبخ",
+      description: "تعلم طبخ الأطباق المحلية مع طباخينا التقليديين",
       image: "🍽️",
       duration: "2h",
     },
     {
       id: "art-workshop",
-      title: "Atelier d'art Klee",
-      description: "Créez votre propre œuvre inspirée par les techniques de Paul Klee en Tunisie",
+      title: "ورشة فن كلي",
+      description: "أبدع عملك الفني الخاص مستوحى من تقنيات بول كلي في تونس",
       image: "🎨",
       duration: "3h",
     },
@@ -70,14 +70,14 @@ const Experiences = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={fadeInUp}
             >
-              Expériences <span className="text-vert-porte">authentiques</span>
+              تجارب <span className="text-vert-porte">أصيلة</span>
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={fadeInUp}
             >
-              Plongez au cœur de la culture kairouanaise à travers des expériences uniques 
-              qui éveilleront tous vos sens et enrichiront votre séjour.
+              انغمس في الثقافة القيروانية من خلال تجارب فريدة 
+              ستوقظ جميع حواسك وتثري إقامتك.
             </motion.p>
           </div>
 
@@ -86,26 +86,26 @@ const Experiences = () => {
             {/* Description Text */}
             <motion.div variants={staggerItem} className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina">
-                Découvrez Kairouan autrement
+                اكتشف القيروان بطريقة مختلفة
               </h3>
               
               <div className="space-y-4">
                 <p className="text-foreground font-inter leading-relaxed">
-                  <strong className="text-terre-cuite">Les souks traditionnels</strong> vous dévoileront 
-                  leurs secrets ancestraux, des épices aux tissus brodés main, 
-                  en passant par l'artisanat local transmis de génération en génération.
+                  <strong className="text-terre-cuite">الأسواق التقليدية</strong> ستكشف 
+                  أسرارها العريقة، من التوابل إلى الأقمشة المطرزة يدوياً، 
+                  بما في ذلك الحرف المحلية المتوارثة عبر الأجيال.
                 </p>
                 
                 <p className="text-foreground font-inter leading-relaxed">
-                  <strong className="text-vert-porte">Le patrimoine architectural</strong> de Kairouan, 
-                  première capitale de l'Ifriqiya, raconte 13 siècles d'histoire islamique 
-                  à travers ses mosquées, medersas et demeures traditionnelles.
+                  <strong className="text-vert-porte">التراث المعماري</strong> للقيروان، 
+                  أول عاصمة لإفريقية، يحكي 13 قرناً من التاريخ الإسلامي 
+                  من خلال مساجده ومدارسه ومساكنه التقليدية.
                 </p>
                 
                 <p className="text-foreground font-inter leading-relaxed">
-                  <strong className="text-indigo-medina">La gastronomie locale</strong> et les 
-                  <strong className="text-terre-cuite"> ateliers artistiques</strong> complètent 
-                  cette immersion culturelle unique, créant des souvenirs inoubliables.
+                  <strong className="text-indigo-medina">فن الطبخ المحلي</strong> و 
+                  <strong className="text-terre-cuite"> الورش الفنية</strong> تكمل 
+                  هذا الانغماس الثقافي الفريد، مما يخلق ذكريات لا تُنسى.
                 </p>
               </div>
 
@@ -113,7 +113,7 @@ const Experiences = () => {
                 size="lg"
                 className="bg-vert-porte hover:bg-vert-porte-hover text-white font-inter font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium group"
               >
-                En savoir plus
+                اعرف المزيد
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </motion.div>
@@ -164,18 +164,18 @@ const Experiences = () => {
             variants={staggerItem}
           >
             <h3 className="text-2xl font-playfair font-bold text-indigo-medina mb-4">
-              Créez votre expérience sur mesure
+              أنشئ تجربتك المصممة خصيصاً
             </h3>
             <p className="text-muted-foreground font-inter mb-6 max-w-2xl mx-auto">
-              Nos concierges se feront un plaisir de composer un programme personnalisé 
-              selon vos centres d'intérêt et la durée de votre séjour.
+              سيسعد موظفو الاستقبال لدينا بإعداد برنامج شخصي 
+              وفقاً لاهتماماتك ومدة إقامتك.
             </p>
             <Button
               variant="outline"
               size="lg"
               className="border-2 border-indigo-medina text-indigo-medina hover:bg-indigo-medina hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
             >
-              Contactez notre concierge
+              اتصل بموظف الاستقبال
             </Button>
           </motion.div>
         </motion.div>

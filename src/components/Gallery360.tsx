@@ -12,38 +12,38 @@ const Gallery360 = () => {
     {
       id: 1,
       src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Cour intérieure traditionnelle avec fontaine",
-      category: "Architecture",
+      alt: "فناء داخلي تقليدي مع نافورة",
+      category: "عمارة",
     },
     {
       id: 2,
       src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Chambre décorée dans le style traditionnel",
-      category: "Chambres",
+      alt: "غرفة مزينة بالطراز التقليدي",
+      category: "الغرف",
     },
     {
       id: 3,
       src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Restaurant avec vue sur la médina",
-      category: "Restaurant",
+      alt: "مطعم مع إطلالة على المدينة",
+      category: "مطعم",
     },
     {
       id: 4,
       src: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Terrasse panoramique au coucher du soleil",
-      category: "Terrasse",
+      alt: "شرفة بانورامية عند غروب الشمس",
+      category: "شرفة",
     },
     {
       id: 5,
       src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Détail architectural mauresque",
-      category: "Architecture",
+      alt: "تفصيل معماري أندلسي",
+      category: "عمارة",
     },
     {
       id: 6,
       src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      alt: "Salon traditionnel avec tapis berbères",
-      category: "Intérieurs",
+      alt: "صالة تقليدية مع سجاد بربري",
+      category: "داخلية",
     },
   ];
 
@@ -63,14 +63,14 @@ const Gallery360 = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
-              Galerie & <span className="text-terre-cuite">Visite 360°</span>
+              المعرض و <span className="text-terre-cuite">جولة 360°</span>
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={staggerItem}
             >
-              Découvrez la beauté de Dar Dhiafa Klee à travers notre galerie photo et 
-              explorez chaque recoin grâce à notre visite virtuelle immersive.
+              اكتشف جمال دار ضيافة كلي من خلال معرض الصور و 
+              استكشف كل زاوية مع جولتنا الافتراضية الغامرة.
             </motion.p>
           </div>
 
@@ -79,7 +79,7 @@ const Gallery360 = () => {
             <motion.div variants={staggerItem}>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
-                  Galerie photos
+                  معرض الصور
                 </h3>
                 <Button
                   variant="outline"
@@ -87,7 +87,7 @@ const Gallery360 = () => {
                   className="border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter"
                 >
                   <Camera className="w-4 h-4 mr-2" />
-                  Voir tout
+                  عرض الكل
                 </Button>
               </div>
 
@@ -138,7 +138,7 @@ const Gallery360 = () => {
             <motion.div variants={staggerItem}>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
-                  Visite virtuelle 360°
+                  جولة افتراضية 360°
                 </h3>
                 <Button
                   variant="outline"
@@ -146,7 +146,7 @@ const Gallery360 = () => {
                   className="border-terre-cuite text-terre-cuite hover:bg-terre-cuite hover:text-white font-inter"
                 >
                   <Eye className="w-4 h-4 mr-2" />
-                  Plein écran
+                  شاشة كاملة
                 </Button>
               </div>
 
@@ -160,17 +160,17 @@ const Gallery360 = () => {
                     </div>
                     <div>
                       <h4 className="font-playfair font-bold text-xl mb-2">
-                        Visite virtuelle 360°
+                        جولة افتراضية 360°
                       </h4>
                       <p className="font-inter text-sm opacity-90 max-w-xs mx-auto">
-                        Explorez Dar Dhiafa Klee comme si vous y étiez grâce à notre visite immersive
+                        استكشف دار ضيافة كلي وكأنك هناك مع جولتنا الغامرة
                       </p>
                     </div>
                     <Button
                       size="lg"
                       className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 py-3"
                     >
-                      Commencer la visite
+                      ابدأ الجولة
                     </Button>
                   </div>
                 </div>
@@ -193,15 +193,15 @@ const Gallery360 = () => {
               <div className="mt-6 space-y-4">
                 <div className="flex items-center space-x-3 text-sm font-inter">
                   <div className="w-2 h-2 bg-terre-cuite rounded-full"></div>
-                  <span className="text-muted-foreground">Navigation intuitive point par point</span>
+                  <span className="text-muted-foreground">تنقل بديهي من نقطة إلى أخرى</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm font-inter">
                   <div className="w-2 h-2 bg-vert-porte rounded-full"></div>
-                  <span className="text-muted-foreground">Hotspots informatifs interactifs</span>
+                  <span className="text-muted-foreground">نقاط معلومات تفاعلية</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm font-inter">
                   <div className="w-2 h-2 bg-indigo-medina rounded-full"></div>
-                  <span className="text-muted-foreground">Qualité HD pour une expérience immersive</span>
+                  <span className="text-muted-foreground">جودة عالية لتجربة غامرة</span>
                 </div>
               </div>
             </motion.div>
@@ -213,25 +213,25 @@ const Gallery360 = () => {
             variants={staggerItem}
           >
             <h3 className="text-2xl font-playfair font-bold text-indigo-medina mb-4">
-              Convaincu par ce que vous voyez ?
+              مقتنع بما تراه؟
             </h3>
             <p className="text-muted-foreground font-inter mb-6 max-w-2xl mx-auto">
-              Réservez dès maintenant votre séjour à Dar Dhiafa Klee et vivez l'expérience 
-              de l'hospitalité tunisienne authentique dans un cadre d'exception.
+              احجز إقامتك في دار ضيافة كلي الآن واستمتع 
+              بالضيافة التونسية الأصيلة في بيئة استثنائية.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
                 className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
               >
-                Réserver maintenant
+                احجز الآن
               </Button>
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
               >
-                Demander un devis
+                اطلب عرض سعر
               </Button>
             </div>
           </motion.div>

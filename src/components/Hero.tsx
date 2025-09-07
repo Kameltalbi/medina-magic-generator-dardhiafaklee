@@ -13,7 +13,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="Dar Dhiafa Klee - Maison d'hôtes traditionnelle dans la médina de Kairouan"
+          alt="دار ضيافة كلي - بيت ضيافة تقليدي في مدينة القيروان"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 gradient-hero" />
@@ -40,8 +40,8 @@ const Hero = () => {
             className="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold leading-tight mb-6"
             variants={fadeInUp}
           >
-            L'art et l'hospitalité au cœur de{" "}
-            <span className="text-sable">Kairouan</span>
+            الفن والضيافة في قلب{" "}
+            <span className="text-sable">القيروان</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -49,8 +49,8 @@ const Hero = () => {
             className="text-lg md:text-xl lg:text-2xl font-inter font-light mb-8 max-w-2xl mx-auto leading-relaxed opacity-95"
             variants={fadeInUp}
           >
-            Découvrez une maison d'hôtes unique où l'héritage artistique de Paul Klee 
-            rencontre la tradition millénaire de l'hospitalité tunisienne.
+            اكتشف بيت ضيافة فريد حيث يلتقي الإرث الفني لبول كلي 
+            مع تقليد الضيافة التونسية العريق الذي يمتد لألف عام.
           </motion.p>
 
           {/* Call-to-Action Buttons */}
@@ -62,14 +62,14 @@ const Hero = () => {
               size="lg"
               className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-4 text-lg transition-all duration-300 shadow-medium hover:shadow-strong hover:scale-105"
             >
-              Réserver maintenant
+              احجز الآن
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-2 border-vert-porte bg-vert-porte/10 hover:bg-vert-porte hover:border-vert-porte text-white hover:text-white font-inter font-semibold px-8 py-4 text-lg transition-all duration-300 backdrop-blur-sm"
             >
-              Explorer en 360°
+              استكشف بزاوية 360°
             </Button>
           </motion.div>
 

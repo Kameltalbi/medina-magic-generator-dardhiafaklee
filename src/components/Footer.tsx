@@ -30,23 +30,23 @@ const Footer = () => {
   ];
 
   const footerLinks = {
-    "Dar Dhiafa Klee": [
-      { name: "À propos", url: "#about" },
-      { name: "Nos chambres", url: "#rooms" },
-      { name: "Expériences", url: "#experiences" },
-      { name: "Galerie", url: "#gallery" },
+    "اكتشف": [
+      { name: "غرفنا", href: "#rooms" },
+      { name: "التجارب", href: "#experiences" },
+      { name: "المعرض", href: "#gallery" },
+      { name: "جولة 360°", href: "#gallery" },
     ],
-    "Services": [
-      { name: "Réservation", url: "#booking" },
-      { name: "Conciergerie", url: "#concierge" },
-      { name: "Visite 360°", url: "#virtual-tour" },
-      { name: "Transferts", url: "#transfers" },
+    "الخدمات": [
+      { name: "الحجز", href: "#booking" },
+      { name: "الكونسيرج", href: "#contact" },
+      { name: "المطعم", href: "#restaurant" },
+      { name: "العافية", href: "#wellness" },
     ],
-    "Informations": [
-      { name: "Contact", url: "#contact" },
-      { name: "Conditions", url: "#terms" },
-      { name: "Confidentialité", url: "#privacy" },
-      { name: "Mentions légales", url: "#legal" },
+    "المعلومات": [
+      { name: "من نحن", href: "#about" },
+      { name: "التواصل", href: "#contact" },
+      { name: "شروط الخدمة", href: "/terms" },
+      { name: "سياسة الخصوصية", href: "/privacy" },
     ],
   };
 
@@ -77,15 +77,14 @@ const Footer = () => {
               </div>
               
               <p className="text-sable/90 font-inter leading-relaxed mb-6 text-sm">
-                L'art et l'hospitalité se rencontrent au cœur de la médina historique 
-                de Kairouan, dans une maison d'hôtes inspirée par Paul Klee.
+                تكريم لإرث بول كلي الفني في قلب مدينة القيروان العتيقة.
               </p>
 
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
                   <MapPin className="w-4 h-4 text-terre-cuite" />
-                  <span className="text-sable/90 font-inter">Médina de Kairouan, Tunisie</span>
+                  <span className="text-sable/90 font-inter">شارع الجامع الكبير، المدينة<br />3100 القيروان، تونس</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Phone className="w-4 h-4 text-vert-porte" />
@@ -108,7 +107,7 @@ const Footer = () => {
                   {links.map((link) => (
                     <li key={link.name}>
                       <a
-                        href={link.url}
+                        href={link.href}
                         className="text-sable/80 hover:text-terre-cuite transition-colors duration-300 font-inter text-sm hover:underline"
                       >
                         {link.name}
@@ -129,19 +128,17 @@ const Footer = () => {
               {/* Copyright */}
               <div className="text-sable/80 font-inter text-sm text-center md:text-left">
                 <p>
-                  © {currentYear} Dar Dhiafa Klee. Tous droits réservés.
+                  © 2024 دار ضيافة كلي. جميع الحقوق محفوظة.
                 </p>
                 <p className="mt-1">
-                  Inspiré par l'art de{" "}
-                  <span className="text-terre-cuite font-medium">Paul Klee</span> et 
-                  l'hospitalité tunisienne traditionnelle.
+                  تكريم لإرث بول كلي الفني في قلب مدينة القيروان العتيقة.
                 </p>
               </div>
 
               {/* Social Links */}
               <div className="flex items-center space-x-4">
                 <span className="text-sable/80 font-inter text-sm mr-2">
-                  Suivez-nous :
+                  تابعنا:
                 </span>
                 {socialLinks.map((social) => (
                   <motion.a
@@ -150,7 +147,7 @@ const Footer = () => {
                     className={`w-10 h-10 bg-sable/10 hover:bg-sable/20 rounded-full flex items-center justify-center transition-all duration-300 ${social.color}`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    aria-label={`Suivez-nous sur ${social.name}`}
+                    aria-label={`Follow us on ${social.name}`}
                   >
                     <social.icon className="w-5 h-5 text-sable" />
                   </motion.a>
@@ -165,7 +162,7 @@ const Footer = () => {
             variants={fadeInUp}
           >
             <p className="text-sable/60 font-inter text-xs">
-              Conçu avec ❤️ pour préserver et partager le patrimoine culturel de Kairouan
+              ابق على تواصل مع دار ضيافة كلي للأخبار والعروض الخاصة والتجارب الحصرية.
             </p>
           </motion.div>
         </motion.div>

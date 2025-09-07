@@ -14,35 +14,35 @@ const RoomsPreview = () => {
   const rooms: Room[] = [
     {
       id: "traditional",
-      title: "Chambre Traditionnelle",
+      title: "غرفة تقليدية",
       pricePerNight: "120€",
       image: roomTraditional,
-      description: "Authenticité et confort dans un décor traditionnel tunisien",
-      amenities: ["Wifi gratuit", "Climatisation", "Salle de bain privée", "Terrasse"],
+      description: "الأصالة والراحة في ديكور تونسي تقليدي",
+      amenities: ["واي فاي مجاني", "تكييف هواء", "حمام خاص", "شرفة"],
     },
     {
       id: "suite",
       title: "Suite Klee",
       pricePerNight: "180€",
       image: roomSuite,
-      description: "Élégance moderne inspirée par l'art de Paul Klee",
-      amenities: ["Salon privé", "Baignoire", "Vue médina", "Service thé"],
+      description: "أناقة عصرية مستوحاة من فن بول كلي",
+      amenities: ["صالة خاصة", "حوض استحمام", "إطلالة على المدينة", "خدمة الشاي"],
     },
     {
       id: "deluxe",
-      title: "Chambre Deluxe",
+      title: "غرفة فاخرة",
       pricePerNight: "220€",
       image: roomDeluxe,
-      description: "Luxe et raffinement avec terrasse panoramique",
-      amenities: ["Terrasse privée", "Minibar", "Room service", "Vue panoramique"],
+      description: "فخامة وأناقة مع شرفة بانورامية",
+      amenities: ["شرفة خاصة", "ميني بار", "خدمة الغرف", "إطلالة بانورامية"],
     },
   ];
 
   const getAmenityIcon = (amenity: string) => {
     if (amenity.includes("Wifi")) return Wifi;
-    if (amenity.includes("thé") || amenity.includes("Minibar")) return Coffee;
+    if (amenity.includes("Tea") || amenity.includes("Minibar")) return Coffee;
     if (amenity.includes("TV") || amenity.includes("service")) return Tv;
-    if (amenity.includes("Baignoire") || amenity.includes("bain")) return Bath;
+    if (amenity.includes("Bathtub") || amenity.includes("bathroom")) return Bath;
     return Eye;
   };
 
@@ -62,14 +62,14 @@ const RoomsPreview = () => {
               className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
-              Chambres & <span className="text-terre-cuite">Suites</span>
+              الغرف و <span className="text-terre-cuite">الأجنحة</span>
             </motion.h2>
             <motion.p
               className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
               variants={staggerItem}
             >
-              Chaque chambre raconte une histoire, mêlant confort moderne et charme traditionnel 
-              dans un cadre inspiré par l'art et l'hospitalité tunisienne.
+              كل غرفة تحكي قصة، تمزج بين الراحة العصرية والسحر التقليدي 
+              في بيئة مستوحاة من الفن والضيافة التونسية.
             </motion.p>
           </div>
 
@@ -99,7 +99,7 @@ const RoomsPreview = () => {
                   
                   {/* Price Badge */}
                   <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
-                    {room.pricePerNight}/nuit
+                    {room.pricePerNight}/ليلة
                   </div>
                 </div>
 
@@ -136,14 +136,14 @@ const RoomsPreview = () => {
                       className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-medium transition-all duration-300"
                     >
                       <Eye className="w-4 h-4 mr-2" />
-                      Détails
+                      التفاصيل
                     </Button>
                     <Button
                       size="sm"
                       className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-medium transition-all duration-300"
                     >
                       <Calendar className="w-4 h-4 mr-2" />
-                      Réserver
+                      احجز
                     </Button>
                   </div>
                 </div>
@@ -160,7 +160,7 @@ const RoomsPreview = () => {
               size="lg"
               className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-inter font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium"
             >
-              Voir toutes nos chambres
+              اعرض جميع غرفنا
             </Button>
           </motion.div>
         </motion.div>
