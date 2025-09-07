@@ -24,8 +24,8 @@ const BookingHeader = () => {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-card/80 backdrop-blur-md shadow-medium"
-          : "bg-vert-porte/80 backdrop-blur-md shadow-medium" // Green background like other pages
+          ? "bg-card/60 backdrop-blur-md shadow-medium"
+          : "bg-vert-porte/60 backdrop-blur-md shadow-medium" // Green background like other pages
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}

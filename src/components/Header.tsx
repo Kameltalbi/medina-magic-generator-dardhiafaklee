@@ -65,10 +65,10 @@ const Header = () => {
     <motion.header
                   className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                     isScrolled
-                      ? "bg-card/80 backdrop-blur-md shadow-medium"
+                      ? "bg-card/60 backdrop-blur-md shadow-medium"
                       : isHomePage
-                        ? "bg-gray-100/70 backdrop-blur-sm"
-                        : "bg-vert-porte/80 backdrop-blur-md shadow-medium"
+                        ? "bg-gray-100/50 backdrop-blur-sm"
+                        : "bg-vert-porte/60 backdrop-blur-md shadow-medium"
                   }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
