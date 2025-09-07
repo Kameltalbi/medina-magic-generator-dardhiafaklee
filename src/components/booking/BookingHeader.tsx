@@ -36,9 +36,9 @@ const BookingHeader = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
                         <img
-                          src="/logo Dar Dhiafa klee.png"
+                          src="/logogofinal dardhiafa.png"
                           alt="Dar Dhiafa Klee"
-                          className="h-22 w-auto sm:h-24 object-contain drop-shadow-lg"
+                          className="h-24 w-auto object-contain drop-shadow-lg"
                         />
           </Link>
 
