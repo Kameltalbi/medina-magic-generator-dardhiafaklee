@@ -17,9 +17,10 @@ const languages = [
 
 interface LanguageSwitcherProps {
   isScrolled?: boolean;
+  isHomePage?: boolean;
 }
 
-const LanguageSwitcher = ({ isScrolled = false }: LanguageSwitcherProps) => {
+const LanguageSwitcher = ({ isScrolled = false, isHomePage = true }: LanguageSwitcherProps) => {
   const { i18n } = useTranslation();
 
   const changeLanguage = (languageCode: string) => {
@@ -52,15 +53,17 @@ const LanguageSwitcher = ({ isScrolled = false }: LanguageSwitcherProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className={`gap-2 transition-colors ${
-            isScrolled 
-              ? "text-foreground hover:text-terre-cuite" 
-              : "text-white hover:text-terre-cuite drop-shadow-sm"
-          }`}
-        >
+               <Button 
+                 variant="ghost" 
+                 size="sm" 
+                 className={`gap-2 transition-colors ${
+                   isScrolled 
+                     ? "text-foreground hover:text-terre-cuite" 
+                     : isHomePage 
+                       ? "text-white hover:text-terre-cuite drop-shadow-sm"
+                       : "text-white hover:text-terre-cuite drop-shadow-sm"
+                 }`}
+               >
           <Globe className="h-4 w-4" />
           {currentLanguage?.flag} {currentLanguage?.name}
         </Button>

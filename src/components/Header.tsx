@@ -14,6 +14,10 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const { t } = useTranslation();
+  const location = useLocation();
+  
+  // Check if we're on the homepage
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +66,9 @@ const Header = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-card/95 backdrop-blur-md shadow-medium"
-          : "bg-white/10 backdrop-blur-sm"
+          : isHomePage 
+            ? "bg-white/10 backdrop-blur-sm"
+            : "bg-vert-porte/95 backdrop-blur-md shadow-medium"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -81,12 +87,20 @@ const Header = () => {
             </div>
             <div>
               <h1 className={`font-playfair font-bold text-xl leading-tight ${
-                isScrolled ? "text-indigo-medina" : "text-white drop-shadow-sm"
+                isScrolled 
+                  ? "text-indigo-medina" 
+                  : isHomePage 
+                    ? "text-white drop-shadow-sm"
+                    : "text-white drop-shadow-sm"
               }`}>
                 Dar Dhiafa Klee
               </h1>
               <p className={`text-xs ${
-                isScrolled ? "text-muted-foreground" : "text-white/80 drop-shadow-sm"
+                isScrolled 
+                  ? "text-muted-foreground" 
+                  : isHomePage 
+                    ? "text-white/80 drop-shadow-sm"
+                    : "text-white/90 drop-shadow-sm"
               }`}>
                 Kairouan
               </p>
@@ -102,12 +116,14 @@ const Header = () => {
                 onMouseEnter={() => setActiveMegaMenu(category.id)}
                 onMouseLeave={() => setActiveMegaMenu(null)}
               >
-                <motion.button
-                  className={`flex items-center space-x-1 transition-colors font-inter font-medium py-2 ${
-                    isScrolled 
-                      ? "text-foreground hover:text-terre-cuite" 
-                      : "text-white hover:text-terre-cuite drop-shadow-sm"
-                  }`}
+                     <motion.button
+                       className={`flex items-center space-x-1 transition-colors font-inter font-medium py-2 ${
+                         isScrolled 
+                           ? "text-foreground hover:text-terre-cuite" 
+                           : isHomePage 
+                             ? "text-white hover:text-terre-cuite drop-shadow-sm"
+                             : "text-white hover:text-terre-cuite drop-shadow-sm"
+                       }`}
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
                   initial={{ opacity: 0, y: -10 }}
@@ -171,25 +187,29 @@ const Header = () => {
           </nav>
 
           {/* Language Switcher & CTA Button Desktop */}
-          <div className="hidden lg:flex items-center gap-4">
-            <LanguageSwitcher isScrolled={isScrolled} />
-            <Link to="/booking">
-              <Button className={`font-inter font-semibold px-6 py-2 transition-all duration-300 ${
-                isScrolled 
-                  ? "bg-terre-cuite hover:bg-terre-cuite-hover text-white shadow-soft hover:shadow-medium"
-                  : "bg-terre-cuite hover:bg-terre-cuite-hover text-white shadow-lg hover:shadow-xl"
-              }`}>
-                {t("nav.booking")}
-              </Button>
-            </Link>
-          </div>
+               <div className="hidden lg:flex items-center gap-4">
+                 <LanguageSwitcher isScrolled={isScrolled} isHomePage={isHomePage} />
+                 <Link to="/booking">
+                   <Button className={`font-inter font-semibold px-6 py-2 transition-all duration-300 ${
+                     isScrolled 
+                       ? "bg-terre-cuite hover:bg-terre-cuite-hover text-white shadow-soft hover:shadow-medium"
+                       : isHomePage 
+                         ? "bg-terre-cuite hover:bg-terre-cuite-hover text-white shadow-lg hover:shadow-xl"
+                         : "bg-terre-cuite hover:bg-terre-cuite-hover text-white shadow-lg hover:shadow-xl"
+                   }`}>
+                     {t("nav.booking")}
+                   </Button>
+                 </Link>
+               </div>
 
           {/* Mobile Menu Button */}
           <button
             className={`lg:hidden p-2 transition-colors ${
               isScrolled 
                 ? "text-foreground hover:text-terre-cuite" 
-                : "text-white hover:text-terre-cuite drop-shadow-sm"
+                : isHomePage 
+                  ? "text-white hover:text-terre-cuite drop-shadow-sm"
+                  : "text-white hover:text-terre-cuite drop-shadow-sm"
             }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
@@ -246,9 +266,9 @@ const Header = () => {
                     </div>
                   </div>
                 ))}
-                <div className="pt-4 border-t border-border">
-                  <LanguageSwitcher isScrolled={isScrolled} />
-                </div>
+                     <div className="pt-4 border-t border-border">
+                       <LanguageSwitcher isScrolled={isScrolled} isHomePage={isHomePage} />
+                     </div>
                 <Link to="/booking" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold mt-4 w-full">
                     {t("nav.booking")}

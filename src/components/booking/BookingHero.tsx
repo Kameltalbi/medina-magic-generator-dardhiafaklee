@@ -9,7 +9,7 @@ const BookingHero = () => {
   const { t } = useTranslation();
   
   return (
-    <section className="relative pt-24 pb-16 px-4 bg-gradient-subtle">
+    <section className="relative pt-32 pb-24 px-4 bg-gradient-subtle">
       <div className="container mx-auto text-center">
         <motion.div
           initial="hidden"

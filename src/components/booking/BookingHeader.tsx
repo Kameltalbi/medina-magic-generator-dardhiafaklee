@@ -1,4 +1,4 @@
-// Booking header - Minimal sticky navigation with indigo and terre cuite accents
+// Booking header - Consistent with other pages design
 "use client";
 
 import { useState, useEffect } from "react";
@@ -13,7 +13,7 @@ const BookingHeader = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -23,9 +23,9 @@ const BookingHeader = () => {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? "bg-background/95 backdrop-blur-md shadow-soft border-b border-border/20" 
-          : "bg-transparent"
+        isScrolled
+          ? "bg-card/95 backdrop-blur-md shadow-medium"
+          : "bg-vert-porte/95 backdrop-blur-md shadow-medium" // Green background like other pages
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -35,31 +35,36 @@ const BookingHeader = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">DH</span>
+            <div className="w-10 h-10 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-full flex items-center justify-center">
+              <span className="text-white font-playfair font-bold text-lg">D</span>
             </div>
-            <span className="text-xl font-playfair font-bold text-indigo-medina">
-              Dar Dhiafa Klee
-            </span>
+            <div>
+              <h1 className="text-white drop-shadow-sm font-playfair font-bold text-xl leading-tight">
+                Dar Dhiafa Klee
+              </h1>
+              <p className="text-white/90 drop-shadow-sm text-xs">
+                Kairouan
+              </p>
+            </div>
           </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className="text-indigo-medina hover:text-terre-cuite transition-colors font-inter"
+              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-inter"
             >
               {t("nav.home")}
             </Link>
             <Link
               to="/#chambres"
-              className="text-indigo-medina hover:text-terre-cuite transition-colors font-inter"
+              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-inter"
             >
               {t("nav.rooms")}
             </Link>
             <Link
               to="/#contact"
-              className="text-indigo-medina hover:text-terre-cuite transition-colors font-inter"
+              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-inter"
             >
               {t("nav.contact")}
             </Link>
@@ -68,7 +73,7 @@ const BookingHeader = () => {
           {/* Back to Home Button */}
           <Link
             to="/"
-            className="flex items-center space-x-2 px-4 py-2 bg-transparent border border-indigo-medina text-indigo-medina rounded-lg hover:bg-indigo-medina hover:text-white transition-all duration-300 font-inter"
+            className="flex items-center space-x-2 px-4 py-2 bg-terre-cuite hover:bg-terre-cuite-hover text-white rounded-lg transition-all duration-300 font-inter shadow-lg hover:shadow-xl"
           >
             <ArrowLeft className="w-4 h-4" />
             <span className="hidden sm:inline">{t("booking.backHome")}</span>
