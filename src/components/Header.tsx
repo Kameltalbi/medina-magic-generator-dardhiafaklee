@@ -82,11 +82,13 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <img 
-              src="/logo Dar Dhiafa klee.png" 
-              alt="Dar Dhiafa Klee" 
-              className="h-8 w-auto sm:h-10 object-contain"
-            />
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
+              <img 
+                src="/logo Dar Dhiafa klee.png" 
+                alt="Dar Dhiafa Klee" 
+                className="h-12 w-auto sm:h-16 object-contain"
+              />
+            </div>
           </motion.div>
 
           {/* Desktop Mega Menu Navigation */}
