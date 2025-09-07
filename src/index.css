@@ -2,41 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Design system for Dar Dhiafa Klee - Inspired by Paul Klee's Tunisian watercolors
+Palette: Indigo profond, Terre cuite, Sable clair, Vert porte
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Brand Colors - Dar Dhiafa Klee palette */
+    --indigo-medina: 228 62% 27%;        /* #1A2A6C - Indigo profond */
+    --terre-cuite: 11 47% 46%;           /* #B0523B - Terre cuite */
+    --terre-cuite-hover: 11 50% 40%;     /* #964632 - Terre cuite hover */
+    --sable: 44 38% 91%;                 /* #F2EBDD - Sable clair */
+    --vert-porte: 173 51% 37%;           /* #2D8C7F - Vert porte */
+    --vert-porte-hover: 173 55% 30%;     /* #247066 - Vert porte hover */
+
+    /* Semantic tokens using brand colors */
+    --background: var(--sable);
+    --foreground: var(--indigo-medina);
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: var(--indigo-medina);
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: var(--indigo-medina);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: var(--indigo-medina);
+    --primary-foreground: var(--sable);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--vert-porte);
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: var(--terre-cuite);
+    --accent-foreground: 0 0% 100%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 44 20% 85%;
+    --muted-foreground: var(--indigo-medina);
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 44 25% 80%;
+    --input: 44 25% 80%;
+    --ring: var(--indigo-medina);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--indigo-medina) / 0.8), hsl(var(--indigo-medina) / 0.4));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(44 30% 96%));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(var(--indigo-medina) / 0.1);
+    --shadow-medium: 0 8px 30px hsl(var(--indigo-medina) / 0.15);
+    --shadow-strong: 0 12px 40px hsl(var(--indigo-medina) / 0.2);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +79,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode maintains the same brand identity with adjusted contrast */
+    --background: var(--indigo-medina);
+    --foreground: var(--sable);
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: hsl(var(--indigo-medina));
+    --card-foreground: var(--sable);
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: hsl(var(--indigo-medina));
+    --popover-foreground: var(--sable);
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: var(--sable);
+    --primary-foreground: var(--indigo-medina);
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: var(--vert-porte);
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 228 45% 20%;
+    --muted-foreground: 44 25% 75%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: var(--terre-cuite);
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 228 35% 25%;
+    --input: 228 35% 25%;
+    --ring: var(--sable);
   }
 }
 
@@ -100,6 +116,38 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
   }
 }

@@ -1,12 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+// Main Index page - Complete homepage for Dar Dhiafa Klee
+// Combines all components with proper SEO and semantic structure
+
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import QuickBooking from "@/components/QuickBooking";
+import About from "@/components/About";
+import RoomsPreview from "@/components/RoomsPreview";
+import Experiences from "@/components/Experiences";
+import Gallery360 from "@/components/Gallery360";
+import ContactMap from "@/components/ContactMap";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      {/* SEO-optimized semantic structure */}
+      <Header />
+      
+      <main>
+        <Hero />
+        <QuickBooking />
+        <About />
+        <RoomsPreview />
+        <Experiences />
+        <Gallery360 />
+        <ContactMap />
+      </main>
+      
+      <Footer />
     </div>
   );
 };
