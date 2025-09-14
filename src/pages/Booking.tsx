@@ -1,8 +1,6 @@
 import BookingHeader from "@/components/booking/BookingHeader";
 import BookingHero from "@/components/booking/BookingHero";
-import BookingForm from "@/components/booking/BookingForm";
-import AvailableRooms from "@/components/booking/AvailableRooms";
-import BookingSummary from "@/components/booking/BookingSummary";
+import BookingFlow from "@/components/booking/BookingFlow";
 import Footer from "@/components/Footer";
 
 const BookingPage = () => {
@@ -10,9 +8,7 @@ const BookingPage = () => {
     <div className="min-h-screen bg-sable">
       <BookingHeader />
       <BookingHero />
-      <BookingForm />
-      <AvailableRooms />
-      <BookingSummary />
+      <BookingFlow />
       <Footer />
     </div>
   );

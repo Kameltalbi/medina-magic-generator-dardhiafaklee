@@ -46,6 +46,30 @@ const resources = {
       "booking.form.guest": "guest",
       "booking.form.checkAvailability": "Check Availability",
       
+      // Booking flow
+      "booking.rooms.title": "Available Rooms",
+      "booking.rooms.subtitle": "Choose from our authentic rooms inspired by Paul Klee's art",
+      "booking.rooms.searchResults": "Search results for",
+      "booking.rooms.guest": "guest",
+      "booking.rooms.guests": "guests",
+      
+      "booking.customer.title": "Your Information",
+      "booking.customer.subtitle": "Please provide your details to complete the reservation",
+      "booking.customer.firstName": "First Name",
+      "booking.customer.firstNamePlaceholder": "Enter your first name",
+      "booking.customer.lastName": "Last Name",
+      "booking.customer.lastNamePlaceholder": "Enter your last name",
+      "booking.customer.email": "Email",
+      "booking.customer.emailPlaceholder": "your.email@example.com",
+      "booking.customer.phone": "Phone",
+      "booking.customer.phonePlaceholder": "+216 XX XXX XXX",
+      "booking.customer.specialRequests": "Special Requests",
+      "booking.customer.specialRequestsPlaceholder": "Any special requests or preferences?",
+      "booking.customer.specialRequestsHelp": "Optional: Let us know about any dietary restrictions, accessibility needs, or other preferences",
+      "booking.customer.back": "Back",
+      "booking.customer.continue": "Continue",
+      "booking.customer.processing": "Processing...",
+      
       // About
       "about.title": "Where Art Meets Hospitality",
       "about.subtitle": "A Journey Through Time and Art",
@@ -271,6 +295,30 @@ const resources = {
       "booking.form.guest": "hôte",
       "booking.form.checkAvailability": "Vérifier la disponibilité",
       
+      // Booking flow
+      "booking.rooms.title": "Chambres disponibles",
+      "booking.rooms.subtitle": "Choisissez parmi nos chambres authentiques inspirées par l'art de Paul Klee",
+      "booking.rooms.searchResults": "Résultats de recherche pour",
+      "booking.rooms.guest": "hôte",
+      "booking.rooms.guests": "hôtes",
+      
+      "booking.customer.title": "Vos informations",
+      "booking.customer.subtitle": "Veuillez fournir vos détails pour finaliser la réservation",
+      "booking.customer.firstName": "Prénom",
+      "booking.customer.firstNamePlaceholder": "Entrez votre prénom",
+      "booking.customer.lastName": "Nom",
+      "booking.customer.lastNamePlaceholder": "Entrez votre nom",
+      "booking.customer.email": "Email",
+      "booking.customer.emailPlaceholder": "votre.email@exemple.com",
+      "booking.customer.phone": "Téléphone",
+      "booking.customer.phonePlaceholder": "+216 XX XXX XXX",
+      "booking.customer.specialRequests": "Demandes spéciales",
+      "booking.customer.specialRequestsPlaceholder": "Des demandes ou préférences particulières ?",
+      "booking.customer.specialRequestsHelp": "Optionnel : Faites-nous savoir si vous avez des restrictions alimentaires, des besoins d'accessibilité ou d'autres préférences",
+      "booking.customer.back": "Retour",
+      "booking.customer.continue": "Continuer",
+      "booking.customer.processing": "Traitement en cours...",
+      
       // About
       "about.title": "Où l'Art Rencontre l'Hospitalité",
       "about.subtitle": "Un Voyage à Travers le Temps et l'Art",
@@ -495,6 +543,30 @@ const resources = {
       "booking.form.guests": "الضيوف",
       "booking.form.guest": "ضيف",
       "booking.form.checkAvailability": "تحقق من التوفر",
+      
+      // Booking flow
+      "booking.rooms.title": "الغرف المتاحة",
+      "booking.rooms.subtitle": "اختر من غرفنا الأصيلة المستوحاة من فن بول كلي",
+      "booking.rooms.searchResults": "نتائج البحث لـ",
+      "booking.rooms.guest": "ضيف",
+      "booking.rooms.guests": "ضيوف",
+      
+      "booking.customer.title": "معلوماتك",
+      "booking.customer.subtitle": "يرجى تقديم تفاصيلك لإكمال الحجز",
+      "booking.customer.firstName": "الاسم الأول",
+      "booking.customer.firstNamePlaceholder": "أدخل اسمك الأول",
+      "booking.customer.lastName": "اسم العائلة",
+      "booking.customer.lastNamePlaceholder": "أدخل اسم عائلتك",
+      "booking.customer.email": "البريد الإلكتروني",
+      "booking.customer.emailPlaceholder": "بريدك.الإلكتروني@مثال.com",
+      "booking.customer.phone": "الهاتف",
+      "booking.customer.phonePlaceholder": "+216 XX XXX XXX",
+      "booking.customer.specialRequests": "الطلبات الخاصة",
+      "booking.customer.specialRequestsPlaceholder": "أي طلبات أو تفضيلات خاصة؟",
+      "booking.customer.specialRequestsHelp": "اختياري: أخبرنا عن أي قيود غذائية أو احتياجات إمكانية الوصول أو تفضيلات أخرى",
+      "booking.customer.back": "رجوع",
+      "booking.customer.continue": "متابعة",
+      "booking.customer.processing": "جاري المعالجة...",
       
       // About
       "about.title": "حيث يلتقي الفن بالضيافة",

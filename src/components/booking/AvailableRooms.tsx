@@ -3,41 +3,67 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Users, Wifi, Coffee, Bath, Info, Calendar } from "lucide-react";
+import { Users, Wifi, Coffee, Bath, Info, Calendar, Star, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
+import { useBooking } from "@/contexts/BookingContext";
+import { useTranslation } from "react-i18next";
 import type { Room } from "@/lib/types";
 
-// Mock data for available rooms
+// Real room data with actual images
 const mockRooms: Room[] = [
   {
     id: "1",
-    title: "Chambre Traditionnelle Klee",
-    pricePerNight: "120 DT",
-    image: "/src/assets/room-traditional.jpg",
+    title: "Chambre Traditionnelle",
+    pricePerNight: 120,
+    currency: "DT",
+    image: "/chambre 1.png",
     description: "Chambre authentique avec décoration inspirée des aquarelles de Paul Klee et vue sur la cour intérieure.",
-    amenities: ["Wi-Fi", "Climatisation", "Salle de bain privée", "Thé traditionnel"]
+    amenities: ["Wi-Fi", "Climatisation", "Salle de bain privée", "Thé traditionnel", "Vue sur la médina", "Décoration artisanale"],
+    size: "25m²",
+    capacity: 2,
+    rating: 4.8,
+    reviews: 127,
+    features: ["Vue sur la médina", "Décoration artisanale", "Literie premium"],
+    category: "Standard"
   },
   {
     id: "2", 
-    title: "Suite Médina",
-    pricePerNight: "180 DT",
-    image: "/src/assets/room-suite.jpg", 
+    title: "Suite Klee",
+    pricePerNight: 180,
+    currency: "DT",
+    image: "/chambre 2.png", 
     description: "Suite spacieuse avec salon privé, terrasse panoramique et décoration raffinée alliant tradition et modernité.",
-    amenities: ["Wi-Fi", "Terrasse privée", "Salon", "Minibar", "Climatisation"]
+    amenities: ["Wi-Fi", "Terrasse privée", "Salon", "Minibar", "Climatisation", "Baignoire", "Service thé"],
+    size: "45m²",
+    capacity: 3,
+    rating: 4.9,
+    reviews: 89,
+    features: ["Œuvres d'art originales", "Mobilier design", "Service personnalisé"],
+    category: "Suite"
   },
   {
     id: "3",
-    title: "Chambre Deluxe Aquarelle", 
-    pricePerNight: "150 DT",
-    image: "/src/assets/room-deluxe.jpg",
+    title: "Chambre Deluxe", 
+    pricePerNight: 220,
+    currency: "DT",
+    image: "/chambre3.png",
     description: "Chambre élégante aux tons chauds inspirés de la palette de Klee, avec balcon donnant sur la médina.",
-    amenities: ["Wi-Fi", "Balcon", "Climatisation", "Coffre-fort", "Peignoirs"]
+    amenities: ["Wi-Fi", "Balcon", "Climatisation", "Coffre-fort", "Peignoirs", "Minibar", "Service en chambre"],
+    size: "35m²",
+    capacity: 2,
+    rating: 4.9,
+    reviews: 156,
+    features: ["Terrasse panoramique", "Mobilier haut de gamme", "Conciergerie 24h/24"],
+    category: "Deluxe"
   }
 ];
 
 const AvailableRooms = () => {
-  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const { t } = useTranslation();
+  const { selectedRoom, selectRoom, bookingDates } = useBooking();
+  const [showAllAmenities, setShowAllAmenities] = useState<{ [key: string]: boolean }>({});
 
   const getAmenityIcon = (amenity: string) => {
     const icons: { [key: string]: any } = {
@@ -50,14 +76,26 @@ const AvailableRooms = () => {
       "Minibar": Coffee,
       "Coffre-fort": Info,
       "Peignoirs": Bath,
-      "Thé traditionnel": Coffee
+      "Thé traditionnel": Coffee,
+      "Vue sur la médina": Users,
+      "Décoration artisanale": Info,
+      "Service thé": Coffee,
+      "Baignoire": Bath,
+      "Service en chambre": Users
     };
     
     return icons[amenity] || Info;
   };
 
   const handleRoomSelection = (room: Room) => {
-    setSelectedRoom(room);
+    selectRoom(room);
+  };
+
+  const toggleAmenities = (roomId: string) => {
+    setShowAllAmenities(prev => ({
+      ...prev,
+      [roomId]: !prev[roomId]
+    }));
   };
 
   return (
@@ -71,11 +109,19 @@ const AvailableRooms = () => {
         >
           <motion.div variants={staggerItem} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-playfair font-bold text-indigo-medina mb-4">
-              Chambres disponibles
+              {t("booking.rooms.title")}
             </h2>
             <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
-              Choisissez parmi nos chambres authentiques inspirées par l'art de Paul Klee
+              {t("booking.rooms.subtitle")}
             </p>
+            {bookingDates && (
+              <div className="mt-4 p-4 bg-indigo-medina/10 rounded-lg inline-block">
+                <p className="text-sm font-inter text-indigo-medina">
+                  {t("booking.rooms.searchResults")}: {bookingDates.checkIn} - {bookingDates.checkOut} 
+                  ({bookingDates.guests} {bookingDates.guests === 1 ? t("booking.rooms.guest") : t("booking.rooms.guests")})
+                </p>
+              </div>
+            )}
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -100,51 +146,115 @@ const AvailableRooms = () => {
                   
                   {/* Price Badge */}
                   <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
-                    {room.pricePerNight} / nuit
+                    {room.pricePerNight} {room.currency} / nuit
                   </div>
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-indigo-medina text-white font-inter font-medium">
+                      {room.category}
+                    </Badge>
+                  </div>
+                  
+                  {/* Rating */}
+                  {room.rating && (
+                    <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
+                      <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <span className="font-inter font-semibold text-sm">{room.rating}</span>
+                        <span className="text-muted-foreground text-xs">({room.reviews})</span>
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Selection Indicator */}
                   {selectedRoom?.id === room.id && (
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="absolute top-4 left-4 bg-indigo-medina text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft"
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vert-porte text-white px-4 py-2 rounded-full font-inter font-semibold text-sm shadow-soft flex items-center space-x-2"
                     >
-                      Sélectionnée
+                      <Check className="w-4 h-4" />
+                      <span>Sélectionnée</span>
                     </motion.div>
                   )}
                 </div>
 
                 {/* Room Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-playfair font-bold text-indigo-medina mb-3">
-                    {room.title}
-                  </h3>
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="text-xl font-playfair font-bold text-indigo-medina">
+                      {room.title}
+                    </h3>
+                    <div className="text-right">
+                      <div className="text-2xl font-playfair font-bold text-terre-cuite">
+                        {room.pricePerNight} {room.currency}
+                      </div>
+                      <div className="text-sm text-muted-foreground font-inter">
+                        par nuit
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Room Details */}
+                  <div className="flex items-center space-x-4 text-sm text-muted-foreground font-inter mb-3">
+                    {room.size && <span>{room.size}</span>}
+                    <span>•</span>
+                    <span>{room.capacity} {room.capacity === 1 ? 'personne' : 'personnes'}</span>
+                  </div>
                   
                   <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-4">
                     {room.description}
                   </p>
 
                   {/* Amenities */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {room.amenities.slice(0, 3).map((amenity, i) => {
-                      const IconComponent = getAmenityIcon(amenity);
-                      return (
-                        <div
-                          key={i}
-                          className="flex items-center space-x-1 text-xs bg-vert-porte/10 text-vert-porte px-2 py-1 rounded-full font-inter"
-                        >
-                          <IconComponent className="w-3 h-3" />
-                          <span>{amenity}</span>
-                        </div>
-                      );
-                    })}
-                    {room.amenities.length > 3 && (
-                      <div className="text-xs text-muted-foreground px-2 py-1 rounded-full font-inter">
-                        +{room.amenities.length - 3} autres
-                      </div>
+                  <div className="mb-4">
+                    <h4 className="font-inter font-semibold text-indigo-medina mb-2 text-sm">
+                      Équipements
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {(showAllAmenities[room.id] ? room.amenities : room.amenities.slice(0, 4)).map((amenity, i) => {
+                        const IconComponent = getAmenityIcon(amenity);
+                        return (
+                          <div
+                            key={i}
+                            className="flex items-center space-x-1 text-xs bg-vert-porte/10 text-vert-porte px-2 py-1 rounded-full font-inter"
+                          >
+                            <IconComponent className="w-3 h-3" />
+                            <span>{amenity}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    {room.amenities.length > 4 && (
+                      <button 
+                        className="text-xs text-terre-cuite font-inter font-medium mt-2 hover:underline"
+                        onClick={() => toggleAmenities(room.id)}
+                      >
+                        {showAllAmenities[room.id] 
+                          ? 'Voir moins' 
+                          : `+${room.amenities.length - 4} autres`
+                        }
+                      </button>
                     )}
                   </div>
+
+                  {/* Features */}
+                  {room.features && room.features.length > 0 && (
+                    <div className="mb-6">
+                      <h4 className="font-inter font-semibold text-indigo-medina mb-2 text-sm">
+                        Points forts
+                      </h4>
+                      <div className="space-y-1">
+                        {room.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center space-x-2 text-xs font-inter">
+                            <Check className="w-3 h-3 text-vert-porte" />
+                            <span className="text-muted-foreground">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3">
@@ -158,10 +268,14 @@ const AvailableRooms = () => {
                     
                     <Button
                       onClick={() => handleRoomSelection(room)}
-                      className="flex-1 bg-terre-cuite hover:bg-terre-cuite/90 text-white font-inter font-semibold transition-all duration-300 shadow-soft hover:shadow-medium"
+                      className={`flex-1 font-inter font-semibold transition-all duration-300 shadow-soft hover:shadow-medium ${
+                        selectedRoom?.id === room.id
+                          ? "bg-vert-porte hover:bg-vert-porte/90 text-white"
+                          : "bg-terre-cuite hover:bg-terre-cuite/90 text-white"
+                      }`}
                     >
                       <Calendar className="w-4 h-4 mr-2" />
-                      {selectedRoom?.id === room.id ? "Sélectionnée" : "Réserver"}
+                      {selectedRoom?.id === room.id ? "Sélectionnée" : "Sélectionner"}
                     </Button>
                   </div>
                 </div>

@@ -50,7 +50,9 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
   };
 
   const nights = calculateNights();
-  const pricePerNight = parseInt(room.pricePerNight.replace(' DT', ''));
+  const pricePerNight = typeof room.pricePerNight === 'string' 
+    ? parseInt(room.pricePerNight.replace(' DT', '')) 
+    : room.pricePerNight;
   const subtotal = nights * pricePerNight;
   const taxes = Math.round(subtotal * 0.1); // 10% tax
   const total = subtotal + taxes;

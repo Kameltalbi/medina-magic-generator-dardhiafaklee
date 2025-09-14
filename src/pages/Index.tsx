@@ -4,6 +4,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickBooking from "@/components/QuickBooking";
+import SimpleBookingForm from "@/components/SimpleBookingForm";
 import About from "@/components/About";
 import RoomsPreview from "@/components/RoomsPreview";
 import Experiences from "@/components/Experiences";
@@ -19,6 +20,7 @@ const Index = () => {
       
       <main>
         <Hero />
+        <SimpleBookingForm />
         <QuickBooking />
         <About />
         <RoomsPreview />
