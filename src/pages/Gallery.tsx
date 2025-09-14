@@ -42,84 +42,84 @@ const Gallery = () => {
   const galleryImages = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie1.jpg",
       category: "common",
       title: { fr: "Cour intérieure traditionnelle", en: "Traditional interior courtyard", ar: "الفناء الداخلي التقليدي" },
       description: { fr: "Fontaine centrale avec architecture mauresque", en: "Central fountain with Moorish architecture", ar: "نافورة مركزية بالعمارة المورية" }
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie2.jpg",
       category: "rooms",
       title: { fr: "Suite Klee", en: "Klee Suite", ar: "جناح كلي" },
       description: { fr: "Élégance moderne inspirée de Paul Klee", en: "Modern elegance inspired by Paul Klee", ar: "أناقة عصرية مستوحاة من بول كلي" }
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie3.jpg",
       category: "restaurant",
       title: { fr: "Restaurant avec vue médina", en: "Restaurant with medina view", ar: "مطعم مع إطلالة على المدينة" },
       description: { fr: "Cuisine traditionnelle dans un cadre authentique", en: "Traditional cuisine in an authentic setting", ar: "مطبخ تقليدي في إطار أصيل" }
     },
     {
       id: 4,
-      src: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie4.jpg",
       category: "exterior",
       title: { fr: "Terrasse panoramique", en: "Panoramic terrace", ar: "شرفة بانورامية" },
       description: { fr: "Vue exceptionnelle sur les toits de Kairouan", en: "Exceptional view over Kairouan rooftops", ar: "إطلالة استثنائية على أسطح القيروان" }
     },
     {
       id: 5,
-      src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie5.jpg",
       category: "art",
       title: { fr: "Détail architectural mauresque", en: "Moorish architectural detail", ar: "تفصيل معماري مغربي" },
       description: { fr: "Ornements traditionnels et calligraphie", en: "Traditional ornaments and calligraphy", ar: "زخارف تقليدية وخط عربي" }
     },
     {
       id: 6,
-      src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie6.jpg",
       category: "common",
       title: { fr: "Salon traditionnel", en: "Traditional lounge", ar: "صالة تقليدية" },
       description: { fr: "Tapis berbères et mobilier artisanal", en: "Berber carpets and handcrafted furniture", ar: "سجاد بربري وأثاث حرفي" }
     },
     {
       id: 7,
-      src: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie7.jpg",
       category: "rooms",
       title: { fr: "Chambre traditionnelle", en: "Traditional room", ar: "غرفة تقليدية" },
       description: { fr: "Décoration authentique tunisienne", en: "Authentic Tunisian decoration", ar: "ديكور تونسي أصيل" }
     },
     {
       id: 8,
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie8.jpg",
       category: "art",
       title: { fr: "Œuvre inspirée de Klee", en: "Klee-inspired artwork", ar: "عمل فني مستوحى من كلي" },
       description: { fr: "Art contemporain et héritage tunisien", en: "Contemporary art and Tunisian heritage", ar: "فن معاصر وتراث تونسي" }
     },
     {
       id: 9,
-      src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie9.jpg",
       category: "exterior",
       title: { fr: "Entrée principale", en: "Main entrance", ar: "المدخل الرئيسي" },
       description: { fr: "Porte traditionnelle de la médina", en: "Traditional medina door", ar: "باب المدينة التقليدي" }
     },
     {
       id: 10,
-      src: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie10.jpg",
       category: "restaurant",
       title: { fr: "Petit-déjeuner traditionnel", en: "Traditional breakfast", ar: "إفطار تقليدي" },
       description: { fr: "Produits locaux et spécialités maison", en: "Local products and house specialties", ar: "منتجات محلية وتخصصات البيت" }
     },
     {
       id: 11,
-      src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie11.jpg",
       category: "rooms",
       title: { fr: "Chambre Deluxe", en: "Deluxe Room", ar: "غرفة ديلوكس" },
       description: { fr: "Luxe et confort avec terrasse privée", en: "Luxury and comfort with private terrace", ar: "فخامة وراحة مع شرفة خاصة" }
     },
     {
       id: 12,
-      src: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      src: "/photosgaleriepage/pagegalerie12.jpg",
       category: "exterior",
       title: { fr: "Jardin intérieur", en: "Interior garden", ar: "الحديقة الداخلية" },
       description: { fr: "Oasis de verdure au cœur de la médina", en: "Green oasis in the heart of the medina", ar: "واحة خضراء في قلب المدينة" }

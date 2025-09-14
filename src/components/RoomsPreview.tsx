@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
 import type { Room } from "@/lib/types";
-import roomTraditional from "@/assets/room-traditional.jpg";
-import roomSuite from "@/assets/room-suite.jpg";
-import roomDeluxe from "@/assets/room-deluxe.jpg";
+// import roomTraditional from "@/assets/room-traditional.jpg";
+// import roomSuite from "@/assets/room-suite.jpg";
+// import roomDeluxe from "@/assets/room-deluxe.jpg";
 
 const RoomsPreview = () => {
   const { t } = useTranslation();
@@ -19,7 +19,7 @@ const RoomsPreview = () => {
       id: "traditional",
       title: t("rooms.traditional.title"),
       pricePerNight: "120€",
-      image: roomTraditional,
+      image: "/chambre 1.png",
       description: t("rooms.traditional.description"),
       amenities: [
         t("rooms.amenities.wifi"),
@@ -32,7 +32,7 @@ const RoomsPreview = () => {
       id: "suite",
       title: t("rooms.suite.title"),
       pricePerNight: "180€",
-      image: roomSuite,
+      image: "/chambre 2.png",
       description: t("rooms.suite.description"),
       amenities: [
         t("rooms.amenities.privateLounge"),
@@ -45,7 +45,7 @@ const RoomsPreview = () => {
       id: "deluxe",
       title: t("rooms.deluxe.title"),
       pricePerNight: "220€",
-      image: roomDeluxe,
+      image: "/chambre3.png",
       description: t("rooms.deluxe.description"),
       amenities: [
         t("rooms.amenities.privateBalcony"),
