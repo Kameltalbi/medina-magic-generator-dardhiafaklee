@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, fadeIn } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
-import heroImage from "@/assets/hero-dar-dhiafa.jpg";
+// import heroImage from "@/assets/hero-dar-dhiafa.jpg";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroImage}
+          src="/hero-dar-dhiafa-new.jpg"
           alt={t("hero.alt")}
           className="w-full h-full object-cover"
         />

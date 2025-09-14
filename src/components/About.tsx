@@ -109,40 +109,48 @@ const About = () => {
               <div className="space-y-4">
                 <motion.div
                   className="aspect-square bg-gradient-to-br from-terre-cuite/20 to-indigo-medina/20 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-terre-cuite to-indigo-medina opacity-80 flex items-center justify-center">
-                    <Palette className="w-16 h-16 text-white" />
+                  <div className="w-full h-full relative">
+                    <img
+                      src="/grid1.png"
+                      alt="Image de la grille d'accueil"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </motion.div>
                 <motion.div
                   className="aspect-[4/3] bg-gradient-to-br from-vert-porte/20 to-sable/40 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-vert-porte to-terre-cuite opacity-60 flex items-center justify-center">
-                    <Heart className="w-12 h-12 text-white" />
+                  <div className="w-full h-full relative">
+                    <img
+                      src="/grid2.png"
+                      alt="Image de la grille d'accueil"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </motion.div>
               </div>
               <div className="space-y-4 pt-8">
                 <motion.div
                   className="aspect-[4/3] bg-gradient-to-br from-indigo-medina/20 to-vert-porte/20 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-indigo-medina to-vert-porte opacity-70 flex items-center justify-center">
-                    <Star className="w-12 h-12 text-white" />
+                  <div className="w-full h-full relative">
+                    <img
+                      src="/grid3.png"
+                      alt="Image de la grille"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </motion.div>
                 <motion.div
                   className="aspect-square bg-gradient-to-br from-sable/40 to-terre-cuite/20 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-terre-cuite to-sable opacity-50 flex items-center justify-center">
-                    <Award className="w-16 h-16 text-indigo-medina" />
+                  <div className="w-full h-full relative">
+                    <img
+                      src="/grid4.png"
+                      alt="Image de la grille"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </motion.div>
               </div>
