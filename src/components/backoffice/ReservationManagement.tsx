@@ -83,7 +83,7 @@ interface Reservation {
 
 const ReservationManagement = () => {
   const [reservations, setReservations] = useState<Reservation[]>([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date(2025, 8, 1)); // Septembre 2025
   const [viewMode, setViewMode] = useState<'day' | 'week' | 'month'>('month');
   const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -94,13 +94,14 @@ const ReservationManagement = () => {
 
   // Données simulées - à remplacer par de vraies API calls
   const mockReservations: Reservation[] = [
+    // SEPTEMBRE 2025
     {
       id: "RES-001",
       guestName: "Marie Dubois",
       email: "marie.dubois@email.com",
       phone: "+33 6 12 34 56 78",
-      checkIn: "2024-12-15",
-      checkOut: "2024-12-18",
+      checkIn: "2025-09-15",
+      checkOut: "2025-09-18",
       roomId: "ch-11",
       roomNumber: "CH 11",
       roomType: "Chambre Double",
@@ -111,15 +112,15 @@ const ReservationManagement = () => {
       paymentStatus: "partial",
       source: "Site Web",
       notes: "Client VIP, préfère étage haut",
-      createdAt: "2024-12-10T10:30:00Z"
+      createdAt: "2025-09-10T10:30:00Z"
     },
     {
       id: "RES-002",
       guestName: "Ahmed Ben Ali",
       email: "ahmed.benali@email.com",
       phone: "+216 98 76 54 32",
-      checkIn: "2024-12-16",
-      checkOut: "2024-12-20",
+      checkIn: "2025-09-20",
+      checkOut: "2025-09-23",
       roomId: "ch-12",
       roomNumber: "CH 12",
       roomType: "Chambre Twin",
@@ -130,15 +131,15 @@ const ReservationManagement = () => {
       paymentStatus: "pending",
       source: "Booking.com",
       notes: "Arrivée tardive prévue",
-      createdAt: "2024-12-12T14:20:00Z"
+      createdAt: "2025-09-12T14:20:00Z"
     },
     {
       id: "RES-003",
       guestName: "Sophie Martin",
       email: "sophie.martin@email.com",
       phone: "+33 6 98 76 54 32",
-      checkIn: "2024-12-20",
-      checkOut: "2024-12-25",
+      checkIn: "2025-09-25",
+      checkOut: "2025-09-28",
       roomId: "suite-klee",
       roomNumber: "Suite Klee",
       roomType: "Suite Royale",
@@ -149,34 +150,36 @@ const ReservationManagement = () => {
       paymentStatus: "paid",
       source: "Airbnb",
       notes: "Anniversaire de mariage",
-      createdAt: "2024-12-08T09:15:00Z"
+      createdAt: "2025-09-08T09:15:00Z"
     },
+    
+    // OCTOBRE 2025 - 3 PREMIÈRES SEMAINES REMPLIES
     {
       id: "RES-004",
       guestName: "Jean-Pierre Moreau",
       email: "jp.moreau@email.com",
       phone: "+33 6 11 22 33 44",
-      checkIn: "2024-12-18",
-      checkOut: "2024-12-19",
+      checkIn: "2025-10-01",
+      checkOut: "2025-10-03",
       roomId: "ch-13",
       roomNumber: "CH 13",
       roomType: "Chambre Familiale",
       guests: 4,
-      status: "cancelled",
+      status: "confirmed",
       totalAmount: 400,
-      depositPaid: 100,
-      paymentStatus: "partial",
+      depositPaid: 400,
+      paymentStatus: "paid",
       source: "Téléphone",
-      notes: "Annulation pour urgence familiale",
-      createdAt: "2024-12-14T16:45:00Z"
+      notes: "Week-end en famille",
+      createdAt: "2025-09-25T16:45:00Z"
     },
     {
       id: "RES-005",
       guestName: "Fatma Khelil",
       email: "fatma.khelil@email.com",
       phone: "+216 55 12 34 56",
-      checkIn: "2024-12-22",
-      checkOut: "2024-12-24",
+      checkIn: "2025-10-02",
+      checkOut: "2025-10-05",
       roomId: "ch-14",
       roomNumber: "CH 14",
       roomType: "Chambre Double + L.B",
@@ -187,38 +190,206 @@ const ReservationManagement = () => {
       paymentStatus: "paid",
       source: "Site Web",
       notes: "Famille avec enfant",
-      createdAt: "2024-12-15T11:20:00Z"
+      createdAt: "2025-09-20T11:20:00Z"
     },
     {
       id: "RES-006",
       guestName: "Pierre Durand",
       email: "pierre.durand@email.com",
       phone: "+33 6 99 88 77 66",
-      checkIn: "2024-12-28",
-      checkOut: "2024-12-30",
+      checkIn: "2025-10-04",
+      checkOut: "2025-10-07",
       roomId: "ch-15",
       roomNumber: "CH 15",
       roomType: "Chambre Twin",
       guests: 2,
-      status: "pending",
+      status: "confirmed",
       totalAmount: 400,
+      depositPaid: 400,
+      paymentStatus: "paid",
+      source: "Booking.com",
+      notes: "Séjour découverte",
+      createdAt: "2025-09-18T14:30:00Z"
+    },
+    {
+      id: "RES-007",
+      guestName: "Isabelle Rousseau",
+      email: "isabelle.rousseau@email.com",
+      phone: "+33 6 44 55 66 77",
+      checkIn: "2025-10-06",
+      checkOut: "2025-10-09",
+      roomId: "ch-16",
+      roomNumber: "CH 16",
+      roomType: "Chambre Double",
+      guests: 2,
+      status: "confirmed",
+      totalAmount: 600,
+      depositPaid: 600,
+      paymentStatus: "paid",
+      source: "Site Web",
+      notes: "Escapade romantique",
+      createdAt: "2025-09-22T09:15:00Z"
+    },
+    {
+      id: "RES-008",
+      guestName: "Mohamed Trabelsi",
+      email: "mohamed.trabelsi@email.com",
+      phone: "+216 22 33 44 55",
+      checkIn: "2025-10-08",
+      checkOut: "2025-10-11",
+      roomId: "ch-17",
+      roomNumber: "CH 17",
+      roomType: "Chambre Twin",
+      guests: 2,
+      status: "pending",
+      totalAmount: 450,
       depositPaid: 0,
       paymentStatus: "pending",
+      source: "Airbnb",
+      notes: "Voyage d'affaires",
+      createdAt: "2025-09-28T16:20:00Z"
+    },
+    {
+      id: "RES-009",
+      guestName: "Claire Dubois",
+      email: "claire.dubois@email.com",
+      phone: "+33 6 77 88 99 00",
+      checkIn: "2025-10-10",
+      checkOut: "2025-10-13",
+      roomId: "ch-18",
+      roomNumber: "CH 18",
+      roomType: "Chambre Familiale",
+      guests: 4,
+      status: "confirmed",
+      totalAmount: 800,
+      depositPaid: 800,
+      paymentStatus: "paid",
       source: "Booking.com",
-      notes: "Nouvel An",
-      createdAt: "2024-12-16T14:30:00Z"
+      notes: "Vacances scolaires",
+      createdAt: "2025-09-15T12:30:00Z"
+    },
+    {
+      id: "RES-010",
+      guestName: "Karim Ben Salem",
+      email: "karim.bensalem@email.com",
+      phone: "+216 99 88 77 66",
+      checkIn: "2025-10-12",
+      checkOut: "2025-10-15",
+      roomId: "ch-19",
+      roomNumber: "CH 19",
+      roomType: "Chambre Double + L.B",
+      guests: 3,
+      status: "confirmed",
+      totalAmount: 550,
+      depositPaid: 550,
+      paymentStatus: "paid",
+      source: "Site Web",
+      notes: "Famille avec bébé",
+      createdAt: "2025-09-20T14:45:00Z"
+    },
+    {
+      id: "RES-011",
+      guestName: "Sarah Johnson",
+      email: "sarah.johnson@email.com",
+      phone: "+1 555 123 4567",
+      checkIn: "2025-10-14",
+      checkOut: "2025-10-17",
+      roomId: "suite-klee",
+      roomNumber: "Suite Klee",
+      roomType: "Suite Royale",
+      guests: 2,
+      status: "confirmed",
+      totalAmount: 1200,
+      depositPaid: 1200,
+      paymentStatus: "paid",
+      source: "Expedia",
+      notes: "Honeymoon trip",
+      createdAt: "2025-09-10T08:00:00Z"
+    },
+    {
+      id: "RES-012",
+      guestName: "François Leroy",
+      email: "francois.leroy@email.com",
+      phone: "+33 6 11 22 33 44",
+      checkIn: "2025-10-16",
+      checkOut: "2025-10-19",
+      roomId: "ch-20",
+      roomNumber: "CH 20",
+      roomType: "Chambre Twin",
+      guests: 2,
+      status: "pending",
+      totalAmount: 400,
+      depositPaid: 200,
+      paymentStatus: "partial",
+      source: "Téléphone",
+      notes: "Séjour découverte Kairouan",
+      createdAt: "2025-09-25T10:15:00Z"
+    },
+    {
+      id: "RES-013",
+      guestName: "Amina Khelil",
+      email: "amina.khelil@email.com",
+      phone: "+216 55 66 77 88",
+      checkIn: "2025-10-18",
+      checkOut: "2025-10-21",
+      roomId: "ch-21",
+      roomNumber: "CH 21",
+      roomType: "Chambre Double",
+      guests: 2,
+      status: "confirmed",
+      totalAmount: 500,
+      depositPaid: 500,
+      paymentStatus: "paid",
+      source: "Site Web",
+      notes: "Anniversaire de mariage",
+      createdAt: "2025-09-12T15:30:00Z"
+    },
+    {
+      id: "RES-014",
+      guestName: "Thomas Müller",
+      email: "thomas.muller@email.com",
+      phone: "+49 30 123 456 78",
+      checkIn: "2025-10-20",
+      checkOut: "2025-10-23",
+      roomId: "ch-22",
+      roomNumber: "CH 22",
+      roomType: "Chambre Familiale",
+      guests: 4,
+      status: "confirmed",
+      totalAmount: 750,
+      depositPaid: 750,
+      paymentStatus: "paid",
+      source: "Booking.com",
+      notes: "Family vacation from Germany",
+      createdAt: "2025-09-05T11:20:00Z"
+    },
+    {
+      id: "RES-015",
+      guestName: "Elena Rodriguez",
+      email: "elena.rodriguez@email.com",
+      phone: "+34 91 123 45 67",
+      checkIn: "2025-10-22",
+      checkOut: "2025-10-25",
+      roomId: "ch-23",
+      roomNumber: "CH 23",
+      roomType: "Chambre Double + L.B",
+      guests: 3,
+      status: "confirmed",
+      totalAmount: 600,
+      depositPaid: 600,
+      paymentStatus: "paid",
+      source: "Airbnb",
+      notes: "Cultural trip from Spain",
+      createdAt: "2025-09-18T13:45:00Z"
     }
   ];
 
   useEffect(() => {
-    // Charger les réservations depuis localStorage ou API
-    const savedReservations = localStorage.getItem('reservations');
-    if (savedReservations) {
-      setReservations(JSON.parse(savedReservations));
-    } else {
-      setReservations(mockReservations);
-      localStorage.setItem('reservations', JSON.stringify(mockReservations));
-    }
+    // Forcer le rechargement des données mockées
+    localStorage.removeItem('reservations'); // Vider le cache
+    setReservations(mockReservations);
+    localStorage.setItem('reservations', JSON.stringify(mockReservations));
+    console.log('Réservations mockées rechargées:', mockReservations);
   }, []);
 
   const saveReservations = (updatedReservations: Reservation[]) => {
@@ -302,16 +473,42 @@ const ReservationManagement = () => {
 
   const getReservationsForDate = (date: Date) => {
     const dateString = date.toISOString().split('T')[0];
-    return reservations.filter(reservation => {
+    const dayReservations = reservations.filter(reservation => {
       const checkIn = new Date(reservation.checkIn);
       const checkOut = new Date(reservation.checkOut);
-      return date >= checkIn && date < checkOut;
+      // Normaliser les dates pour la comparaison (enlever les heures)
+      const normalizedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      const normalizedCheckIn = new Date(checkIn.getFullYear(), checkIn.getMonth(), checkIn.getDate());
+      const normalizedCheckOut = new Date(checkOut.getFullYear(), checkOut.getMonth(), checkOut.getDate());
+      
+      // Vérifier si la date est dans la période de séjour (inclus le jour d'arrivée, exclut le jour de départ)
+      const isInRange = normalizedDate >= normalizedCheckIn && normalizedDate < normalizedCheckOut;
+      
+      // Debug pour toutes les réservations
+      console.log(`Vérification date ${dateString} pour ${reservation.guestName}:`, {
+        checkIn: reservation.checkIn,
+        checkOut: reservation.checkOut,
+        normalizedDate: normalizedDate.toISOString().split('T')[0],
+        normalizedCheckIn: normalizedCheckIn.toISOString().split('T')[0],
+        normalizedCheckOut: normalizedCheckOut.toISOString().split('T')[0],
+        isInRange
+      });
+      
+      return isInRange;
     });
+    
+    return dayReservations;
   };
 
   const renderCalendar = () => {
     const { daysInMonth, startingDayOfWeek } = getDaysInMonth(selectedDate);
     const days = [];
+    
+    // Debug du calendrier
+    console.log(`Rendu calendrier pour ${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}`, {
+      totalReservations: reservations.length,
+      reservations: reservations.map(r => `${r.guestName}: ${r.checkIn} - ${r.checkOut}`)
+    });
     
     // Jours du mois précédent
     for (let i = 0; i < startingDayOfWeek; i++) {
@@ -323,6 +520,11 @@ const ReservationManagement = () => {
       const currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), day);
       const dayReservations = getReservationsForDate(currentDate);
       const isToday = currentDate.toDateString() === new Date().toDateString();
+      
+      // Debug pour les jours avec réservations
+      if (dayReservations.length > 0) {
+        console.log(`Jour ${day}: ${dayReservations.length} réservation(s)`, dayReservations.map(r => r.guestName));
+      }
       
       days.push(
         <div

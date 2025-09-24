@@ -120,12 +120,59 @@ const Header = ({ onMenuToggle, user, role }: HeaderProps) => {
           </Button>
 
           {/* Notifications */}
-          <Button variant="ghost" size="sm" className="relative">
-            <Bell className="w-5 h-5" />
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-terre-cuite rounded-full text-xs text-white flex items-center justify-center">
-              3
-            </span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="relative">
+                <Bell className="w-5 h-5" />
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-terre-cuite rounded-full text-xs text-white flex items-center justify-center">
+                  3
+                </span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-80">
+              <DropdownMenuLabel className="flex items-center justify-between">
+                <span>Notifications</span>
+                <Button variant="ghost" size="sm" className="h-6 px-2 text-xs">
+                  Tout marquer comme lu
+                </Button>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="flex flex-col items-start p-3">
+                <div className="flex items-center space-x-2 w-full">
+                  <div className="w-2 h-2 bg-terre-cuite rounded-full"></div>
+                  <span className="text-sm font-medium">Nouvelle réservation</span>
+                  <span className="text-xs text-muted-foreground ml-auto">2h</span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Marie Dubois - Chambre CH 11 (15-18 sept)
+                </p>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex flex-col items-start p-3">
+                <div className="flex items-center space-x-2 w-full">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                  <span className="text-sm font-medium">Paiement en attente</span>
+                  <span className="text-xs text-muted-foreground ml-auto">4h</span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Ahmed Ben Ali - 800 DT à régler
+                </p>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="flex flex-col items-start p-3">
+                <div className="flex items-center space-x-2 w-full">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm font-medium">Maintenance programmée</span>
+                  <span className="text-xs text-muted-foreground ml-auto">1j</span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Maintenance système prévue demain 14h
+                </p>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-center justify-center">
+                Voir toutes les notifications
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           {/* User Menu */}
           <DropdownMenu>
