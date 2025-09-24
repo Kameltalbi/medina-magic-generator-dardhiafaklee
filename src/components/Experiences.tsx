@@ -8,7 +8,7 @@ import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
 import type { Experience } from "@/lib/types";
 
-const Experiences = () => {
+const ExperiencesPreview = () => {
   const { t } = useTranslation();
   
   const experiences: Experience[] = [
@@ -179,4 +179,4 @@ const Experiences = () => {
   );
 };
 
-export default Experiences;
+export default ExperiencesPreview;

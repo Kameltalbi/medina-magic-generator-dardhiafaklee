@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BookingProvider } from "@/contexts/BookingContext";
+import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import Index from "./pages/Index";
 import Booking from "./pages/Booking";
 import Rooms from "./pages/Rooms";
@@ -16,8 +17,9 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <BookingProvider>
-      <TooltipProvider>
+    <CurrencyProvider>
+      <BookingProvider>
+        <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
@@ -32,8 +34,9 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </TooltipProvider>
-    </BookingProvider>
+        </TooltipProvider>
+      </BookingProvider>
+    </CurrencyProvider>
   </QueryClientProvider>
 );
 

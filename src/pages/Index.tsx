@@ -4,10 +4,9 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import QuickBooking from "@/components/QuickBooking";
-import SimpleBookingForm from "@/components/SimpleBookingForm";
 import About from "@/components/About";
 import RoomsPreview from "@/components/RoomsPreview";
-import Experiences from "@/components/Experiences";
+import ExperiencesPreview from "@/components/Experiences";
 import Gallery360 from "@/components/Gallery360";
 import ContactMap from "@/components/ContactMap";
 import Footer from "@/components/Footer";
@@ -20,11 +19,10 @@ const Index = () => {
       
       <main>
         <Hero />
-        <SimpleBookingForm />
         <QuickBooking />
         <About />
         <RoomsPreview />
-        <Experiences />
+        <ExperiencesPreview />
         <Gallery360 />
         <ContactMap />
       </main>

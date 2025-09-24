@@ -2,10 +2,13 @@
 // Uses imageHoverZoom and all brand colors from design system
 
 import { motion } from "framer-motion";
-import { Wifi, Coffee, Tv, Bath, Eye, Calendar } from "lucide-react";
+import { Wifi, Coffee, Tv, Bath, Eye, Calendar, XCircle, Clock, Wrench, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { roomsData } from "@/data/rooms";
+import { getRoomStatus } from "@/data/roomAvailability";
 import type { Room } from "@/lib/types";
 // import roomTraditional from "@/assets/room-traditional.jpg";
 // import roomSuite from "@/assets/room-suite.jpg";
@@ -13,48 +16,59 @@ import type { Room } from "@/lib/types";
 
 const RoomsPreview = () => {
   const { t } = useTranslation();
+  const { formatPrice } = useCurrency();
   
-  const rooms: Room[] = [
-    {
-      id: "traditional",
-      title: t("rooms.traditional.title"),
-      pricePerNight: "120€",
-      image: "/chambre 1.png",
-      description: t("rooms.traditional.description"),
-      amenities: [
-        t("rooms.amenities.wifi"),
-        t("rooms.amenities.ac"),
-        t("rooms.amenities.privateBathroom"),
-        t("rooms.amenities.balcony")
-      ],
-    },
-    {
-      id: "suite",
-      title: t("rooms.suite.title"),
-      pricePerNight: "180€",
-      image: "/chambre 2.png",
-      description: t("rooms.suite.description"),
-      amenities: [
-        t("rooms.amenities.privateLounge"),
-        t("rooms.amenities.bathtub"),
-        t("rooms.amenities.cityView"),
-        t("rooms.amenities.teaService")
-      ],
-    },
-    {
-      id: "deluxe",
-      title: t("rooms.deluxe.title"),
-      pricePerNight: "220€",
-      image: "/chambre3.png",
-      description: t("rooms.deluxe.description"),
-      amenities: [
-        t("rooms.amenities.privateBalcony"),
-        t("rooms.amenities.minibar"),
-        t("rooms.amenities.roomService"),
-        t("rooms.amenities.panoramicView")
-      ],
-    },
-  ];
+  // Fonction pour obtenir le statut d'une chambre
+  const getRoomStatusInfo = (roomId: string) => {
+    const today = new Date().toISOString().split('T')[0];
+    const status = getRoomStatus(roomId, today);
+    return status;
+  };
+
+  // Fonction pour obtenir le badge de statut
+  const getStatusBadge = (status: string) => {
+    const variants = {
+      available: "bg-green-100 text-green-800",
+      occupied: "bg-red-100 text-red-800",
+      reserved: "bg-yellow-100 text-yellow-800",
+      maintenance: "bg-gray-100 text-gray-800",
+    };
+    return variants[status as keyof typeof variants] || "bg-gray-100 text-gray-800";
+  };
+
+  // Fonction pour obtenir l'icône de statut
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'available': return <CheckCircle className="w-3 h-3" />;
+      case 'occupied': return <XCircle className="w-3 h-3" />;
+      case 'reserved': return <Clock className="w-3 h-3" />;
+      case 'maintenance': return <Wrench className="w-3 h-3" />;
+      default: return <Clock className="w-3 h-3" />;
+    }
+  };
+
+  // Fonction pour obtenir le texte de statut
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'available': return 'Disponible';
+      case 'occupied': return 'Occupée';
+      case 'reserved': return 'Réservée';
+      case 'maintenance': return 'Maintenance';
+      default: return 'Inconnu';
+    }
+  };
+  
+  // Afficher les 3 chambres les plus chères sur la page d'accueil
+  const featuredRooms = roomsData
+    .sort((a, b) => b.pricePerNight - a.pricePerNight) // Trier par prix décroissant
+    .slice(0, 3); // Prendre les 3 plus chères
+  
+  const rooms: Room[] = featuredRooms.map(room => ({
+    ...room,
+    pricePerNight: formatPrice(room.pricePerNight),
+    description: t(`rooms.${room.id}.description`) || room.description,
+    amenities: room.amenities.slice(0, 4) // Limiter à 4 équipements pour l'affichage
+  }));
 
   const getAmenityIcon = (amenity: string) => {
     if (amenity.includes("Wifi")) return Wifi;
@@ -115,8 +129,28 @@ const RoomsPreview = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-indigo-medina/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Price Badge */}
-                  <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
-                    {room.pricePerNight}/{t("rooms.perNight")}
+                  <div className="absolute top-4 right-4 flex flex-col gap-2">
+                    <div className="bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
+                      {room.pricePerNight}/{t("rooms.perNight")}
+                    </div>
+                    {room.pricePerNight && parseFloat(room.pricePerNight.replace(/[^\d]/g, '')) >= 350 && (
+                      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full font-inter font-bold text-xs shadow-soft">
+                        ⭐ Premium
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Status Badge */}
+                  <div className="absolute top-4 left-4">
+                    {(() => {
+                      const status = getRoomStatusInfo(room.id);
+                      return (
+                        <div className={`${getStatusBadge(status)} px-2 py-1 rounded-full font-inter font-medium text-xs flex items-center gap-1 shadow-soft`}>
+                          {getStatusIcon(status)}
+                          {getStatusText(status)}
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
 

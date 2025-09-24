@@ -4,6 +4,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useCurrency } from "@/contexts/CurrencyContext";
+import { roomsData } from "@/data/rooms";
+import { getRoomStatus } from "@/data/roomAvailability";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { 
@@ -19,7 +22,11 @@ import {
   Star,
   Calendar,
   MapPin,
-  Check
+  Check,
+  XCircle,
+  Clock,
+  Wrench,
+  CheckCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,124 +35,92 @@ import { staggerContainer, staggerItem, fadeInUp, slideInLeft, slideInRight } fr
 
 const Rooms = () => {
   const { t } = useTranslation();
-  const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
+  const { formatPrice, getCurrencySymbol } = useCurrency();
+  const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  
+  // Fonction pour obtenir le statut d'une chambre
+  const getRoomStatusInfo = (roomId: string) => {
+    const today = new Date().toISOString().split('T')[0];
+    const status = getRoomStatus(roomId, today);
+    return status;
+  };
 
-  const rooms = [
-    {
-      id: 1,
-      name: {
-        fr: "Chambre Traditionnelle",
-        en: "Traditional Room", 
-        ar: "غرفة تقليدية"
-      },
-      category: "Standard",
-      price: 120,
-      currency: "€",
-      size: "25m²",
-      capacity: 2,
-      rating: 4.8,
-      reviews: 127,
-      images: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      ],
-      description: {
-        fr: "Authenticité et confort dans un décor tunisien traditionnel. Cette chambre vous plonge dans l'atmosphère unique de la médina de Kairouan.",
-        en: "Authenticity and comfort in a traditional Tunisian decor. This room immerses you in the unique atmosphere of Kairouan's medina.",
-        ar: "الأصالة والراحة في ديكور تونسي تقليدي. تغمرك هذه الغرفة في الأجواء الفريدة لمدينة القيروان العتيقة."
-      },
-      amenities: [
-        { icon: Wifi, name: { fr: "WiFi gratuit", en: "Free WiFi", ar: "واي فاي مجاني" } },
-        { icon: AirVent, name: { fr: "Climatisation", en: "Air conditioning", ar: "تكييف الهواء" } },
-        { icon: Bath, name: { fr: "Salle de bain privée", en: "Private bathroom", ar: "حمام خاص" } },
-        { icon: Building2, name: { fr: "Terrasse", en: "Terrace", ar: "شرفة" } },
-        { icon: Tv, name: { fr: "TV écran plat", en: "Flat screen TV", ar: "تلفزيون بشاشة مسطحة" } },
-        { icon: Coffee, name: { fr: "Service thé/café", en: "Tea/Coffee service", ar: "خدمة الشاي والقهوة" } }
-      ],
-      features: [
-        { fr: "Vue sur la médina", en: "Medina view", ar: "إطلالة على المدينة" },
-        { fr: "Décoration artisanale", en: "Handcrafted decoration", ar: "ديكور حرفي" },
-        { fr: "Literie premium", en: "Premium bedding", ar: "أسرّة فاخرة" }
-      ]
-    },
-    {
-      id: 2,
-      name: {
-        fr: "Suite Klee",
-        en: "Klee Suite",
-        ar: "جناح كلي"
-      },
-      category: "Suite",
-      price: 180,
-      currency: "€",
-      size: "45m²",
-      capacity: 3,
-      rating: 4.9,
-      reviews: 89,
-      images: [
-        "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      ],
-      description: {
-        fr: "Élégance moderne inspirée de l'art de Paul Klee. Cette suite unique combine luxe contemporain et héritage artistique.",
-        en: "Modern elegance inspired by Paul Klee's art. This unique suite combines contemporary luxury with artistic heritage.",
-        ar: "أناقة عصرية مستوحاة من فن بول كلي. يجمع هذا الجناح الفريد بين الفخامة المعاصرة والتراث الفني."
-      },
-      amenities: [
-        { icon: Wifi, name: { fr: "WiFi gratuit", en: "Free WiFi", ar: "واي فاي مجاني" } },
-        { icon: AirVent, name: { fr: "Climatisation", en: "Air conditioning", ar: "تكييف الهواء" } },
-        { icon: Bath, name: { fr: "Baignoire", en: "Bathtub", ar: "حوض استحمام" } },
-        { icon: Building2, name: { fr: "Vue médina", en: "Medina view", ar: "إطلالة على المدينة" } },
-        { icon: Coffee, name: { fr: "Service thé", en: "Tea service", ar: "خدمة الشاي" } },
-        { icon: Users, name: { fr: "Salon privé", en: "Private lounge", ar: "صالة خاصة" } }
-      ],
-      features: [
-        { fr: "Œuvres d'art originales", en: "Original artworks", ar: "أعمال فنية أصلية" },
-        { fr: "Mobilier design", en: "Designer furniture", ar: "أثاث مصمم" },
-        { fr: "Service personnalisé", en: "Personalized service", ar: "خدمة شخصية" }
-      ]
-    },
-    {
-      id: 3,
-      name: {
-        fr: "Chambre Deluxe",
-        en: "Deluxe Room",
-        ar: "غرفة ديلوكس"
-      },
-      category: "Deluxe",
-      price: 220,
-      currency: "€",
-      size: "35m²",
-      capacity: 2,
-      rating: 4.9,
-      reviews: 156,
-      images: [
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-      ],
-      description: {
-        fr: "Luxe et raffinement avec terrasse panoramique. Profitez d'une vue exceptionnelle sur les toits de la médina historique.",
-        en: "Luxury and refinement with panoramic terrace. Enjoy an exceptional view over the rooftops of the historic medina.",
-        ar: "الفخامة والرقي مع شرفة بانورامية. استمتع بإطلالة استثنائية على أسطح المدينة التاريخية."
-      },
-      amenities: [
-        { icon: Wifi, name: { fr: "WiFi gratuit", en: "Free WiFi", ar: "واي فاي مجاني" } },
-        { icon: AirVent, name: { fr: "Climatisation", en: "Air conditioning", ar: "تكييف الهواء" } },
-        { icon: Building2, name: { fr: "Terrasse privée", en: "Private terrace", ar: "شرفة خاصة" } },
-        { icon: Coffee, name: { fr: "Minibar", en: "Minibar", ar: "ميني بار" } },
-        { icon: Bed, name: { fr: "Service en chambre", en: "Room service", ar: "خدمة الغرف" } },
-        { icon: MapPin, name: { fr: "Vue panoramique", en: "Panoramic view", ar: "إطلالة بانورامية" } }
-      ],
-      features: [
-        { fr: "Terrasse panoramique", en: "Panoramic terrace", ar: "شرفة بانورامية" },
-        { fr: "Mobilier haut de gamme", en: "High-end furniture", ar: "أثاث راقي" },
-        { fr: "Conciergerie 24h/24", en: "24/7 concierge", ar: "خدمة الكونسيرج 24/7" }
-      ]
+  // Fonction pour obtenir le badge de statut
+  const getStatusBadge = (status: string) => {
+    const variants = {
+      available: "bg-green-100 text-green-800",
+      occupied: "bg-red-100 text-red-800",
+      reserved: "bg-yellow-100 text-yellow-800",
+      maintenance: "bg-gray-100 text-gray-800",
+    };
+    return variants[status as keyof typeof variants] || "bg-gray-100 text-gray-800";
+  };
+
+  // Fonction pour obtenir l'icône de statut
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'available': return <CheckCircle className="w-3 h-3" />;
+      case 'occupied': return <XCircle className="w-3 h-3" />;
+      case 'reserved': return <Clock className="w-3 h-3" />;
+      case 'maintenance': return <Wrench className="w-3 h-3" />;
+      default: return <Clock className="w-3 h-3" />;
     }
-  ];
+  };
+
+  // Fonction pour obtenir le texte de statut
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'available': return 'Disponible';
+      case 'occupied': return 'Occupée';
+      case 'reserved': return 'Réservée';
+      case 'maintenance': return 'Maintenance';
+      default: return 'Inconnu';
+    }
+  };
+
+  // Convertir les données des chambres pour l'affichage et trier par prix décroissant
+  const rooms = roomsData
+    .map(room => ({
+      id: room.id,
+      name: {
+        fr: room.title,
+        en: room.title, 
+        ar: room.title
+      },
+      category: room.category,
+      price: room.pricePerNight,
+      currency: getCurrencySymbol(),
+      size: room.size,
+      capacity: room.capacity,
+      rating: room.rating,
+      reviews: room.reviews,
+      images: [
+        room.image,
+        room.image, // Pour l'instant, on utilise la même image
+        room.image
+      ],
+      description: {
+        fr: room.description,
+        en: room.description,
+        ar: room.description
+      },
+      amenities: room.amenities.slice(0, 6).map(amenity => ({
+        icon: Wifi, // Icône par défaut, à améliorer
+        name: { fr: amenity, en: amenity, ar: amenity }
+      })),
+      features: room.features.map(feature => ({
+        fr: feature,
+        en: feature,
+        ar: feature
+      }))
+    }))
+    .sort((a, b) => b.price - a.price); // Trier par prix décroissant (plus chères en premier)
+
+  // Filtrer les chambres par catégorie
+  const filteredRooms = selectedCategory === "all" 
+    ? rooms 
+    : rooms.filter(room => room.category === selectedCategory);
 
   const getCurrentLanguage = () => {
     const lang = localStorage.getItem('i18nextLng') || 'fr';
@@ -186,6 +161,64 @@ const Rooms = () => {
         </div>
       </section>
 
+      {/* Filtres par catégorie */}
+      <section className="py-8 px-4 bg-card">
+        <div className="container mx-auto">
+          <motion.div
+            className="max-w-7xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
+            <motion.div className="flex flex-wrap justify-center gap-4 mb-8" variants={staggerItem}>
+              <Button
+                variant={selectedCategory === "all" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("all")}
+                className={selectedCategory === "all" ? "bg-terre-cuite hover:bg-terre-cuite-hover" : ""}
+              >
+                Toutes les chambres ({rooms.length})
+              </Button>
+              <Button
+                variant={selectedCategory === "DOUBLE" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("DOUBLE")}
+                className={selectedCategory === "DOUBLE" ? "bg-terre-cuite hover:bg-terre-cuite-hover" : ""}
+              >
+                Double ({rooms.filter(r => r.category === "DOUBLE").length})
+              </Button>
+              <Button
+                variant={selectedCategory === "TWIN" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("TWIN")}
+                className={selectedCategory === "TWIN" ? "bg-terre-cuite hover:bg-terre-cuite-hover" : ""}
+              >
+                Twin ({rooms.filter(r => r.category === "TWIN").length})
+              </Button>
+              <Button
+                variant={selectedCategory === "FAMILIALE" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("FAMILIALE")}
+                className={selectedCategory === "FAMILIALE" ? "bg-terre-cuite hover:bg-terre-cuite-hover" : ""}
+              >
+                Familiale ({rooms.filter(r => r.category === "FAMILIALE").length})
+              </Button>
+              <Button
+                variant={selectedCategory === "DOUBLE+L.B" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("DOUBLE+L.B")}
+                className={selectedCategory === "DOUBLE+L.B" ? "bg-terre-cuite hover:bg-terre-cuite-hover" : ""}
+              >
+                Double+L.B ({rooms.filter(r => r.category === "DOUBLE+L.B").length})
+              </Button>
+              <Button
+                variant={selectedCategory === "S.ROYALE" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("S.ROYALE")}
+                className={selectedCategory === "S.ROYALE" ? "bg-terre-cuite hover:bg-terre-cuite-hover" : ""}
+              >
+                Suite Royale ({rooms.filter(r => r.category === "S.ROYALE").length})
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Rooms Grid */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
@@ -197,7 +230,7 @@ const Rooms = () => {
             variants={staggerContainer}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {rooms.map((room, index) => (
+              {filteredRooms.map((room, index) => (
                 <motion.div
                   key={room.id}
                   variants={staggerItem}
@@ -211,10 +244,39 @@ const Rooms = () => {
                         alt={room.name[currentLang]}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-4 left-4">
+                      {/* Overlay pour chambres occupées */}
+                      {(() => {
+                        const status = getRoomStatusInfo(room.id);
+                        if (status === 'occupied') {
+                          return (
+                            <div className="absolute inset-0 bg-red-500/20 backdrop-blur-[1px] flex items-center justify-center">
+                              <div className="bg-red-600 text-white px-4 py-2 rounded-lg font-inter font-bold text-sm shadow-lg">
+                                🚫 OCCUPÉE
+                              </div>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })()}
+                      <div className="absolute top-4 left-4 flex flex-col gap-2">
                         <Badge className="bg-terre-cuite text-white font-inter font-medium">
                           {room.category}
                         </Badge>
+                        {room.price >= 350 && (
+                          <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-inter font-bold text-xs">
+                            ⭐ Premium
+                          </Badge>
+                        )}
+                        {/* Badge de statut de la chambre */}
+                        {(() => {
+                          const status = getRoomStatusInfo(room.id);
+                          return (
+                            <Badge className={`${getStatusBadge(status)} font-inter font-medium text-xs flex items-center gap-1`}>
+                              {getStatusIcon(status)}
+                              {getStatusText(status)}
+                            </Badge>
+                          );
+                        })()}
                       </div>
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
                         <div className="flex items-center space-x-1">
@@ -239,8 +301,15 @@ const Rooms = () => {
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="text-2xl font-playfair font-bold text-terre-cuite">
-                            {room.price}{room.currency}
+                          <div className="flex items-center justify-end space-x-2">
+                            <div className="text-2xl font-playfair font-bold text-terre-cuite">
+                              {formatPrice(room.price)}
+                            </div>
+                            {room.price >= 350 && (
+                              <div className="text-xs bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full font-bold">
+                                TOP
+                              </div>
+                            )}
                           </div>
                           <div className="text-sm text-muted-foreground font-inter">
                             {currentLang === 'fr' && 'par nuit'}
@@ -319,15 +388,61 @@ const Rooms = () => {
 
                       {/* Action Buttons */}
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Button 
-                          className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold transition-all duration-300"
-                          size="sm"
-                        >
-                          <Calendar className="w-4 h-4 mr-2" />
-                          {currentLang === 'fr' && 'Réserver'}
-                          {currentLang === 'en' && 'Book Now'}
-                          {currentLang === 'ar' && 'احجز الآن'}
-                        </Button>
+                        {(() => {
+                          const status = getRoomStatusInfo(room.id);
+                          if (status === 'occupied') {
+                            return (
+                              <Button 
+                                className="flex-1 bg-red-500 text-white font-inter font-semibold cursor-not-allowed"
+                                size="sm"
+                                disabled
+                              >
+                                <XCircle className="w-4 h-4 mr-2" />
+                                {currentLang === 'fr' && 'Occupée'}
+                                {currentLang === 'en' && 'Occupied'}
+                                {currentLang === 'ar' && 'مشغولة'}
+                              </Button>
+                            );
+                          } else if (status === 'reserved') {
+                            return (
+                              <Button 
+                                className="flex-1 bg-yellow-500 text-white font-inter font-semibold cursor-not-allowed"
+                                size="sm"
+                                disabled
+                              >
+                                <Clock className="w-4 h-4 mr-2" />
+                                {currentLang === 'fr' && 'Réservée'}
+                                {currentLang === 'en' && 'Reserved'}
+                                {currentLang === 'ar' && 'محجوزة'}
+                              </Button>
+                            );
+                          } else if (status === 'maintenance') {
+                            return (
+                              <Button 
+                                className="flex-1 bg-gray-500 text-white font-inter font-semibold cursor-not-allowed"
+                                size="sm"
+                                disabled
+                              >
+                                <Wrench className="w-4 h-4 mr-2" />
+                                {currentLang === 'fr' && 'Maintenance'}
+                                {currentLang === 'en' && 'Maintenance'}
+                                {currentLang === 'ar' && 'صيانة'}
+                              </Button>
+                            );
+                          } else {
+                            return (
+                              <Button 
+                                className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold transition-all duration-300"
+                                size="sm"
+                              >
+                                <Calendar className="w-4 h-4 mr-2" />
+                                {currentLang === 'fr' && 'Réserver'}
+                                {currentLang === 'en' && 'Book Now'}
+                                {currentLang === 'ar' && 'احجز الآن'}
+                              </Button>
+                            );
+                          }
+                        })()}
                         <Button 
                           variant="outline" 
                           className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-semibold transition-all duration-300"

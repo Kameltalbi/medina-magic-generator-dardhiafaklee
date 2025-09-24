@@ -8,10 +8,9 @@ import Sidebar from "@/components/backoffice/Sidebar";
 import Header from "@/components/backoffice/Header";
 import Dashboard from "@/components/backoffice/Dashboard";
 import Sales from "@/components/backoffice/Sales";
-import Analytics from "@/components/backoffice/Analytics";
-import SEO from "@/components/backoffice/SEO";
-import ContentManagement from "@/components/backoffice/ContentManagement";
-import UserManagement from "@/components/backoffice/UserManagement";
+import RoomPricing from "@/components/backoffice/RoomPricing";
+import ExperienceManagement from "@/components/backoffice/ExperienceManagement";
+import ReservationManagement from "@/components/backoffice/ReservationManagement";
 import Settings from "@/components/backoffice/Settings";
 import BackOfficeLogin from "./BackOfficeLogin";
 import { useAuth } from "@/hooks/useAuth";
@@ -30,16 +29,14 @@ const BackOffice = () => {
     switch (activeSection) {
       case "dashboard":
         return <Dashboard />;
+      case "reservations":
+        return hasPermission("reservations.manage") ? <ReservationManagement /> : <div>Access denied</div>;
+      case "pricing":
+        return hasPermission("pricing.manage") ? <RoomPricing /> : <div>Access denied</div>;
       case "sales":
         return <Sales />;
-      case "analytics":
-        return <Analytics />;
-      case "seo":
-        return hasPermission("seo.read") ? <SEO /> : <div>Access denied</div>;
-      case "content":
-        return <ContentManagement />;
-      case "users":
-        return hasPermission("users.manage") ? <UserManagement /> : <div>Access denied</div>;
+      case "experiences":
+        return hasPermission("experiences.manage") ? <ExperienceManagement /> : <div>Access denied</div>;
       case "settings":
         return hasPermission("settings.manage") ? <Settings /> : <div>Access denied</div>;
       default:

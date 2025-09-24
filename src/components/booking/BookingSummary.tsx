@@ -6,6 +6,7 @@ import { Calendar, Users, MapPin, CreditCard, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, slideInRight } from "@/lib/animations";
 import { useNavigate } from "react-router-dom";
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 interface BookingSummaryProps {
   selectedRoom?: {
@@ -24,12 +25,13 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
   const [paymentStep, setPaymentStep] = useState<'summary' | 'payment' | 'success' | 'error'>('summary');
   const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
+  const { formatPrice } = useCurrency();
 
   // Mock booking data if not provided
   const defaultRoom = {
     id: "1",
     title: "Chambre Traditionnelle Klee",
-    pricePerNight: "120 DT"
+    pricePerNight: formatPrice(400) // 400 TND
   };
 
   const defaultDates = {
@@ -50,10 +52,9 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
   };
 
   const nights = calculateNights();
-  const pricePerNight = typeof room.pricePerNight === 'string' 
-    ? parseInt(room.pricePerNight.replace(' DT', '')) 
-    : room.pricePerNight;
-  const subtotal = nights * pricePerNight;
+  // Prix de base en TND (400 TND pour la chambre traditionnelle)
+  const basePricePerNight = 400;
+  const subtotal = nights * basePricePerNight;
   const taxes = Math.round(subtotal * 0.1); // 10% tax
   const total = subtotal + taxes;
 
@@ -125,7 +126,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                   </div>
                   <div className="flex justify-between">
                     <span>Total payé :</span>
-                    <span className="font-semibold text-terre-cuite">{total} DT</span>
+                    <span className="font-semibold text-terre-cuite">{formatPrice(total)}</span>
                   </div>
                 </div>
               </div>
@@ -274,7 +275,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                     <div className="font-semibold text-indigo-medina">Chambre</div>
                     <div className="text-sm text-muted-foreground">{room.title}</div>
                     <div className="text-sm text-terre-cuite font-semibold">
-                      {room.pricePerNight} / nuit
+                      {formatPrice(basePricePerNight)} / nuit
                     </div>
                   </div>
                 </div>
@@ -286,18 +287,18 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                 <div className="space-y-2 font-inter text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">
-                      {room.pricePerNight} × {nights} {nights === 1 ? 'nuit' : 'nuits'}
+                      {formatPrice(basePricePerNight)} × {nights} {nights === 1 ? 'nuit' : 'nuits'}
                     </span>
-                    <span>{subtotal} DT</span>
+                    <span>{formatPrice(subtotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Taxes et frais</span>
-                    <span>{taxes} DT</span>
+                    <span>{formatPrice(taxes)}</span>
                   </div>
                   <div className="border-t border-border pt-2 mt-4">
                     <div className="flex justify-between text-lg font-bold text-indigo-medina">
                       <span>Total</span>
-                      <span className="text-terre-cuite">{total} DT</span>
+                      <span className="text-terre-cuite">{formatPrice(total)}</span>
                     </div>
                   </div>
                 </div>
@@ -363,7 +364,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                   ) : (
                     <CreditCard className="w-5 h-5 mr-3" />
                   )}
-                  Payer {total} DT avec Konnect
+                  Payer {formatPrice(total)} avec Konnect
                 </Button>
               </div>
             </div>

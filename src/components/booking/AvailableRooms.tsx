@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
 import { useBooking } from "@/contexts/BookingContext";
+import { useCurrency } from "@/contexts/CurrencyContext";
 import { useTranslation } from "react-i18next";
 import type { Room } from "@/lib/types";
 
@@ -16,7 +17,7 @@ const mockRooms: Room[] = [
   {
     id: "1",
     title: "Chambre Traditionnelle",
-    pricePerNight: 120,
+    pricePerNight: 400, // 400 TND
     currency: "DT",
     image: "/chambre 1.png",
     description: "Chambre authentique avec décoration inspirée des aquarelles de Paul Klee et vue sur la cour intérieure.",
@@ -31,7 +32,7 @@ const mockRooms: Room[] = [
   {
     id: "2", 
     title: "Suite Klee",
-    pricePerNight: 180,
+    pricePerNight: 600, // 600 TND
     currency: "DT",
     image: "/chambre 2.png", 
     description: "Suite spacieuse avec salon privé, terrasse panoramique et décoration raffinée alliant tradition et modernité.",
@@ -46,7 +47,7 @@ const mockRooms: Room[] = [
   {
     id: "3",
     title: "Chambre Deluxe", 
-    pricePerNight: 220,
+    pricePerNight: 750, // 750 TND
     currency: "DT",
     image: "/chambre3.png",
     description: "Chambre élégante aux tons chauds inspirés de la palette de Klee, avec balcon donnant sur la médina.",
@@ -62,6 +63,7 @@ const mockRooms: Room[] = [
 
 const AvailableRooms = () => {
   const { t } = useTranslation();
+  const { formatPrice } = useCurrency();
   const { selectedRoom, selectRoom, bookingDates } = useBooking();
   const [showAllAmenities, setShowAllAmenities] = useState<{ [key: string]: boolean }>({});
 
@@ -146,7 +148,7 @@ const AvailableRooms = () => {
                   
                   {/* Price Badge */}
                   <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
-                    {room.pricePerNight} {room.currency} / nuit
+                    {formatPrice(room.pricePerNight)} / nuit
                   </div>
                   
                   {/* Category Badge */}
@@ -186,10 +188,10 @@ const AvailableRooms = () => {
                     <h3 className="text-xl font-playfair font-bold text-indigo-medina">
                       {room.title}
                     </h3>
-                    <div className="text-right">
-                      <div className="text-2xl font-playfair font-bold text-terre-cuite">
-                        {room.pricePerNight} {room.currency}
-                      </div>
+                        <div className="text-right">
+                          <div className="text-2xl font-playfair font-bold text-terre-cuite">
+                            {formatPrice(room.pricePerNight)}
+                          </div>
                       <div className="text-sm text-muted-foreground font-inter">
                         par nuit
                       </div>

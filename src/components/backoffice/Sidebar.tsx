@@ -6,13 +6,12 @@ import { motion } from "framer-motion";
 import { 
   LayoutDashboard, 
   ShoppingCart, 
-  BarChart3, 
-  Search, 
-  FileText, 
-  Users, 
   Settings,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Calendar,
+  DollarSign,
+  Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -33,35 +32,28 @@ const Sidebar = ({ activeSection, onSectionChange, isOpen, onToggle, userRole }:
       permission: "dashboard.read",
     },
     {
+      id: "reservations",
+      label: "Réservations",
+      icon: Calendar,
+      permission: "reservations.manage",
+    },
+    {
+      id: "pricing",
+      label: "Tarifs",
+      icon: DollarSign,
+      permission: "pricing.manage",
+    },
+    {
       id: "sales",
       label: "Ventes",
       icon: ShoppingCart,
       permission: "sales.read",
     },
     {
-      id: "analytics",
-      label: "Analytics",
-      icon: BarChart3,
-      permission: "analytics.read",
-    },
-    {
-      id: "seo",
-      label: "SEO",
-      icon: Search,
-      permission: "seo.read",
-    },
-    {
-      id: "content",
-      label: "Contenu",
-      icon: FileText,
-      permission: "content.manage",
-    },
-    {
-      id: "users",
-      label: "Utilisateurs & Rôles",
-      icon: Users,
-      permission: "users.manage",
-      superadminOnly: true,
+      id: "experiences",
+      label: "Expériences",
+      icon: Star,
+      permission: "experiences.manage",
     },
     {
       id: "settings",

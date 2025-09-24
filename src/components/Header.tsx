@@ -77,17 +77,19 @@ const Header = () => {
       <div className="container mx-auto px-2 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.div
-            className="flex items-center space-x-2"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-                        <img
-                          src="/logogofinal dardhiafa.png"
-                          alt="Dar Dhiafa Klee"
-                          className="h-24 w-auto object-contain drop-shadow-lg"
-                        />
-          </motion.div>
+          <Link to="/" className="flex items-center space-x-2">
+            <motion.div
+              className="flex items-center space-x-2"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <img
+                src="/logogofinal dardhiafa.png"
+                alt="Dar Dhiafa Klee"
+                className="h-24 w-auto object-contain drop-shadow-lg cursor-pointer"
+              />
+            </motion.div>
+          </Link>
 
                       {/* Desktop Mega Menu Navigation */}
                       <nav className="hidden lg:flex items-center space-x-6">

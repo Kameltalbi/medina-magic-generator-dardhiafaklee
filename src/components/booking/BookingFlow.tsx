@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useBooking } from "@/contexts/BookingContext";
 import { Button } from "@/components/ui/button";
 import BookingForm from "./BookingForm";
-import AvailableRooms from "./AvailableRooms";
+import RoomAvailability from "./RoomAvailability";
 import CustomerForm from "./CustomerForm";
 import BookingSummary from "./BookingSummary";
 import { fadeInUp } from "@/lib/animations";
@@ -23,6 +23,7 @@ const BookingFlow = () => {
     customerInfo, 
     createBooking, 
     processPayment,
+    selectRoom,
     isBooking,
     isProcessingPayment 
   } = useBooking();
@@ -61,9 +62,17 @@ const BookingFlow = () => {
   };
 
   // Step handlers
-  const handleSearch = () => {
-    if (bookingDates) {
+  const handleSearch = (searchData?: any) => {
+    console.log('handleSearch called with:', searchData);
+    console.log('Current bookingDates:', bookingDates);
+    console.log('Current step:', currentStep);
+    
+    // Si on a des données de recherche, passer directement à l'étape suivante
+    if (searchData || bookingDates) {
+      console.log('Moving to rooms step');
       setCurrentStep('rooms');
+    } else {
+      console.log('No data available, staying on search step');
     }
   };
 
@@ -115,6 +124,7 @@ const BookingFlow = () => {
 
   // Render current step
   const renderCurrentStep = () => {
+    console.log('Rendering step:', currentStep);
     switch (currentStep) {
       case 'search':
         return (
@@ -132,7 +142,30 @@ const BookingFlow = () => {
             variants={fadeInUp}
             className="space-y-8"
           >
-            <AvailableRooms />
+            <RoomAvailability 
+              checkIn={bookingDates?.checkIn || ''}
+              checkOut={bookingDates?.checkOut || ''}
+              onRoomSelect={(room) => {
+                // Convertir RoomAvailability en Room pour le contexte
+                const selectedRoom = {
+                  id: room.roomId,
+                  title: room.title,
+                  pricePerNight: room.pricePerNight,
+                  image: room.image || "/chambre 1.png",
+                  description: `Chambre ${room.roomNumber}`,
+                  amenities: [],
+                  size: "25m²",
+                  capacity: room.capacity || 2,
+                  rating: 4.5,
+                  reviews: 50,
+                  features: [],
+                  category: room.category
+                };
+                // Utiliser le contexte de réservation pour sélectionner la chambre
+                selectRoom(selectedRoom);
+                setCurrentStep('customer');
+              }}
+            />
             {selectedRoom && (
               <div className="text-center">
                 <Button
@@ -320,7 +353,20 @@ const BookingFlow = () => {
         );
 
       default:
-        return null;
+        console.log('Unknown step:', currentStep);
+        return (
+          <div className="max-w-2xl mx-auto text-center p-8">
+            <h2 className="text-2xl font-bold text-red-600 mb-4">
+              Étape inconnue: {currentStep}
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Une erreur s'est produite. Étape actuelle: {currentStep}
+            </p>
+            <Button onClick={resetBooking} className="bg-terre-cuite text-white">
+              Recommencer
+            </Button>
+          </div>
+        );
     }
   };
 
