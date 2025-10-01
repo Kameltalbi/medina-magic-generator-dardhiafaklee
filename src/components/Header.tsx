@@ -3,17 +3,19 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Home, Camera, Eye, Bed, Star, Info, Phone, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, Home, Camera, Eye, Bed, Star, Info, Phone, Globe, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const { t } = useTranslation();
+  const { logout } = useAuth();
   const location = useLocation();
   
   // Check if we're on the homepage
@@ -173,6 +175,17 @@ const Header = () => {
           {/* Language Switcher & CTA Button Desktop */}
                <div className="hidden lg:flex items-center gap-3">
                  <LanguageSwitcher isScrolled={isScrolled} isHomePage={isHomePage} />
+                 <Button
+                   variant="ghost"
+                   size="sm"
+                   onClick={logout}
+                   className={`font-inter font-medium px-3 py-2 transition-all duration-300 hover:bg-red-50 hover:text-red-600 ${
+                     isScrolled ? "text-gray-600" : "text-white/80 hover:text-white"
+                   }`}
+                   title="Se déconnecter"
+                 >
+                   <LogOut className="w-4 h-4" />
+                 </Button>
                  <Link to="/booking">
                    <Button className={`font-inter font-semibold px-4 py-2 transition-all duration-300 ${
                      isScrolled 
@@ -252,6 +265,18 @@ const Header = () => {
                 ))}
                 <div className="pt-4 border-t border-gray-200 px-4">
                   <LanguageSwitcher isScrolled={isScrolled} isHomePage={isHomePage} />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full justify-start text-gray-600 hover:text-red-600 hover:bg-red-50 mt-2"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Se déconnecter
+                  </Button>
                 </div>
                 <div className="px-4">
                   <Link to="/booking" onClick={() => setIsMobileMenuOpen(false)}>
