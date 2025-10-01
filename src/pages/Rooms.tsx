@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { roomsData } from "@/data/rooms";
 import { getRoomStatus } from "@/data/roomAvailability";
@@ -35,6 +36,7 @@ import { staggerContainer, staggerItem, fadeInUp, slideInLeft, slideInRight } fr
 
 const Rooms = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { formatPrice, getCurrencySymbol } = useCurrency();
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -434,6 +436,7 @@ const Rooms = () => {
                               <Button 
                                 className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold transition-all duration-300"
                                 size="sm"
+                                onClick={() => navigate('/booking')}
                               >
                                 <Calendar className="w-4 h-4 mr-2" />
                                 {currentLang === 'fr' && 'Réserver'}

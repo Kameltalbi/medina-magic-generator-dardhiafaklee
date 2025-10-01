@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { 
@@ -29,6 +30,7 @@ import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
 
 const Experiences = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const categories = [
@@ -552,6 +554,7 @@ const Experiences = () => {
                         <Button 
                           className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold transition-all duration-300"
                           size="sm"
+                          onClick={() => navigate('/booking')}
                         >
                           <Calendar className="w-4 h-4 mr-2" />
                           {currentLang === 'fr' && 'Réserver'}
@@ -653,7 +656,10 @@ const Experiences = () => {
                       <div className="text-2xl font-playfair font-bold text-terre-cuite">
                         120 TND
                       </div>
-                      <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold">
+                      <Button 
+                        className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold"
+                        onClick={() => navigate('/booking')}
+                      >
                         {currentLang === 'fr' && 'Réserver'}
                         {currentLang === 'en' && 'Book'}
                         {currentLang === 'ar' && 'احجز'}
@@ -712,7 +718,10 @@ const Experiences = () => {
                       <div className="text-2xl font-playfair font-bold text-terre-cuite">
                         100 TND
                       </div>
-                      <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold">
+                      <Button 
+                        className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold"
+                        onClick={() => navigate('/booking')}
+                      >
                         {currentLang === 'fr' && 'Réserver'}
                         {currentLang === 'en' && 'Book'}
                         {currentLang === 'ar' && 'احجز'}

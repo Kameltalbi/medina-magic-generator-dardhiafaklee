@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { 
@@ -26,6 +27,7 @@ import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
 
 const Gallery = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -497,6 +499,7 @@ const Gallery = () => {
               <Button
                 size="lg"
                 className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                onClick={() => navigate('/booking')}
               >
                 {currentLang === 'fr' && 'Réserver maintenant'}
                 {currentLang === 'en' && 'Book Now'}

@@ -5,10 +5,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { fadeInUp, fadeIn } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 // import heroImage from "@/assets/hero-dar-dhiafa.jpg";
 
 const Hero = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -61,6 +63,7 @@ const Hero = () => {
             <Button
               size="lg"
               className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 shadow-medium hover:shadow-strong hover:scale-105 w-full sm:w-auto"
+              onClick={() => navigate('/booking')}
             >
               {t("hero.bookNow")}
             </Button>
