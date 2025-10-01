@@ -154,7 +154,7 @@ const Experiences = () => {
       maxGuests: 25,
       rating: 4.6,
       reviews: 134,
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/Experiences/mausoleeSS.jpg",
       highlights: [
         { fr: "Reliques sacrées", en: "Sacred relics", ar: "الآثار المقدسة" },
         { fr: "Faïences décoratives", en: "Decorative ceramics", ar: "الخزف الزخرفي" },
@@ -185,7 +185,7 @@ const Experiences = () => {
       maxGuests: 8,
       rating: 4.9,
       reviews: 89,
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/Experiences/atelier-de-tissage-de-tapis.jpg",
       highlights: [
         { fr: "Techniques traditionnelles", en: "Traditional techniques", ar: "التقنيات التقليدية" },
         { fr: "Motifs kairouanais", en: "Kairouan patterns", ar: "أنماط قيروانية" },
@@ -677,7 +677,7 @@ const Experiences = () => {
                 <Card className="overflow-hidden shadow-medium hover:shadow-large transition-all duration-300 border-0 bg-card h-full">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      src="/galerie/imagegalerie-2.jpg"
                       alt="Saveurs de Kairouan"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
