@@ -45,7 +45,7 @@ const About = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-terre-cuite mb-4 sm:mb-6 px-4"
               variants={fadeInUp}
             >
               {t("about.title")}
@@ -58,11 +58,11 @@ const About = () => {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Text Content */}
             <motion.div className="space-y-8" variants={staggerItem}>
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold font-bold text-indigo-medina mb-4">
+                <h3 className="text-2xl md:text-3xl font-bold font-bold text-terre-cuite mb-4">
                   {t("about.subtitle")}
                 </h3>
                 <p className="text-foreground font-medium leading-relaxed mb-6">
@@ -75,7 +75,7 @@ const About = () => {
 
               {/* Features Grid */}
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"
                 variants={staggerContainer}
               >
                 {features.map((feature, index) => (
@@ -102,7 +102,7 @@ const About = () => {
                     </motion.div>
                     <div>
                       <motion.h4 
-                        className="font-bold font-semibold text-indigo-medina mb-1"
+                        className="font-bold font-semibold text-terre-cuite mb-1"
                         whileHover={{ 
                           color: "#8B5A2B",
                           scale: 1.02
@@ -127,7 +127,7 @@ const About = () => {
 
             {/* Image Mosaic */}
             <motion.div
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-2 gap-2 sm:gap-4"
               variants={staggerItem}
             >
               <div className="space-y-4">

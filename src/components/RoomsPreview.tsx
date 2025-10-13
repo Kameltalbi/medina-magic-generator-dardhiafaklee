@@ -141,7 +141,7 @@ const RoomsPreview = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-terre-cuite mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {t("rooms.title")}
@@ -206,7 +206,7 @@ const RoomsPreview = () => {
 
                 {/* Room Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold font-bold text-indigo-medina mb-2">
+                  <h3 className="text-xl font-bold font-bold text-terre-cuite mb-2">
                     {room.title}
                   </h3>
                   <p className="text-muted-foreground font-medium mb-4 leading-relaxed">

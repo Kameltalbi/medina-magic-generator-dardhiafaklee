@@ -40,7 +40,6 @@ const Experiences = () => {
     { id: "artisanat", name: { fr: "Expériences artisanales", en: "Artisan experiences", ar: "تجارب حرفية" } },
     { id: "gastronomy", name: { fr: "Saveurs et gastronomie", en: "Flavors & gastronomy", ar: "النكهات والطبخ" } },
     { id: "nature", name: { fr: "Nature et bien-être", en: "Nature & wellness", ar: "الطبيعة والعافية" } },
-    { id: "spiritual", name: { fr: "Soirées culturelles", en: "Cultural evenings", ar: "أمسيات ثقافية" } },
     { id: "excursions", name: { fr: "Excursions journée", en: "Day excursions", ar: "رحلات نهارية" } }
   ];
 
@@ -258,6 +257,37 @@ const Experiences = () => {
         { fr: "Guide archéologue", en: "Archaeologist guide", ar: "مرشد أثري" },
         { fr: "Déjeuner", en: "Lunch", ar: "غداء" }
       ]
+    },
+    // HAMMAM TRADITIONNEL
+    {
+      id: 18,
+      category: "nature",
+      name: {
+        fr: "Hammam Traditionnel à Kairouan",
+        en: "Traditional Hammam in Kairouan",
+        ar: "الحمام التقليدي بالقيروان"
+      },
+      description: {
+        fr: "Plongez dans l'authenticité tunisienne avec notre expérience de hammam traditionnel. Découvrez les rituels ancestraux de purification et de bien-être dans un cadre historique préservé depuis des siècles.",
+        en: "Immerse yourself in Tunisian authenticity with our traditional hammam experience. Discover ancestral purification and wellness rituals in a historical setting preserved for centuries.",
+        ar: "انغمس في الأصالة التونسية مع تجربة الحمام التقليدي. اكتشف طقوس التطهير والعافية القديمة في إطار تاريخي محفوظ منذ قرون."
+      },
+      duration: "2h",
+      price: 80,
+      maxGuests: 6,
+      rating: 4.8,
+      reviews: 156,
+      image: "/hammam-kairouan.jpg",
+      highlights: [
+        { fr: "Salle de vapeur", en: "Steam room", ar: "غرفة البخار" },
+        { fr: "Savon noir", en: "Black soap", ar: "الصابون الأسود" },
+        { fr: "Huiles essentielles", en: "Essential oils", ar: "الزيوت الأساسية" }
+      ],
+      included: [
+        { fr: "Accès hammam", en: "Hammam access", ar: "دخول الحمام" },
+        { fr: "Savon noir", en: "Black soap", ar: "الصابون الأسود" },
+        { fr: "Thé à la menthe", en: "Mint tea", ar: "الشاي بالنعناع" }
+      ]
     }
   ]);
 
@@ -329,7 +359,7 @@ const Experiences = () => {
             variants={staggerContainer}
           >
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-bold text-terre-cuite mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Expériences & Activités'}
@@ -421,7 +451,7 @@ const Experiences = () => {
                       {/* Experience Header */}
                       <div className="flex justify-between items-start mb-4">
                         <div className="flex-grow">
-                          <h3 className="text-xl font-bold font-bold text-indigo-medina mb-2">
+                          <h3 className="text-xl font-bold font-bold text-terre-cuite mb-2">
                             {experience.name[currentLang]}
                           </h3>
                           <p className="text-muted-foreground font-medium text-sm leading-relaxed mb-4">
@@ -465,7 +495,7 @@ const Experiences = () => {
 
                       {/* Highlights */}
                       <div className="mb-4">
-                        <h4 className="font-medium font-semibold text-indigo-medina mb-2 text-sm">
+                        <h4 className="font-medium font-semibold text-terre-cuite mb-2 text-sm">
                           {currentLang === 'fr' && 'Points forts'}
                           {currentLang === 'en' && 'Highlights'}
                           {currentLang === 'ar' && 'المميزات'}
@@ -482,7 +512,7 @@ const Experiences = () => {
 
                       {/* Included */}
                       <div className="mb-6">
-                        <h4 className="font-medium font-semibold text-indigo-medina mb-2 text-sm">
+                        <h4 className="font-medium font-semibold text-terre-cuite mb-2 text-sm">
                           {currentLang === 'fr' && 'Inclus'}
                           {currentLang === 'en' && 'Included'}
                           {currentLang === 'ar' && 'مشمول'}
@@ -528,167 +558,6 @@ const Experiences = () => {
         </div>
       </section>
 
-      {/* Experience Packs */}
-      <section className="py-20 px-4 bg-gradient-to-br from-indigo-medina/5 to-vert-porte/5">
-        <div className="container mx-auto">
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={staggerContainer}
-          >
-            <motion.div
-              className="text-center mb-16"
-              variants={staggerItem}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-6">
-                {currentLang === 'fr' && 'Hammam Traditionnel à Kairouan'}
-                {currentLang === 'en' && 'Traditional Hammam in Kairouan'}
-                {currentLang === 'ar' && 'الحمام التقليدي بالقيروان'}
-              </h2>
-              <p className="text-lg text-muted-foreground font-medium max-w-3xl mx-auto">
-                {currentLang === 'fr' && 'Plongez dans l\'authenticité tunisienne avec notre expérience de hammam traditionnel. Découvrez les rituels ancestraux de purification et de bien-être dans un cadre historique préservé depuis des siècles.'}
-                {currentLang === 'en' && 'Immerse yourself in Tunisian authenticity with our traditional hammam experience. Discover ancestral purification and wellness rituals in a historical setting preserved for centuries.'}
-                {currentLang === 'ar' && 'انغمس في الأصالة التونسية مع تجربة الحمام التقليدي. اكتشف طقوس التطهير والعافية القديمة في إطار تاريخي محفوظ منذ قرون.'}
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              {/* Image du Hammam */}
-              <motion.div
-                className="relative"
-                variants={staggerItem}
-              >
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-large">
-                  <img
-                    src="/hammam-kairouan.jpg"
-                    alt={currentLang === 'fr' ? 'Hammam Traditionnel à Kairouan' : currentLang === 'en' ? 'Traditional Hammam in Kairouan' : 'الحمام التقليدي بالقيروان'}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
-              </motion.div>
-
-              {/* Description détaillée */}
-              <motion.div
-                className="space-y-6"
-                variants={staggerItem}
-              >
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold font-bold text-indigo-medina">
-                    {currentLang === 'fr' && 'Une expérience authentique'}
-                    {currentLang === 'en' && 'An authentic experience'}
-                    {currentLang === 'ar' && 'تجربة أصيلة'}
-                  </h3>
-                  
-                  <p className="text-foreground font-medium leading-relaxed">
-                    {currentLang === 'fr' && 'Le hammam de Kairouan vous transporte dans une tradition millénaire où l\'eau, la vapeur et les soins corporels se mêlent pour créer un moment de pur bien-être. Dans un cadre architectural exceptionnel, vous découvrirez les secrets de la beauté orientale transmis de génération en génération.'}
-                    {currentLang === 'en' && 'The Kairouan hammam transports you to a millennial tradition where water, steam and body care blend to create a moment of pure well-being. In an exceptional architectural setting, you will discover the secrets of oriental beauty passed down from generation to generation.'}
-                    {currentLang === 'ar' && 'ينقلك حمام القيروان إلى تقليد عمره ألف عام حيث تختلط المياه والبخار والعناية بالجسد لخلق لحظة من الرفاهية الخالصة. في إطار معماري استثنائي، ستكتشف أسرار الجمال الشرقي المنقولة من جيل إلى جيل.'}
-                  </p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-logo-gold to-logo-dark rounded-lg flex items-center justify-center">
-                        <span className="text-white text-sm">🛁</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-sm text-indigo-medina">
-                          {currentLang === 'fr' && 'Salle de vapeur'}
-                          {currentLang === 'en' && 'Steam room'}
-                          {currentLang === 'ar' && 'غرفة البخار'}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {currentLang === 'fr' && 'Purification traditionnelle'}
-                          {currentLang === 'en' && 'Traditional purification'}
-                          {currentLang === 'ar' && 'تطهير تقليدي'}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-logo-gold to-logo-dark rounded-lg flex items-center justify-center">
-                        <span className="text-white text-sm">🧴</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-sm text-indigo-medina">
-                          {currentLang === 'fr' && 'Savon noir'}
-                          {currentLang === 'en' && 'Black soap'}
-                          {currentLang === 'ar' && 'الصابون الأسود'}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {currentLang === 'fr' && 'Exfoliation naturelle'}
-                          {currentLang === 'en' && 'Natural exfoliation'}
-                          {currentLang === 'ar' && 'تقشير طبيعي'}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-logo-gold to-logo-dark rounded-lg flex items-center justify-center">
-                        <span className="text-white text-sm">🌿</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-sm text-indigo-medina">
-                          {currentLang === 'fr' && 'Huiles essentielles'}
-                          {currentLang === 'en' && 'Essential oils'}
-                          {currentLang === 'ar' && 'الزيوت الأساسية'}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {currentLang === 'fr' && 'Relaxation aromatique'}
-                          {currentLang === 'en' && 'Aromatic relaxation'}
-                          {currentLang === 'ar' && 'استرخاء عطري'}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-logo-gold to-logo-dark rounded-lg flex items-center justify-center">
-                        <span className="text-white text-sm">☕</span>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-sm text-indigo-medina">
-                          {currentLang === 'fr' && 'Thé à la menthe'}
-                          {currentLang === 'en' && 'Mint tea'}
-                          {currentLang === 'ar' && 'الشاي بالنعناع'}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {currentLang === 'fr' && 'Détente finale'}
-                          {currentLang === 'en' && 'Final relaxation'}
-                          {currentLang === 'ar' && 'استرخاء نهائي'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    size="lg"
-                    className="bg-logo-gold hover:bg-logo-gold-hover text-white font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium group flex-1"
-                  >
-                    {currentLang === 'fr' && 'Réserver le Hammam'}
-                    {currentLang === 'en' && 'Book the Hammam'}
-                    {currentLang === 'ar' && 'احجز الحمام'}
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Button>
-                  
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-logo-dark text-logo-dark hover:bg-logo-dark hover:text-white font-semibold px-8 py-4 transition-all duration-300 flex-1"
-                  >
-                    {currentLang === 'fr' && 'En savoir plus'}
-                    {currentLang === 'en' && 'Learn more'}
-                    {currentLang === 'ar' && 'اعرف المزيد'}
-                  </Button>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Call to Action */}
       <section className="py-16 px-4 bg-gradient-to-r from-sable to-card">
@@ -701,7 +570,7 @@ const Experiences = () => {
             variants={staggerContainer}
           >
             <motion.h2
-              className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-6"
+              className="text-3xl md:text-4xl font-bold font-bold text-terre-cuite mb-6"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Créez votre expérience sur mesure'}

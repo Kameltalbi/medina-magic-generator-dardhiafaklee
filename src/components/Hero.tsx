@@ -70,7 +70,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden pt-28">
+    <section id="home" className="relative h-screen overflow-hidden pt-20 sm:pt-24 md:pt-28">
       {/* Slider Container */}
       <div className="relative w-full h-full">
         <AnimatePresence mode="wait">
@@ -114,7 +114,7 @@ const Hero = () => {
         </AnimatePresence>
 
         {/* Content Overlay - Fixed CTA with Artistic Animations */}
-        <div className="absolute inset-0 flex items-end justify-center z-10 pb-20">
+        <div className="absolute inset-0 flex items-end justify-center z-10 pb-8 sm:pb-12 md:pb-16 lg:pb-20">
           <div className="text-center text-white px-4 max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.8 }}

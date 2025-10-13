@@ -29,7 +29,7 @@ const PaulKleeSection = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <motion.h3 
-                  className="text-2xl md:text-3xl font-bold text-indigo-medina mb-6"
+                      className="text-2xl md:text-3xl font-bold text-terre-cuite mb-6"
                   whileHover={{ 
                     scale: 1.02,
                     color: "#8B5A2B"
@@ -88,7 +88,7 @@ const PaulKleeSection = () => {
                 transition={{ duration: 0.4 }}
               >
                 <motion.img
-                  src="/tableau-paul-klee.png"
+                  src="/paul-klee-1911.jpg"
                   alt="Portrait de Paul Klee"
                   className="w-full h-full object-cover"
                   whileHover={{ scale: 1.1 }}

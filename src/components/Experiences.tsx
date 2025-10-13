@@ -70,7 +70,7 @@ const ExperiencesPreview = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-terre-cuite mb-4 sm:mb-6 px-4"
               variants={fadeInUp}
             >
               {t("experiences.title")}
@@ -87,7 +87,7 @@ const ExperiencesPreview = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
             {/* Description Text */}
             <motion.div variants={staggerItem} className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-bold font-bold text-indigo-medina">
+              <h3 className="text-2xl md:text-3xl font-bold font-bold text-terre-cuite">
                 {t("experiences.discoverTitle")}
               </h3>
               
@@ -159,7 +159,7 @@ const ExperiencesPreview = () => {
             className="text-center bg-gradient-to-r from-indigo-medina/10 to-logo-gold/10 rounded-2xl p-8"
             variants={staggerItem}
           >
-            <h3 className="text-2xl font-bold font-bold text-indigo-medina mb-4">
+            <h3 className="text-2xl font-bold font-bold text-terre-cuite mb-4">
               {t("experiences.cta.title")}
             </h3>
             <p className="text-muted-foreground font-medium mb-6 max-w-2xl mx-auto">
