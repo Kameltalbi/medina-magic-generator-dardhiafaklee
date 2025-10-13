@@ -105,17 +105,17 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                 <Check className="w-8 h-8" />
               </motion.div>
               
-              <h2 className="text-3xl font-playfair font-bold text-indigo-medina mb-4">
+              <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-4">
                 Réservation confirmée !
               </h2>
               
-              <p className="text-muted-foreground font-inter mb-6">
+              <p className="text-muted-foreground font-medium mb-6">
                 Votre séjour à Dar Dhiafa Klee est confirmé. Vous recevrez un email de confirmation sous peu.
               </p>
               
               <div className="bg-background/50 rounded-xl p-6 mb-6 text-left">
-                <h3 className="font-playfair font-bold text-indigo-medina mb-3">Détails de votre réservation</h3>
-                <div className="space-y-2 text-sm font-inter text-muted-foreground">
+                <h3 className="font-bold font-bold text-indigo-medina mb-3">Détails de votre réservation</h3>
+                <div className="space-y-2 text-sm font-medium text-muted-foreground">
                   <div className="flex justify-between">
                     <span>Référence :</span>
                     <span className="font-semibold text-indigo-medina">DH-2024-{Math.random().toString(36).substr(2, 6).toUpperCase()}</span>
@@ -133,7 +133,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
               
               <Button
                 onClick={() => navigate('/')}
-                className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-inter"
+                className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-medium"
               >
                 Retour à l'accueil
               </Button>
@@ -164,11 +164,11 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                 <X className="w-8 h-8" />
               </motion.div>
               
-              <h2 className="text-3xl font-playfair font-bold text-indigo-medina mb-4">
+              <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-4">
                 Erreur de paiement
               </h2>
               
-              <p className="text-muted-foreground font-inter mb-6">
+              <p className="text-muted-foreground font-medium mb-6">
                 Une erreur est survenue lors du traitement de votre paiement. Veuillez réessayer.
               </p>
               
@@ -182,7 +182,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                 </Button>
                 <Button
                   onClick={() => navigate('/')}
-                  className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-inter"
+                  className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-medium"
                 >
                   Retour à l'accueil
                 </Button>
@@ -211,11 +211,11 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                 className="w-16 h-16 border-4 border-indigo-medina border-t-transparent rounded-full mx-auto mb-6"
               />
               
-              <h2 className="text-3xl font-playfair font-bold text-indigo-medina mb-4">
+              <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-4">
                 Traitement du paiement...
               </h2>
               
-              <p className="text-muted-foreground font-inter">
+              <p className="text-muted-foreground font-medium">
                 Veuillez patienter pendant que nous traitons votre paiement via Konnect.
               </p>
             </div>
@@ -237,7 +237,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
             variants={fadeInUp}
           >
             <div className="gradient-card rounded-2xl p-6 md:p-8 shadow-strong">
-              <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold font-bold text-indigo-medina mb-6">
                 Récapitulatif de votre séjour
               </h2>
 
@@ -245,7 +245,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
               <div className="space-y-4 mb-6">
                 <div className="flex items-start space-x-3">
                   <Calendar className="w-5 h-5 text-indigo-medina mt-1" />
-                  <div className="font-inter">
+                  <div className="font-medium">
                     <div className="font-semibold text-indigo-medina">Dates</div>
                     <div className="text-sm text-muted-foreground">
                       Du {formatDate(dates.checkIn)}
@@ -261,7 +261,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
 
                 <div className="flex items-center space-x-3">
                   <Users className="w-5 h-5 text-indigo-medina" />
-                  <div className="font-inter">
+                  <div className="font-medium">
                     <div className="font-semibold text-indigo-medina">Hôtes</div>
                     <div className="text-sm text-muted-foreground">
                       {dates.guests} {dates.guests === 1 ? 'personne' : 'personnes'}
@@ -271,7 +271,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
 
                 <div className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-indigo-medina mt-1" />
-                  <div className="font-inter">
+                  <div className="font-medium">
                     <div className="font-semibold text-indigo-medina">Chambre</div>
                     <div className="text-sm text-muted-foreground">{room.title}</div>
                     <div className="text-sm text-terre-cuite font-semibold">
@@ -283,8 +283,8 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
 
               {/* Price Breakdown */}
               <div className="border-t border-border pt-6">
-                <h3 className="font-playfair font-bold text-indigo-medina mb-4">Détail des prix</h3>
-                <div className="space-y-2 font-inter text-sm">
+                <h3 className="font-bold font-bold text-indigo-medina mb-4">Détail des prix</h3>
+                <div className="space-y-2 font-medium text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">
                       {formatPrice(basePricePerNight)} × {nights} {nights === 1 ? 'nuit' : 'nuits'}
@@ -314,19 +314,19 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
             variants={slideInRight}
           >
             <div className="gradient-card rounded-2xl p-6 md:p-8 shadow-strong">
-              <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold font-bold text-indigo-medina mb-6">
                 Finaliser la réservation
               </h2>
 
               <div className="space-y-6">
                 {/* Payment Method */}
                 <div>
-                  <h3 className="font-inter font-semibold text-indigo-medina mb-3">
+                  <h3 className="font-medium font-semibold text-indigo-medina mb-3">
                     Méthode de paiement
                   </h3>
                   <div className="flex items-center space-x-3 p-4 border border-border rounded-lg bg-background/50">
                     <CreditCard className="w-6 h-6 text-terre-cuite" />
-                    <div className="font-inter">
+                    <div className="font-medium">
                       <div className="font-semibold text-indigo-medina">Konnect Payment</div>
                       <div className="text-sm text-muted-foreground">
                         Paiement sécurisé par carte bancaire
@@ -336,7 +336,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                 </div>
 
                 {/* Terms */}
-                <div className="text-xs text-muted-foreground font-inter leading-relaxed">
+                <div className="text-xs text-muted-foreground font-medium leading-relaxed">
                   En procédant au paiement, vous acceptez nos{" "}
                   <a href="#" className="text-terre-cuite hover:underline">
                     conditions générales
@@ -353,7 +353,7 @@ const BookingSummary = ({ selectedRoom, bookingDates }: BookingSummaryProps) => 
                   onClick={handlePayment}
                   disabled={isProcessing}
                   size="lg"
-                  className="w-full bg-terre-cuite hover:bg-terre-cuite/90 text-white font-inter font-semibold py-4 text-lg transition-all duration-300 shadow-soft hover:shadow-medium"
+                  className="w-full bg-terre-cuite hover:bg-terre-cuite/90 text-white font-medium font-semibold py-4 text-lg transition-all duration-300 shadow-soft hover:shadow-medium"
                 >
                   {isProcessing ? (
                     <motion.div

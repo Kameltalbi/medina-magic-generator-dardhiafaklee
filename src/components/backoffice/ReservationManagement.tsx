@@ -571,10 +571,10 @@ const ReservationManagement = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-indigo-medina mb-2">
+          <h1 className="text-3xl font-bold font-bold text-indigo-medina mb-2">
             Gestion des Réservations
           </h1>
-          <p className="text-muted-foreground font-inter">
+          <p className="text-muted-foreground font-medium">
             Centraliser et gérer toutes les réservations
           </p>
         </div>
@@ -611,7 +611,7 @@ const ReservationManagement = () => {
           <Card className="shadow-sm border-0 bg-card">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle className="text-xl font-playfair text-indigo-medina">
+                <CardTitle className="text-xl font-bold text-indigo-medina">
                   Calendrier des réservations
                 </CardTitle>
                 <div className="flex items-center gap-4">
@@ -623,7 +623,7 @@ const ReservationManagement = () => {
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </Button>
-                    <span className="font-inter font-semibold min-w-[120px] text-center">
+                    <span className="font-medium font-semibold min-w-[120px] text-center">
                       {selectedDate.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
                     </span>
                     <Button
@@ -651,7 +651,7 @@ const ReservationManagement = () => {
               {/* En-têtes des jours */}
               <div className="grid grid-cols-7 gap-0 mb-2">
                 {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map(day => (
-                  <div key={day} className="p-2 text-center font-inter font-semibold text-gray-600">
+                  <div key={day} className="p-2 text-center font-medium font-semibold text-gray-600">
                     {day}
                   </div>
                 ))}
@@ -717,7 +717,7 @@ const ReservationManagement = () => {
                     <TableRow key={reservation.id}>
                       <TableCell>
                         <div>
-                          <div className="font-inter font-semibold">{reservation.guestName}</div>
+                          <div className="font-medium font-semibold">{reservation.guestName}</div>
                           <div className="text-sm text-muted-foreground">{reservation.email}</div>
                           <div className="text-sm text-muted-foreground">{reservation.phone}</div>
                         </div>
@@ -730,7 +730,7 @@ const ReservationManagement = () => {
                       </TableCell>
                       <TableCell>
                         <div>
-                          <div className="font-inter font-semibold">{reservation.roomNumber}</div>
+                          <div className="font-medium font-semibold">{reservation.roomNumber}</div>
                           <div className="text-sm text-muted-foreground">{reservation.roomType}</div>
                           <div className="text-sm text-muted-foreground">{reservation.guests} personne(s)</div>
                         </div>
@@ -787,7 +787,7 @@ const ReservationManagement = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-2xl font-bold text-indigo-medina">
               Détail de la réservation
             </DialogTitle>
           </DialogHeader>
@@ -795,44 +795,44 @@ const ReservationManagement = () => {
             <div className="space-y-6">
               {/* Informations client */}
               <div>
-                <h3 className="font-inter font-semibold text-lg mb-3">Informations client</h3>
+                <h3 className="font-medium font-semibold text-lg mb-3">Informations client</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label>Nom complet</Label>
-                    <div className="font-inter">{selectedReservation.guestName}</div>
+                    <div className="font-medium">{selectedReservation.guestName}</div>
                   </div>
                   <div>
                     <Label>Email</Label>
-                    <div className="font-inter">{selectedReservation.email}</div>
+                    <div className="font-medium">{selectedReservation.email}</div>
                   </div>
                   <div>
                     <Label>Téléphone</Label>
-                    <div className="font-inter">{selectedReservation.phone}</div>
+                    <div className="font-medium">{selectedReservation.phone}</div>
                   </div>
                   <div>
                     <Label>Source</Label>
-                    <div className="font-inter">{selectedReservation.source}</div>
+                    <div className="font-medium">{selectedReservation.source}</div>
                   </div>
                 </div>
               </div>
 
               {/* Informations séjour */}
               <div>
-                <h3 className="font-inter font-semibold text-lg mb-3">Informations séjour</h3>
+                <h3 className="font-medium font-semibold text-lg mb-3">Informations séjour</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label>Dates</Label>
-                    <div className="font-inter">
+                    <div className="font-medium">
                       {formatDate(selectedReservation.checkIn)} - {formatDate(selectedReservation.checkOut)}
                     </div>
                   </div>
                   <div>
                     <Label>Chambre</Label>
-                    <div className="font-inter">{selectedReservation.roomNumber} - {selectedReservation.roomType}</div>
+                    <div className="font-medium">{selectedReservation.roomNumber} - {selectedReservation.roomType}</div>
                   </div>
                   <div>
                     <Label>Nombre de personnes</Label>
-                    <div className="font-inter">{selectedReservation.guests}</div>
+                    <div className="font-medium">{selectedReservation.guests}</div>
                   </div>
                   <div>
                     <Label>Statut</Label>
@@ -843,15 +843,15 @@ const ReservationManagement = () => {
 
               {/* Informations financières */}
               <div>
-                <h3 className="font-inter font-semibold text-lg mb-3">Informations financières</h3>
+                <h3 className="font-medium font-semibold text-lg mb-3">Informations financières</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label>Montant total</Label>
-                    <div className="font-inter font-semibold text-lg">{formatCurrency(selectedReservation.totalAmount)}</div>
+                    <div className="font-medium font-semibold text-lg">{formatCurrency(selectedReservation.totalAmount)}</div>
                   </div>
                   <div>
                     <Label>Acompte payé</Label>
-                    <div className="font-inter font-semibold text-lg">{formatCurrency(selectedReservation.depositPaid)}</div>
+                    <div className="font-medium font-semibold text-lg">{formatCurrency(selectedReservation.depositPaid)}</div>
                   </div>
                   <div>
                     <Label>Statut paiement</Label>
@@ -859,7 +859,7 @@ const ReservationManagement = () => {
                   </div>
                   <div>
                     <Label>Solde restant</Label>
-                    <div className="font-inter font-semibold text-lg">
+                    <div className="font-medium font-semibold text-lg">
                       {formatCurrency(selectedReservation.totalAmount - selectedReservation.depositPaid)}
                     </div>
                   </div>
@@ -870,7 +870,7 @@ const ReservationManagement = () => {
               {selectedReservation.notes && (
                 <div>
                   <Label>Notes</Label>
-                  <div className="font-inter p-3 bg-gray-50 rounded-lg">
+                  <div className="font-medium p-3 bg-gray-50 rounded-lg">
                     {selectedReservation.notes}
                   </div>
                 </div>
@@ -915,7 +915,7 @@ const ReservationManagement = () => {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-2xl font-bold text-indigo-medina">
               Nouvelle réservation
             </DialogTitle>
           </DialogHeader>

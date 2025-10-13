@@ -70,13 +70,13 @@ const ExperiencesPreview = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={fadeInUp}
             >
               {t("experiences.title")}
             </motion.h2>
             <motion.p
-              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed px-4"
               variants={fadeInUp}
             >
               {t("experiences.subtitle")}
@@ -87,27 +87,27 @@ const ExperiencesPreview = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16">
             {/* Description Text */}
             <motion.div variants={staggerItem} className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina">
+              <h3 className="text-2xl md:text-3xl font-bold font-bold text-indigo-medina">
                 {t("experiences.discoverTitle")}
               </h3>
               
               <div className="space-y-4">
-                <p className="text-foreground font-inter leading-relaxed">
+                <p className="text-foreground font-medium leading-relaxed">
                   <strong className="text-terre-cuite">{t("experiences.traditionalMarkets.title")}</strong> {t("experiences.traditionalMarkets.description")}
                 </p>
                 
-                <p className="text-foreground font-inter leading-relaxed">
-                  <strong className="text-vert-porte">{t("experiences.architecturalHeritage.title")}</strong> {t("experiences.architecturalHeritage.description")}
+                <p className="text-foreground font-medium leading-relaxed">
+                  <strong className="text-logo-gold">{t("experiences.architecturalHeritage.title")}</strong> {t("experiences.architecturalHeritage.description")}
                 </p>
                 
-                <p className="text-foreground font-inter leading-relaxed">
+                <p className="text-foreground font-medium leading-relaxed">
                   <strong className="text-indigo-medina">{t("experiences.localCuisine.title")}</strong> {t("experiences.localCuisine.description")}
                 </p>
               </div>
 
               <Button
                 size="lg"
-                className="bg-vert-porte hover:bg-vert-porte-hover text-white font-inter font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium group"
+                className="bg-logo-gold hover:bg-logo-gold-hover text-white font-medium font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium group"
               >
                 {t("experiences.learnMore")}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -130,22 +130,22 @@ const ExperiencesPreview = () => {
                   >
                     {/* Experience Icon & Emoji */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-logo-gold to-logo-dark rounded-lg flex items-center justify-center">
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-2xl">{experience.image}</div>
                     </div>
 
                     {/* Content */}
-                    <h4 className="font-playfair font-bold text-indigo-medina mb-2 group-hover:text-terre-cuite transition-colors duration-300">
+                    <h4 className="font-bold font-bold text-indigo-medina mb-2 group-hover:text-terre-cuite transition-colors duration-300">
                       {experience.title}
                     </h4>
-                    <p className="text-sm text-muted-foreground font-inter leading-relaxed mb-3">
+                    <p className="text-sm text-muted-foreground font-medium leading-relaxed mb-3">
                       {experience.description}
                     </p>
                     
                     {/* Duration Badge */}
-                    <div className="inline-flex items-center bg-muted px-3 py-1 rounded-full text-xs font-inter font-medium text-muted-foreground">
+                    <div className="inline-flex items-center bg-muted px-3 py-1 rounded-full text-xs font-medium font-medium text-muted-foreground">
                       🕒 {experience.duration}
                     </div>
                   </motion.div>
@@ -156,19 +156,19 @@ const ExperiencesPreview = () => {
 
           {/* Bottom CTA */}
           <motion.div
-            className="text-center bg-gradient-to-r from-indigo-medina/10 to-vert-porte/10 rounded-2xl p-8"
+            className="text-center bg-gradient-to-r from-indigo-medina/10 to-logo-gold/10 rounded-2xl p-8"
             variants={staggerItem}
           >
-            <h3 className="text-2xl font-playfair font-bold text-indigo-medina mb-4">
+            <h3 className="text-2xl font-bold font-bold text-indigo-medina mb-4">
               {t("experiences.cta.title")}
             </h3>
-            <p className="text-muted-foreground font-inter mb-6 max-w-2xl mx-auto">
+            <p className="text-muted-foreground font-medium mb-6 max-w-2xl mx-auto">
               {t("experiences.cta.description")}
             </p>
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-indigo-medina text-indigo-medina hover:bg-indigo-medina hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+              className="border-2 border-indigo-medina text-indigo-medina hover:bg-indigo-medina hover:text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
             >
               {t("experiences.cta.button")}
             </Button>

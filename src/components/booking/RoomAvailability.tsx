@@ -141,8 +141,8 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
       <motion.div variants={staggerItem}>
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h2 className="text-2xl font-playfair font-bold text-indigo-medina">Disponibilité des chambres</h2>
-            <p className="text-muted-foreground font-inter mt-2">
+            <h2 className="text-2xl font-bold font-bold text-indigo-medina">Disponibilité des chambres</h2>
+            <p className="text-muted-foreground font-medium mt-2">
               Du {new Date(checkIn).toLocaleDateString('fr-FR')} au {new Date(checkOut).toLocaleDateString('fr-FR')}
             </p>
           </div>
@@ -158,8 +158,8 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
                 <CheckCircle className="w-5 h-5 text-green-600" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">Disponibles</p>
-                <p className="text-xl font-playfair font-bold text-indigo-medina">{availableRooms.length}</p>
+                <p className="text-sm text-muted-foreground font-medium">Disponibles</p>
+                <p className="text-xl font-bold font-bold text-indigo-medina">{availableRooms.length}</p>
               </div>
             </div>
           </CardContent>
@@ -172,8 +172,8 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
                 <XCircle className="w-5 h-5 text-red-600" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">Occupées</p>
-                <p className="text-xl font-playfair font-bold text-indigo-medina">{occupiedRooms.length}</p>
+                <p className="text-sm text-muted-foreground font-medium">Occupées</p>
+                <p className="text-xl font-bold font-bold text-indigo-medina">{occupiedRooms.length}</p>
               </div>
             </div>
           </CardContent>
@@ -186,8 +186,8 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
                 <Clock className="w-5 h-5 text-yellow-600" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">Réservées</p>
-                <p className="text-xl font-playfair font-bold text-indigo-medina">{reservedRooms.length}</p>
+                <p className="text-sm text-muted-foreground font-medium">Réservées</p>
+                <p className="text-xl font-bold font-bold text-indigo-medina">{reservedRooms.length}</p>
               </div>
             </div>
           </CardContent>
@@ -200,8 +200,8 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
                 <Bed className="w-5 h-5 text-terre-cuite" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">Total</p>
-                <p className="text-xl font-playfair font-bold text-indigo-medina">{rooms.length}</p>
+                <p className="text-sm text-muted-foreground font-medium">Total</p>
+                <p className="text-xl font-bold font-bold text-indigo-medina">{rooms.length}</p>
               </div>
             </div>
           </CardContent>
@@ -297,7 +297,7 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
 
                   {/* Prix */}
                   <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
-                    <span className="font-playfair font-bold text-terre-cuite text-sm">
+                    <span className="font-bold font-bold text-terre-cuite text-sm">
                       {formatPrice(room.pricePerNight)}
                     </span>
                   </div>
@@ -307,7 +307,7 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
                   <div className="space-y-3">
                     {/* Nom et numéro */}
                     <div>
-                      <h3 className="font-playfair font-bold text-indigo-medina text-lg">
+                      <h3 className="font-bold font-bold text-indigo-medina text-lg">
                         {room.title}
                       </h3>
                       <p className="text-sm text-muted-foreground font-mono">
@@ -361,10 +361,10 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
                   <Search className="w-8 h-8 text-gray-400" />
                 </div>
-                <h3 className="text-lg font-playfair font-semibold text-indigo-medina">
+                <h3 className="text-lg font-bold font-semibold text-indigo-medina">
                   Aucune chambre trouvée
                 </h3>
-                <p className="text-muted-foreground font-inter">
+                <p className="text-muted-foreground font-medium">
                   Essayez de modifier vos critères de recherche
                 </p>
               </div>

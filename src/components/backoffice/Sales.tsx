@@ -257,10 +257,10 @@ const Sales = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-indigo-medina mb-2">
+          <h1 className="text-3xl font-bold font-bold text-indigo-medina mb-2">
             Ventes
           </h1>
-          <p className="text-muted-foreground font-inter">
+          <p className="text-muted-foreground font-medium">
             Suivi des ventes et analyse des revenus
           </p>
         </div>
@@ -338,7 +338,7 @@ const Sales = () => {
         {/* Line Chart - Chiffre d'Affaires Mensuel */}
         <Card className="shadow-sm border-0 bg-card">
           <CardHeader>
-            <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+            <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
               <BarChart3 className="w-5 h-5" />
               Chiffre d'Affaires Mensuel
             </CardTitle>
@@ -376,7 +376,7 @@ const Sales = () => {
         {/* Pie Chart - Revenue Breakdown */}
         <Card className="shadow-sm border-0 bg-card">
           <CardHeader>
-            <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+            <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
               <PieChart className="w-5 h-5" />
               Répartition des Revenus
             </CardTitle>
@@ -445,7 +445,7 @@ const Sales = () => {
       <Card className="shadow-sm border-0 bg-card">
         <CardHeader>
           <div className="flex justify-between items-center">
-            <CardTitle className="text-lg font-playfair text-indigo-medina">
+            <CardTitle className="text-lg font-bold text-indigo-medina">
               Tableau des Transactions
             </CardTitle>
             <div className="flex gap-4">

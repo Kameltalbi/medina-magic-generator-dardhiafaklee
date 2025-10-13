@@ -1,6 +1,7 @@
 // RoomsPreview component - Showcase of available rooms with hover animations
 // Uses imageHoverZoom and all brand colors from design system
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Wifi, Coffee, Tv, Bath, Eye, Calendar, XCircle, Clock, Wrench, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -58,8 +59,57 @@ const RoomsPreview = () => {
     }
   };
   
+  // État pour les données des chambres avec synchronisation
+  const [roomsDataState, setRoomsDataState] = useState(roomsData);
+
+  // Fonction pour charger les données des chambres
+  const loadRoomsData = () => {
+    const savedPricing = localStorage.getItem('roomPricing');
+    if (savedPricing) {
+      try {
+        const pricingData = JSON.parse(savedPricing);
+        // Mettre à jour les prix des chambres avec les données de l'administration
+        const updatedRooms = roomsData.map(room => {
+          const pricingInfo = pricingData.find((p: any) => p.id === room.id);
+          return pricingInfo ? { ...room, pricePerNight: pricingInfo.pricePerNight } : room;
+        });
+        setRoomsDataState(updatedRooms);
+      } catch (error) {
+        console.error('Error loading room pricing from localStorage:', error);
+        setRoomsDataState(roomsData);
+      }
+    } else {
+      setRoomsDataState(roomsData);
+    }
+  };
+
+  // Charger les données au montage du composant
+  useEffect(() => {
+    loadRoomsData();
+
+    // Écouter les changements de localStorage
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'roomPricing' && e.newValue) {
+        loadRoomsData();
+      }
+    };
+
+    // Écouter les événements personnalisés
+    const handleCustomUpdate = () => {
+      loadRoomsData();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('roomPricingUpdated', handleCustomUpdate);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('roomPricingUpdated', handleCustomUpdate);
+    };
+  }, []);
+
   // Afficher les 3 chambres les plus chères sur la page d'accueil
-  const featuredRooms = roomsData
+  const featuredRooms = roomsDataState
     .sort((a, b) => b.pricePerNight - a.pricePerNight) // Trier par prix décroissant
     .slice(0, 3); // Prendre les 3 plus chères
   
@@ -91,13 +141,13 @@ const RoomsPreview = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {t("rooms.title")}
             </motion.h2>
             <motion.p
-              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {t("rooms.subtitle")}
@@ -130,11 +180,11 @@ const RoomsPreview = () => {
                   
                   {/* Price Badge */}
                   <div className="absolute top-4 right-4 flex flex-col gap-2">
-                    <div className="bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
+                    <div className="bg-terre-cuite text-white px-3 py-1 rounded-full font-medium font-semibold text-sm shadow-soft">
                       {room.pricePerNight}/{t("rooms.perNight")}
                     </div>
                     {room.pricePerNight && parseFloat(room.pricePerNight.replace(/[^\d]/g, '')) >= 350 && (
-                      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full font-inter font-bold text-xs shadow-soft">
+                      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full font-medium font-bold text-xs shadow-soft">
                         ⭐ Premium
                       </div>
                     )}
@@ -145,7 +195,7 @@ const RoomsPreview = () => {
                     {(() => {
                       const status = getRoomStatusInfo(room.id);
                       return (
-                        <div className={`${getStatusBadge(status)} px-2 py-1 rounded-full font-inter font-medium text-xs flex items-center gap-1 shadow-soft`}>
+                        <div className={`${getStatusBadge(status)} px-2 py-1 rounded-full font-medium font-medium text-xs flex items-center gap-1 shadow-soft`}>
                           {getStatusIcon(status)}
                           {getStatusText(status)}
                         </div>
@@ -156,10 +206,10 @@ const RoomsPreview = () => {
 
                 {/* Room Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-playfair font-bold text-indigo-medina mb-2">
+                  <h3 className="text-xl font-bold font-bold text-indigo-medina mb-2">
                     {room.title}
                   </h3>
-                  <p className="text-muted-foreground font-inter mb-4 leading-relaxed">
+                  <p className="text-muted-foreground font-medium mb-4 leading-relaxed">
                     {room.description}
                   </p>
 
@@ -172,8 +222,8 @@ const RoomsPreview = () => {
                           key={amenityIndex}
                           className="flex items-center space-x-2 text-sm text-muted-foreground"
                         >
-                          <IconComponent className="w-4 h-4 text-vert-porte" />
-                          <span className="font-inter">{amenity}</span>
+                          <IconComponent className="w-4 h-4 text-logo-gold" />
+                          <span className="font-medium">{amenity}</span>
                         </div>
                       );
                     })}
@@ -184,14 +234,14 @@ const RoomsPreview = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-medium transition-all duration-300"
+                      className="flex-1 border-logo-dark text-logo-dark hover:bg-logo-dark hover:text-white font-medium font-medium transition-all duration-300"
                     >
                       <Eye className="w-4 h-4 mr-2" />
                       {t("rooms.details")}
                     </Button>
                     <Button
                       size="sm"
-                      className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-medium transition-all duration-300"
+                      className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-medium transition-all duration-300"
                     >
                       <Calendar className="w-4 h-4 mr-2" />
                       {t("rooms.book")}
@@ -209,7 +259,7 @@ const RoomsPreview = () => {
           >
             <Button
               size="lg"
-              className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-inter font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium"
+              className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-medium font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium"
             >
               {t("rooms.viewAll")}
             </Button>

@@ -169,7 +169,7 @@ const Gallery = () => {
             variants={staggerContainer}
           >
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Galerie & Visite Virtuelle'}
@@ -177,7 +177,7 @@ const Gallery = () => {
               {currentLang === 'ar' && 'المعرض والجولة الافتراضية'}
             </motion.h1>
             <motion.p
-              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Découvrez la beauté de Dar Dhiafa Klee à travers notre galerie photo HD et explorez chaque recoin avec notre visite virtuelle 360° immersive.'}
@@ -202,12 +202,12 @@ const Gallery = () => {
               className="text-center mb-12"
               variants={staggerItem}
             >
-              <h2 className="text-3xl md:text-4xl font-playfair font-bold text-indigo-medina mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-4">
                 {currentLang === 'fr' && 'Visite Virtuelle 360°'}
                 {currentLang === 'en' && '360° Virtual Tour'}
                 {currentLang === 'ar' && 'جولة افتراضية 360°'}
               </h2>
-              <p className="text-muted-foreground font-inter max-w-2xl mx-auto">
+              <p className="text-muted-foreground font-medium max-w-2xl mx-auto">
                 {currentLang === 'fr' && 'Explorez Dar Dhiafa Klee comme si vous y étiez grâce à notre visite virtuelle interactive.'}
                 {currentLang === 'en' && 'Explore Dar Dhiafa Klee as if you were there with our interactive virtual tour.'}
                 {currentLang === 'ar' && 'استكشف دار ضيافة كلي وكأنك هناك مع جولتنا الافتراضية التفاعلية.'}
@@ -225,19 +225,19 @@ const Gallery = () => {
                     <Play className="w-12 h-12 ml-2" />
                   </div>
                   <div>
-                    <h3 className="font-playfair font-bold text-2xl mb-3">
+                    <h3 className="font-bold font-bold text-2xl mb-3">
                       {currentLang === 'fr' && 'Visite Virtuelle Immersive'}
                       {currentLang === 'en' && 'Immersive Virtual Tour'}
                       {currentLang === 'ar' && 'جولة افتراضية غامرة'}
                     </h3>
-                    <p className="font-inter opacity-90 max-w-md mx-auto mb-6">
+                    <p className="font-medium opacity-90 max-w-md mx-auto mb-6">
                       {currentLang === 'fr' && 'Naviguez librement dans tous les espaces de notre maison d\'hôtes avec une qualité HD exceptionnelle.'}
                       {currentLang === 'en' && 'Navigate freely through all spaces of our guesthouse with exceptional HD quality.'}
                       {currentLang === 'ar' && 'تنقل بحرية في جميع مساحات دار الضيافة بجودة عالية استثنائية.'}
                     </p>
                     <Button
                       size="lg"
-                      className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-3"
+                      className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-8 py-3"
                     >
                       <Eye className="w-5 h-5 mr-2" />
                       {currentLang === 'fr' && 'Commencer la visite'}
@@ -290,10 +290,10 @@ const Gallery = () => {
                   variants={staggerItem}
                 >
                   <feature.icon className="w-8 h-8 text-terre-cuite mx-auto mb-4" />
-                  <h4 className="font-playfair font-bold text-indigo-medina mb-2">
+                  <h4 className="font-bold font-bold text-indigo-medina mb-2">
                     {feature.title[currentLang]}
                   </h4>
-                  <p className="text-muted-foreground font-inter text-sm">
+                  <p className="text-muted-foreground font-medium text-sm">
                     {feature.desc[currentLang]}
                   </p>
                 </motion.div>
@@ -318,12 +318,12 @@ const Gallery = () => {
               className="text-center mb-12"
               variants={staggerItem}
             >
-              <h2 className="text-3xl md:text-4xl font-playfair font-bold text-indigo-medina mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-4">
                 {currentLang === 'fr' && 'Galerie Photo HD'}
                 {currentLang === 'en' && 'HD Photo Gallery'}
                 {currentLang === 'ar' && 'معرض الصور عالي الدقة'}
               </h2>
-              <p className="text-muted-foreground font-inter max-w-2xl mx-auto">
+              <p className="text-muted-foreground font-medium max-w-2xl mx-auto">
                 {currentLang === 'fr' && 'Découvrez nos espaces intérieurs et extérieurs à travers une sélection de photos haute définition.'}
                 {currentLang === 'en' && 'Discover our interior and exterior spaces through a selection of high-definition photos.'}
                 {currentLang === 'ar' && 'اكتشف مساحاتنا الداخلية والخارجية من خلال مجموعة مختارة من الصور عالية الدقة.'}
@@ -341,7 +341,7 @@ const Gallery = () => {
                   <button
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-full font-inter font-medium transition-all duration-300 ${
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-full font-medium font-medium transition-all duration-300 ${
                       selectedCategory === category.id
                         ? "bg-terre-cuite text-white shadow-medium"
                         : "bg-white text-muted-foreground hover:bg-terre-cuite/10 hover:text-terre-cuite border border-border"
@@ -374,10 +374,10 @@ const Gallery = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 right-4 text-white">
-                        <h3 className="font-playfair font-bold text-sm mb-1">
+                        <h3 className="font-bold font-bold text-sm mb-1">
                           {image.title[currentLang]}
                         </h3>
-                        <p className="font-inter text-xs opacity-90">
+                        <p className="font-medium text-xs opacity-90">
                           {image.description[currentLang]}
                         </p>
                       </div>
@@ -448,10 +448,10 @@ const Gallery = () => {
               {/* Image Info */}
               <div className="absolute bottom-4 left-4 right-4 text-white">
                 <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4">
-                  <h3 className="font-playfair font-bold text-lg mb-2">
+                  <h3 className="font-bold font-bold text-lg mb-2">
                     {filteredImages[currentImageIndex]?.title[currentLang]}
                   </h3>
-                  <p className="font-inter text-sm opacity-90">
+                  <p className="font-medium text-sm opacity-90">
                     {filteredImages[currentImageIndex]?.description[currentLang]}
                   </p>
                   <div className="flex items-center justify-between mt-3">
@@ -477,7 +477,7 @@ const Gallery = () => {
             variants={staggerContainer}
           >
             <motion.h2
-              className="text-3xl md:text-4xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Prêt à vivre l\'expérience ?'}
@@ -485,7 +485,7 @@ const Gallery = () => {
               {currentLang === 'ar' && 'مستعد لخوض التجربة؟'}
             </motion.h2>
             <motion.p
-              className="text-lg text-muted-foreground font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg text-muted-foreground font-medium mb-8 max-w-2xl mx-auto"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Réservez dès maintenant votre séjour à Dar Dhiafa Klee et découvrez par vous-même la beauté de notre maison d\'hôtes.'}
@@ -498,7 +498,7 @@ const Gallery = () => {
             >
               <Button
                 size="lg"
-                className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
                 onClick={() => navigate('/booking')}
               >
                 {currentLang === 'fr' && 'Réserver maintenant'}
@@ -508,7 +508,7 @@ const Gallery = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
               >
                 {currentLang === 'fr' && 'Voir les chambres'}
                 {currentLang === 'en' && 'View Rooms'}

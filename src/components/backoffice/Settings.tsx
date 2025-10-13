@@ -343,10 +343,10 @@ const Settings = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-indigo-medina mb-2">
+          <h1 className="text-3xl font-bold font-bold text-indigo-medina mb-2">
             Paramètres
           </h1>
-          <p className="text-muted-foreground font-inter">
+          <p className="text-muted-foreground font-medium">
             Regrouper toutes les fonctions secondaires dans un seul espace
           </p>
         </div>
@@ -382,7 +382,7 @@ const Settings = () => {
         {/* Utilisateurs & Rôles */}
         <TabsContent value="users" className="mt-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-playfair font-bold text-indigo-medina">
+            <h2 className="text-xl font-bold font-bold text-indigo-medina">
               Gestion des utilisateurs et rôles
             </h2>
             <Button 
@@ -412,7 +412,7 @@ const Settings = () => {
                     <TableRow key={user.id}>
                       <TableCell>
                         <div>
-                          <div className="font-inter font-semibold">{user.name}</div>
+                          <div className="font-medium font-semibold">{user.name}</div>
                           <div className="text-sm text-muted-foreground">{user.email}</div>
                         </div>
                       </TableCell>
@@ -465,7 +465,7 @@ const Settings = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Shield className="w-5 h-5" />
                   Super Admin
                 </CardTitle>
@@ -485,7 +485,7 @@ const Settings = () => {
 
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Users className="w-5 h-5" />
                   Administrateur
                 </CardTitle>
@@ -505,7 +505,7 @@ const Settings = () => {
 
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Eye className="w-5 h-5" />
                   Manager
                 </CardTitle>
@@ -525,7 +525,7 @@ const Settings = () => {
 
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Phone className="w-5 h-5" />
                   Réceptionniste
                 </CardTitle>
@@ -552,7 +552,7 @@ const Settings = () => {
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
                 <div className="flex justify-between items-center">
-                  <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                  <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                     <FileText className="w-5 h-5" />
                     Pages du site
                   </CardTitle>
@@ -571,7 +571,7 @@ const Settings = () => {
                   {sitePages.map((page) => (
                     <div key={page.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div className="flex-1">
-                        <div className="font-inter font-semibold">{page.title}</div>
+                        <div className="font-medium font-semibold">{page.title}</div>
                         <div className="text-sm text-muted-foreground">/{page.slug}</div>
                         <div className="flex items-center gap-2 mt-1">
                           <Badge variant={page.isPublished ? "default" : "secondary"}>
@@ -607,7 +607,7 @@ const Settings = () => {
             {/* Configuration SEO */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Search className="w-5 h-5" />
                   Optimisation SEO
                 </CardTitle>
@@ -673,7 +673,7 @@ const Settings = () => {
             {/* Réseaux sociaux */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Globe className="w-5 h-5" />
                   Réseaux sociaux
                 </CardTitle>
@@ -723,7 +723,7 @@ const Settings = () => {
             {/* Mise à jour photos et textes */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Image className="w-5 h-5" />
                   Contenu média
                 </CardTitle>
@@ -761,7 +761,7 @@ const Settings = () => {
             {/* Coordonnées de l'établissement */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Building className="w-5 h-5" />
                   Coordonnées de l'établissement
                 </CardTitle>
@@ -819,7 +819,7 @@ const Settings = () => {
             {/* Configuration financière */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <DollarSign className="w-5 h-5" />
                   Configuration financière
                 </CardTitle>
@@ -864,7 +864,7 @@ const Settings = () => {
             {/* Langues disponibles */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Languages className="w-5 h-5" />
                   Langues disponibles
                 </CardTitle>
@@ -914,7 +914,7 @@ const Settings = () => {
             {/* Configuration système */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Settings className="w-5 h-5" />
                   Configuration système
                 </CardTitle>
@@ -984,7 +984,7 @@ const Settings = () => {
       <Dialog open={isUserDialogOpen} onOpenChange={setIsUserDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-2xl font-bold text-indigo-medina">
               {currentUser ? "Modifier l'utilisateur" : "Nouvel utilisateur"}
             </DialogTitle>
           </DialogHeader>
@@ -1047,7 +1047,7 @@ const Settings = () => {
       <Dialog open={isPageDialogOpen} onOpenChange={setIsPageDialogOpen}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-2xl font-bold text-indigo-medina">
               {currentPage ? "Modifier la page" : "Nouvelle page"}
             </DialogTitle>
           </DialogHeader>

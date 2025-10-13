@@ -96,7 +96,7 @@ const Analytics = () => {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-indigo-medina">
+          <h1 className="text-3xl font-bold font-bold text-indigo-medina">
             {"Analytics Trafic"}
           </h1>
           <p className="text-muted-foreground mt-1">

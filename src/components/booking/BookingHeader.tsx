@@ -46,19 +46,19 @@ const BookingHeader = () => {
           <nav className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
-              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-inter"
+              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-medium"
             >
               {t("nav.home")}
             </Link>
             <Link
               to="/#chambres"
-              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-inter"
+              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-medium"
             >
               {t("nav.rooms")}
             </Link>
             <Link
               to="/#contact"
-              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-inter"
+              className="text-white hover:text-terre-cuite drop-shadow-sm transition-colors font-medium"
             >
               {t("nav.contact")}
             </Link>
@@ -67,7 +67,7 @@ const BookingHeader = () => {
           {/* Back to Home Button */}
           <Link
             to="/"
-            className="flex items-center space-x-2 px-3 py-2 bg-terre-cuite hover:bg-terre-cuite-hover text-white rounded-lg transition-all duration-300 font-inter shadow-lg hover:shadow-xl"
+            className="flex items-center space-x-2 px-3 py-2 bg-terre-cuite hover:bg-terre-cuite-hover text-white rounded-lg transition-all duration-300 font-medium shadow-lg hover:shadow-xl"
           >
             <ArrowLeft className="w-4 h-4" />
             <span className="hidden sm:inline">{t("booking.backHome")}</span>

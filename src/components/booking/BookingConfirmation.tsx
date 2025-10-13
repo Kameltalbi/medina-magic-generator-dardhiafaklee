@@ -110,14 +110,14 @@ const BookingConfirmation = ({
           </motion.div>
           
           <motion.h1
-            className="text-3xl md:text-4xl font-playfair font-bold text-indigo-medina mb-4"
+            className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-4"
             variants={fadeInUp}
           >
             Réservation Confirmée !
           </motion.h1>
           
           <motion.p
-            className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto"
+            className="text-lg text-muted-foreground font-medium max-w-2xl mx-auto"
             variants={fadeInUp}
           >
             Votre réservation a été confirmée avec succès. Vous recevrez un email de confirmation dans les prochaines minutes.
@@ -139,10 +139,10 @@ const BookingConfirmation = ({
                 <div className="bg-indigo-medina/10 p-4 rounded-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground font-inter">Numéro de réservation</p>
-                      <p className="text-xl font-playfair font-bold text-indigo-medina">{bookingId}</p>
+                      <p className="text-sm text-muted-foreground font-medium">Numéro de réservation</p>
+                      <p className="text-xl font-bold font-bold text-indigo-medina">{bookingId}</p>
                     </div>
-                    <Badge className="bg-green-100 text-green-800 font-inter">
+                    <Badge className="bg-green-100 text-green-800 font-medium">
                       Confirmé
                     </Badge>
                   </div>
@@ -150,14 +150,14 @@ const BookingConfirmation = ({
 
                 {/* Informations de la chambre */}
                 <div className="space-y-4">
-                  <h3 className="font-playfair font-semibold text-indigo-medina text-lg">Chambre réservée</h3>
+                  <h3 className="font-bold font-semibold text-indigo-medina text-lg">Chambre réservée</h3>
                   <div className="flex items-center space-x-3 p-4 bg-card rounded-lg border">
                     <div className="w-16 h-16 bg-indigo-medina/20 rounded-lg flex items-center justify-center">
                       <MapPin className="w-8 h-8 text-indigo-medina" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-inter font-semibold text-indigo-medina">{room.title}</h4>
-                      <p className="text-sm text-muted-foreground font-inter">
+                      <h4 className="font-medium font-semibold text-indigo-medina">{room.title}</h4>
+                      <p className="text-sm text-muted-foreground font-medium">
                         {formatPrice(room.pricePerNight)} par nuit
                       </p>
                     </div>
@@ -167,22 +167,22 @@ const BookingConfirmation = ({
                 {/* Dates et invités */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <h4 className="font-inter font-semibold text-indigo-medina">Arrivée</h4>
-                    <p className="font-inter">{formatDate(dates.checkIn)}</p>
+                    <h4 className="font-medium font-semibold text-indigo-medina">Arrivée</h4>
+                    <p className="font-medium">{formatDate(dates.checkIn)}</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-inter font-semibold text-indigo-medina">Départ</h4>
-                    <p className="font-inter">{formatDate(dates.checkOut)}</p>
+                    <h4 className="font-medium font-semibold text-indigo-medina">Départ</h4>
+                    <p className="font-medium">{formatDate(dates.checkOut)}</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-inter font-semibold text-indigo-medina">Durée du séjour</h4>
-                    <p className="font-inter">{nights} {nights === 1 ? 'nuit' : 'nuits'}</p>
+                    <h4 className="font-medium font-semibold text-indigo-medina">Durée du séjour</h4>
+                    <p className="font-medium">{nights} {nights === 1 ? 'nuit' : 'nuits'}</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-inter font-semibold text-indigo-medina">Nombre d'invités</h4>
+                    <h4 className="font-medium font-semibold text-indigo-medina">Nombre d'invités</h4>
                     <div className="flex items-center space-x-2">
                       <Users className="w-4 h-4 text-muted-foreground" />
-                      <span className="font-inter">{dates.guests} {dates.guests === 1 ? 'personne' : 'personnes'}</span>
+                      <span className="font-medium">{dates.guests} {dates.guests === 1 ? 'personne' : 'personnes'}</span>
                     </div>
                   </div>
                 </div>
@@ -190,8 +190,8 @@ const BookingConfirmation = ({
                 {/* Total */}
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-lg font-inter font-semibold text-indigo-medina">Total payé</span>
-                    <span className="text-2xl font-playfair font-bold text-terre-cuite">
+                    <span className="text-lg font-medium font-semibold text-indigo-medina">Total payé</span>
+                    <span className="text-2xl font-bold font-bold text-terre-cuite">
                       {formatPrice(total)}
                     </span>
                   </div>
@@ -240,7 +240,7 @@ const BookingConfirmation = ({
               <CardHeader>
                 <CardTitle className="text-lg">Informations importantes</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-sm font-inter">
+              <CardContent className="space-y-4 text-sm font-medium">
                 <div className="flex items-start space-x-3">
                   <Mail className="w-4 h-4 text-indigo-medina mt-0.5" />
                   <div>

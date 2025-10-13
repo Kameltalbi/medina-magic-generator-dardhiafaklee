@@ -74,10 +74,10 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
     >
       <div className="gradient-card rounded-2xl p-6 md:p-8 shadow-strong">
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold font-bold text-indigo-medina mb-2">
             {t("booking.customer.title")}
           </h2>
-          <p className="text-muted-foreground font-inter">
+          <p className="text-muted-foreground font-medium">
             {t("booking.customer.subtitle")}
           </p>
         </div>
@@ -86,7 +86,7 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
           {/* Name Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="firstName" className="text-indigo-medina font-inter font-medium">
+              <Label htmlFor="firstName" className="text-indigo-medina font-medium font-medium">
                 {t("booking.customer.firstName")} *
               </Label>
               <div className="relative">
@@ -96,19 +96,19 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
                   type="text"
                   value={formData.firstName}
                   onChange={(e) => handleInputChange('firstName', e.target.value)}
-                  className={`pl-10 font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina ${
+                  className={`pl-10 font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina ${
                     getFieldError('firstName') ? 'border-red-500' : ''
                   }`}
                   placeholder={t("booking.customer.firstNamePlaceholder")}
                 />
               </div>
               {getFieldError('firstName') && (
-                <p className="text-red-500 text-sm font-inter">{getFieldError('firstName')}</p>
+                <p className="text-red-500 text-sm font-medium">{getFieldError('firstName')}</p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="lastName" className="text-indigo-medina font-inter font-medium">
+              <Label htmlFor="lastName" className="text-indigo-medina font-medium font-medium">
                 {t("booking.customer.lastName")} *
               </Label>
               <div className="relative">
@@ -118,14 +118,14 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
                   type="text"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange('lastName', e.target.value)}
-                  className={`pl-10 font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina ${
+                  className={`pl-10 font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina ${
                     getFieldError('lastName') ? 'border-red-500' : ''
                   }`}
                   placeholder={t("booking.customer.lastNamePlaceholder")}
                 />
               </div>
               {getFieldError('lastName') && (
-                <p className="text-red-500 text-sm font-inter">{getFieldError('lastName')}</p>
+                <p className="text-red-500 text-sm font-medium">{getFieldError('lastName')}</p>
               )}
             </div>
           </div>
@@ -133,7 +133,7 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
           {/* Contact Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-indigo-medina font-inter font-medium">
+              <Label htmlFor="email" className="text-indigo-medina font-medium font-medium">
                 {t("booking.customer.email")} *
               </Label>
               <div className="relative">
@@ -143,19 +143,19 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`pl-10 font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina ${
+                  className={`pl-10 font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina ${
                     getFieldError('email') ? 'border-red-500' : ''
                   }`}
                   placeholder={t("booking.customer.emailPlaceholder")}
                 />
               </div>
               {getFieldError('email') && (
-                <p className="text-red-500 text-sm font-inter">{getFieldError('email')}</p>
+                <p className="text-red-500 text-sm font-medium">{getFieldError('email')}</p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone" className="text-indigo-medina font-inter font-medium">
+              <Label htmlFor="phone" className="text-indigo-medina font-medium font-medium">
                 {t("booking.customer.phone")} *
               </Label>
               <div className="relative">
@@ -165,21 +165,21 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className={`pl-10 font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina ${
+                  className={`pl-10 font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina ${
                     getFieldError('phone') ? 'border-red-500' : ''
                   }`}
                   placeholder={t("booking.customer.phonePlaceholder")}
                 />
               </div>
               {getFieldError('phone') && (
-                <p className="text-red-500 text-sm font-inter">{getFieldError('phone')}</p>
+                <p className="text-red-500 text-sm font-medium">{getFieldError('phone')}</p>
               )}
             </div>
           </div>
 
           {/* Special Requests */}
           <div className="space-y-2">
-            <Label htmlFor="specialRequests" className="text-indigo-medina font-inter font-medium">
+            <Label htmlFor="specialRequests" className="text-indigo-medina font-medium font-medium">
               {t("booking.customer.specialRequests")}
             </Label>
             <div className="relative">
@@ -188,11 +188,11 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
                 id="specialRequests"
                 value={formData.specialRequests}
                 onChange={(e) => handleInputChange('specialRequests', e.target.value)}
-                className="pl-10 font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina min-h-[100px]"
+                className="pl-10 font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina min-h-[100px]"
                 placeholder={t("booking.customer.specialRequestsPlaceholder")}
               />
             </div>
-            <p className="text-xs text-muted-foreground font-inter">
+            <p className="text-xs text-muted-foreground font-medium">
               {t("booking.customer.specialRequestsHelp")}
             </p>
           </div>
@@ -203,7 +203,7 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
               type="button"
               variant="outline"
               onClick={onBack}
-              className="flex-1 border-indigo-medina text-indigo-medina hover:bg-indigo-medina hover:text-white font-inter font-semibold transition-all duration-300"
+              className="flex-1 border-indigo-medina text-indigo-medina hover:bg-indigo-medina hover:text-white font-medium font-semibold transition-all duration-300"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               {t("booking.customer.back")}
@@ -212,7 +212,7 @@ const CustomerForm = ({ onNext, onBack, initialData }: CustomerFormProps) => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 bg-terre-cuite hover:bg-terre-cuite/90 text-white font-inter font-semibold transition-all duration-300 shadow-soft hover:shadow-medium"
+              className="flex-1 bg-terre-cuite hover:bg-terre-cuite/90 text-white font-medium font-semibold transition-all duration-300 shadow-soft hover:shadow-medium"
             >
               {isSubmitting ? (
                 <motion.div

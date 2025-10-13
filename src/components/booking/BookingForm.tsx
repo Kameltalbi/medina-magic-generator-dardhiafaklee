@@ -118,10 +118,10 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
           <div className="gradient-card rounded-2xl shadow-strong p-6 md:p-8 border border-border/20">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="text-center mb-6">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-playfair font-bold text-indigo-medina mb-2 px-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-bold text-indigo-medina mb-2 px-4">
                   {t("booking.form.title")}
                 </h2>
-                <p className="text-sm sm:text-base text-muted-foreground font-inter px-4">
+                <p className="text-sm sm:text-base text-muted-foreground font-medium px-4">
                   {t("booking.form.subtitle")}
                 </p>
               </div>
@@ -129,7 +129,7 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-end">
                 {/* Check-in Date */}
                 <div className="space-y-2">
-                  <Label htmlFor="checkin" className="text-indigo-medina font-inter font-medium">
+                  <Label htmlFor="checkin" className="text-indigo-medina font-medium font-medium">
                     {t("booking.form.checkIn")} *
                   </Label>
                   <div className="relative">
@@ -140,7 +140,7 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
                       value={bookingData.checkIn}
                       onChange={(e) => handleInputChange('checkIn', e.target.value)}
                       min={new Date().toISOString().split('T')[0]}
-                      className={`pl-10 font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina ${
+                      className={`pl-10 font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina ${
                         getFieldError('checkIn') ? 'border-red-500' : ''
                       }`}
                       required
@@ -149,14 +149,14 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
                   {getFieldError('checkIn') && (
                     <div className="flex items-center space-x-1 text-red-500 text-sm">
                       <AlertCircle className="w-3 h-3" />
-                      <span className="font-inter">{getFieldError('checkIn')}</span>
+                      <span className="font-medium">{getFieldError('checkIn')}</span>
                     </div>
                   )}
                 </div>
 
                 {/* Check-out Date */}
                 <div className="space-y-2">
-                  <Label htmlFor="checkout" className="text-indigo-medina font-inter font-medium">
+                  <Label htmlFor="checkout" className="text-indigo-medina font-medium font-medium">
                     {t("booking.form.checkOut")} *
                   </Label>
                   <div className="relative">
@@ -167,7 +167,7 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
                       value={bookingData.checkOut}
                       onChange={(e) => handleInputChange('checkOut', e.target.value)}
                       min={bookingData.checkIn ? getMinCheckoutDate(bookingData.checkIn) : new Date().toISOString().split('T')[0]}
-                      className={`pl-10 font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina ${
+                      className={`pl-10 font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina ${
                         getFieldError('checkOut') ? 'border-red-500' : ''
                       }`}
                       required
@@ -176,14 +176,14 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
                   {getFieldError('checkOut') && (
                     <div className="flex items-center space-x-1 text-red-500 text-sm">
                       <AlertCircle className="w-3 h-3" />
-                      <span className="font-inter">{getFieldError('checkOut')}</span>
+                      <span className="font-medium">{getFieldError('checkOut')}</span>
                     </div>
                   )}
                 </div>
 
                 {/* Guests */}
                 <div className="space-y-2">
-                  <Label htmlFor="guests" className="text-indigo-medina font-inter font-medium">
+                  <Label htmlFor="guests" className="text-indigo-medina font-medium font-medium">
                     {t("booking.form.guests")} *
                   </Label>
                   <div className="relative">
@@ -192,7 +192,7 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
                       id="guests"
                       value={bookingData.guests}
                       onChange={(e) => handleInputChange('guests', parseInt(e.target.value))}
-                      className={`w-full pl-10 pr-4 py-2 border border-border rounded-md font-inter focus:ring-indigo-medina focus:border-indigo-medina bg-background ${
+                      className={`w-full pl-10 pr-4 py-2 border border-border rounded-md font-medium focus:ring-indigo-medina focus:border-indigo-medina bg-background ${
                         getFieldError('guests') ? 'border-red-500' : ''
                       }`}
                     >
@@ -206,7 +206,7 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
                   {getFieldError('guests') && (
                     <div className="flex items-center space-x-1 text-red-500 text-sm">
                       <AlertCircle className="w-3 h-3" />
-                      <span className="font-inter">{getFieldError('guests')}</span>
+                      <span className="font-medium">{getFieldError('guests')}</span>
                     </div>
                   )}
                 </div>
@@ -216,7 +216,7 @@ const BookingForm = ({ onSearch, showValidation = true }: BookingFormProps) => {
                   type="submit"
                   size="lg"
                   disabled={isLoading}
-                  className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-inter font-semibold px-6 py-3 transition-all duration-300 shadow-soft hover:shadow-medium h-[42px]"
+                  className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-medium font-semibold px-6 py-3 transition-all duration-300 shadow-soft hover:shadow-medium h-[42px]"
                 >
                   {isLoading ? (
                     <motion.div

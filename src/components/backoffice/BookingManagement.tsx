@@ -183,8 +183,8 @@ const BookingManagement = () => {
       <motion.div variants={staggerItem}>
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-playfair font-bold text-indigo-medina">Gestion des réservations</h1>
-            <p className="text-muted-foreground font-inter mt-2">
+            <h1 className="text-3xl font-bold font-bold text-indigo-medina">Gestion des réservations</h1>
+            <p className="text-muted-foreground font-medium mt-2">
               Gérez toutes les réservations de votre établissement
             </p>
           </div>
@@ -204,8 +204,8 @@ const BookingManagement = () => {
                 <Calendar className="w-6 h-6 text-blue-600" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">Total réservations</p>
-                <p className="text-2xl font-playfair font-bold text-indigo-medina">{bookings.length}</p>
+                <p className="text-sm text-muted-foreground font-medium">Total réservations</p>
+                <p className="text-2xl font-bold font-bold text-indigo-medina">{bookings.length}</p>
               </div>
             </div>
           </CardContent>
@@ -218,8 +218,8 @@ const BookingManagement = () => {
                 <CheckCircle className="w-6 h-6 text-green-600" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">Confirmées</p>
-                <p className="text-2xl font-playfair font-bold text-indigo-medina">
+                <p className="text-sm text-muted-foreground font-medium">Confirmées</p>
+                <p className="text-2xl font-bold font-bold text-indigo-medina">
                   {bookings.filter(b => b.status === 'confirmed').length}
                 </p>
               </div>
@@ -234,8 +234,8 @@ const BookingManagement = () => {
                 <Clock className="w-6 h-6 text-yellow-600" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">En attente</p>
-                <p className="text-2xl font-playfair font-bold text-indigo-medina">
+                <p className="text-sm text-muted-foreground font-medium">En attente</p>
+                <p className="text-2xl font-bold font-bold text-indigo-medina">
                   {bookings.filter(b => b.status === 'pending').length}
                 </p>
               </div>
@@ -250,8 +250,8 @@ const BookingManagement = () => {
                 <CreditCard className="w-6 h-6 text-terre-cuite" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-inter">Revenus</p>
-                <p className="text-2xl font-playfair font-bold text-indigo-medina">
+                <p className="text-sm text-muted-foreground font-medium">Revenus</p>
+                <p className="text-2xl font-bold font-bold text-indigo-medina">
                   {formatPrice(bookings.reduce((sum, b) => sum + b.total, 0))}
                 </p>
               </div>
@@ -333,7 +333,7 @@ const BookingManagement = () => {
                       <TableCell className="font-mono text-sm">{booking.id}</TableCell>
                       <TableCell>
                         <div>
-                          <p className="font-inter font-semibold">
+                          <p className="font-medium font-semibold">
                             {booking.customerInfo.firstName} {booking.customerInfo.lastName}
                           </p>
                           <p className="text-sm text-muted-foreground">{booking.customerInfo.email}</p>
@@ -342,7 +342,7 @@ const BookingManagement = () => {
                       <TableCell>
                         <div className="flex items-center space-x-2">
                           <MapPin className="w-4 h-4 text-muted-foreground" />
-                          <span className="font-inter">{booking.room.title}</span>
+                          <span className="font-medium">{booking.room.title}</span>
                         </div>
                       </TableCell>
                       <TableCell>
@@ -351,7 +351,7 @@ const BookingManagement = () => {
                           <p className="text-muted-foreground">au {formatDate(booking.checkOut)}</p>
                         </div>
                       </TableCell>
-                      <TableCell className="font-playfair font-semibold text-terre-cuite">
+                      <TableCell className="font-bold font-semibold text-terre-cuite">
                         {formatPrice(booking.total)}
                       </TableCell>
                       <TableCell>

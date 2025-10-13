@@ -12,33 +12,25 @@ import RoomPricing from "@/components/backoffice/RoomPricing";
 import ExperienceManagement from "@/components/backoffice/ExperienceManagement";
 import ReservationManagement from "@/components/backoffice/ReservationManagement";
 import Settings from "@/components/backoffice/Settings";
-import BackOfficeLogin from "./BackOfficeLogin";
-import { useAuth } from "@/hooks/useAuth";
 
 const BackOffice = () => {
-  const { user, role, hasPermission } = useAuth();
   const [activeSection, setActiveSection] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  // Show login page if not authenticated
-  if (!user) {
-    return <BackOfficeLogin />;
-  }
 
   const renderContent = () => {
     switch (activeSection) {
       case "dashboard":
         return <Dashboard />;
       case "reservations":
-        return hasPermission("reservations.manage") ? <ReservationManagement /> : <div>Access denied</div>;
+        return <ReservationManagement />;
       case "pricing":
-        return hasPermission("pricing.manage") ? <RoomPricing /> : <div>Access denied</div>;
+        return <RoomPricing />;
       case "sales":
         return <Sales />;
       case "experiences":
-        return hasPermission("experiences.manage") ? <ExperienceManagement /> : <div>Access denied</div>;
+        return <ExperienceManagement />;
       case "settings":
-        return hasPermission("settings.manage") ? <Settings /> : <div>Access denied</div>;
+        return <Settings />;
       default:
         return <Dashboard />;
     }
@@ -52,7 +44,7 @@ const BackOffice = () => {
         onSectionChange={setActiveSection}
         isOpen={sidebarOpen}
         onToggle={() => setSidebarOpen(!sidebarOpen)}
-        userRole={role}
+        userRole="admin"
       />
 
       {/* Main Content */}
@@ -60,8 +52,8 @@ const BackOffice = () => {
         {/* Header */}
         <Header 
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
-          user={user}
-          role={role}
+          user={{ name: "Admin", email: "admin@dardhiafa.com" }}
+          role="admin"
         />
 
         {/* Page Content */}

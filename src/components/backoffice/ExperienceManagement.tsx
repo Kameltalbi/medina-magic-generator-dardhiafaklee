@@ -539,6 +539,11 @@ const ExperienceManagement = () => {
   const saveExperiences = (updatedExperiences: Experience[]) => {
     setExperiences(updatedExperiences);
     localStorage.setItem('experiences', JSON.stringify(updatedExperiences));
+    
+    // Trigger custom event to notify other components
+    window.dispatchEvent(new CustomEvent('experiencesUpdated'));
+    
+    toast.success("Expériences mises à jour avec succès");
   };
 
   const filteredExperiences = experiences.filter(exp => {
@@ -659,12 +664,23 @@ const ExperienceManagement = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-indigo-medina mb-2">
+          <h1 className="text-3xl font-bold font-bold text-indigo-medina mb-2">
             Gestion des Expériences
           </h1>
-          <p className="text-muted-foreground font-inter">
+          <p className="text-muted-foreground font-medium">
             Gérez vos expériences et activités
           </p>
+        </div>
+        <div className="text-right">
+          <div className="bg-logo-gold/10 border border-logo-gold/20 rounded-lg p-3 max-w-xs">
+            <div className="flex items-center space-x-2 text-logo-gold mb-1">
+              <AlertCircle className="w-4 h-4" />
+              <span className="font-semibold text-sm">Aide</span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Les modifications de prix sont automatiquement synchronisées avec la page publique des expériences.
+            </p>
+          </div>
         </div>
         <div className="flex gap-4">
           <Button
@@ -756,7 +772,7 @@ const ExperienceManagement = () => {
                     </TableCell>
                     <TableCell>
                       <div>
-                        <div className="font-inter font-semibold">{experience.name.fr}</div>
+                        <div className="font-medium font-semibold">{experience.name.fr}</div>
                         <div className="text-sm text-muted-foreground">{experience.description.fr}</div>
                       </div>
                     </TableCell>
@@ -853,7 +869,7 @@ const ExperienceManagement = () => {
               <CardContent className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-lg font-playfair font-bold text-indigo-medina mb-2">
+                    <h3 className="text-lg font-bold font-bold text-indigo-medina mb-2">
                       {experience.name.fr}
                     </h3>
                     <p className="text-sm text-muted-foreground line-clamp-2">
@@ -873,7 +889,7 @@ const ExperienceManagement = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-playfair font-bold text-terre-cuite">
+                      <div className="text-lg font-bold font-bold text-terre-cuite">
                         {experience.price} TND
                       </div>
                       <div className="text-xs text-muted-foreground">
@@ -919,7 +935,7 @@ const ExperienceManagement = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-2xl font-bold text-indigo-medina">
               {currentExperience ? "Modifier l'expérience" : "Nouvelle expérience"}
             </DialogTitle>
           </DialogHeader>
@@ -1154,7 +1170,7 @@ const ExperienceManagement = () => {
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-xl font-bold text-indigo-medina">
               Confirmer la suppression
             </DialogTitle>
           </DialogHeader>

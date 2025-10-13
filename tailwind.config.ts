@@ -25,6 +25,11 @@ export default {
           DEFAULT: "hsl(var(--vert-porte))",
           hover: "hsl(var(--vert-porte-hover))",
         },
+        "logo-gold": {
+          DEFAULT: "hsl(var(--logo-gold))",
+          hover: "hsl(var(--logo-gold-hover))",
+        },
+        "logo-dark": "hsl(var(--logo-dark))",
         
         // Semantic tokens
         border: "hsl(var(--border))",

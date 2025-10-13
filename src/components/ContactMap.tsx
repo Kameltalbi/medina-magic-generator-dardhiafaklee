@@ -78,13 +78,13 @@ const ContactMap = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-3xl md:text-5xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-3xl md:text-5xl font-bold font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
               {t("contact.title")}
             </motion.h2>
             <motion.p
-              className="text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed"
               variants={staggerItem}
             >
               {t("contact.subtitle")}
@@ -101,7 +101,7 @@ const ContactMap = () => {
                 <div className="w-10 h-10 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-lg flex items-center justify-center">
                   <MessageSquare className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
+                <h3 className="text-2xl font-bold font-bold text-indigo-medina">
                   {t("contact.form.title")}
                 </h3>
               </div>
@@ -109,7 +109,7 @@ const ContactMap = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-indigo-medina font-inter font-medium">
+                    <Label htmlFor="name" className="text-indigo-medina font-medium font-medium">
                       {t("contact.form.name")}
                     </Label>
                     <Input
@@ -117,13 +117,13 @@ const ContactMap = () => {
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
+                      className="font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina"
                       required
                       placeholder={t("contact.form.namePlaceholder")}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-indigo-medina font-inter font-medium">
+                    <Label htmlFor="email" className="text-indigo-medina font-medium font-medium">
                       {t("contact.form.email")}
                     </Label>
                     <Input
@@ -131,7 +131,7 @@ const ContactMap = () => {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
+                      className="font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina"
                       required
                       placeholder={t("contact.form.emailPlaceholder")}
                     />
@@ -139,7 +139,7 @@ const ContactMap = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-indigo-medina font-inter font-medium">
+                  <Label htmlFor="phone" className="text-indigo-medina font-medium font-medium">
                     {t("contact.form.phone")}
                   </Label>
                   <Input
@@ -147,20 +147,20 @@ const ContactMap = () => {
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina"
+                    className="font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina"
                     placeholder={t("contact.form.phonePlaceholder")}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-indigo-medina font-inter font-medium">
+                  <Label htmlFor="message" className="text-indigo-medina font-medium font-medium">
                     {t("contact.form.message")}
                   </Label>
                   <Textarea
                     id="message"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="font-inter border-border focus:ring-indigo-medina focus:border-indigo-medina min-h-[120px] resize-none"
+                    className="font-medium border-border focus:ring-indigo-medina focus:border-indigo-medina min-h-[120px] resize-none"
                     required
                     placeholder={t("contact.form.messagePlaceholder")}
                   />
@@ -170,7 +170,7 @@ const ContactMap = () => {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold py-3 transition-all duration-300 shadow-soft hover:shadow-medium disabled:opacity-50"
+                  className="w-full bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold py-3 transition-all duration-300 shadow-soft hover:shadow-medium disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center space-x-2">
@@ -200,10 +200,10 @@ const ContactMap = () => {
                     <div className="text-center text-white space-y-4">
                       <MapPin className="w-16 h-16 mx-auto opacity-80" />
                       <div>
-                        <h4 className="font-playfair font-bold text-xl mb-2">
+                        <h4 className="font-bold font-bold text-xl mb-2">
                           {t("contact.map.title")}
                         </h4>
-                        <p className="font-inter text-sm opacity-90 max-w-xs mx-auto">
+                        <p className="font-medium text-sm opacity-90 max-w-xs mx-auto">
                           {t("contact.map.description")}
                         </p>
                       </div>
@@ -239,13 +239,13 @@ const ContactMap = () => {
                         <info.icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h4 className="font-playfair font-semibold text-indigo-medina mb-2">
+                        <h4 className="font-bold font-semibold text-indigo-medina mb-2">
                           {info.title}
                         </h4>
                         {info.details.map((detail, detailIndex) => (
                           <p
                             key={detailIndex}
-                            className="text-sm text-muted-foreground font-inter leading-relaxed"
+                            className="text-sm text-muted-foreground font-medium leading-relaxed"
                           >
                             {detail}
                           </p>

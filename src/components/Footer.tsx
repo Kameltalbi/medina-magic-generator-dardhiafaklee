@@ -69,17 +69,17 @@ const Footer = () => {
             <motion.div variants={staggerItem} className="lg:col-span-1">
               <div className="flex items-center space-x-2 mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-terre-cuite to-vert-porte rounded-full flex items-center justify-center">
-                  <span className="text-white font-playfair font-bold text-xl">D</span>
+                  <span className="text-white font-bold font-bold text-xl">D</span>
                 </div>
                 <div>
-                  <h3 className="font-playfair font-bold text-xl text-sable leading-tight">
+                  <h3 className="font-bold font-bold text-xl text-sable leading-tight">
                     Dar Dhiafa Klee
                   </h3>
-                  <p className="text-sable/80 text-sm font-inter">Kairouan</p>
+                  <p className="text-sable/80 text-sm font-medium">Kairouan</p>
                 </div>
               </div>
               
-              <p className="text-sable/90 font-inter leading-relaxed mb-6 text-sm">
+              <p className="text-sable/90 font-medium leading-relaxed mb-6 text-sm">
                 {t("footer.brandDescription")}
               </p>
 
@@ -87,15 +87,15 @@ const Footer = () => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
                   <MapPin className="w-4 h-4 text-terre-cuite" />
-                  <span className="text-sable/90 font-inter" dangerouslySetInnerHTML={{ __html: t("footer.address") }} />
+                  <span className="text-sable/90 font-medium" dangerouslySetInnerHTML={{ __html: t("footer.address") }} />
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Phone className="w-4 h-4 text-vert-porte" />
-                  <span className="text-sable/90 font-inter">{t("footer.phone")}</span>
+                  <span className="text-sable/90 font-medium">{t("footer.phone")}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
                   <Mail className="w-4 h-4 text-terre-cuite" />
-                  <span className="text-sable/90 font-inter">{t("footer.email")}</span>
+                  <span className="text-sable/90 font-medium">{t("footer.email")}</span>
                 </div>
               </div>
             </motion.div>
@@ -103,7 +103,7 @@ const Footer = () => {
             {/* Footer Links */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <motion.div key={category} variants={staggerItem}>
-                <h4 className="font-playfair font-semibold text-sable text-lg mb-4">
+                <h4 className="font-bold font-semibold text-sable text-lg mb-4">
                   {category}
                 </h4>
                 <ul className="space-y-2">
@@ -111,7 +111,7 @@ const Footer = () => {
                     <li key={link.name}>
                       <a
                         href={link.href}
-                        className="text-sable/80 hover:text-terre-cuite transition-colors duration-300 font-inter text-sm hover:underline"
+                        className="text-sable/80 hover:text-terre-cuite transition-colors duration-300 font-medium text-sm hover:underline"
                       >
                         {link.name}
                       </a>
@@ -129,7 +129,7 @@ const Footer = () => {
           >
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               {/* Copyright */}
-              <div className="text-sable/80 font-inter text-sm text-center md:text-left">
+              <div className="text-sable/80 font-medium text-sm text-center md:text-left">
                 <p>
                   {t("footer.copyright")}
                 </p>
@@ -140,7 +140,7 @@ const Footer = () => {
 
               {/* Social Links */}
               <div className="flex items-center space-x-4">
-                <span className="text-sable/80 font-inter text-sm mr-2">
+                <span className="text-sable/80 font-medium text-sm mr-2">
                   {t("footer.followUsText")}
                 </span>
                 {socialLinks.map((social) => (
@@ -164,7 +164,7 @@ const Footer = () => {
             className="text-center mt-8 pt-6 border-t border-sable/10"
             variants={fadeInUp}
           >
-            <p className="text-sable/60 font-inter text-xs">
+            <p className="text-sable/60 font-medium text-xs">
               {t("footer.attribution")}
             </p>
           </motion.div>

@@ -17,7 +17,7 @@ const NotFound = () => {
     <div className="flex min-h-screen items-center justify-center bg-gradient-subtle">
       <div className="text-center max-w-md mx-auto px-4">
         <h1 className="mb-4 text-6xl font-bold text-indigo-medina">404</h1>
-        <h2 className="mb-4 text-2xl font-playfair text-terre-cuite">{t("notFound.title")}</h2>
+        <h2 className="mb-4 text-2xl font-bold text-terre-cuite">{t("notFound.title")}</h2>
         <p className="mb-8 text-lg text-muted-foreground">{t("notFound.description")}</p>
         <Link to="/">
           <Button className="bg-terre-cuite hover:bg-terre-cuite-hover text-white px-6 py-3">

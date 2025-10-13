@@ -171,7 +171,7 @@ const BookingFlow = () => {
                 <Button
                   onClick={handleRoomSelected}
                   size="lg"
-                  className="bg-terre-cuite hover:bg-terre-cuite/90 text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                  className="bg-terre-cuite hover:bg-terre-cuite/90 text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
                 >
                   Continuer avec cette chambre
                 </Button>
@@ -206,7 +206,7 @@ const BookingFlow = () => {
                 onClick={handleBookingConfirmation}
                 disabled={isBooking}
                 size="lg"
-                className="bg-terre-cuite hover:bg-terre-cuite/90 text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="bg-terre-cuite hover:bg-terre-cuite/90 text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
               >
                 {isBooking ? 'Création de la réservation...' : 'Confirmer la réservation'}
               </Button>
@@ -223,15 +223,15 @@ const BookingFlow = () => {
             className="max-w-2xl mx-auto text-center"
           >
             <div className="gradient-card rounded-2xl p-8 shadow-strong">
-              <h2 className="text-3xl font-playfair font-bold text-indigo-medina mb-6">
+              <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-6">
                 Paiement sécurisé
               </h2>
-              <p className="text-muted-foreground font-inter mb-8">
+              <p className="text-muted-foreground font-medium mb-8">
                 Votre réservation a été créée avec succès. Procédez au paiement pour finaliser votre séjour.
               </p>
               <div className="bg-background/50 rounded-xl p-6 mb-8 text-left">
-                <h3 className="font-playfair font-bold text-indigo-medina mb-3">Détails de la réservation</h3>
-                <div className="space-y-2 text-sm font-inter text-muted-foreground">
+                <h3 className="font-bold font-bold text-indigo-medina mb-3">Détails de la réservation</h3>
+                <div className="space-y-2 text-sm font-medium text-muted-foreground">
                   <div className="flex justify-between">
                     <span>Référence :</span>
                     <span className="font-semibold text-indigo-medina">{bookingId}</span>
@@ -252,7 +252,7 @@ const BookingFlow = () => {
                 onClick={handlePayment}
                 disabled={isProcessingPayment}
                 size="lg"
-                className="bg-terre-cuite hover:bg-terre-cuite/90 text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="bg-terre-cuite hover:bg-terre-cuite/90 text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
               >
                 {isProcessingPayment ? 'Traitement du paiement...' : 'Payer avec Konnect'}
               </Button>
@@ -274,15 +274,15 @@ const BookingFlow = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-playfair font-bold text-indigo-medina mb-4">
+              <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-4">
                 Réservation confirmée !
               </h2>
-              <p className="text-muted-foreground font-inter mb-6">
+              <p className="text-muted-foreground font-medium mb-6">
                 Votre séjour à Dar Dhiafa Klee est confirmé. Vous recevrez un email de confirmation sous peu.
               </p>
               <div className="bg-background/50 rounded-xl p-6 mb-6 text-left">
-                <h3 className="font-playfair font-bold text-indigo-medina mb-3">Détails de votre réservation</h3>
-                <div className="space-y-2 text-sm font-inter text-muted-foreground">
+                <h3 className="font-bold font-bold text-indigo-medina mb-3">Détails de votre réservation</h3>
+                <div className="space-y-2 text-sm font-medium text-muted-foreground">
                   <div className="flex justify-between">
                     <span>Référence :</span>
                     <span className="font-semibold text-indigo-medina">{bookingId}</span>
@@ -305,7 +305,7 @@ const BookingFlow = () => {
               </div>
               <Button
                 onClick={resetBooking}
-                className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-inter"
+                className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-medium"
               >
                 Nouvelle réservation
               </Button>
@@ -327,10 +327,10 @@ const BookingFlow = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-playfair font-bold text-indigo-medina mb-4">
+              <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-4">
                 Erreur de réservation
               </h2>
-              <p className="text-muted-foreground font-inter mb-6">
+              <p className="text-muted-foreground font-medium mb-6">
                 Une erreur est survenue lors de la création de votre réservation. Veuillez réessayer.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -343,7 +343,7 @@ const BookingFlow = () => {
                 </Button>
                 <Button
                   onClick={() => window.location.href = '/'}
-                  className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-inter"
+                  className="bg-indigo-medina hover:bg-indigo-medina/90 text-white font-medium"
                 >
                   Retour à l'accueil
                 </Button>

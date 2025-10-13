@@ -186,6 +186,11 @@ const RoomPricing = () => {
   const savePricingData = (updatedData: RoomPricingData[]) => {
     setPricingData(updatedData);
     localStorage.setItem('roomPricing', JSON.stringify(updatedData));
+    
+    // Trigger custom event to notify other components
+    window.dispatchEvent(new CustomEvent('roomPricingUpdated'));
+    
+    toast.success("Tarifs des chambres mis à jour avec succès");
   };
 
   const saveSpecialOffers = (updatedOffers: SpecialOffer[]) => {
@@ -245,12 +250,23 @@ const RoomPricing = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-indigo-medina mb-2">
+          <h1 className="text-3xl font-bold font-bold text-indigo-medina mb-2">
             Gestion des Tarifs
           </h1>
-          <p className="text-muted-foreground font-inter">
+          <p className="text-muted-foreground font-medium">
             Simplifier la gestion des prix selon saisons et canaux
           </p>
+        </div>
+        <div className="text-right">
+          <div className="bg-logo-gold/10 border border-logo-gold/20 rounded-lg p-3 max-w-xs">
+            <div className="flex items-center space-x-2 text-logo-gold mb-1">
+              <AlertCircle className="w-4 h-4" />
+              <span className="font-semibold text-sm">Aide</span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Les modifications de prix sont automatiquement synchronisées avec les pages publiques des chambres.
+            </p>
+          </div>
         </div>
         <div className="flex gap-4">
           <Button variant="outline">
@@ -325,7 +341,7 @@ const RoomPricing = () => {
           {/* Tableau des tarifs */}
           <Card className="shadow-sm border-0 bg-card">
             <CardHeader>
-              <CardTitle className="text-xl font-playfair text-indigo-medina">
+              <CardTitle className="text-xl font-bold text-indigo-medina">
                 Tarifs par chambre et saison
               </CardTitle>
             </CardHeader>
@@ -348,7 +364,7 @@ const RoomPricing = () => {
                       <TableRow key={room.id}>
                         <TableCell>
                           <div>
-                            <div className="font-inter font-semibold">{room.roomNumber}</div>
+                            <div className="font-medium font-semibold">{room.roomNumber}</div>
                             <div className="text-sm text-muted-foreground">{room.title}</div>
                             <Badge variant="outline" className="mt-1">
                               {room.category}
@@ -428,7 +444,7 @@ const RoomPricing = () => {
           {/* Informations saisons */}
           <Card className="shadow-sm border-0 bg-card mt-6">
             <CardHeader>
-              <CardTitle className="text-lg font-playfair text-indigo-medina">
+              <CardTitle className="text-lg font-bold text-indigo-medina">
                 Périodes de saisons
               </CardTitle>
             </CardHeader>
@@ -437,7 +453,7 @@ const RoomPricing = () => {
                 <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-lg">
                   <Calendar className="w-8 h-8 text-blue-600" />
                   <div>
-                    <h3 className="font-inter font-semibold text-blue-800">Basse saison</h3>
+                    <h3 className="font-medium font-semibold text-blue-800">Basse saison</h3>
                     <p className="text-sm text-blue-600">Novembre - Mars</p>
                     <p className="text-xs text-blue-500">Tarifs réduits (-20%)</p>
                   </div>
@@ -445,7 +461,7 @@ const RoomPricing = () => {
                 <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-lg">
                   <Calendar className="w-8 h-8 text-orange-600" />
                   <div>
-                    <h3 className="font-inter font-semibold text-orange-800">Haute saison</h3>
+                    <h3 className="font-medium font-semibold text-orange-800">Haute saison</h3>
                     <p className="text-sm text-orange-600">Juin - Septembre</p>
                     <p className="text-xs text-orange-500">Tarifs majorés (+30%)</p>
                   </div>
@@ -461,7 +477,7 @@ const RoomPricing = () => {
             {/* Petit-déjeuner */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Coffee className="w-5 h-5" />
                   Petit-déjeuner
                 </CardTitle>
@@ -471,7 +487,7 @@ const RoomPricing = () => {
                   {pricingData.map((room) => (
                     <div key={room.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div>
-                        <div className="font-inter font-semibold">{room.roomNumber}</div>
+                        <div className="font-medium font-semibold">{room.roomNumber}</div>
                         <div className="text-sm text-muted-foreground">{room.title}</div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -495,7 +511,7 @@ const RoomPricing = () => {
             {/* Taxe de séjour */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <DollarSign className="w-5 h-5" />
                   Taxe de séjour
                 </CardTitle>
@@ -512,7 +528,7 @@ const RoomPricing = () => {
                     {pricingData.map((room) => (
                       <div key={room.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                         <div>
-                          <div className="font-inter font-semibold">{room.roomNumber}</div>
+                          <div className="font-medium font-semibold">{room.roomNumber}</div>
                           <div className="text-sm text-muted-foreground">{room.title}</div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -534,7 +550,7 @@ const RoomPricing = () => {
             {/* Lit supplémentaire */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina flex items-center gap-2">
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
                   <Bed className="w-5 h-5" />
                   Lit supplémentaire
                 </CardTitle>
@@ -544,7 +560,7 @@ const RoomPricing = () => {
                   {pricingData.map((room) => (
                     <div key={room.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div>
-                        <div className="font-inter font-semibold">{room.roomNumber}</div>
+                        <div className="font-medium font-semibold">{room.roomNumber}</div>
                         <div className="text-sm text-muted-foreground">{room.title}</div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -565,7 +581,7 @@ const RoomPricing = () => {
             {/* Résumé des options */}
             <Card className="shadow-sm border-0 bg-card">
               <CardHeader>
-                <CardTitle className="text-lg font-playfair text-indigo-medina">
+                <CardTitle className="text-lg font-bold text-indigo-medina">
                   Résumé des options
                 </CardTitle>
               </CardHeader>
@@ -574,7 +590,7 @@ const RoomPricing = () => {
                   <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                     <div className="flex items-center gap-2">
                       <Coffee className="w-4 h-4 text-green-600" />
-                      <span className="font-inter font-semibold">Petit-déjeuner inclus</span>
+                      <span className="font-medium font-semibold">Petit-déjeuner inclus</span>
                     </div>
                     <Badge className="bg-green-100 text-green-800">
                       {pricingData.filter(room => room.breakfastIncluded).length} chambres
@@ -583,7 +599,7 @@ const RoomPricing = () => {
                   <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                     <div className="flex items-center gap-2">
                       <DollarSign className="w-4 h-4 text-blue-600" />
-                      <span className="font-inter font-semibold">Taxe de séjour moyenne</span>
+                      <span className="font-medium font-semibold">Taxe de séjour moyenne</span>
                     </div>
                     <Badge className="bg-blue-100 text-blue-800">
                       {Math.round(pricingData.reduce((sum, room) => sum + room.cityTax, 0) / pricingData.length)} TND
@@ -592,7 +608,7 @@ const RoomPricing = () => {
                   <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
                     <div className="flex items-center gap-2">
                       <Bed className="w-4 h-4 text-purple-600" />
-                      <span className="font-inter font-semibold">Lit supplémentaire moyen</span>
+                      <span className="font-medium font-semibold">Lit supplémentaire moyen</span>
                     </div>
                     <Badge className="bg-purple-100 text-purple-800">
                       {Math.round(pricingData.reduce((sum, room) => sum + room.extraBedPrice, 0) / pricingData.length)} TND
@@ -607,7 +623,7 @@ const RoomPricing = () => {
         {/* Offres spéciales */}
         <TabsContent value="offers" className="mt-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-playfair font-bold text-indigo-medina">
+            <h2 className="text-xl font-bold font-bold text-indigo-medina">
               Offres spéciales et codes promo
             </h2>
             <Button 
@@ -627,7 +643,7 @@ const RoomPricing = () => {
               <Card key={offer.id} className="shadow-sm border-0 bg-card">
                 <CardHeader>
                   <div className="flex justify-between items-start">
-                    <CardTitle className="text-lg font-playfair text-indigo-medina">
+                    <CardTitle className="text-lg font-bold text-indigo-medina">
                       {offer.name}
                     </CardTitle>
                     <div className="flex gap-2">
@@ -720,14 +736,14 @@ const RoomPricing = () => {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-2xl font-bold text-indigo-medina">
               Configuration des tarifs
             </DialogTitle>
           </DialogHeader>
           {selectedRoom && (
             <div className="space-y-6">
               <div>
-                <h3 className="font-inter font-semibold text-lg mb-3">
+                <h3 className="font-medium font-semibold text-lg mb-3">
                   {selectedRoom.roomNumber} - {selectedRoom.title}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -791,7 +807,7 @@ const RoomPricing = () => {
       <Dialog open={isOfferDialogOpen} onOpenChange={setIsOfferDialogOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-playfair text-indigo-medina">
+            <DialogTitle className="text-2xl font-bold text-indigo-medina">
               {editingOffer ? "Modifier l'offre" : "Nouvelle offre spéciale"}
             </DialogTitle>
           </DialogHeader>

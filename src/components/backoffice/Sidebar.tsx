@@ -115,7 +115,7 @@ const Sidebar = ({ activeSection, onSectionChange, isOpen, onToggle, userRole }:
                             alt="Dar Dhiafa Klee"
                             className="h-24 w-auto object-contain"
                           />
-                <span className="font-playfair font-bold text-indigo-medina">
+                <span className="font-bold font-bold text-indigo-medina">
                   Back Office
                 </span>
               </motion.div>
@@ -158,7 +158,7 @@ const Sidebar = ({ activeSection, onSectionChange, isOpen, onToggle, userRole }:
                     <motion.span
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="font-inter font-medium"
+                      className="font-medium font-medium"
                     >
                       {item.label}
                     </motion.span>

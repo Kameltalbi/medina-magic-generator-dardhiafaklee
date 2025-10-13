@@ -31,7 +31,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { User } from "@/hooks/useAuth";
+interface User {
+  name: string;
+  email: string;
+}
 
 interface HeaderProps {
   onMenuToggle: () => void;

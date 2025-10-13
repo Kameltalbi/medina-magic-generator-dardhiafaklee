@@ -81,8 +81,57 @@ const Rooms = () => {
     }
   };
 
+  // État pour les données des chambres avec synchronisation
+  const [roomsDataState, setRoomsDataState] = useState(roomsData);
+
+  // Fonction pour charger les données des chambres
+  const loadRoomsData = () => {
+    const savedPricing = localStorage.getItem('roomPricing');
+    if (savedPricing) {
+      try {
+        const pricingData = JSON.parse(savedPricing);
+        // Mettre à jour les prix des chambres avec les données de l'administration
+        const updatedRooms = roomsData.map(room => {
+          const pricingInfo = pricingData.find((p: any) => p.id === room.id);
+          return pricingInfo ? { ...room, pricePerNight: pricingInfo.pricePerNight } : room;
+        });
+        setRoomsDataState(updatedRooms);
+      } catch (error) {
+        console.error('Error loading room pricing from localStorage:', error);
+        setRoomsDataState(roomsData);
+      }
+    } else {
+      setRoomsDataState(roomsData);
+    }
+  };
+
+  // Charger les données au montage du composant
+  useEffect(() => {
+    loadRoomsData();
+
+    // Écouter les changements de localStorage
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'roomPricing' && e.newValue) {
+        loadRoomsData();
+      }
+    };
+
+    // Écouter les événements personnalisés
+    const handleCustomUpdate = () => {
+      loadRoomsData();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('roomPricingUpdated', handleCustomUpdate);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('roomPricingUpdated', handleCustomUpdate);
+    };
+  }, []);
+
   // Convertir les données des chambres pour l'affichage et trier par prix décroissant
-  const rooms = roomsData
+  const rooms = roomsDataState
     .map(room => ({
       id: room.id,
       name: {
@@ -144,7 +193,7 @@ const Rooms = () => {
             variants={staggerContainer}
           >
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Chambres & Suites'}
@@ -152,7 +201,7 @@ const Rooms = () => {
               {currentLang === 'ar' && 'الغرف والأجنحة'}
             </motion.h1>
             <motion.p
-              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Découvrez nos chambres et suites élégamment décorées, alliant confort moderne et charme traditionnel tunisien dans le cœur historique de Kairouan.'}
@@ -252,7 +301,7 @@ const Rooms = () => {
                         if (status === 'occupied') {
                           return (
                             <div className="absolute inset-0 bg-red-500/20 backdrop-blur-[1px] flex items-center justify-center">
-                              <div className="bg-red-600 text-white px-4 py-2 rounded-lg font-inter font-bold text-sm shadow-lg">
+                              <div className="bg-red-600 text-white px-4 py-2 rounded-lg font-medium font-bold text-sm shadow-lg">
                                 🚫 OCCUPÉE
                               </div>
                             </div>
@@ -261,11 +310,11 @@ const Rooms = () => {
                         return null;
                       })()}
                       <div className="absolute top-4 left-4 flex flex-col gap-2">
-                        <Badge className="bg-terre-cuite text-white font-inter font-medium">
+                        <Badge className="bg-terre-cuite text-white font-medium font-medium">
                           {room.category}
                         </Badge>
                         {room.price >= 350 && (
-                          <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-inter font-bold text-xs">
+                          <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-medium font-bold text-xs">
                             ⭐ Premium
                           </Badge>
                         )}
@@ -273,7 +322,7 @@ const Rooms = () => {
                         {(() => {
                           const status = getRoomStatusInfo(room.id);
                           return (
-                            <Badge className={`${getStatusBadge(status)} font-inter font-medium text-xs flex items-center gap-1`}>
+                            <Badge className={`${getStatusBadge(status)} font-medium font-medium text-xs flex items-center gap-1`}>
                               {getStatusIcon(status)}
                               {getStatusText(status)}
                             </Badge>
@@ -283,7 +332,7 @@ const Rooms = () => {
                       <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
                         <div className="flex items-center space-x-1">
                           <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="font-inter font-semibold text-sm">{room.rating}</span>
+                          <span className="font-medium font-semibold text-sm">{room.rating}</span>
                           <span className="text-muted-foreground text-xs">({room.reviews})</span>
                         </div>
                       </div>
@@ -293,10 +342,10 @@ const Rooms = () => {
                       {/* Room Header */}
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="text-xl font-playfair font-bold text-indigo-medina mb-1">
+                          <h3 className="text-xl font-bold font-bold text-indigo-medina mb-1">
                             {room.name[currentLang]}
                           </h3>
-                          <div className="flex items-center space-x-4 text-sm text-muted-foreground font-inter">
+                          <div className="flex items-center space-x-4 text-sm text-muted-foreground font-medium">
                             <span>{room.size}</span>
                             <span>•</span>
                             <span>{room.capacity} {currentLang === 'fr' ? 'personnes' : currentLang === 'en' ? 'guests' : 'أشخاص'}</span>
@@ -304,7 +353,7 @@ const Rooms = () => {
                         </div>
                         <div className="text-right">
                           <div className="flex items-center justify-end space-x-2">
-                            <div className="text-2xl font-playfair font-bold text-terre-cuite">
+                            <div className="text-2xl font-bold font-bold text-terre-cuite">
                               {formatPrice(room.price)}
                             </div>
                             {room.price >= 350 && (
@@ -313,7 +362,7 @@ const Rooms = () => {
                               </div>
                             )}
                           </div>
-                          <div className="text-sm text-muted-foreground font-inter">
+                          <div className="text-sm text-muted-foreground font-medium">
                             {currentLang === 'fr' && 'par nuit'}
                             {currentLang === 'en' && 'per night'}
                             {currentLang === 'ar' && 'في الليلة'}
@@ -322,20 +371,20 @@ const Rooms = () => {
                       </div>
 
                       {/* Description */}
-                      <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-4">
+                      <p className="text-muted-foreground font-medium text-sm leading-relaxed mb-4">
                         {room.description[currentLang]}
                       </p>
 
                       {/* Amenities */}
                       <div className="mb-6">
-                        <h4 className="font-inter font-semibold text-indigo-medina mb-3 text-sm">
+                        <h4 className="font-medium font-semibold text-indigo-medina mb-3 text-sm">
                           {currentLang === 'fr' && 'Équipements'}
                           {currentLang === 'en' && 'Amenities'}
                           {currentLang === 'ar' && 'المرافق'}
                         </h4>
                         <div className="grid grid-cols-2 gap-2">
                           {room.amenities.slice(0, 4).map((amenity, idx) => (
-                            <div key={idx} className="flex items-center space-x-2 text-xs font-inter">
+                            <div key={idx} className="flex items-center space-x-2 text-xs font-medium">
                               <amenity.icon className="w-3 h-3 text-vert-porte" />
                               <span className="text-muted-foreground">{amenity.name[currentLang]}</span>
                             </div>
@@ -343,7 +392,7 @@ const Rooms = () => {
                         </div>
                         {room.amenities.length > 4 && (
                           <button 
-                            className="text-xs text-terre-cuite font-inter font-medium mt-2 hover:underline"
+                            className="text-xs text-terre-cuite font-medium font-medium mt-2 hover:underline"
                             onClick={() => setSelectedRoom(selectedRoom === room.id ? null : room.id)}
                           >
                             {selectedRoom === room.id 
@@ -364,21 +413,21 @@ const Rooms = () => {
                         >
                           <div className="grid grid-cols-1 gap-2 border-t border-border pt-4">
                             {room.amenities.slice(4).map((amenity, idx) => (
-                              <div key={idx} className="flex items-center space-x-2 text-xs font-inter">
+                              <div key={idx} className="flex items-center space-x-2 text-xs font-medium">
                                 <amenity.icon className="w-3 h-3 text-vert-porte" />
                                 <span className="text-muted-foreground">{amenity.name[currentLang]}</span>
                               </div>
                             ))}
                           </div>
                           <div className="mt-4">
-                            <h5 className="font-inter font-semibold text-indigo-medina mb-2 text-sm">
+                            <h5 className="font-medium font-semibold text-indigo-medina mb-2 text-sm">
                               {currentLang === 'fr' && 'Points forts'}
                               {currentLang === 'en' && 'Highlights'}
                               {currentLang === 'ar' && 'المميزات'}
                             </h5>
                             <div className="space-y-1">
                               {room.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-center space-x-2 text-xs font-inter">
+                                <div key={idx} className="flex items-center space-x-2 text-xs font-medium">
                                   <Check className="w-3 h-3 text-vert-porte" />
                                   <span className="text-muted-foreground">{feature[currentLang]}</span>
                                 </div>
@@ -395,7 +444,7 @@ const Rooms = () => {
                           if (status === 'occupied') {
                             return (
                               <Button 
-                                className="flex-1 bg-red-500 text-white font-inter font-semibold cursor-not-allowed"
+                                className="flex-1 bg-red-500 text-white font-medium font-semibold cursor-not-allowed"
                                 size="sm"
                                 disabled
                               >
@@ -408,7 +457,7 @@ const Rooms = () => {
                           } else if (status === 'reserved') {
                             return (
                               <Button 
-                                className="flex-1 bg-yellow-500 text-white font-inter font-semibold cursor-not-allowed"
+                                className="flex-1 bg-yellow-500 text-white font-medium font-semibold cursor-not-allowed"
                                 size="sm"
                                 disabled
                               >
@@ -421,7 +470,7 @@ const Rooms = () => {
                           } else if (status === 'maintenance') {
                             return (
                               <Button 
-                                className="flex-1 bg-gray-500 text-white font-inter font-semibold cursor-not-allowed"
+                                className="flex-1 bg-gray-500 text-white font-medium font-semibold cursor-not-allowed"
                                 size="sm"
                                 disabled
                               >
@@ -434,7 +483,7 @@ const Rooms = () => {
                           } else {
                             return (
                               <Button 
-                                className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold transition-all duration-300"
+                                className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold transition-all duration-300"
                                 size="sm"
                                 onClick={() => navigate('/booking')}
                               >
@@ -448,7 +497,7 @@ const Rooms = () => {
                         })()}
                         <Button 
                           variant="outline" 
-                          className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-semibold transition-all duration-300"
+                          className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-medium font-semibold transition-all duration-300"
                           size="sm"
                         >
                           {currentLang === 'fr' && 'Voir détails'}
@@ -476,7 +525,7 @@ const Rooms = () => {
             variants={staggerContainer}
           >
             <motion.h2
-              className="text-3xl md:text-4xl font-playfair font-bold text-indigo-medina mb-6"
+              className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-6"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Besoin d\'aide pour choisir ?'}
@@ -484,7 +533,7 @@ const Rooms = () => {
               {currentLang === 'ar' && 'تحتاج مساعدة في الاختيار؟'}
             </motion.h2>
             <motion.p
-              className="text-lg text-muted-foreground font-inter mb-8 max-w-2xl mx-auto"
+              className="text-lg text-muted-foreground font-medium mb-8 max-w-2xl mx-auto"
               variants={staggerItem}
             >
               {currentLang === 'fr' && 'Notre équipe est là pour vous conseiller et vous aider à trouver l\'hébergement parfait pour votre séjour à Kairouan.'}
@@ -497,7 +546,7 @@ const Rooms = () => {
             >
               <Button
                 size="lg"
-                className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
               >
                 {currentLang === 'fr' && 'Contactez-nous'}
                 {currentLang === 'en' && 'Contact Us'}
@@ -506,7 +555,7 @@ const Rooms = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
               >
                 {currentLang === 'fr' && 'Voir disponibilités'}
                 {currentLang === 'en' && 'Check Availability'}

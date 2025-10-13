@@ -63,13 +63,13 @@ const Gallery360 = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-bold text-indigo-medina mb-4 sm:mb-6 px-4"
               variants={staggerItem}
             >
               {t("gallery.title")}
             </motion.h2>
             <motion.p
-              className="text-base sm:text-lg md:text-xl text-muted-foreground font-inter max-w-3xl mx-auto leading-relaxed px-4"
+              className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
               {t("gallery.subtitle")}
@@ -80,13 +80,13 @@ const Gallery360 = () => {
             {/* Photo Gallery */}
             <motion.div variants={staggerItem}>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
+                <h3 className="text-2xl font-bold font-bold text-indigo-medina">
                   {t("gallery.photoGallery")}
                 </h3>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter"
+                  className="border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-medium"
                 >
                   <Camera className="w-4 h-4 mr-2" />
                   {t("gallery.viewAll")}
@@ -118,10 +118,10 @@ const Gallery360 = () => {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-indigo-medina/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 right-4">
-                        <span className="inline-block bg-terre-cuite text-white px-2 py-1 rounded-full text-xs font-inter font-medium mb-2">
+                        <span className="inline-block bg-terre-cuite text-white px-2 py-1 rounded-full text-xs font-medium font-medium mb-2">
                           {image.category}
                         </span>
-                        <p className="text-white font-inter font-medium text-sm">
+                        <p className="text-white font-medium font-medium text-sm">
                           {image.alt}
                         </p>
                       </div>
@@ -139,13 +139,13 @@ const Gallery360 = () => {
             {/* Virtual Tour */}
             <motion.div variants={staggerItem}>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-playfair font-bold text-indigo-medina">
+                <h3 className="text-2xl font-bold font-bold text-indigo-medina">
                   {t("gallery.virtualTour")}
                 </h3>
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-terre-cuite text-terre-cuite hover:bg-terre-cuite hover:text-white font-inter"
+                  className="border-terre-cuite text-terre-cuite hover:bg-terre-cuite hover:text-white font-medium"
                 >
                   <Eye className="w-4 h-4 mr-2" />
                   {t("gallery.fullscreen")}
@@ -161,16 +161,16 @@ const Gallery360 = () => {
                       <Play className="w-10 h-10 ml-1" />
                     </div>
                     <div>
-                      <h4 className="font-playfair font-bold text-xl mb-2">
+                      <h4 className="font-bold font-bold text-xl mb-2">
                         {t("gallery.tourTitle")}
                       </h4>
-                      <p className="font-inter text-sm opacity-90 max-w-xs mx-auto">
+                      <p className="font-medium text-sm opacity-90 max-w-xs mx-auto">
                         {t("gallery.tourDescription")}
                       </p>
                     </div>
                     <Button
                       size="lg"
-                      className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-6 py-3"
+                      className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-6 py-3"
                     >
                       {t("gallery.startTour")}
                     </Button>
@@ -193,15 +193,15 @@ const Gallery360 = () => {
 
               {/* Virtual Tour Features */}
               <div className="mt-6 space-y-4">
-                <div className="flex items-center space-x-3 text-sm font-inter">
+                <div className="flex items-center space-x-3 text-sm font-medium">
                   <div className="w-2 h-2 bg-terre-cuite rounded-full"></div>
                   <span className="text-muted-foreground">{t("gallery.feature1")}</span>
                 </div>
-                <div className="flex items-center space-x-3 text-sm font-inter">
+                <div className="flex items-center space-x-3 text-sm font-medium">
                   <div className="w-2 h-2 bg-vert-porte rounded-full"></div>
                   <span className="text-muted-foreground">{t("gallery.feature2")}</span>
                 </div>
-                <div className="flex items-center space-x-3 text-sm font-inter">
+                <div className="flex items-center space-x-3 text-sm font-medium">
                   <div className="w-2 h-2 bg-indigo-medina rounded-full"></div>
                   <span className="text-muted-foreground">{t("gallery.feature3")}</span>
                 </div>
@@ -214,23 +214,23 @@ const Gallery360 = () => {
             className="text-center bg-gradient-to-r from-sable to-card rounded-2xl p-8 shadow-soft border border-border/20"
             variants={staggerItem}
           >
-            <h3 className="text-2xl font-playfair font-bold text-indigo-medina mb-4">
+            <h3 className="text-2xl font-bold font-bold text-indigo-medina mb-4">
               {t("gallery.ctaTitle")}
             </h3>
-            <p className="text-muted-foreground font-inter mb-6 max-w-2xl mx-auto">
+            <p className="text-muted-foreground font-medium mb-6 max-w-2xl mx-auto">
               {t("gallery.ctaDescription")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
               >
                 {t("gallery.bookNow")}
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-inter font-semibold px-8 py-3 transition-all duration-300"
+                className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
               >
                 {t("gallery.requestQuote")}
               </Button>

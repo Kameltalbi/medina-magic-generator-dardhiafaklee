@@ -110,15 +110,15 @@ const AvailableRooms = () => {
           variants={staggerContainer}
         >
           <motion.div variants={staggerItem} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-playfair font-bold text-indigo-medina mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-4">
               {t("booking.rooms.title")}
             </h2>
-            <p className="text-lg text-muted-foreground font-inter max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground font-medium max-w-2xl mx-auto">
               {t("booking.rooms.subtitle")}
             </p>
             {bookingDates && (
               <div className="mt-4 p-4 bg-indigo-medina/10 rounded-lg inline-block">
-                <p className="text-sm font-inter text-indigo-medina">
+                <p className="text-sm font-medium text-indigo-medina">
                   {t("booking.rooms.searchResults")}: {bookingDates.checkIn} - {bookingDates.checkOut} 
                   ({bookingDates.guests} {bookingDates.guests === 1 ? t("booking.rooms.guest") : t("booking.rooms.guests")})
                 </p>
@@ -147,13 +147,13 @@ const AvailableRooms = () => {
                   />
                   
                   {/* Price Badge */}
-                  <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-inter font-semibold text-sm shadow-soft">
+                  <div className="absolute top-4 right-4 bg-terre-cuite text-white px-3 py-1 rounded-full font-medium font-semibold text-sm shadow-soft">
                     {formatPrice(room.pricePerNight)} / nuit
                   </div>
                   
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
-                    <Badge className="bg-indigo-medina text-white font-inter font-medium">
+                    <Badge className="bg-indigo-medina text-white font-medium font-medium">
                       {room.category}
                     </Badge>
                   </div>
@@ -163,7 +163,7 @@ const AvailableRooms = () => {
                     <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
                       <div className="flex items-center space-x-1">
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="font-inter font-semibold text-sm">{room.rating}</span>
+                        <span className="font-medium font-semibold text-sm">{room.rating}</span>
                         <span className="text-muted-foreground text-xs">({room.reviews})</span>
                       </div>
                     </div>
@@ -174,7 +174,7 @@ const AvailableRooms = () => {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vert-porte text-white px-4 py-2 rounded-full font-inter font-semibold text-sm shadow-soft flex items-center space-x-2"
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-vert-porte text-white px-4 py-2 rounded-full font-medium font-semibold text-sm shadow-soft flex items-center space-x-2"
                     >
                       <Check className="w-4 h-4" />
                       <span>Sélectionnée</span>
@@ -185,33 +185,33 @@ const AvailableRooms = () => {
                 {/* Room Content */}
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-playfair font-bold text-indigo-medina">
+                    <h3 className="text-xl font-bold font-bold text-indigo-medina">
                       {room.title}
                     </h3>
                         <div className="text-right">
-                          <div className="text-2xl font-playfair font-bold text-terre-cuite">
+                          <div className="text-2xl font-bold font-bold text-terre-cuite">
                             {formatPrice(room.pricePerNight)}
                           </div>
-                      <div className="text-sm text-muted-foreground font-inter">
+                      <div className="text-sm text-muted-foreground font-medium">
                         par nuit
                       </div>
                     </div>
                   </div>
 
                   {/* Room Details */}
-                  <div className="flex items-center space-x-4 text-sm text-muted-foreground font-inter mb-3">
+                  <div className="flex items-center space-x-4 text-sm text-muted-foreground font-medium mb-3">
                     {room.size && <span>{room.size}</span>}
                     <span>•</span>
                     <span>{room.capacity} {room.capacity === 1 ? 'personne' : 'personnes'}</span>
                   </div>
                   
-                  <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-4">
+                  <p className="text-muted-foreground font-medium text-sm leading-relaxed mb-4">
                     {room.description}
                   </p>
 
                   {/* Amenities */}
                   <div className="mb-4">
-                    <h4 className="font-inter font-semibold text-indigo-medina mb-2 text-sm">
+                    <h4 className="font-medium font-semibold text-indigo-medina mb-2 text-sm">
                       Équipements
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -220,7 +220,7 @@ const AvailableRooms = () => {
                         return (
                           <div
                             key={i}
-                            className="flex items-center space-x-1 text-xs bg-vert-porte/10 text-vert-porte px-2 py-1 rounded-full font-inter"
+                            className="flex items-center space-x-1 text-xs bg-vert-porte/10 text-vert-porte px-2 py-1 rounded-full font-medium"
                           >
                             <IconComponent className="w-3 h-3" />
                             <span>{amenity}</span>
@@ -230,7 +230,7 @@ const AvailableRooms = () => {
                     </div>
                     {room.amenities.length > 4 && (
                       <button 
-                        className="text-xs text-terre-cuite font-inter font-medium mt-2 hover:underline"
+                        className="text-xs text-terre-cuite font-medium font-medium mt-2 hover:underline"
                         onClick={() => toggleAmenities(room.id)}
                       >
                         {showAllAmenities[room.id] 
@@ -244,12 +244,12 @@ const AvailableRooms = () => {
                   {/* Features */}
                   {room.features && room.features.length > 0 && (
                     <div className="mb-6">
-                      <h4 className="font-inter font-semibold text-indigo-medina mb-2 text-sm">
+                      <h4 className="font-medium font-semibold text-indigo-medina mb-2 text-sm">
                         Points forts
                       </h4>
                       <div className="space-y-1">
                         {room.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center space-x-2 text-xs font-inter">
+                          <div key={idx} className="flex items-center space-x-2 text-xs font-medium">
                             <Check className="w-3 h-3 text-vert-porte" />
                             <span className="text-muted-foreground">{feature}</span>
                           </div>
@@ -262,7 +262,7 @@ const AvailableRooms = () => {
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button
                       variant="outline"
-                      className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white transition-colors font-inter"
+                      className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white transition-colors font-medium"
                     >
                       <Info className="w-4 h-4 mr-2" />
                       Détails
@@ -270,7 +270,7 @@ const AvailableRooms = () => {
                     
                     <Button
                       onClick={() => handleRoomSelection(room)}
-                      className={`flex-1 font-inter font-semibold transition-all duration-300 shadow-soft hover:shadow-medium ${
+                      className={`flex-1 font-medium font-semibold transition-all duration-300 shadow-soft hover:shadow-medium ${
                         selectedRoom?.id === room.id
                           ? "bg-vert-porte hover:bg-vert-porte/90 text-white"
                           : "bg-terre-cuite hover:bg-terre-cuite/90 text-white"
@@ -292,10 +292,10 @@ const AvailableRooms = () => {
               className="text-center py-16"
             >
               <div className="text-6xl mb-4">🏠</div>
-              <h3 className="text-2xl font-playfair font-bold text-indigo-medina mb-2">
+              <h3 className="text-2xl font-bold font-bold text-indigo-medina mb-2">
                 Aucune chambre disponible
               </h3>
-              <p className="text-muted-foreground font-inter">
+              <p className="text-muted-foreground font-medium">
                 Essayez d'autres dates pour voir les disponibilités
               </p>
             </motion.div>

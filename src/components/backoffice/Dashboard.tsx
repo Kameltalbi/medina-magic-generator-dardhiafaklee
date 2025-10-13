@@ -116,10 +116,10 @@ const Dashboard = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-indigo-medina mb-2">
+          <h1 className="text-3xl font-bold font-bold text-indigo-medina mb-2">
             Tableau de bord
           </h1>
-          <p className="text-muted-foreground font-inter">
+          <p className="text-muted-foreground font-medium">
             Vue d'ensemble immédiate de l'activité • Dernière mise à jour: {lastUpdate.toLocaleTimeString('fr-FR')}
           </p>
         </div>
@@ -143,10 +143,10 @@ const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-inter text-muted-foreground mb-1">
+                  <p className="text-sm font-medium text-muted-foreground mb-1">
                     Arrivées du jour
                   </p>
-                  <p className="text-2xl font-playfair font-bold text-green-600">
+                  <p className="text-2xl font-bold font-bold text-green-600">
                     {dailySummary.arrivals}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -170,10 +170,10 @@ const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-inter text-muted-foreground mb-1">
+                  <p className="text-sm font-medium text-muted-foreground mb-1">
                     Départs du jour
                   </p>
-                  <p className="text-2xl font-playfair font-bold text-blue-600">
+                  <p className="text-2xl font-bold font-bold text-blue-600">
                     {dailySummary.departures}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -197,10 +197,10 @@ const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-inter text-muted-foreground mb-1">
+                  <p className="text-sm font-medium text-muted-foreground mb-1">
                     En attente
                   </p>
-                  <p className="text-2xl font-playfair font-bold text-orange-600">
+                  <p className="text-2xl font-bold font-bold text-orange-600">
                     {dailySummary.pendingReservations}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -224,10 +224,10 @@ const Dashboard = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-inter text-muted-foreground mb-1">
+                  <p className="text-sm font-medium text-muted-foreground mb-1">
                     Taux d'occupation
                   </p>
-                  <p className="text-2xl font-playfair font-bold text-purple-600">
+                  <p className="text-2xl font-bold font-bold text-purple-600">
                     {keyIndicators.occupancyRate.today}%
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
@@ -248,7 +248,7 @@ const Dashboard = () => {
         {/* Indicateurs clés */}
         <Card className="shadow-sm border-0 bg-card">
           <CardHeader>
-            <CardTitle className="text-xl font-playfair text-indigo-medina flex items-center">
+            <CardTitle className="text-xl font-bold text-indigo-medina flex items-center">
               <TrendingUp className="w-5 h-5 mr-2" />
               Indicateurs clés
             </CardTitle>
@@ -258,11 +258,11 @@ const Dashboard = () => {
               {/* Taux d'occupation */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-inter font-semibold text-sm">Taux d'occupation</p>
+                  <p className="font-medium font-semibold text-sm">Taux d'occupation</p>
                   <p className="text-xs text-muted-foreground">Mois en cours</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-playfair font-bold text-indigo-medina">
+                  <p className="text-2xl font-bold font-bold text-indigo-medina">
                     {keyIndicators.occupancyRate.month}%
                   </p>
                   <p className="text-xs text-green-600">+5% vs mois dernier</p>
@@ -272,11 +272,11 @@ const Dashboard = () => {
               {/* Revenu mensuel */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-inter font-semibold text-sm">Revenu mensuel</p>
+                  <p className="font-medium font-semibold text-sm">Revenu mensuel</p>
                   <p className="text-xs text-muted-foreground">Objectif: {keyIndicators.monthlyRevenue.target.toLocaleString()} TND</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-playfair font-bold text-terre-cuite">
+                  <p className="text-2xl font-bold font-bold text-terre-cuite">
                     {keyIndicators.monthlyRevenue.current.toLocaleString()} TND
                   </p>
                   <p className="text-xs text-green-600">{keyIndicators.monthlyRevenue.trend}</p>
@@ -297,7 +297,7 @@ const Dashboard = () => {
         {/* Sources de réservation */}
         <Card className="shadow-sm border-0 bg-card">
           <CardHeader>
-            <CardTitle className="text-xl font-playfair text-indigo-medina flex items-center">
+            <CardTitle className="text-xl font-bold text-indigo-medina flex items-center">
               <Globe className="w-5 h-5 mr-2" />
               Sources de réservation
             </CardTitle>
@@ -308,7 +308,7 @@ const Dashboard = () => {
                 <div key={source.name} className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className="w-3 h-3 rounded-full bg-terre-cuite"></div>
-                    <span className="font-inter text-sm">{source.name}</span>
+                    <span className="font-medium text-sm">{source.name}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-24 bg-gray-200 rounded-full h-2">
@@ -318,7 +318,7 @@ const Dashboard = () => {
                       ></div>
                     </div>
                     <div className="text-right">
-                      <span className="text-sm font-inter font-semibold w-8">
+                      <span className="text-sm font-medium font-semibold w-8">
                         {source.percentage}%
                       </span>
                       <p className="text-xs text-muted-foreground">{source.bookings} réservations</p>
@@ -336,7 +336,7 @@ const Dashboard = () => {
         {/* Alertes */}
         <Card className="shadow-sm border-0 bg-card">
           <CardHeader>
-            <CardTitle className="text-xl font-playfair text-indigo-medina flex items-center">
+            <CardTitle className="text-xl font-bold text-indigo-medina flex items-center">
               <AlertTriangle className="w-5 h-5 mr-2" />
               Alertes importantes
             </CardTitle>
@@ -349,7 +349,7 @@ const Dashboard = () => {
                     <div className="flex items-center space-x-3">
                       {getSeverityIcon(alert.severity)}
                       <div>
-                        <AlertDescription className="font-inter font-semibold">
+                        <AlertDescription className="font-medium font-semibold">
                           {alert.title}
                         </AlertDescription>
                         <p className="text-xs opacity-75 mt-1">{alert.description}</p>
@@ -368,7 +368,7 @@ const Dashboard = () => {
         {/* Réservations récentes */}
         <Card className="shadow-sm border-0 bg-card">
           <CardHeader>
-            <CardTitle className="text-xl font-playfair text-indigo-medina flex items-center">
+            <CardTitle className="text-xl font-bold text-indigo-medina flex items-center">
               <Users className="w-5 h-5 mr-2" />
               Réservations récentes
             </CardTitle>
@@ -382,7 +382,7 @@ const Dashboard = () => {
                       <Users className="w-4 h-4 text-indigo-medina" />
                     </div>
                     <div>
-                      <p className="font-inter font-semibold text-sm">{booking.guest}</p>
+                      <p className="font-medium font-semibold text-sm">{booking.guest}</p>
                       <p className="text-xs text-muted-foreground">{booking.room} • {booking.checkIn}</p>
                     </div>
                   </div>

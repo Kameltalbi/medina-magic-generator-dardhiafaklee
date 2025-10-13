@@ -16,6 +16,11 @@ All colors MUST be HSL.
     --sable: 44 38% 91%;                 /* #F2EBDD - Sable clair */
     --vert-porte: 173 51% 37%;           /* #2D8C7F - Vert porte */
     --vert-porte-hover: 173 55% 30%;     /* #247066 - Vert porte hover */
+    
+    /* Logo Colors */
+    --logo-gold: 45 100% 60%;            /* #FFD700 - Or métallique du logo */
+    --logo-gold-hover: 45 100% 50%;      /* #CC9900 - Or hover */
+    --logo-dark: 0 0% 15%;               /* #262626 - Noir profond du logo */
 
     /* Semantic tokens using brand colors */
     --background: var(--sable);
@@ -116,11 +121,12 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+    font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair;
+    font-family: 'Calibri', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .gradient-hero {
