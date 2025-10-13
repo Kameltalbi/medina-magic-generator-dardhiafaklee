@@ -35,13 +35,13 @@ const Header = () => {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <h1 className="text-lg font-bold text-indigo-medina leading-tight">
+            <h1 className="text-lg font-bold text-black leading-tight">
               Dar Dhiafa Paul Klee
             </h1>
-            <h1 className="text-lg font-bold text-indigo-medina leading-tight">
+            <h1 className="text-lg font-bold text-black leading-tight">
               Kairouan
             </h1>
-            <h1 className="text-lg font-bold text-indigo-medina leading-tight">
+            <h1 className="text-lg font-bold text-black leading-tight">
               Hôtel particulier
             </h1>
           </motion.div>
