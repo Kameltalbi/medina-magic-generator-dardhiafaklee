@@ -48,7 +48,7 @@ const Header = () => {
         </Link>
 
         {/* Logo au centre - Responsive */}
-        <div className="absolute left-1/2 transform -translate-x-1/2">
+        <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
           <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
@@ -59,7 +59,7 @@ const Header = () => {
               className="h-16 sm:h-20 md:h-24 w-auto object-contain"
             />
           </motion.div>
-        </div>
+        </Link>
 
         {/* Bouton Menu - Responsive */}
         <button
