@@ -1,7 +1,7 @@
 // Rooms and Suites page - Detailed room listings with photos, descriptions, and booking
 // Features room gallery, amenities, pricing, and availability checking
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
