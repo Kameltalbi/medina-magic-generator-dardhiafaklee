@@ -17,7 +17,7 @@ const Header = () => {
     { label: "Galerie", href: "/gallery", icon: Camera },
     { label: "Tour 360°", href: "/gallery#virtual-tour", icon: Eye },
     { label: "À propos", href: "/#about", icon: Info },
-    { label: "Contact", href: "/#contact", icon: Phone },
+    { label: "Contact", href: "/contact", icon: Phone },
   ];
 
   return (
