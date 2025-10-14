@@ -20,7 +20,7 @@ const Footer = () => {
     {
       name: "Instagram", 
       icon: Instagram,
-      url: "#",
+      url: "https://www.instagram.com/dardhiafapaulklee/",
       color: "hover:text-pink-400",
     },
     {
