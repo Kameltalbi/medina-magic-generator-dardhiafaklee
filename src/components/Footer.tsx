@@ -14,7 +14,7 @@ const Footer = () => {
     {
       name: "Facebook",
       icon: Facebook,
-      url: "#",
+      url: "https://www.facebook.com/profile.php?id=61581954914255",
       color: "hover:text-blue-400",
     },
     {
