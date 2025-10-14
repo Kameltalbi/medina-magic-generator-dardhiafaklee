@@ -78,38 +78,53 @@ const Hero = () => {
             key={currentSlide}
             className="absolute inset-0"
             initial={{ 
-              opacity: 0, 
-              scale: 1.1,
-              filter: "blur(10px)"
+              opacity: 0,
+              x: "100%",
+              scale: 1.1
             }}
             animate={{ 
-              opacity: 1, 
-              scale: 1,
-              filter: "blur(0px)"
+              opacity: 1,
+              x: 0,
+              scale: 1
             }}
             exit={{ 
-              opacity: 0, 
-              scale: 0.95,
-              filter: "blur(5px)"
+              opacity: 0,
+              x: "-100%",
+              scale: 0.9
             }}
             transition={{ 
-              duration: 1.2, 
-              ease: [0.25, 0.46, 0.45, 0.94],
-              filter: { duration: 0.8 }
+              duration: 1.5,
+              ease: [0.4, 0.0, 0.2, 1],
+              opacity: { duration: 0.8 },
+              x: { duration: 1.5 },
+              scale: { duration: 1.2 }
             }}
           >
-            {/* Background Image */}
+            {/* Background Image with Ken Burns Effect */}
             <motion.img
               src={slides[currentSlide].image}
               alt={slides[currentSlide].title}
               className="w-full h-full object-cover"
-              initial={{ scale: 1.05 }}
-              animate={{ scale: 1 }}
+              initial={{ 
+                scale: 1.1,
+                x: -20,
+                y: -10
+              }}
+              animate={{ 
+                scale: 1.05,
+                x: 20,
+                y: 10
+              }}
               transition={{ 
                 duration: 8,
-                ease: "linear"
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "reverse"
               }}
             />
+            
+            {/* Subtle overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20" />
           </motion.div>
         </AnimatePresence>
 
@@ -170,25 +185,55 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Floating Artistic Elements */}
+        {/* Floating Artistic Elements - Enhanced */}
         <div className="absolute inset-0 pointer-events-none z-5">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
+              className={`absolute rounded-full ${
+                i % 3 === 0 ? 'w-3 h-3 bg-white/30' : 
+                i % 3 === 1 ? 'w-2 h-2 bg-logo-gold/40' : 
+                'w-1 h-1 bg-white/50'
+              }`}
               style={{
-                left: `${20 + i * 15}%`,
-                top: `${30 + (i % 3) * 20}%`,
+                left: `${15 + i * 12}%`,
+                top: `${25 + (i % 4) * 15}%`,
               }}
               animate={{
-                y: [0, -20, 0],
-                opacity: [0.2, 0.8, 0.2],
-                scale: [1, 1.5, 1],
+                y: [0, -30, 0],
+                x: [0, 15, 0],
+                opacity: [0.1, 0.8, 0.1],
+                scale: [0.8, 1.8, 0.8],
+                rotate: [0, 180, 360],
               }}
               transition={{
-                duration: 3 + i * 0.5,
+                duration: 4 + i * 0.3,
                 repeat: Infinity,
-                delay: i * 0.3,
+                delay: i * 0.4,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+          
+          {/* Larger floating elements */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`large-${i}`}
+              className="absolute w-6 h-6 bg-gradient-to-br from-logo-gold/20 to-white/20 rounded-full blur-sm"
+              style={{
+                left: `${30 + i * 25}%`,
+                top: `${40 + i * 20}%`,
+              }}
+              animate={{
+                y: [0, -40, 0],
+                x: [0, 20, 0],
+                opacity: [0.05, 0.3, 0.05],
+                scale: [0.5, 1.5, 0.5],
+              }}
+              transition={{
+                duration: 6 + i * 0.5,
+                repeat: Infinity,
+                delay: i * 0.8,
                 ease: "easeInOut"
               }}
             />
