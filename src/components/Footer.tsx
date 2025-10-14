@@ -26,7 +26,7 @@ const Footer = () => {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "#",
+      url: "https://www.linkedin.com/company/dar-dhiafa-klee/",
       color: "hover:text-blue-300",
     },
   ];
