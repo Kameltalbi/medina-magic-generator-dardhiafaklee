@@ -79,7 +79,7 @@ const PaulKleeSection = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <motion.div 
-                className="aspect-[3/4] max-w-md mx-auto bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-2xl overflow-hidden shadow-medium"
+                className="aspect-[2/3] max-w-sm mx-auto bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-2xl overflow-hidden shadow-medium"
                 whileHover={{ 
                   scale: 1.05,
                   rotateY: 5,
