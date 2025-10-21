@@ -11,6 +11,7 @@ import Rooms from "./pages/Rooms";
 import Experiences from "./pages/Experiences";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
