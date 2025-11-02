@@ -125,32 +125,124 @@ const About = () => {
               </motion.div>
             </motion.div>
 
-            {/* Single Image */}
+            {/* Images Grid - 2+2+1 Layout */}
             <motion.div
-              className="flex justify-center"
+              className="space-y-4"
               variants={staggerItem}
             >
-              <motion.div
-                className="w-full max-w-md aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-2xl overflow-hidden shadow-medium"
-                whileHover={{ 
-                  scale: 1.05,
-                  rotateY: 5,
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                }}
-                transition={{ duration: 0.4 }}
-              >
-                <motion.div 
-                  className="w-full h-full relative"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
+              {/* First Row - 2 images */}
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div
+                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: 3,
+                    boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.2)"
+                  }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <img
-                    src="/grid3.png"
-                    alt="Image de la grille"
+                  <motion.img
+                    src="/grid1.png"
+                    alt="Vue de Kairouan 1"
                     className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
                   />
                 </motion.div>
-              </motion.div>
+                <motion.div
+                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: -3,
+                    boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.2)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <motion.img
+                    src="/grid2.png"
+                    alt="Vue de Kairouan 2"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.div>
+              </div>
+
+              {/* Second Row - 2 images */}
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div
+                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: 3,
+                    boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.2)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <motion.img
+                    src="/grid3.png"
+                    alt="Vue de Kairouan 3"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.div>
+                <motion.div
+                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: -3,
+                    boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.2)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <motion.img
+                    src="/grid4.png"
+                    alt="Vue de Kairouan 4"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.div>
+              </div>
+
+              {/* Third Row - 2 images */}
+              <div className="grid grid-cols-2 gap-4">
+                <motion.div
+                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: 3,
+                    boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.2)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <motion.img
+                    src="/vue-mosq-optimized.jpg"
+                    alt="Vue de la mosquée de Kairouan"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.div>
+                <motion.div
+                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateY: -3,
+                    boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.2)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <motion.img
+                    src="/porte-optimized.jpg"
+                    alt="Porte traditionnelle de Kairouan"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </motion.div>
