@@ -113,15 +113,38 @@ const BookingConfirmation = ({
             className="text-3xl md:text-4xl font-bold font-bold text-indigo-medina mb-4"
             variants={fadeInUp}
           >
-            Réservation Confirmée !
+            Demande de réservation enregistrée !
           </motion.h1>
           
           <motion.p
-            className="text-lg text-muted-foreground font-medium max-w-2xl mx-auto"
+            className="text-lg text-muted-foreground font-medium max-w-2xl mx-auto mb-6"
             variants={fadeInUp}
           >
-            Votre réservation a été confirmée avec succès. Vous recevrez un email de confirmation dans les prochaines minutes.
+            Votre demande de réservation a été enregistrée avec succès.
           </motion.p>
+          
+          {/* Message informatif */}
+          <motion.div
+            className="max-w-2xl mx-auto bg-gradient-to-r from-terre-cuite/10 to-indigo-medina/10 rounded-xl p-6 border border-terre-cuite/20"
+            variants={fadeInUp}
+          >
+            <div className="flex items-start space-x-4">
+              <div className="flex-shrink-0">
+                <Mail className="w-6 h-6 text-terre-cuite" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold font-semibold text-terre-cuite mb-2">
+                  Confirmation à venir
+                </h3>
+                <p className="text-sm text-muted-foreground font-medium leading-relaxed mb-3">
+                  Dar Dhiafa vous contactera par <strong>email</strong> ou <strong>WhatsApp</strong> pour confirmer votre réservation.
+                </p>
+                <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                  <strong>Important :</strong> Si la chambre que vous avez choisie n'est pas disponible, nous vous informerons des alternatives et vous proposerons d'autres options. Dans tous les cas, vous recevrez un message de notre part.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -142,8 +165,8 @@ const BookingConfirmation = ({
                       <p className="text-sm text-muted-foreground font-medium">Numéro de réservation</p>
                       <p className="text-xl font-bold font-bold text-indigo-medina">{bookingId}</p>
                     </div>
-                    <Badge className="bg-green-100 text-green-800 font-medium">
-                      Confirmé
+                    <Badge className="bg-terre-cuite/20 text-terre-cuite font-medium">
+                      En attente de confirmation
                     </Badge>
                   </div>
                 </div>
@@ -261,10 +284,10 @@ const BookingConfirmation = ({
                   </div>
                 </div>
                 
-                <div className="bg-blue-50 p-3 rounded-lg">
-                  <p className="text-blue-800 font-medium">Prochaines étapes :</p>
-                  <ul className="text-blue-700 mt-2 space-y-1">
-                    <li>• Email de confirmation reçu</li>
+                <div className="bg-terre-cuite/10 p-3 rounded-lg border border-terre-cuite/20">
+                  <p className="text-terre-cuite font-semibold mb-2">Prochaines étapes :</p>
+                  <ul className="text-muted-foreground mt-2 space-y-1 text-sm font-medium">
+                    <li>• Confirmation par email ou WhatsApp</li>
                     <li>• Contact 24h avant arrivée</li>
                     <li>• Check-in à partir de 15h</li>
                   </ul>

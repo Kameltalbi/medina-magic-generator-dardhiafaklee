@@ -2,7 +2,7 @@
 // Uses vert-porte color for CTA and full color palette from design system
 
 import { motion } from "framer-motion";
-import { MapPin, Utensils, Palette, Camera, ArrowRight } from "lucide-react";
+import { MapPin, Utensils, Hammer, Camera, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
@@ -34,10 +34,10 @@ const ExperiencesPreview = () => {
       duration: "2h",
     },
     {
-      id: "art-workshop",
-      title: t("experiences.artWorkshop.title"),
-      description: t("experiences.artWorkshop.description"),
-      image: "🎨",
+      id: "artisanat",
+      title: t("experiences.artisanat.title"),
+      description: t("experiences.artisanat.description"),
+      image: "🛠️",
       duration: "3h",
     },
   ];
@@ -50,8 +50,8 @@ const ExperiencesPreview = () => {
         return Camera;
       case "gastronomy":
         return Utensils;
-      case "art-workshop":
-        return Palette;
+      case "artisanat":
+        return Hammer;
       default:
         return MapPin;
     }
@@ -107,7 +107,7 @@ const ExperiencesPreview = () => {
 
               <Button
                 size="lg"
-                className="bg-logo-gold hover:bg-logo-gold-hover text-white font-medium font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium group"
+                className="bg-vert-pastel hover:bg-vert-pastel-hover text-white font-medium font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium group"
               >
                 {t("experiences.learnMore")}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />

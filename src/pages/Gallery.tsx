@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
+import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
 import { 
   X,
@@ -518,6 +519,7 @@ const Gallery = () => {
           </motion.div>
         </div>
       </section>
+      <DjerbaBanner />
       <Footer />
     </div>
   );

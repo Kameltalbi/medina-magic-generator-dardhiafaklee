@@ -1,6 +1,7 @@
 import BookingHeader from "@/components/booking/BookingHeader";
 import BookingHero from "@/components/booking/BookingHero";
 import BookingFlow from "@/components/booking/BookingFlow";
+import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
 
 const BookingPage = () => {
@@ -9,6 +10,7 @@ const BookingPage = () => {
       <BookingHeader />
       <BookingHero />
       <BookingFlow />
+      <DjerbaBanner />
       <Footer />
     </div>
   );

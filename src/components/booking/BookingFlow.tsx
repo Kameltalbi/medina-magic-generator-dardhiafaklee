@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useBooking } from "@/contexts/BookingContext";
 import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
 import BookingForm from "./BookingForm";
 import RoomAvailability from "./RoomAvailability";
 import CustomerForm from "./CustomerForm";
@@ -13,7 +14,7 @@ import BookingSummary from "./BookingSummary";
 import { fadeInUp } from "@/lib/animations";
 import type { BookingDetails, CustomerInfo } from "@/lib/types";
 
-type BookingStep = 'search' | 'rooms' | 'customer' | 'summary' | 'payment' | 'success' | 'error';
+type BookingStep = 'search' | 'rooms' | 'customer' | 'summary' | 'success' | 'error';
 
 const BookingFlow = () => {
   const { t } = useTranslation();
@@ -21,11 +22,8 @@ const BookingFlow = () => {
     selectedRoom, 
     bookingDates, 
     customerInfo, 
-    createBooking, 
-    processPayment,
-    selectRoom,
-    isBooking,
-    isProcessingPayment 
+    createBooking,
+    isBooking
   } = useBooking();
   
   const [currentStep, setCurrentStep] = useState<BookingStep>('search');
@@ -93,24 +91,6 @@ const BookingFlow = () => {
     const success = await createBooking(bookingDetails);
     if (success) {
       setBookingId(bookingDetails.id);
-      setCurrentStep('payment');
-    } else {
-      setCurrentStep('error');
-    }
-  };
-
-  const handlePayment = async () => {
-    const bookingDetails = calculateBookingDetails();
-    if (!bookingDetails) return;
-
-    const success = await processPayment({
-      method: 'konnect',
-      amount: bookingDetails.total,
-      currency: 'TND',
-      status: 'pending'
-    });
-
-    if (success) {
       setCurrentStep('success');
     } else {
       setCurrentStep('error');
@@ -214,52 +194,6 @@ const BookingFlow = () => {
           </motion.div>
         );
 
-      case 'payment':
-        return (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="max-w-2xl mx-auto text-center"
-          >
-            <div className="gradient-card rounded-2xl p-8 shadow-strong">
-              <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-6">
-                Paiement sécurisé
-              </h2>
-              <p className="text-muted-foreground font-medium mb-8">
-                Votre réservation a été créée avec succès. Procédez au paiement pour finaliser votre séjour.
-              </p>
-              <div className="bg-background/50 rounded-xl p-6 mb-8 text-left">
-                <h3 className="font-bold font-bold text-indigo-medina mb-3">Détails de la réservation</h3>
-                <div className="space-y-2 text-sm font-medium text-muted-foreground">
-                  <div className="flex justify-between">
-                    <span>Référence :</span>
-                    <span className="font-semibold text-indigo-medina">{bookingId}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Chambre :</span>
-                    <span>{selectedRoom?.title}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Total à payer :</span>
-                    <span className="font-semibold text-terre-cuite">
-                      {calculateBookingDetails()?.total} TND
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <Button
-                onClick={handlePayment}
-                disabled={isProcessingPayment}
-                size="lg"
-                className="bg-terre-cuite hover:bg-terre-cuite/90 text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
-              >
-                {isProcessingPayment ? 'Traitement du paiement...' : 'Payer avec Konnect'}
-              </Button>
-            </div>
-          </motion.div>
-        );
-
       case 'success':
         return (
           <motion.div
@@ -275,11 +209,31 @@ const BookingFlow = () => {
                 </svg>
               </div>
               <h2 className="text-3xl font-bold font-bold text-indigo-medina mb-4">
-                Réservation confirmée !
+                Demande de réservation enregistrée !
               </h2>
-              <p className="text-muted-foreground font-medium mb-6">
-                Votre séjour à Dar Dhiafa Klee est confirmé. Vous recevrez un email de confirmation sous peu.
+              <p className="text-muted-foreground font-medium mb-4">
+                Votre demande de réservation a été enregistrée avec succès.
               </p>
+              
+              {/* Message informatif */}
+              <div className="bg-gradient-to-r from-terre-cuite/10 to-indigo-medina/10 rounded-xl p-6 border border-terre-cuite/20 mb-6 text-left">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <Mail className="w-6 h-6 text-terre-cuite" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold font-semibold text-terre-cuite mb-2">
+                      Confirmation à venir
+                    </h3>
+                    <p className="text-sm text-muted-foreground font-medium leading-relaxed mb-2">
+                      Dar Dhiafa vous contactera par <strong>email</strong> ou <strong>WhatsApp</strong> pour confirmer votre réservation.
+                    </p>
+                    <p className="text-sm text-muted-foreground font-medium leading-relaxed">
+                      <strong>Important :</strong> Si la chambre que vous avez choisie n'est pas disponible, nous vous informerons des alternatives et vous proposerons d'autres options. Dans tous les cas, vous recevrez un message de notre part.
+                    </p>
+                  </div>
+                </div>
+              </div>
               <div className="bg-background/50 rounded-xl p-6 mb-6 text-left">
                 <h3 className="font-bold font-bold text-indigo-medina mb-3">Détails de votre réservation</h3>
                 <div className="space-y-2 text-sm font-medium text-muted-foreground">

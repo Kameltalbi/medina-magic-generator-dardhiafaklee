@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Wifi, Coffee, Tv, Bath, Eye, Calendar, XCircle, Clock, Wrench, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
@@ -18,6 +19,7 @@ import type { Room } from "@/lib/types";
 const RoomsPreview = () => {
   const { t } = useTranslation();
   const { formatPrice } = useCurrency();
+  const navigate = useNavigate();
   
   // Fonction pour obtenir le statut d'une chambre
   const getRoomStatusInfo = (roomId: string) => {
@@ -234,7 +236,8 @@ const RoomsPreview = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1 border-logo-dark text-logo-dark hover:bg-logo-dark hover:text-white font-medium font-medium transition-all duration-300"
+                      className="flex-1 border-terre-cuite text-terre-cuite hover:bg-terre-cuite hover:text-white font-medium font-medium transition-all duration-300"
+                      onClick={() => navigate('/rooms')}
                     >
                       <Eye className="w-4 h-4 mr-2" />
                       {t("rooms.details")}
@@ -242,6 +245,7 @@ const RoomsPreview = () => {
                     <Button
                       size="sm"
                       className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-medium transition-all duration-300"
+                      onClick={() => navigate('/booking')}
                     >
                       <Calendar className="w-4 h-4 mr-2" />
                       {t("rooms.book")}
@@ -259,7 +263,8 @@ const RoomsPreview = () => {
           >
             <Button
               size="lg"
-              className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-medium font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium"
+              className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium"
+              onClick={() => navigate('/rooms')}
             >
               {t("rooms.viewAll")}
             </Button>

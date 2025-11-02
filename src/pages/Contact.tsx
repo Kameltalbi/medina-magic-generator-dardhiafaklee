@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
+import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations";
 
@@ -220,6 +221,7 @@ const Contact = () => {
         </section>
       </main>
       
+      <DjerbaBanner />
       <Footer />
     </div>
   );

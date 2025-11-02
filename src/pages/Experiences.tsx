@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
+import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
 import { 
   MapPin, 
-  Clock, 
   Users, 
   Star,
   Calendar,
@@ -22,26 +22,17 @@ import {
   BookOpen,
   Music,
   Utensils,
-  Coffee
+  Coffee,
+  Phone,
+  Info
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
 
 const Experiences = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-
-  const categories = [
-    { id: "all", name: { fr: "Toutes", en: "All", ar: "الكل" } },
-    { id: "culture", name: { fr: "Visites culturelles", en: "Cultural visits", ar: "زيارات ثقافية" } },
-    { id: "artisanat", name: { fr: "Expériences artisanales", en: "Artisan experiences", ar: "تجارب حرفية" } },
-    { id: "gastronomy", name: { fr: "Saveurs et gastronomie", en: "Flavors & gastronomy", ar: "النكهات والطبخ" } },
-    { id: "nature", name: { fr: "Nature et bien-être", en: "Nature & wellness", ar: "الطبيعة والعافية" } },
-    { id: "excursions", name: { fr: "Excursions journée", en: "Day excursions", ar: "رحلات نهارية" } }
-  ];
 
   // Load experiences from localStorage or use default data
   const [experiences, setExperiences] = useState([
@@ -342,9 +333,6 @@ const Experiences = () => {
     };
   }, []);
 
-  const filteredExperiences = selectedCategory === "all" 
-    ? experiences 
-    : experiences.filter(exp => exp.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-background">
@@ -370,43 +358,14 @@ const Experiences = () => {
               className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed px-4"
               variants={staggerItem}
             >
-              {currentLang === 'fr' && 'Plongez dans la richesse culturelle de Kairouan à travers nos expériences authentiques : visites de la médina, ateliers artistiques et découvertes gastronomiques.'}
-              {currentLang === 'en' && 'Immerse yourself in the cultural richness of Kairouan through our authentic experiences: medina visits, artistic workshops and gastronomic discoveries.'}
-              {currentLang === 'ar' && 'انغمس في الثراء الثقافي للقيروان من خلال تجاربنا الأصيلة: زيارات المدينة وورش العمل الفنية والاكتشافات الغذائية.'}
+              {currentLang === 'fr' && 'Découvrez les expériences authentiques que vous pouvez vivre à Kairouan : visites de la médina, ateliers d\'artisanat et découvertes gastronomiques.'}
+              {currentLang === 'en' && 'Discover the authentic experiences you can live in Kairouan: medina visits, artisan workshops and gastronomic discoveries.'}
+              {currentLang === 'ar' && 'اكتشف التجارب الأصيلة التي يمكنك عيشها في القيروان: زيارات المدينة وورش الحرف اليدوية والاكتشافات الغذائية.'}
             </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="py-8 px-4 bg-card/50">
-        <div className="container mx-auto">
-          <motion.div
-            className="max-w-4xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <div className="flex flex-wrap justify-center gap-4">
-              {categories.map((category) => (
-                <motion.button
-                  key={category.id}
-                  variants={staggerItem}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-full font-medium font-medium transition-all duration-300 ${
-                    selectedCategory === category.id
-                      ? "bg-terre-cuite text-white shadow-medium"
-                      : "bg-white text-muted-foreground hover:bg-terre-cuite/10 hover:text-terre-cuite border border-border"
-                  }`}
-                >
-                  {category.name[currentLang]}
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Experiences Grid */}
       <section className="py-20 px-4">
@@ -420,7 +379,7 @@ const Experiences = () => {
           >
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {filteredExperiences.map((experience) => (
+              {experiences.map((experience) => (
                 <div
                   key={experience.id}
                   className="group"
@@ -433,18 +392,6 @@ const Experiences = () => {
                         alt={experience.name[currentLang]}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-4 left-4">
-                        <Badge className="bg-terre-cuite text-white font-medium font-medium">
-                          {experience.duration}
-                        </Badge>
-                      </div>
-                      <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
-                        <div className="flex items-center space-x-1">
-                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="font-medium font-semibold text-sm">{experience.rating}</span>
-                          <span className="text-muted-foreground text-xs">({experience.reviews})</span>
-                        </div>
-                      </div>
                     </div>
 
                     <CardContent className="p-6 flex flex-col flex-grow">
@@ -460,38 +407,6 @@ const Experiences = () => {
                         </div>
                       </div>
 
-                      {/* Experience Details */}
-                      <div className="flex items-center justify-between mb-4 text-sm text-muted-foreground font-medium">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-1">
-                            <Clock className="w-4 h-4" />
-                            <span>{experience.duration}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Users className="w-4 h-4" />
-                            <span>{experience.maxGuests} max</span>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-2xl font-bold font-bold text-terre-cuite">
-                            {experience.price} TND
-                          </div>
-                          <div className="text-xs">
-                            {experience.priceType === 'per_person' 
-                              ? (currentLang === 'fr' && 'par personne')
-                              : (currentLang === 'fr' && 'par groupe')
-                            }
-                            {experience.priceType === 'per_person' 
-                              ? (currentLang === 'en' && 'per person')
-                              : (currentLang === 'en' && 'per group')
-                            }
-                            {experience.priceType === 'per_person' 
-                              ? (currentLang === 'ar' && 'للشخص')
-                              : (currentLang === 'ar' && 'للمجموعة')
-                            }
-                          </div>
-                        </div>
-                      </div>
 
                       {/* Highlights */}
                       <div className="mb-4">
@@ -528,25 +443,17 @@ const Experiences = () => {
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-                        <Button 
-                          className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold transition-all duration-300"
-                          size="sm"
-                          onClick={() => navigate('/booking')}
-                        >
-                          <Calendar className="w-4 h-4 mr-2" />
-                          {currentLang === 'fr' && 'Réserver'}
-                          {currentLang === 'en' && 'Book Now'}
-                          {currentLang === 'ar' && 'احجز الآن'}
-                        </Button>
+                      <div className="flex flex-col gap-3 mt-auto">
                         <Button 
                           variant="outline" 
-                          className="flex-1 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-medium font-semibold transition-all duration-300"
+                          className="w-full border-terre-cuite text-terre-cuite hover:bg-terre-cuite hover:text-white font-medium font-semibold transition-all duration-300"
                           size="sm"
+                          onClick={() => navigate('/contact')}
                         >
-                          {currentLang === 'fr' && 'En savoir plus'}
-                          {currentLang === 'en' && 'Learn More'}
-                          {currentLang === 'ar' && 'اعرف المزيد'}
+                          <Phone className="w-4 h-4 mr-2" />
+                          {currentLang === 'fr' && 'Nous contacter pour un guide'}
+                          {currentLang === 'en' && 'Contact us for a guide'}
+                          {currentLang === 'ar' && 'اتصل بنا للحصول على مرشد'}
                         </Button>
                       </div>
                     </CardContent>
@@ -563,53 +470,69 @@ const Experiences = () => {
       <section className="py-16 px-4 bg-gradient-to-r from-sable to-card">
         <div className="container mx-auto">
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
           >
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold font-bold text-terre-cuite mb-6"
-              variants={staggerItem}
-            >
-              {currentLang === 'fr' && 'Créez votre expérience sur mesure'}
-              {currentLang === 'en' && 'Create your custom experience'}
-              {currentLang === 'ar' && 'أنشئ تجربتك المخصصة'}
-            </motion.h2>
-            <motion.p
-              className="text-lg text-muted-foreground font-medium mb-8 max-w-2xl mx-auto"
-              variants={staggerItem}
-            >
-              {currentLang === 'fr' && 'Combinez plusieurs activités ou créez une expérience unique adaptée à vos intérêts et à votre emploi du temps.'}
-              {currentLang === 'en' && 'Combine multiple activities or create a unique experience tailored to your interests and schedule.'}
-              {currentLang === 'ar' && 'اجمع بين عدة أنشطة أو أنشئ تجربة فريدة مصممة خصيصاً لاهتماماتك وجدولك الزمني.'}
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              variants={staggerItem}
-            >
-              <Button
-                size="lg"
-                className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
+            <motion.div className="bg-white rounded-2xl p-8 shadow-medium mb-8" variants={staggerItem}>
+              <div className="flex items-start space-x-4 mb-6">
+                <div className="w-12 h-12 bg-terre-cuite/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Info className="w-6 h-6 text-terre-cuite" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-bold text-terre-cuite mb-2">
+                    {currentLang === 'fr' && 'Besoin d\'un guide ou d\'un organisateur ?'}
+                    {currentLang === 'en' && 'Need a guide or organizer?'}
+                    {currentLang === 'ar' && 'تحتاج إلى مرشد أو منظم؟'}
+                  </h3>
+                  <p className="text-muted-foreground font-medium leading-relaxed">
+                    {currentLang === 'fr' && 'Nous pouvons vous conseiller et vous mettre en contact avec des guides locaux certifiés et des organisateurs d\'expériences à Kairouan. Contactez-nous pour obtenir des recommandations personnalisées.'}
+                    {currentLang === 'en' && 'We can advise you and connect you with certified local guides and experience organizers in Kairouan. Contact us for personalized recommendations.'}
+                    {currentLang === 'ar' && 'يمكننا تقديم المشورة لك وربطك بمرشدين محليين معتمدين ومنظمي تجارب في القيروان. اتصل بنا للحصول على توصيات مخصصة.'}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div className="text-center" variants={staggerItem}>
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold font-bold text-terre-cuite mb-6"
+                variants={staggerItem}
               >
-                {currentLang === 'fr' && 'Demander un devis'}
-                {currentLang === 'en' && 'Request Quote'}
-                {currentLang === 'ar' && 'اطلب عرض سعر'}
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-vert-porte text-vert-porte hover:bg-vert-porte hover:text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
+                {currentLang === 'fr' && 'Planifiez vos expériences à Kairouan'}
+                {currentLang === 'en' && 'Plan your experiences in Kairouan'}
+                {currentLang === 'ar' && 'خطط لتجاربك في القيروان'}
+              </motion.h2>
+              <motion.p
+                className="text-lg text-muted-foreground font-medium mb-8 max-w-2xl mx-auto"
+                variants={staggerItem}
               >
-                {currentLang === 'fr' && 'Nous contacter'}
-                {currentLang === 'en' && 'Contact Us'}
-                {currentLang === 'ar' && 'اتصل بنا'}
-              </Button>
+                {currentLang === 'fr' && 'Nous sommes là pour vous aider à organiser votre séjour et vous connecter avec les meilleurs guides et organisateurs locaux.'}
+                {currentLang === 'en' && 'We are here to help you organize your stay and connect you with the best local guides and organizers.'}
+                {currentLang === 'ar' && 'نحن هنا لمساعدتك في تنظيم إقامتك وربطك بأفضل المرشدين والمنظمين المحليين.'}
+              </motion.p>
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+                variants={staggerItem}
+              >
+                <Button
+                  size="lg"
+                  className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold px-8 py-3 transition-all duration-300"
+                  onClick={() => navigate('/contact')}
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  {currentLang === 'fr' && 'Nous contacter'}
+                  {currentLang === 'en' && 'Contact Us'}
+                  {currentLang === 'ar' && 'اتصل بنا'}
+                </Button>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
       </section>
+      <DjerbaBanner />
       <Footer />
     </div>
   );

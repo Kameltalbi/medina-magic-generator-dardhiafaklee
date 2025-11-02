@@ -30,6 +30,10 @@ export default {
           hover: "hsl(var(--logo-gold-hover))",
         },
         "logo-dark": "hsl(var(--logo-dark))",
+        "vert-pastel": {
+          DEFAULT: "hsl(var(--vert-pastel))",
+          hover: "hsl(var(--vert-pastel-hover))",
+        },
         
         // Semantic tokens
         border: "hsl(var(--border))",

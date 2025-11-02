@@ -55,6 +55,10 @@ All colors MUST be HSL.
     --logo-gold: 45 100% 60%;            /* #FFD700 - Or métallique du logo */
     --logo-gold-hover: 45 100% 50%;      /* #CC9900 - Or hover */
     --logo-dark: 0 0% 15%;               /* #262626 - Noir profond du logo */
+    
+    /* Vert Pastel pour boutons */
+    --vert-pastel: 142 35% 68%;          /* #8FD5B0 - Vert pastel doux */
+    --vert-pastel-hover: 142 38% 60%;    /* #7AC59A - Vert pastel hover */
 
     /* Semantic tokens using brand colors */
     --background: var(--sable);

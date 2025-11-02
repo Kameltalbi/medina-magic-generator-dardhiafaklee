@@ -27,28 +27,9 @@ const Header = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container mx-auto px-4 py-4 sm:py-6 md:py-8 h-20 sm:h-24 md:h-28 flex items-center justify-between relative">
-        {/* Nom seulement - Masqué sur mobile très petit */}
-        <Link to="/" className="flex items-center">
-          <motion.div
-            className="flex flex-col"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <h1 className="text-xs sm:text-base md:text-lg font-normal text-black leading-tight">
-              Dar Dhiafa Paul Klee
-            </h1>
-            <h1 className="text-xs sm:text-base md:text-lg font-normal text-black leading-tight">
-              Kairouan
-            </h1>
-            <h1 className="text-xs sm:text-base md:text-lg font-normal text-black leading-tight">
-              Hôtel particulier
-            </h1>
-          </motion.div>
-        </Link>
-
-        {/* Logo au centre - Responsive */}
-        <Link to="/" className="absolute left-1/2 transform -translate-x-1/2">
+      <div className="container mx-auto px-4 py-4 sm:py-6 md:py-8 h-20 sm:h-24 md:h-28 flex items-center justify-between">
+        {/* Logo à gauche - Responsive */}
+        <Link to="/" className="flex items-center gap-3 sm:gap-4">
           <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
@@ -58,6 +39,22 @@ const Header = () => {
               alt="Logo Klee"
               className="h-16 sm:h-20 md:h-24 w-auto object-contain"
             />
+          </motion.div>
+          {/* Nom à côté du logo */}
+          <motion.div
+            className="flex flex-col"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
+            <h1 className="text-xs sm:text-base md:text-lg font-normal text-black leading-tight">
+              Hôtel
+            </h1>
+            <h1 className="text-xs sm:text-base md:text-lg font-normal text-black leading-tight">
+              Dar Dhiafa Paul Klee
+            </h1>
+            <h1 className="text-xs sm:text-base md:text-lg font-normal text-black leading-tight">
+              Kairouan
+            </h1>
           </motion.div>
         </Link>
 

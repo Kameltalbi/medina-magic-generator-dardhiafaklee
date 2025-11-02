@@ -54,7 +54,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-logo-dark text-logo-gold py-16 px-4">
+    <footer className="bg-gradient-to-br from-sable via-sable to-muted/50 py-16 px-4 border-t border-terre-cuite/20">
       <div className="container mx-auto">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -68,34 +68,34 @@ const Footer = () => {
             {/* Brand Section */}
             <motion.div variants={staggerItem} className="lg:col-span-1">
               <div className="flex items-center space-x-2 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-logo-gold to-logo-gold-hover rounded-full flex items-center justify-center">
-                  <span className="text-logo-dark font-bold font-bold text-xl">D</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-terre-cuite to-indigo-medina rounded-full flex items-center justify-center shadow-medium">
+                  <span className="text-white font-bold font-bold text-xl">D</span>
                 </div>
                 <div>
-                  <h3 className="font-bold font-bold text-xl text-logo-gold leading-tight">
+                  <h3 className="font-bold font-bold text-xl text-terre-cuite leading-tight">
                     Dar Dhiafa Klee
                   </h3>
-                  <p className="text-logo-gold/80 text-sm font-medium">Kairouan</p>
+                  <p className="text-indigo-medina/80 text-sm font-medium">Kairouan</p>
                 </div>
               </div>
               
-              <p className="text-logo-gold/90 font-medium leading-relaxed mb-6 text-sm">
+              <p className="text-indigo-medina/90 font-medium leading-relaxed mb-6 text-sm">
                 {t("footer.brandDescription")}
               </p>
 
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-sm">
-                  <MapPin className="w-4 h-4 text-logo-gold" />
-                  <span className="text-logo-gold/90 font-medium" dangerouslySetInnerHTML={{ __html: t("footer.address") }} />
+                  <MapPin className="w-4 h-4 text-terre-cuite" />
+                  <span className="text-indigo-medina/90 font-medium" dangerouslySetInnerHTML={{ __html: t("footer.address") }} />
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
-                  <Phone className="w-4 h-4 text-logo-gold" />
-                  <span className="text-logo-gold/90 font-medium">{t("footer.phone")}</span>
+                  <Phone className="w-4 h-4 text-terre-cuite" />
+                  <span className="text-indigo-medina/90 font-medium">{t("footer.phone")}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-sm">
-                  <Mail className="w-4 h-4 text-logo-gold" />
-                  <span className="text-logo-gold/90 font-medium">{t("footer.email")}</span>
+                  <Mail className="w-4 h-4 text-terre-cuite" />
+                  <span className="text-indigo-medina/90 font-medium">{t("footer.email")}</span>
                 </div>
               </div>
             </motion.div>
@@ -103,7 +103,7 @@ const Footer = () => {
             {/* Footer Links */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <motion.div key={category} variants={staggerItem}>
-                <h4 className="font-bold font-semibold text-logo-gold text-lg mb-4">
+                <h4 className="font-bold font-semibold text-terre-cuite text-lg mb-4">
                   {category}
                 </h4>
                 <ul className="space-y-2">
@@ -111,7 +111,7 @@ const Footer = () => {
                     <li key={link.name}>
                       <a
                         href={link.href}
-                        className="text-logo-gold/80 hover:text-logo-gold-hover transition-colors duration-300 font-medium text-sm hover:underline"
+                        className="text-indigo-medina/80 hover:text-terre-cuite transition-colors duration-300 font-medium text-sm hover:underline"
                       >
                         {link.name}
                       </a>
@@ -124,35 +124,35 @@ const Footer = () => {
 
           {/* Divider */}
           <motion.div
-            className="border-t border-logo-gold/20 pt-8"
+            className="border-t border-terre-cuite/20 pt-8"
             variants={fadeInUp}
           >
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               {/* Copyright */}
-              <div className="text-logo-gold/80 font-medium text-sm text-center md:text-left">
+              <div className="text-indigo-medina/80 font-medium text-sm text-center md:text-left">
                 <p>
                   {t("footer.copyright")}
                 </p>
-                <p className="mt-1">
+                <p className="mt-1 text-indigo-medina/70">
                   {t("footer.brandDescription")}
                 </p>
               </div>
 
               {/* Social Links */}
               <div className="flex items-center space-x-4">
-                <span className="text-logo-gold/80 font-medium text-sm mr-2">
+                <span className="text-indigo-medina/80 font-medium text-sm mr-2">
                   {t("footer.followUsText")}
                 </span>
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.name}
                     href={social.url}
-                    className={`w-10 h-10 bg-logo-gold/10 hover:bg-logo-gold/20 rounded-full flex items-center justify-center transition-all duration-300 ${social.color}`}
+                    className="w-10 h-10 bg-terre-cuite/10 hover:bg-terre-cuite/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={`Follow us on ${social.name}`}
                   >
-                    <social.icon className="w-5 h-5 text-logo-gold" />
+                    <social.icon className="w-5 h-5 text-terre-cuite" />
                   </motion.a>
                 ))}
               </div>
@@ -161,10 +161,10 @@ const Footer = () => {
 
           {/* Bottom Attribution */}
           <motion.div
-            className="text-center mt-8 pt-6 border-t border-logo-gold/10"
+            className="text-center mt-8 pt-6 border-t border-terre-cuite/10"
             variants={fadeInUp}
           >
-            <p className="text-logo-gold/60 font-medium text-xs">
+            <p className="text-indigo-medina/60 font-medium text-xs">
               {t("footer.attribution")}
             </p>
           </motion.div>

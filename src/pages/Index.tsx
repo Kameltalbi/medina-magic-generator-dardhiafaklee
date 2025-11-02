@@ -8,6 +8,7 @@ import About from "@/components/About";
 import RoomsPreview from "@/components/RoomsPreview";
 import ExperiencesPreview from "@/components/Experiences";
 import ContactMap from "@/components/ContactMap";
+import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -25,6 +26,7 @@ const Index = () => {
         <ContactMap />
       </main>
       
+      <DjerbaBanner />
       <Footer />
     </div>
   );
