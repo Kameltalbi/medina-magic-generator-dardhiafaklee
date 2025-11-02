@@ -213,16 +213,27 @@ const Contact = () => {
                       </p>
                     </CardHeader>
                     <CardContent>
-                      <div className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-lg flex items-center justify-center">
-                        <div className="text-center">
-                          <MapPin className="w-16 h-16 text-logo-gold mx-auto mb-4" />
-                          <p className="text-foreground font-medium">
-                            Médina de Kairouan
-                          </p>
-                          <p className="text-foreground/70 text-sm">
-                            Tunisie
-                          </p>
+                      <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-inner">
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3276.8!2d10.1!3d35.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sM4J3%2BC3F%20Kairouan%2C%20Tunisia!5e0!3m2!1sfr!2stn!4v1699999999999!5m2!1sfr!2stn"
+                          width="100%"
+                          height="100%"
+                          style={{ border: 0 }}
+                          allowFullScreen
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Localisation Dar Dhiafa Paul Klee - Médina de Kairouan"
+                        />
+                      </div>
+                      <div className="mt-4 p-4 bg-gradient-to-r from-indigo-medina/5 to-terre-cuite/5 rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MapPin className="w-5 h-5 text-terre-cuite" />
+                          <span className="font-semibold text-indigo-medina">Code Plus:</span>
+                          <span className="font-mono text-sm bg-white px-2 py-1 rounded border">M4J3+C3F</span>
                         </div>
+                        <p className="text-sm text-foreground/70">
+                          Utilisez ce code dans Google Maps pour nous trouver facilement dans la médina de Kairouan.
+                        </p>
                       </div>
                     </CardContent>
                   </Card>

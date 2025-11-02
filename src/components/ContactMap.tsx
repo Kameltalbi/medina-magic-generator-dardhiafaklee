@@ -195,34 +195,26 @@ const ContactMap = () => {
               {/* Google Maps */}
               <div className="bg-card rounded-2xl overflow-hidden shadow-medium">
                 <div className="aspect-[4/3] bg-gradient-to-br from-indigo-medina/10 to-vert-porte/10 relative">
-                  {/* Placeholder for Google Maps */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-medina to-vert-porte">
-                    <div className="text-center text-white space-y-4">
-                      <MapPin className="w-16 h-16 mx-auto opacity-80" />
-                      <div>
-                        <h4 className="font-bold font-bold text-xl mb-2">
-                          {t("contact.map.title")}
-                        </h4>
-                        <p className="font-medium text-sm opacity-90 max-w-xs mx-auto">
-                          {t("contact.map.description")}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Future Google Maps integration */}
-                  {/* 
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=..."
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3276.8!2d10.1!3d35.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sM4J3%2BC3F%20Kairouan%2C%20Tunisia!5e0!3m2!1sfr!2stn!4v1699999999999!5m2!1sfr!2stn"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Localisation Dar Dhiafa Klee"
+                    title="Localisation Dar Dhiafa Paul Klee - Médina de Kairouan"
+                    className="rounded-2xl"
                   />
-                  */}
+                  
+                  {/* Overlay with location info */}
+                  <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-terre-cuite" />
+                      <span className="text-xs font-semibold text-indigo-medina">Code Plus:</span>
+                      <span className="text-xs font-mono bg-indigo-medina/10 px-2 py-1 rounded">M4J3+C3F</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
