@@ -140,7 +140,7 @@ export const roomsData: Room[] = [
     roomNumber: "CH 12",
     title: "HAYET (حياة)",
     pricePerNight: 320, // TND
-    image: "/chambre 2.png",
+    image: "/chambre twin.jpg",
     description: "Chambre familiale avec 2 grands lits, parfaite pour les familles avec enfants.",
     amenities: ["Wi-Fi gratuit", "Climatisation", "Salle de bain privée", "2 grands lits", "Espace famille", "TV écran plat", "Coffre-fort"],
     size: "35m²",
@@ -208,7 +208,7 @@ export const roomsData: Room[] = [
     roomNumber: "CH 22",
     title: "SEHR (سحر)",
     pricePerNight: 350, // TND
-    image: "/chambre 2.png",
+    image: "/chambre 1.png",
     description: "Suite royale avec lit double et salon privé, ambiance magique et envoûtante.",
     amenities: ["Wi-Fi gratuit", "Climatisation", "Salle de bain privée", "Lit double", "Salon privé", "Minibar", "Service VIP", "Peignoirs", "Coffre-fort"],
     size: "48m²",
