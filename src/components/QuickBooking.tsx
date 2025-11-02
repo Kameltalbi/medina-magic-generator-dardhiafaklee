@@ -32,7 +32,7 @@ const QuickBooking = () => {
             </div>
 
             <Button
-              onClick={() => navigate('/booking')}
+              onClick={() => navigate('/rooms')}
               size="lg"
               className="bg-indigo-medina hover:bg-indigo-medina/90 text-primary-foreground font-semibold px-8 py-4 text-lg transition-all duration-300 shadow-soft hover:shadow-medium hover:scale-105"
             >

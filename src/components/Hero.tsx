@@ -171,7 +171,7 @@ const Hero = () => {
                 <Button
                   size="lg"
                   className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-semibold px-8 py-4 text-lg transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-terre-cuite/50"
-                  onClick={() => navigate('/booking')}
+                  onClick={() => navigate('/rooms')}
                 >
                   Réserver maintenant
                 </Button>

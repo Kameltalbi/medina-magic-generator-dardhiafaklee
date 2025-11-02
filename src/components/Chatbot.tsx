@@ -268,7 +268,7 @@ Feel free to ask if you have other questions about bookings, meals or visits!`,
 
   const handleSuggestionClick = (suggestion: string) => {
     if (suggestion.includes("réserver") || suggestion.includes("book") || suggestion.includes("حجز")) {
-      navigate('/booking');
+      navigate('/rooms');
       return;
     }
     if (suggestion.includes("chambres") || suggestion.includes("rooms") || suggestion.includes("غرف")) {
@@ -283,7 +283,7 @@ Feel free to ask if you have other questions about bookings, meals or visits!`,
     let message = "";
     if (action === "book") {
       message = currentLang === 'fr' ? "Comment réserver ?" : currentLang === 'en' ? "How to book?" : "كيف أحجز؟";
-      navigate('/booking');
+      navigate('/rooms');
     } else if (action === "rooms") {
       message = currentLang === 'fr' ? "Parler des chambres" : currentLang === 'en' ? "Tell me about rooms" : "أخبرني عن الغرف";
       navigate('/rooms');

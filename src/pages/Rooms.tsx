@@ -18,12 +18,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { staggerContainer, staggerItem, fadeInUp, slideInLeft, slideInRight } from "@/lib/animations";
+import AvailabilityForm from "@/components/AvailabilityForm";
+import { useAvailabilityForm } from "@/hooks/useAvailabilityForm";
 
 const Rooms = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { formatPrice } = useCurrency();
-  
+  const { isAvailabilityFormOpen, openAvailabilityForm, closeAvailabilityForm } = useAvailabilityForm();
 
   // État pour les données des chambres avec synchronisation
   const [roomsDataState, setRoomsDataState] = useState(roomsData);
@@ -320,7 +322,7 @@ const Rooms = () => {
                               <Button 
                         className="w-full bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-semibold transition-all duration-300 mt-auto"
                                 size="sm"
-                                onClick={() => navigate('/booking')}
+                                onClick={openAvailabilityForm}
                               >
                                 <Calendar className="w-4 h-4 mr-2" />
                         {currentLang === 'fr' && 'Réserver une chambre'}
@@ -389,6 +391,11 @@ const Rooms = () => {
       </section>
       <DjerbaBanner />
       <Footer />
+      
+      <AvailabilityForm
+        isOpen={isAvailabilityFormOpen}
+        onClose={closeAvailabilityForm}
+      />
     </div>
   );
 };

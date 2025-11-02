@@ -7,7 +7,6 @@ import { BookingProvider } from "@/contexts/BookingContext";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import Chatbot from "@/components/Chatbot";
 import Index from "./pages/Index";
-import Booking from "./pages/Booking";
 import Rooms from "./pages/Rooms";
 import Experiences from "./pages/Experiences";
 import Gallery from "./pages/Gallery";
@@ -24,7 +23,6 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
-        <Route path="/booking" element={<Booking />} />
         <Route path="/rooms" element={<Rooms />} />
         <Route path="/experiences" element={<Experiences />} />
         <Route path="/gallery" element={<Gallery />} />

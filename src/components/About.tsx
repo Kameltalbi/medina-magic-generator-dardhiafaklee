@@ -125,99 +125,32 @@ const About = () => {
               </motion.div>
             </motion.div>
 
-            {/* Image Mosaic */}
+            {/* Single Image */}
             <motion.div
-              className="grid grid-cols-2 gap-2 sm:gap-4"
+              className="flex justify-center"
               variants={staggerItem}
             >
-              <div className="space-y-4">
-                <motion.div
-                  className="aspect-square bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateY: 5,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                  }}
-                  transition={{ duration: 0.4 }}
+              <motion.div
+                className="w-full max-w-md aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-2xl overflow-hidden shadow-medium"
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                }}
+                transition={{ duration: 0.4 }}
+              >
+                <motion.div 
+                  className="w-full h-full relative"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <motion.div 
-                    className="w-full h-full relative"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <img
-                      src="/grid1.png"
-                      alt="Image de la grille d'accueil"
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
+                  <img
+                    src="/grid3.png"
+                    alt="Image de la grille"
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
-                <motion.div
-                  className="aspect-[4/3] bg-gradient-to-br from-logo-dark/20 to-logo-gold/40 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateY: -5,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <motion.div 
-                    className="w-full h-full relative"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <img
-                      src="/grid2.png"
-                      alt="Image de la grille d'accueil"
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                </motion.div>
-              </div>
-              <div className="space-y-4 pt-8">
-                <motion.div
-                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateY: 5,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <motion.div 
-                    className="w-full h-full relative"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <img
-                      src="/grid3.png"
-                      alt="Image de la grille"
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                </motion.div>
-                <motion.div
-                  className="aspect-square bg-gradient-to-br from-logo-dark/40 to-logo-gold/20 rounded-2xl overflow-hidden shadow-medium"
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateY: -5,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <motion.div 
-                    className="w-full h-full relative"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <img
-                      src="/grid4.png"
-                      alt="Image de la grille"
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                </motion.div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>

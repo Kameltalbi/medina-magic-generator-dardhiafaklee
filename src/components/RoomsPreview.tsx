@@ -245,7 +245,7 @@ const RoomsPreview = () => {
                     <Button
                       size="sm"
                       className="flex-1 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-medium font-medium transition-all duration-300"
-                      onClick={() => navigate('/booking')}
+                      onClick={() => navigate('/rooms')}
                     >
                       <Calendar className="w-4 h-4 mr-2" />
                       {t("rooms.book")}

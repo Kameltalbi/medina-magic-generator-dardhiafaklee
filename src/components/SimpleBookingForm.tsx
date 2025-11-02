@@ -12,9 +12,9 @@ const SimpleBookingForm = () => {
     e.preventDefault();
     console.log('Simple form submitted:', { checkIn, checkOut, guests });
     
-    // Store data and navigate
+    // Store data and navigate to rooms
     localStorage.setItem('quickBookingData', JSON.stringify({ checkIn, checkOut, guests }));
-    navigate('/booking');
+    navigate('/rooms');
   };
 
   return (

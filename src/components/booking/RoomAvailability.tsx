@@ -13,7 +13,8 @@ import {
   Filter,
   Star,
   Eye,
-  BookOpen
+  BookOpen,
+  CalendarCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,7 +34,14 @@ import {
   getAvailableRooms,
   type RoomAvailability 
 } from "@/data/roomAvailability";
+import { roomsData } from "@/data/rooms";
 import { staggerContainer, staggerItem } from "@/lib/animations";
+import AvailabilityForm from "@/components/AvailabilityForm";
+
+interface ExtendedRoomAvailability extends RoomAvailability {
+  image: string;
+  capacity: number;
+}
 
 interface RoomAvailabilityProps {
   checkIn: string;
@@ -43,18 +51,24 @@ interface RoomAvailabilityProps {
 
 const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityProps) => {
   const { formatPrice } = useCurrency();
-  const [rooms, setRooms] = useState<RoomAvailability[]>([]);
-  const [filteredRooms, setFilteredRooms] = useState<RoomAvailability[]>([]);
+  const [rooms, setRooms] = useState<ExtendedRoomAvailability[]>([]);
+  const [filteredRooms, setFilteredRooms] = useState<ExtendedRoomAvailability[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [isAvailabilityFormOpen, setIsAvailabilityFormOpen] = useState(false);
 
   // Charger les données des chambres avec leur statut
   useEffect(() => {
-    const roomsWithStatus = initialRoomAvailability.map(room => ({
-      ...room,
-      status: getRoomStatus(room.roomId, checkIn) as RoomAvailability['status']
-    }));
+    const roomsWithStatus = initialRoomAvailability.map(room => {
+      const roomData = roomsData.find(r => r.id === room.roomId);
+      return {
+        ...room,
+        image: roomData?.image || "/chambre 1.png",
+        capacity: roomData?.capacity || 2,
+        status: getRoomStatus(room.roomId, checkIn) as RoomAvailability['status']
+      };
+    });
     setRooms(roomsWithStatus);
     setFilteredRooms(roomsWithStatus);
   }, [checkIn, checkOut]);
@@ -146,6 +160,13 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
               Du {new Date(checkIn).toLocaleDateString('fr-FR')} au {new Date(checkOut).toLocaleDateString('fr-FR')}
             </p>
           </div>
+          <Button
+            onClick={() => setIsAvailabilityFormOpen(true)}
+            className="bg-terre-cuite hover:bg-terre-cuite-hover text-white"
+          >
+            <CalendarCheck className="w-4 h-4 mr-2" />
+            Vérifier la disponibilité
+          </Button>
         </div>
       </motion.div>
 
@@ -372,6 +393,12 @@ const RoomAvailability = ({ checkIn, checkOut, onRoomSelect }: RoomAvailabilityP
           </Card>
         </motion.div>
       )}
+
+      {/* Formulaire de vérification de disponibilité */}
+      <AvailabilityForm
+        isOpen={isAvailabilityFormOpen}
+        onClose={() => setIsAvailabilityFormOpen(false)}
+      />
     </motion.div>
   );
 };
