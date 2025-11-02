@@ -4,7 +4,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Header from "@/components/Header";
-import AboutSection from "@/components/About";
 import PaulKleeSection from "@/components/PaulKleeSection";
 import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
@@ -46,7 +45,63 @@ const About = () => {
 
         {/* About Content */}
         <div className="py-8">
-          <AboutSection />
+          {/* Custom About Content for this page */}
+          <section className="py-20 px-4 bg-background">
+            <div className="container mx-auto">
+              <motion.div
+                className="max-w-6xl mx-auto"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={staggerContainer}
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                  {/* Text Content */}
+                  <motion.div className="space-y-8" variants={staggerItem}>
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-terre-cuite mb-4">
+                        {t("about.subtitle")}
+                      </h3>
+                      <p className="text-foreground font-medium leading-relaxed mb-6">
+                        {t("about.description1")}
+                      </p>
+                      <p className="text-foreground font-medium leading-relaxed mb-6">
+                        {t("about.description2")}
+                      </p>
+                      <p className="text-foreground font-medium leading-relaxed">
+                        {t("about.description3")}
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* Single Featured Image */}
+                  <motion.div
+                    className="flex justify-center"
+                    variants={staggerItem}
+                  >
+                    <motion.div
+                      className="w-full aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-2xl overflow-hidden shadow-medium"
+                      whileHover={{ 
+                        scale: 1.05,
+                        rotateY: 5,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                      }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <motion.img
+                        src="/galerie/imagegalerie5.jpg"
+                        alt="Salle à manger de Dar Dhiafa Klee - Hospitalité tunisienne authentique"
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                      />
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+          
           <PaulKleeSection />
         </div>
       </main>
