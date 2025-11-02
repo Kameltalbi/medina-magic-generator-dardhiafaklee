@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { BookingProvider } from "@/contexts/BookingContext";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
+import Chatbot from "@/components/Chatbot";
 import Index from "./pages/Index";
 import Booking from "./pages/Booking";
 import Rooms from "./pages/Rooms";
@@ -29,6 +30,7 @@ const AppContent = () => {
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Chatbot />
     </BrowserRouter>
   );
 };

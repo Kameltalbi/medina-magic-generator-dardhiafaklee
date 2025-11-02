@@ -244,6 +244,7 @@ const resources = {
       "footer.phone": "+216 77 123 456",
       "footer.email": "info@dardhiafaklee.tn",
       "footer.followUsText": "Follow us:",
+      "footer.whatsappMessage": "Hello, I would like to know more about Dar Dhiafa Paul Klee.",
       "footer.copyright": "© 2024 Dar Dhiafa Klee. All rights reserved.",
       "footer.attribution": "Stay connected with Dar Dhiafa Klee for news, special offers and exclusive experiences.",
       
@@ -493,6 +494,7 @@ const resources = {
       "footer.phone": "+216 77 123 456",
       "footer.email": "info@dardhiafaklee.tn",
       "footer.followUsText": "Suivez-nous :",
+      "footer.whatsappMessage": "Bonjour, je souhaite avoir plus d'informations sur Dar Dhiafa Paul Klee.",
       "footer.copyright": "© 2024 Dar Dhiafa Klee. Tous droits réservés.",
       "footer.attribution": "Restez connecté avec Dar Dhiafa Klee pour les actualités, offres spéciales et expériences exclusives.",
       
@@ -742,6 +744,7 @@ const resources = {
       "footer.phone": "+216 77 123 456",
       "footer.email": "info@dardhiafaklee.tn",
       "footer.followUsText": "تابعنا:",
+      "footer.whatsappMessage": "مرحبا، أود الحصول على مزيد من المعلومات حول دار ضيافة بول كلي.",
       "footer.copyright": "© 2024 دار ضيافة كلي. جميع الحقوق محفوظة.",
       "footer.attribution": "ابق على تواصل مع دار ضيافة كلي للأخبار والعروض الخاصة والتجارب الحصرية.",
       

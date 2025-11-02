@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -185,6 +185,18 @@ const Contact = () => {
                           Envoyer le message
                         </Button>
                       </form>
+                      
+                      {/* WhatsApp Button */}
+                      <div className="mt-6 pt-6 border-t border-gray-200">
+                        <Button
+                          onClick={() => window.open(`https://wa.me/21677123456?text=${encodeURIComponent("Bonjour, je souhaite avoir plus d'informations sur Dar Dhiafa Paul Klee.")}`, '_blank', 'noopener,noreferrer')}
+                          className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold py-3"
+                          size="lg"
+                        >
+                          <MessageCircle className="w-5 h-5 mr-2" />
+                          Nous contacter sur WhatsApp
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
