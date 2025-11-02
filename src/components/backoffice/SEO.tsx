@@ -489,8 +489,8 @@ const SEO = () => {
     "addressLocality": "Kairouan",
     "addressCountry": "Tunisia"
   },
-  "telephone": "+216-77-123-456",
-  "email": "contact@dardhiafa.com"
+  "telephone": "+216-20-987-654",
+  "email": "info@dardhiafaklee.com"
 }`}
                     className="font-mono text-sm"
                   />

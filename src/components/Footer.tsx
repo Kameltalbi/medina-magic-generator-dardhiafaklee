@@ -2,6 +2,7 @@
 // Uses indigo-medina background and sable text from design system
 
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Facebook, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
@@ -45,7 +46,7 @@ const Footer = () => {
       { name: t("footer.wellness"), href: "#wellness" },
     ],
     [t("footer.information")]: [
-      { name: t("footer.aboutUs"), href: "#about" },
+      { name: t("footer.aboutUs"), href: "/about" },
       { name: t("footer.contact"), href: "#contact" },
       { name: t("footer.termsOfService"), href: "/terms" },
       { name: t("footer.privacyPolicy"), href: "/privacy" },
@@ -109,12 +110,21 @@ const Footer = () => {
                 <ul className="space-y-2">
                   {links.map((link) => (
                     <li key={link.name}>
-                      <a
-                        href={link.href}
-                        className="text-indigo-medina/80 hover:text-terre-cuite transition-colors duration-300 font-medium text-sm hover:underline"
-                      >
-                        {link.name}
-                      </a>
+                      {link.href.startsWith('/') ? (
+                        <Link
+                          to={link.href}
+                          className="text-indigo-medina/80 hover:text-terre-cuite transition-colors duration-300 font-medium text-sm hover:underline"
+                        >
+                          {link.name}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          className="text-indigo-medina/80 hover:text-terre-cuite transition-colors duration-300 font-medium text-sm hover:underline"
+                        >
+                          {link.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

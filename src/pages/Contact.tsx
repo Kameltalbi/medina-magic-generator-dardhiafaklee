@@ -189,7 +189,7 @@ const Contact = () => {
                       {/* WhatsApp Button */}
                       <div className="mt-6 pt-6 border-t border-gray-200">
                         <Button
-                          onClick={() => window.open(`https://wa.me/21677123456?text=${encodeURIComponent("Bonjour, je souhaite avoir plus d'informations sur Dar Dhiafa Paul Klee.")}`, '_blank', 'noopener,noreferrer')}
+                          onClick={() => window.open(`https://wa.me/21698306481?text=${encodeURIComponent("Bonjour, je souhaite avoir plus d'informations sur Dar Dhiafa Paul Klee.")}`, '_blank', 'noopener,noreferrer')}
                           className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold py-3"
                           size="lg"
                         >

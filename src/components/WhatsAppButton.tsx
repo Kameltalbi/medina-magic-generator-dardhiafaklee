@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 const WhatsAppButton = () => {
   const { t } = useTranslation();
-  const [phoneNumber] = useState("+21677123456"); // Format: +21677123456 (no spaces or dashes)
+  const [phoneNumber] = useState("+21698306481"); // Format: +21698306481 (no spaces or dashes)
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

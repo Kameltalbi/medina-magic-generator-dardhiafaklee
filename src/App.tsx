@@ -12,6 +12,7 @@ import Rooms from "./pages/Rooms";
 import Experiences from "./pages/Experiences";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const AppContent = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/about" element={<About />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/rooms" element={<Rooms />} />
         <Route path="/experiences" element={<Experiences />} />

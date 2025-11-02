@@ -140,8 +140,8 @@ const Settings = () => {
   const [generalConfig, setGeneralConfig] = useState({
     establishmentName: "Dar Dhiafa Klee",
     address: "Rue de la Médina, Kairouan, Tunisie",
-    phone: "+216 77 123 456",
-    email: "contact@dardhiafa.com",
+    phone: "+216 20 987 654",
+    email: "info@dardhiafaklee.com",
     website: "https://dardhiafa.com",
     cityTax: 2,
     availableLanguages: ["fr", "en", "ar"],

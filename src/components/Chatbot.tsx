@@ -30,19 +30,19 @@ const Chatbot = () => {
 
   const greetings = {
     fr: [
-      "Bonjour ! Je suis Zahra, votre assistante virtuelle. Permettez-moi de vous présenter Dar Dhiafa Paul Klee : une maison d'hôtes au cœur de la médina historique de Kairouan. Avez-vous déjà visité Kairouan, ou souhaitez-vous d'abord en savoir plus sur notre maison ?",
-      "Bonjour ! Bienvenue ! Je suis Zahra et je serai votre guide. Dar Dhiafa Paul Klee est une maison d'hôtes unique inspirée par l'art de Paul Klee. Que souhaitez-vous découvrir en premier : la maison, les chambres, les repas ou les activités à Kairouan ?",
-      "Salut ! Je suis Zahra. Dar Dhiafa Paul Klee vous accueille dans la médina de Kairouan avec chambres, repas authentiques et expériences culturelles. Quelle est la durée de séjour que vous envisagez ?"
+      "Bonjour ! Je suis Zahra, votre assistante virtuelle de Dar Dhiafa Paul Klee. Comment puis-je vous aider aujourd'hui ?",
+      "Bonjour ! Je suis là pour répondre à vos questions sur notre maison d'hôtes à Kairouan. Que souhaitez-vous savoir ?",
+      "Salut ! Je suis Zahra et je serai ravie de vous renseigner sur Dar Dhiafa Paul Klee. Comment puis-je vous aider ?"
     ],
     en: [
-      "Hello! I'm Zahra, your virtual assistant. Let me introduce you to Dar Dhiafa Paul Klee: a guesthouse in the heart of Kairouan's historic medina. Have you visited Kairouan before, or would you like to learn more about our house first?",
-      "Hello! Welcome! I'm Zahra and I'll be your guide. Dar Dhiafa Paul Klee is a unique guesthouse inspired by Paul Klee's art. What would you like to discover first: the house, rooms, meals, or activities in Kairouan?",
-      "Hi! I'm Zahra. Dar Dhiafa Paul Klee welcomes you in Kairouan's medina with rooms, authentic meals and cultural experiences. What length of stay are you planning?"
+      "Hello! I'm Zahra, your virtual assistant from Dar Dhiafa Paul Klee. How can I help you today?",
+      "Hello! I'm here to answer your questions about our guesthouse in Kairouan. What would you like to know?",
+      "Hi! I'm Zahra and I'd be happy to help you with information about Dar Dhiafa Paul Klee. How can I assist you?"
     ],
     ar: [
-      "مرحبا! أنا زهرة، مساعدتك الافتراضية. دعني أقدم لك دار ضيافة بول كلي: بيت ضيافة في قلب المدينة التاريخية بالقيروان. هل زرتي القيروان من قبل، أم تريدين أولاً معرفة المزيد عن بيتنا؟",
-      "مرحبا! أهلا بك! أنا زهرة وسأكون مرشدتك. دار ضيافة بول كلي هو بيت ضيافة فريد مستوحى من فن بول كلي. ماذا تريدين اكتشافه أولاً: البيت، الغرف، الوجبات أو الأنشطة في القيروان؟",
-      "أهلا! أنا زهرة. دار ضيافة بول كلي يرحب بك في مدينة القيروان مع غرف ووجبات أصيلة وتجارب ثقافية. ما هي مدة الإقامة التي تخططين لها؟"
+      "مرحبا! أنا زهرة، مساعدتك الافتراضية من دار ضيافة بول كلي. كيف يمكنني مساعدتك اليوم؟",
+      "مرحبا! أنا هنا للإجابة على أسئلتك حول بيت ضيافتنا في القيروان. ماذا تريدين أن تعرفي؟",
+      "أهلا! أنا زهرة وسأكون سعيدة لمساعدتك بمعلومات حول دار ضيافة بول كلي. كيف يمكنني مساعدتك؟"
     ]
   };
 
@@ -96,121 +96,47 @@ const Chatbot = () => {
         lowerMessage.includes("reserver") || lowerMessage.includes("comment reserver") || lowerMessage.includes("faire une réservation") ||
         lowerMessage.includes("faire une reservation") || lowerMessage.includes("comment faire") || lowerMessage.includes("procédure")) {
       const responses = {
-        fr: `📋 **Comment réserver chez Dar Dhiafa Paul Klee**
+        fr: `Oui, vous pouvez réserver directement sur notre site web. Une fois votre demande envoyée, vous recevrez une confirmation par message.
 
-Le processus est simple :
+Si vous préférez, vous pouvez aussi nous écrire sur WhatsApp au +216 98306481 ou via Messenger : m.me/dardhiafapaulklee
 
-1️⃣ **Choisissez vos dates** : Sélectionnez votre date d'arrivée et de départ sur notre page de réservation
-2️⃣ **Sélectionnez une chambre** : Découvrez nos 4 catégories (Suite Royale, Twin, Double, Triple/Familiale)
-3️⃣ **Remplissez vos informations** : Nom, email, téléphone
-4️⃣ **Envoi de la demande** : Soumettez votre demande de réservation
+Y a-t-il autre chose qui vous intéresse ?`,
+        en: `Yes, you can book directly on our website. Once your request is sent, you will receive a confirmation message.
 
-⚠️ **IMPORTANT** : Après votre demande, vous recevrez un message par email ou WhatsApp pour confirmer ou non la disponibilité. Dar Dhiafa est une maison très demandée, c'est pourquoi nous vérifions la disponibilité en temps réel avant de confirmer votre réservation.
+If you prefer, you can also write to us on WhatsApp at +216 98306481 or via Messenger: m.me/dardhiafapaulklee
 
-Si la chambre choisie n'est pas disponible, nous vous proposerons des alternatives adaptées à vos dates.
+Is there anything else that interests you?`,
+        ar: `نعم، يمكنك الحجز مباشرة على موقعنا الإلكتروني. بمجرد إرسال طلبك، ستصلك رسالة تأكيد.
 
-Avez-vous déjà des dates en tête pour votre séjour ? Et combien de personnes serez-vous ?`,
-        en: `📋 **How to book at Dar Dhiafa Paul Klee**
+إذا كنت تفضلين، يمكنك أيضاً الكتابة إلينا على واتساب على +216 98306481 أو عبر Messenger: m.me/dardhiafapaulklee
 
-The process is simple:
-
-1️⃣ **Choose your dates**: Select your check-in and check-out dates on our booking page
-2️⃣ **Select a room**: Discover our 4 categories (Royal Suite, Twin, Double, Triple/Family)
-3️⃣ **Fill in your information**: Name, email, phone
-4️⃣ **Submit request**: Submit your booking request
-
-⚠️ **IMPORTANT**: After your request, you'll receive a message by email or WhatsApp to confirm or not the availability. Dar Dhiafa is a highly sought-after house, which is why we check availability in real-time before confirming your booking.
-
-If the chosen room is not available, we'll suggest alternatives that suit your dates.
-
-Do you already have dates in mind for your stay? And how many people will you be?`,
-        ar: `📋 **كيفية الحجز في دار ضيافة بول كلي**
-
-العملية بسيطة:
-
-1️⃣ **اختر تواريخك**: اختر تاريخ الوصول والمغادرة على صفحة الحجز لدينا
-2️⃣ **اختر غرفة**: اكتشف فئاتنا الأربع (جناح ملكي، توأم، مزدوج، ثلاثي/عائلي)
-3️⃣ **املأ معلوماتك**: الاسم، البريد الإلكتروني، الهاتف
-4️⃣ **إرسال الطلب**: قدم طلب الحجز الخاص بك
-
-⚠️ **مهم**: بعد طلبك، ستصلك رسالة عبر البريد الإلكتروني أو واتساب لتأكيد أو عدم تأكيد التوفر. دار ضيافة هو منزل مطلوب بشدة، ولهذا نتحقق من التوفر في الوقت الفعلي قبل تأكيد حجزك.
-
-إذا لم تكن الغرفة المختارة متاحة، سنقترح عليك بدائل تناسب تواريخك.
-
-هل لديكم تواريخ محددة لإقامتكم؟ وكم عدد الأشخاص؟`
+هل هناك شيء آخر يهمك؟`
       };
       return { 
         text: responses[currentLang]
       };
     }
 
-    // Rooms questions
+    // Rooms questions - redirect to booking or contact
     if (lowerMessage.includes("chambre") || lowerMessage.includes("room") || lowerMessage.includes("غرفة") ||
         lowerMessage.includes("suite") || lowerMessage.includes("lit") || lowerMessage.includes("logement") || 
         lowerMessage.includes("accommodation") || lowerMessage.includes("إقامة") ||
         lowerMessage.includes("chambres") || lowerMessage.includes("rooms") || lowerMessage.includes("disponible") ||
-        lowerMessage.includes("available") || lowerMessage.includes("hébergement") || lowerMessage.includes("héberger")) {
+        lowerMessage.includes("available") || lowerMessage.includes("hébergement") || lowerMessage.includes("héberger") ||
+        lowerMessage.includes("prix") || lowerMessage.includes("price") || lowerMessage.includes("سعر") ||
+        lowerMessage.includes("tarif") || lowerMessage.includes("cost") || lowerMessage.includes("coût") ||
+        lowerMessage.includes("cout") || lowerMessage.includes("combien") || lowerMessage.includes("how much") ||
+        lowerMessage.includes("payer") || lowerMessage.includes("pay") || lowerMessage.includes("tnd") || lowerMessage.includes("dinars")) {
       const responses = {
-        fr: `🛏️ **Nos Chambres et Suites**
+        fr: `Pour connaître nos chambres et tarifs, je vous invite à consulter notre site web ou à nous contacter directement sur WhatsApp au +216 98306481 pour des informations détaillées.
 
-Dar Dhiafa Paul Klee dispose de 13 chambres réparties en 4 catégories :
+Avez-vous d'autres questions sur les réservations ou les repas ?`,
+        en: `To find out about our rooms and rates, I invite you to check our website or contact us directly on WhatsApp at +216 98306481 for detailed information.
 
-🏰 **Suite Royale** : Notre suite la plus luxueuse avec salon privé, décoration raffinée et espace généreux
-🛏️ **Chambres Twin** : Parfaites pour les voyages d'affaires ou entre amis, avec 2 lits simples séparés
-👫 **Chambres Double** : Idéales pour les couples, avec lit double et vue sur la médina
-👨‍👩‍👧 **Triple/Familiale** : Spacieuses pour les familles, pouvant accueillir jusqu'à 4 personnes
+Do you have any other questions about bookings or meals?`,
+        ar: `لمعرفة غرفنا وأسعارنا، أدعوك لزيارة موقعنا الإلكتروني أو الاتصال بنا مباشرة على واتساب على +216 98306481 للحصول على معلومات مفصلة.
 
-**Caractéristiques communes** :
-✅ Wi-Fi gratuit
-✅ Climatisation
-✅ Salle de bain privée
-✅ Décoration inspirée de l'art de Paul Klee
-✅ Vue sur la médina historique de Kairouan
-✅ Confort moderne allié au charme traditionnel tunisien
-
-Chaque chambre est unique et raconte une histoire à travers sa décoration inspirée des aquarelles de Paul Klee réalisées à Kairouan.
-
-Quelle catégorie de chambre vous intéresse le plus ? Et pour combien de personnes ?`,
-        en: `🛏️ **Our Rooms and Suites**
-
-Dar Dhiafa Paul Klee has 13 rooms divided into 4 categories:
-
-🏰 **Royal Suite**: Our most luxurious suite with private lounge, refined decoration and generous space
-🛏️ **Twin Rooms**: Perfect for business trips or friends, with 2 separate single beds
-👫 **Double Rooms**: Ideal for couples, with double bed and medina view
-👨‍👩‍👧 **Triple/Family**: Spacious for families, can accommodate up to 4 people
-
-**Common features**:
-✅ Free Wi-Fi
-✅ Air conditioning
-✅ Private bathroom
-✅ Decoration inspired by Paul Klee's art
-✅ View of Kairouan's historic medina
-✅ Modern comfort combined with traditional Tunisian charm
-
-Each room is unique and tells a story through its decoration inspired by Paul Klee's watercolors made in Kairouan.
-
-Which room category interests you most? And for how many people?`,
-        ar: `🛏️ **غرفنا وأجنحتنا**
-
-دار ضيافة بول كلي لديه 13 غرفة موزعة على 4 فئات:
-
-🏰 **جناح ملكي**: جناحنا الأكثر فخامة مع صالة خاصة وديكور راقي ومساحة واسعة
-🛏️ **غرف توأم**: مثالية للرحلات التجارية أو بين الأصدقاء، مع سريرين منفصلين
-👫 **غرف مزدوجة**: مثالية للأزواج، مع سرير مزدوج وإطلالة على المدينة
-👨‍👩‍👧 **ثلاثي/عائلي**: واسعة للعائلات، يمكن أن تستوعب حتى 4 أشخاص
-
-**الميزات المشتركة**:
-✅ واي فاي مجاني
-✅ تكييف هواء
-✅ حمام خاص
-✅ ديكور مستوحى من فن بول كلي
-✅ إطلالة على المدينة التاريخية بالقيروان
-✅ راحة عصرية مع السحر التقليدي التونسي
-
-كل غرفة فريدة وتحكي قصة من خلال ديكورها المستوحى من ألوان بول كلي المائية المصنوعة في القيروان.
-
-أي فئة غرفة تهمك أكثر؟ وكم عدد الأشخاص؟`
+هل لديك أسئلة أخرى حول الحجوزات أو الوجبات؟`
       };
       return { 
         text: responses[currentLang]
@@ -227,66 +153,15 @@ Which room category interests you most? And for how many people?`,
         lowerMessage.includes("restaurant") || lowerMessage.includes("مطعم") || lowerMessage.includes("plat") ||
         lowerMessage.includes("dish") || lowerMessage.includes("menu") || lowerMessage.includes("gastronomie")) {
       const responses = {
-        fr: `🍽️ **Nos Repas et Services Culinaires**
+        fr: `Oui, nous servons des repas sur place pour nos hôtes. Nous proposons une cuisine tunisienne traditionnelle préparée sur demande. Il est préférable de prévenir à l'avance pour organiser le menu.
 
-Dar Dhiafa Paul Klee propose une expérience culinaire authentique servie sur demande :
+Avez-vous d'autres questions ?`,
+        en: `Yes, we serve meals on site for our guests. We offer traditional Tunisian cuisine prepared on request. It's best to let us know in advance to organize the menu.
 
-☕ **Petit-déjeuner** : Servi sur demande avec produits locaux, pain traditionnel, confitures artisanales, œufs, fromages, fruits frais et café/thé à la menthe
+Do you have any other questions?`,
+        ar: `نعم، نقدم وجبات في الموقع لضيوفنا. نقدم مطبخاً تونسياً تقليدياً محضراً عند الطلب. من الأفضل إخبارنا مسبقاً لتنظيم القائمة.
 
-🍽️ **Déjeuner** : Repas du midi servi sur demande avec spécialités tunisiennes authentiques, salades fraîches, plats traditionnels et fruits de saison
-
-🌙 **Dîner** : Soirées gastronomiques servies sur demande avec menu varié, cuisine tunisienne traditionnelle revisitée, et ambiance chaleureuse
-
-**Caractéristiques** :
-✅ Tous les repas sont servis sur demande (petit-déjeuner, déjeuner, dîner)
-✅ Cuisine maison préparée avec des produits frais et locaux
-✅ Spécialités tunisiennes authentiques
-✅ Adaptations possibles selon vos préférences alimentaires
-✅ Ambiance conviviale autour de repas partagés
-
-Nos repas sont un véritable voyage culinaire qui complète votre expérience à Dar Dhiafa ! N'hésitez pas à nous demander lors de votre réservation ou pendant votre séjour.
-
-Quels types de plats vous intéressent le plus ? Avez-vous des allergies ou préférences particulières ?`,
-        en: `🍽️ **Our Meals and Culinary Services**
-
-Dar Dhiafa Paul Klee offers an authentic culinary experience served on request:
-
-☕ **Breakfast**: Served on request with local products, traditional bread, artisanal jams, eggs, cheeses, fresh fruits and coffee/mint tea
-
-🍽️ **Lunch**: Midday meal served on request with authentic Tunisian specialties, fresh salads, traditional dishes and seasonal fruits
-
-🌙 **Dinner**: Gastronomic evenings served on request with varied menu, traditional Tunisian cuisine revisited, and warm atmosphere
-
-**Features**:
-✅ All meals are served on request (breakfast, lunch, dinner)
-✅ Homemade cuisine prepared with fresh local products
-✅ Authentic Tunisian specialties
-✅ Possible adaptations according to your dietary preferences
-✅ Friendly atmosphere around shared meals
-
-Our meals are a true culinary journey that completes your experience at Dar Dhiafa! Feel free to request them when booking or during your stay.
-
-What types of dishes interest you most? Do you have any allergies or particular preferences?`,
-        ar: `🍽️ **وجباتنا وخدماتنا الغذائية**
-
-دار ضيافة بول كلي يقدم تجربة غذائية أصيلة تقدم عند الطلب:
-
-☕ **الإفطار**: يقدم عند الطلب مع منتجات محلية وخبز تقليدي ومربى حرفي وبيض وجبن وفواكه طازجة وقهوة/شاي بالنعناع
-
-🍽️ **الغداء**: وجبة منتصف النهار تقدم عند الطلب مع أطباق تونسية أصيلة وسلطات طازجة وأطباق تقليدية وفواكه موسمية
-
-🌙 **العشاء**: أمسيات فاخرة تقدم عند الطلب مع قائمة متنوعة ومطبخ تونسي تقليدي معاد صياغته وجو دافئ
-
-**الميزات**:
-✅ جميع الوجبات تقدم عند الطلب (الإفطار والغداء والعشاء)
-✅ مطبخ منزلي محضر بمنتجات محلية طازجة
-✅ أطباق تونسية أصيلة
-✅ إمكانية التكيف حسب تفضيلاتك الغذائية
-✅ أجواء ودية حول وجبات مشتركة
-
-وجباتنا هي رحلة غذائية حقيقية تكمل تجربتك في دار ضيافة! لا تترددي في طلبها عند الحجز أو أثناء إقامتك.
-
-هل لديك حساسيات أو تفضيلات خاصة؟`
+هل لديك أسئلة أخرى؟`
       };
       return { 
         text: responses[currentLang]
@@ -301,253 +176,28 @@ What types of dishes interest you most? Do you have any allergies or particular 
         lowerMessage.includes("excursion") || lowerMessage.includes("tour") || lowerMessage.includes("excursion") || lowerMessage.includes("artisanat") ||
         lowerMessage.includes("craft") || lowerMessage.includes("mosquée") || lowerMessage.includes("mosquee") || lowerMessage.includes("mosque")) {
       const responses = {
-        fr: `✨ **Expériences Authentiques à Kairouan**
+        fr: `Nous n'organisons pas directement de visites, mais nous pouvons vous aider à trouver un bon guide ou un organisateur local selon vos envies (médina, mosquées, musées, etc.).
 
-Dar Dhiafa vous propose de découvrir les meilleures expériences culturelles et authentiques de Kairouan :
+Pour plus de détails, n'hésitez pas à nous contacter sur WhatsApp au +216 98306481 ou via Messenger : m.me/dardhiafapaulklee
 
-🏛️ **Visites culturelles et historiques** :
-• Grande Mosquée de Kairouan (Okba Ibn Nafi) - Une des plus anciennes mosquées du monde musulman
-• Mausolée Sidi Sahab - Le "Barber's Mosque" avec architecture andalouse
-• Médina historique - Classée UNESCO, labyrinthe de ruelles et souks traditionnels
-• Bassins des Aghlabides - Monuments historiques uniques
+Avez-vous d'autres questions ?`,
+        en: `We don't organize visits directly, but we can help you find a good guide or local organizer according to your interests (medina, mosques, museums, etc.).
 
-🎨 **Découvertes artisanales** :
-• Visite d'ateliers d'artisans locaux (tapis, poterie, cuir)
-• Rencontre avec les maîtres artisans de Kairouan
-• Découverte des techniques traditionnelles
+For more details, feel free to contact us on WhatsApp at +216 98306481 or via Messenger: m.me/dardhiafapaulklee
 
-🍽️ **Gastronomie locale** :
-• Découverte des saveurs authentiques tunisiennes
-• Spécialités régionales de Kairouan
-• Expériences culinaires avec les locaux
+Do you have any other questions?`,
+        ar: `لا ننظم الزيارات مباشرة، ولكن يمكننا مساعدتك في العثور على مرشد جيد أو منظم محلي حسب رغباتك (المدينة، المساجد، المتاحف، إلخ).
 
-🏛️ **Excursions à proximité** :
-• El Jem - L'un des plus grands amphithéâtres romains (UNESCO)
-• Sbeitla - Cité antique avec temples romains et byzantins
-• Visites guidées avec guides historiens certifiés
+لمزيد من التفاصيل، لا تترددي في الاتصال بنا على واتساب على +216 98306481 أو عبر Messenger: m.me/dardhiafapaulklee
 
-🛁 **Bien-être traditionnel** :
-• Hammam traditionnel à Kairouan
-• Rituels de purification ancestraux
-
-💡 Nous pouvons vous fournir toutes les informations et vous aider à trouver des guides locaux expérimentés pour organiser ces expériences selon vos intérêts et la durée de votre séjour.
-
-Quelle expérience vous intéresse le plus ? Et préférez-vous des visites culturelles, de l'artisanat ou de la gastronomie ?`,
-        en: `✨ **Authentic Experiences in Kairouan**
-
-Dar Dhiafa offers you the best cultural and authentic experiences in Kairouan:
-
-🏛️ **Cultural and historical visits**:
-• Great Mosque of Kairouan (Okba Ibn Nafi) - One of the oldest mosques in the Muslim world
-• Sidi Sahab Mausoleum - The "Barber's Mosque" with Andalusian architecture
-• Historic Medina - UNESCO listed, maze of alleys and traditional souks
-• Aghlabid Basins - Unique historical monuments
-
-🎨 **Artisan discoveries**:
-• Visit to local artisan workshops (carpets, pottery, leather)
-• Meeting with Kairouan master craftsmen
-• Discovery of traditional techniques
-
-🍽️ **Local gastronomy**:
-• Discovery of authentic Tunisian flavors
-• Regional specialties of Kairouan
-• Culinary experiences with locals
-
-🏛️ **Nearby excursions**:
-• El Jem - One of the largest Roman amphitheaters (UNESCO)
-• Sbeitla - Ancient city with Roman and Byzantine temples
-• Guided tours with certified historian guides
-
-🛁 **Traditional wellness**:
-• Traditional hammam in Kairouan
-• Ancestral purification rituals
-
-💡 We can provide you with all the information and help you find experienced local guides to organize these experiences according to your interests and the duration of your stay.
-
-Which experience interests you most? And do you prefer cultural visits, crafts, or gastronomy?`,
-        ar: `✨ **تجارب أصيلة في القيروان**
-
-دار ضيافة يقدم لك أفضل التجارب الثقافية والأصيلة في القيروان:
-
-🏛️ **زيارات ثقافية وتاريخية**:
-• الجامع الكبير بالقيروان (عقبة بن نافع) - أحد أقدم المساجد في العالم الإسلامي
-• ضريح سيدي الصحاب - "مسجد الحلاق" مع عمارة أندلسية
-• المدينة التاريخية - مصنفة اليونسكو، متاهة من الأزقة والأسواق التقليدية
-• أحواض الأغالبة - نصب تاريخية فريدة
-
-🎨 **اكتشافات حرفية**:
-• زيارة ورشات الحرفيين المحليين (سجاد، فخار، جلد)
-• لقاء مع حرفيي القيروان
-• اكتشاف التقنيات التقليدية
-
-🍽️ **المأكولات المحلية**:
-• اكتشاف النكهات التونسية الأصيلة
-• أطباق إقليمية من القيروان
-• تجارب غذائية مع السكان المحليين
-
-🏛️ **رحلات قريبة**:
-• الجم - أحد أكبر المدرجات الرومانية (اليونسكو)
-• سبيطلة - مدينة قديمة مع معابد رومانية وبيزنطية
-• جولات إرشادية مع مرشدين مؤرخين معتمدين
-
-🛁 **العافية التقليدية**:
-• حمام تقليدي في القيروان
-• طقوس التطهير القديمة
-
-💡 يمكننا تزويدك بجميع المعلومات ومساعدتك في العثور على مرشدين محليين ذوي خبرة لتنظيم هذه التجارب حسب اهتماماتك ومدة إقامتك.
-
-أي تجربة تهمك أكثر؟ وهل تفضلين الزيارات الثقافية أم الحرف أم المأكولات؟`
+هل لديك أسئلة أخرى؟`
       };
       return { 
         text: responses[currentLang]
       };
     }
 
-    // About the house
-    if (lowerMessage.includes("maison") || lowerMessage.includes("house") || lowerMessage.includes("منزل") ||
-        lowerMessage.includes("hôtel") || lowerMessage.includes("hotel") || lowerMessage.includes("فندق") ||
-        lowerMessage.includes("dar dhiafa") || lowerMessage.includes("dar") || lowerMessage.includes("dhiafa") ||
-        lowerMessage.includes("présente") || lowerMessage.includes("presente") || lowerMessage.includes("present") ||
-        lowerMessage.includes("pré") || lowerMessage.includes("pre") || lowerMessage.includes("introduce") || lowerMessage.includes("عرض") ||
-        lowerMessage.includes("paul klee") || lowerMessage.includes("kairouan") || lowerMessage.includes("القيروان") ||
-        lowerMessage.includes("c'est quoi") || lowerMessage.includes("qu'est ce") || lowerMessage.includes("qu'est-ce") ||
-        lowerMessage.includes("parle moi") || lowerMessage.includes("parle-moi") || lowerMessage.includes("parle moi de") ||
-        lowerMessage.includes("raconte") || lowerMessage.includes("explique") || lowerMessage.includes("explain")) {
-      const responses = {
-        fr: `🏛️ **Dar Dhiafa Paul Klee - Votre Maison d'Hôtes**
 
-Bienvenue dans notre maison d'hôtes exceptionnelle au cœur de la médina historique de Kairouan, classée au patrimoine mondial de l'UNESCO !
-
-**📍 Situation** : 
-Située dans le cœur historique de Kairouan, Dar Dhiafa vous plonge dans l'authenticité tunisienne, à quelques pas de la Grande Mosquée et des souks traditionnels.
-
-**🎨 Inspiration Artistique** : 
-Notre maison est inspirée par l'artiste Paul Klee qui a créé ses plus belles aquarelles à Kairouan en 1914. Chaque espace est décoré dans cet esprit, créant une atmosphère unique où l'art rencontre l'hospitalité tunisienne.
-
-**🏺 Architecture** : 
-Maison traditionnelle tunisienne restaurée avec élégance, alliant architecture ancestrale et confort moderne. Patios intérieurs, voûtes en pierre, et détails artisanaux authentiques.
-
-**🛏️ Capacité** : 
-13 chambres réparties en 4 catégories (Suite Royale, Twin, Double, Triple/Familiale), toutes uniques et décorées avec soin.
-
-**🍽️ Restauration** : 
-Tous les repas sont servis sur demande : petit-déjeuner, déjeuner et dîner avec cuisine tunisienne authentique préparée maison.
-
-**✨ Expériences** : 
-Nous vous guidons vers les meilleures expériences authentiques de Kairouan : visites culturelles, artisanat, gastronomie, et excursions.
-
-Notre maison est une véritable immersion dans la culture tunisienne, où chaque moment est une découverte.
-
-Que souhaitez-vous savoir ensuite ?`,
-        en: `🏛️ **Dar Dhiafa Paul Klee - Your Guesthouse**
-
-Welcome to our exceptional guesthouse in the heart of Kairouan's historic medina, listed as a UNESCO World Heritage Site!
-
-**📍 Location**: 
-Located in the historic heart of Kairouan, Dar Dhiafa immerses you in Tunisian authenticity, just steps from the Great Mosque and traditional souks.
-
-**🎨 Artistic Inspiration**: 
-Our house is inspired by artist Paul Klee who created his most beautiful watercolors in Kairouan in 1914. Each space is decorated in this spirit, creating a unique atmosphere where art meets Tunisian hospitality.
-
-**🏺 Architecture**: 
-Traditional Tunisian house restored with elegance, combining ancestral architecture and modern comfort. Interior patios, stone vaults, and authentic artisan details.
-
-**🛏️ Capacity**: 
-13 rooms divided into 4 categories (Royal Suite, Twin, Double, Triple/Family), all unique and carefully decorated.
-
-**🍽️ Dining**: 
-All meals are served on request: breakfast, lunch and dinner with authentic Tunisian cuisine prepared at home.
-
-**✨ Experiences**: 
-We guide you to the best authentic experiences in Kairouan: cultural visits, crafts, gastronomy, and excursions.
-
-Our house is a true immersion in Tunisian culture, where every moment is a discovery.
-
-What would you like to know next?`,
-        ar: `🏛️ **دار ضيافة بول كلي - بيت ضيافتك**
-
-مرحباً بكم في بيت ضيافتنا الاستثنائي في قلب المدينة التاريخية بالقيروان، المصنفة كموقع تراث عالمي لليونسكو!
-
-**📍 الموقع**: 
-تقع في القلب التاريخي للقيروان، دار ضيافة ينغمسك في الأصالة التونسية، على بعد خطوات من الجامع الكبير والأسواق التقليدية.
-
-**🎨 الإلهام الفني**: 
-بيتنا مستوحى من الفنان بول كلي الذي أنشأ أجمل ألوانه المائية في القيروان عام 1914. كل مساحة مزينة بهذه الروح، مما يخلق أجواء فريدة حيث يلتقي الفن بالضيافة التونسية.
-
-**🏺 العمارة**: 
-منزل تونسي تقليدي تم ترميمه بأناقة، يجمع بين العمارة القديمة والراحة العصرية. باحات داخلية وأقبية حجرية وتفاصيل حرفية أصيلة.
-
-**🛏️ السعة**: 
-13 غرفة موزعة على 4 فئات (جناح ملكي، توأم، مزدوج، ثلاثي/عائلي)، كلها فريدة ومزينة بعناية.
-
-**🍽️ المطعم**: 
-جميع الوجبات تقدم عند الطلب: الإفطار والغداء والعشاء مع مطبخ تونسي أصيل محضر في المنزل.
-
-**✨ التجارب**: 
-نرشدك إلى أفضل التجارب الأصيلة في القيروان: زيارات ثقافية وحرف ومأكولات ورحلات.
-
-بيتنا هو غمر حقيقي في الثقافة التونسية، حيث كل لحظة هي اكتشاف.
-
-ماذا يهمك أكثر: الوجبات، الأنشطة أو الغرف؟`
-      };
-      return { 
-        text: responses[currentLang]
-      };
-    }
-
-    // Price questions
-    if (lowerMessage.includes("prix") || lowerMessage.includes("price") || lowerMessage.includes("سعر") ||
-        lowerMessage.includes("tarif") || lowerMessage.includes("cost") || lowerMessage.includes("coût") ||
-        lowerMessage.includes("cout") || lowerMessage.includes("combien") || lowerMessage.includes("how much") ||
-        lowerMessage.includes("payer") || lowerMessage.includes("pay") || lowerMessage.includes("tnd") || lowerMessage.includes("dinars")) {
-      const responses = {
-        fr: `💰 **Tarifs**
-
-Nos tarifs varient selon la catégorie de chambre et la saison :
-
-• Suite Royale : Tarifs sur demande
-• Chambres Twin/Double : À partir de 200 TND/nuit
-• Triple/Familiale : À partir de 300 TND/nuit
-
-💡 Pour connaître les tarifs exacts et disponibilités, je vous invite à :
-1. Visiter notre page de réservation
-2. Sélectionner vos dates
-3. Voir les chambres disponibles avec leurs tarifs
-
-Avez-vous des dates spécifiques en tête ? Je peux vous guider vers la page de réservation pour voir les tarifs exacts.`,
-        en: `💰 **Rates**
-
-Our rates vary according to room category and season:
-
-• Royal Suite: Rates on request
-• Twin/Double Rooms: From 200 TND/night
-• Triple/Family: From 300 TND/night
-
-💡 To find out exact rates and availability, I invite you to:
-1. Visit our booking page
-2. Select your dates
-3. See available rooms with their rates
-
-Do you have specific dates in mind? I can guide you to the booking page to see exact rates.`,
-        ar: `💰 **الأسعار**
-
-تختلف أسعارنا حسب فئة الغرفة والموسم:
-
-• جناح ملكي: أسعار عند الطلب
-• غرف توأم/مزدوجة: من 200 د.ت/ليلة
-• ثلاثي/عائلي: من 300 د.ت/ليلة
-
-💡 لمعرفة الأسعار والتوفر الدقيق، أدعوك إلى:
-1. زيارة صفحة الحجز لدينا
-2. اختيار تواريخك
-3. رؤية الغرف المتاحة مع أسعارها
-
-هل لديكم تواريخ محددة؟ يمكنني توجيهك إلى صفحة الحجز لرؤية الأسعار الدقيقة.`
-      };
-      return { 
-        text: responses[currentLang]
-      };
-    }
 
     // Contact questions
     if (lowerMessage.includes("contact") || lowerMessage.includes("téléphone") || lowerMessage.includes("telephone") ||
@@ -556,80 +206,32 @@ Do you have specific dates in mind? I can guide you to the booking page to see e
         lowerMessage.includes("joindre") || lowerMessage.includes("reach") || lowerMessage.includes("appeler") ||
         lowerMessage.includes("call") || lowerMessage.includes("whatsapp") || lowerMessage.includes("واتساب")) {
       const responses = {
-        fr: `📞 **Nous Contacter**
+        fr: `Vous pouvez nous contacter sur WhatsApp au +216 98306481 ou via Messenger : m.me/dardhiafapaulklee
 
-Vous pouvez nous joindre de plusieurs façons :
+Nous serons ravis de répondre à toutes vos questions !`,
+        en: `You can contact us on WhatsApp at +216 98306481 or via Messenger: m.me/dardhiafapaulklee
 
-📱 **WhatsApp** : Cliquez sur le bouton vert en bas à droite
-📧 **Email** : info@dardhiafaklee.tn
-📞 **Téléphone** : +216 77 123 456
-📍 **Adresse** : Médina de Kairouan, Tunisie
+We'll be happy to answer all your questions!`,
+        ar: `يمكنك الاتصال بنا على واتساب على +216 98306481 أو عبر Messenger: m.me/dardhiafapaulklee
 
-Quelle est votre question ? Je peux vous aider ou vous guider vers notre page contact.`,
-        en: `📞 **Contact Us**
-
-You can reach us in several ways:
-
-📱 **WhatsApp**: Click the green button at the bottom right
-📧 **Email**: info@dardhiafaklee.tn
-📞 **Phone**: +216 77 123 456
-📍 **Address**: Medina of Kairouan, Tunisia
-
-What's your question? I can help or guide you to our contact page.`,
-        ar: `📞 **اتصل بنا**
-
-يمكنك التواصل معنا بعدة طرق:
-
-📱 **واتساب**: انقر على الزر الأخضر في الأسفل يمين
-📧 **البريد الإلكتروني**: info@dardhiafaklee.tn
-📞 **الهاتف**: +216 77 123 456
-📍 **العنوان**: مدينة القيروان، تونس
-
-ما هو سؤالك؟ يمكنني المساعدة أو توجيهك إلى صفحة الاتصال.`
+سنكون سعداء للإجابة على جميع أسئلتك!`
       };
       return { 
         text: responses[currentLang]
       };
     }
 
-    // Default response - try to give helpful context
+    // Default response - fallback for questions outside the 4 main themes
     const defaultResponses = {
-      fr: `Je vous comprends ! Je peux vous aider avec de nombreuses questions sur Dar Dhiafa Paul Klee.
+      fr: `Je n'ai pas encore la réponse à cette question, mais vous pouvez nous contacter directement sur WhatsApp au +216 98306481 ou via Messenger : m.me/dardhiafapaulklee pour obtenir de l'aide immédiate.
 
-Voici ce que je peux vous expliquer :
-📋 **Comment réserver** - Le processus de réservation étape par étape
-🛏️ **Nos chambres** - Les 4 catégories de chambres disponibles
-🍽️ **Les repas** - Petit-déjeuner, déjeuner, dîner servis sur demande
-✨ **Les activités** - Visites culturelles, artisanat, gastronomie à Kairouan
-📍 **La maison** - Présentation complète de Dar Dhiafa
-💰 **Les tarifs** - Prix selon les catégories et saisons
-📞 **Nous contacter** - Email, téléphone, WhatsApp
+N'hésitez pas si vous avez d'autres questions sur les réservations, les repas ou les visites !`,
+      en: `I don't have the answer to this question yet, but you can contact us directly on WhatsApp at +216 98306481 or via Messenger: m.me/dardhiafapaulklee for immediate assistance.
 
-Parlez-moi plus spécifiquement de ce qui vous intéresse. Par exemple, vous pouvez me demander "Comment réserver ?", "Parle-moi des chambres", "Quels sont les repas ?", ou "Quelles activités sont disponibles ?"`,
-      en: `I understand you! I can help you with many questions about Dar Dhiafa Paul Klee.
+Feel free to ask if you have other questions about bookings, meals or visits!`,
+      ar: `ليس لدي إجابة على هذا السؤال بعد، ولكن يمكنك الاتصال بنا مباشرة على واتساب على +216 98306481 أو عبر Messenger: m.me/dardhiafapaulklee للحصول على مساعدة فورية.
 
-Here's what I can explain:
-📋 **How to book** - Step by step booking process
-🛏️ **Our rooms** - The 4 room categories available
-🍽️ **Meals** - Breakfast, lunch, dinner served on request
-✨ **Activities** - Cultural visits, crafts, gastronomy in Kairouan
-📍 **The house** - Complete presentation of Dar Dhiafa
-💰 **Rates** - Prices by category and season
-📞 **Contact us** - Email, phone, WhatsApp
-
-Tell me more specifically what interests you. For example, you can ask me "How to book?", "Tell me about rooms", "What meals are available?", or "What activities are available?"`,
-      ar: `أفهمك! يمكنني مساعدتك في العديد من الأسئلة حول دار ضيافة بول كلي.
-
-إليك ما يمكنني شرحه:
-📋 **كيفية الحجز** - عملية الحجز خطوة بخطوة
-🛏️ **غرفنا** - الفئات الأربع للغرف المتاحة
-🍽️ **الوجبات** - الإفطار والغداء والعشاء تقدم عند الطلب
-✨ **الأنشطة** - زيارات ثقافية وحرف ومأكولات في القيروان
-📍 **المنزل** - عرض كامل لدار ضيافة
-💰 **الأسعار** - الأسعار حسب الفئات والمواسم
-📞 **الاتصال بنا** - البريد الإلكتروني والهاتف وواتساب
-
-أخبريني بشكل أكثر تحديداً بما يهمك. على سبيل المثال، يمكنك أن تسأليني "كيف أحجز؟"، "أخبريني عن الغرف"، "ما هي الوجبات المتاحة؟" أو "ما هي الأنشطة المتاحة؟"`
+لا تترددي إذا كان لديك أسئلة أخرى حول الحجوزات أو الوجبات أو الزيارات!`
     };
     return { 
       text: defaultResponses[currentLang]
