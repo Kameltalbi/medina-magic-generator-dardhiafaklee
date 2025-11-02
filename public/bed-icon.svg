@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background circle with hotel theme color -->
+  <circle cx="16" cy="16" r="16" fill="#2E5984"/>
+  
+  <!-- Bed frame -->
+  <rect x="4" y="18" width="24" height="8" rx="1" fill="#B8860B"/>
+  
+  <!-- Mattress -->
+  <rect x="6" y="14" width="20" height="6" rx="1" fill="#F5DEB3"/>
+  
+  <!-- Pillows -->
+  <ellipse cx="10" cy="12" rx="3" ry="2" fill="#FFFFFF"/>
+  <ellipse cx="22" cy="12" rx="3" ry="2" fill="#FFFFFF"/>
+  
+  <!-- Bed legs -->
+  <rect x="5" y="24" width="2" height="4" fill="#8B4513"/>
+  <rect x="25" y="24" width="2" height="4" fill="#8B4513"/>
+  
+  <!-- Decorative headboard -->
+  <rect x="4" y="8" width="2" height="12" rx="1" fill="#B8860B"/>
+</svg>

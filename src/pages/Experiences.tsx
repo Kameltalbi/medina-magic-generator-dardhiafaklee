@@ -17,7 +17,7 @@ import {
   Palette,
   ChefHat,
   Building,
-  Heart,
+  Bed,
   ArrowRight,
   BookOpen,
   Music,

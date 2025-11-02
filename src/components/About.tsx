@@ -2,7 +2,7 @@
 // Uses staggered animations and the full color palette from design system
 
 import { motion } from "framer-motion";
-import { Palette, Heart, Star, Award } from "lucide-react";
+import { Palette, Bed, Star, Award } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
 
@@ -16,7 +16,7 @@ const About = () => {
       description: t("about.feature1.description"),
     },
     {
-      icon: Heart,
+      icon: Bed,
       title: t("about.feature2.title"),
       description: t("about.feature2.description"),
     },
