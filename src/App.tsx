@@ -17,6 +17,7 @@ import ChambresFamiliales from "./pages/ChambresFamiliales";
 import ChambresDoubles from "./pages/ChambresDoubles";
 import ChambresTwin from "./pages/ChambresTwin";
 import ChambresTriples from "./pages/ChambresTriples";
+import BackOffice from "./pages/BackOffice";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,7 @@ const AppContent = () => {
         <Route path="/experiences" element={<Experiences />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/backoffice" element={<BackOffice />} />
         {/* Redirections 301 pour les anciennes routes "maison" */}
         <Route path="/maison" element={<Navigate to="/about" replace />} />
         <Route path="/house" element={<Navigate to="/about" replace />} />
