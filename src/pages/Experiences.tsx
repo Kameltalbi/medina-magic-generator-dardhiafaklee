@@ -326,11 +326,14 @@ const Experiences = () => {
                   <Card className="overflow-hidden shadow-medium hover:shadow-large transition-all duration-300 border-0 bg-card h-full">
                     {/* Experience Image */}
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img
-                        src={experience.image}
-                        alt={experience.name[currentLang]}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
+                      <picture>
+                        <source srcSet={experience.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                        <img
+                          src={experience.image}
+                          alt={experience.name[currentLang]}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </picture>
                     </div>
 
                     <CardContent className="p-6 flex flex-col flex-grow">

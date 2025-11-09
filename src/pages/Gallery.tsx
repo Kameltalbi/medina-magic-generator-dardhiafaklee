@@ -371,11 +371,14 @@ const Gallery = () => {
                   onClick={() => openLightbox(index)}
                 >
                   <div className="relative aspect-square overflow-hidden rounded-xl shadow-medium hover:shadow-large transition-all duration-300">
-                    <img
-                      src={image.src}
-                      alt={image.title[currentLang]}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                    <picture>
+                      <source srcSet={image.src.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                      <img
+                        src={image.src}
+                        alt={image.title[currentLang]}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </picture>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 right-4 text-white">
                         <h3 className="font-bold font-bold text-sm mb-1">
@@ -443,11 +446,14 @@ const Gallery = () => {
               )}
 
               {/* Image */}
-              <img
-                src={filteredImages[currentImageIndex]?.src}
-                alt={filteredImages[currentImageIndex]?.title[currentLang]}
-                className="max-w-full max-h-full object-contain rounded-lg"
-              />
+              <picture>
+                <source srcSet={filteredImages[currentImageIndex]?.src.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                <img
+                  src={filteredImages[currentImageIndex]?.src}
+                  alt={filteredImages[currentImageIndex]?.title[currentLang]}
+                  className="max-w-full max-h-full object-contain rounded-lg"
+                />
+              </picture>
 
               {/* Image Info */}
               <div className="absolute bottom-4 left-4 right-4 text-white">

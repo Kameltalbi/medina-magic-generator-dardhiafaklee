@@ -263,11 +263,14 @@ const Rooms = () => {
                   <Card className="overflow-hidden shadow-medium hover:shadow-large transition-all duration-300 border-0 bg-card h-full">
                     {/* Category Image */}
                     <div className="relative aspect-[4/3] overflow-hidden">
-                      <img
-                        src={category.image}
-                        alt={category.name[currentLang]}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
+                      <picture>
+                        <source srcSet={category.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                        <img
+                          src={category.image}
+                          alt={category.name[currentLang]}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </picture>
                       <div className="absolute top-4 left-4">
                         <Badge className="bg-terre-cuite text-white font-medium font-medium text-sm">
                           {category.name[currentLang]}

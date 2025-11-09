@@ -96,10 +96,7 @@ const Hero = () => {
             }}
           >
             {/* Background Image with Ken Burns Effect */}
-            <motion.img
-              src={slides[currentSlide].image}
-              alt={slides[currentSlide].title}
-              className="w-full h-full object-cover"
+            <motion.picture
               initial={{ 
                 scale: 1.1,
                 x: -20,
@@ -116,7 +113,15 @@ const Hero = () => {
                 repeat: Infinity,
                 repeatType: "reverse"
               }}
-            />
+              className="absolute inset-0"
+            >
+              <source srcSet={slides[currentSlide].image.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+              <motion.img
+                src={slides[currentSlide].image}
+                alt={slides[currentSlide].title}
+                className="w-full h-full object-cover"
+              />
+            </motion.picture>
             
             {/* Subtle overlay for depth */}
             <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20" />

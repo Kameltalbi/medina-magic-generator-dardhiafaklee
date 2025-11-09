@@ -141,13 +141,18 @@ const About = () => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <motion.img
-                    src="/grid1.png"
-                    alt="Vue de Kairouan 1"
-                    className="w-full h-full object-cover"
+                  <motion.picture
+                    className="w-full h-full"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                  >
+                    <source srcSet="/grid1.webp" type="image/webp" />
+                    <img
+                      src="/grid1.png"
+                      alt="Vue de Kairouan 1"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.picture>
                 </motion.div>
                 <motion.div
                   className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
@@ -158,13 +163,18 @@ const About = () => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <motion.img
-                    src="/grid2.png"
-                    alt="Vue de Kairouan 2"
-                    className="w-full h-full object-cover"
+                  <motion.picture
+                    className="w-full h-full"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                  >
+                    <source srcSet="/grid2.webp" type="image/webp" />
+                    <img
+                      src="/grid2.png"
+                      alt="Vue de Kairouan 2"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.picture>
                 </motion.div>
               </div>
 
@@ -179,13 +189,18 @@ const About = () => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <motion.img
-                    src="/grid3.png"
-                    alt="Vue de Kairouan 3"
-                    className="w-full h-full object-cover"
+                  <motion.picture
+                    className="w-full h-full"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                  >
+                    <source srcSet="/grid3.webp" type="image/webp" />
+                    <img
+                      src="/grid3.png"
+                      alt="Vue de Kairouan 3"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.picture>
                 </motion.div>
                 <motion.div
                   className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
@@ -196,13 +211,18 @@ const About = () => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <motion.img
-                    src="/grid4.png"
-                    alt="Vue de Kairouan 4"
-                    className="w-full h-full object-cover"
+                  <motion.picture
+                    className="w-full h-full"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                  >
+                    <source srcSet="/grid4.webp" type="image/webp" />
+                    <img
+                      src="/grid4.png"
+                      alt="Vue de Kairouan 4"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.picture>
                 </motion.div>
               </div>
 
@@ -217,13 +237,18 @@ const About = () => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <motion.img
-                    src="/vue-mosq-optimized.jpg"
-                    alt="Vue de la mosquée de Kairouan"
-                    className="w-full h-full object-cover"
+                  <motion.picture
+                    className="w-full h-full"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                  >
+                    <source srcSet="/vue-mosq-optimized.webp" type="image/webp" />
+                    <img
+                      src="/vue-mosq-optimized.jpg"
+                      alt="Vue de la mosquée de Kairouan"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.picture>
                 </motion.div>
                 <motion.div
                   className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
@@ -234,13 +259,18 @@ const About = () => {
                   }}
                   transition={{ duration: 0.4 }}
                 >
-                  <motion.img
-                    src="/porte-optimized.jpg"
-                    alt="Porte traditionnelle de Kairouan"
-                    className="w-full h-full object-cover"
+                  <motion.picture
+                    className="w-full h-full"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                  >
+                    <source srcSet="/porte-optimized.webp" type="image/webp" />
+                    <img
+                      src="/porte-optimized.jpg"
+                      alt="Porte traditionnelle de Kairouan"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.picture>
                 </motion.div>
               </div>
             </motion.div>

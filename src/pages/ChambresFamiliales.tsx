@@ -297,16 +297,21 @@ const ChambresFamiliales = () => {
               </div>
 
               {/* Image */}
-              <motion.img
+              <motion.picture
                 key={currentImageIndex}
-                src={chambreImages[currentImageIndex].src}
-                alt={chambreImages[currentImageIndex].alt}
-                className="w-full h-full object-contain max-h-[90vh] rounded-lg"
+                className="w-full h-full"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-              />
+              >
+                <source srcSet={chambreImages[currentImageIndex].src.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                <img
+                  src={chambreImages[currentImageIndex].src}
+                  alt={chambreImages[currentImageIndex].alt}
+                  className="w-full h-full object-contain max-h-[90vh] rounded-lg"
+                />
+              </motion.picture>
             </motion.div>
           </motion.div>
         )}

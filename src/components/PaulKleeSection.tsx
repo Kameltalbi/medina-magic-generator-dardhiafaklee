@@ -87,13 +87,18 @@ const PaulKleeSection = () => {
                 }}
                 transition={{ duration: 0.4 }}
               >
-                <motion.img
-                  src="/paul-klee-1911.jpg"
-                  alt="Portrait de Paul Klee"
-                  className="w-full h-full object-cover"
+                <motion.picture
+                  className="w-full h-full"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.6 }}
-                />
+                >
+                  <source srcSet="/paul-klee-1911.webp" type="image/webp" />
+                  <img
+                    src="/paul-klee-1911.jpg"
+                    alt="Portrait de Paul Klee"
+                    className="w-full h-full object-cover"
+                  />
+                </motion.picture>
               </motion.div>
               
               {/* Floating Color Elements */}

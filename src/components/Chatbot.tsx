@@ -331,11 +331,8 @@ Feel free to ask if you have other questions about bookings, meals or visits!`,
           }}
         />
         <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-lg z-10">
-          <motion.img 
-            src="/zahra.jpg" 
-            alt="Zahra" 
-            className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 25%' }}
+          <motion.picture 
+            className="w-full h-full"
             animate={{ 
               scale: [1, 1.05, 1]
             }}
@@ -344,7 +341,15 @@ Feel free to ask if you have other questions about bookings, meals or visits!`,
               repeat: Infinity,
               ease: "easeInOut"
             }}
-          />
+          >
+            <source srcSet="/zahra.webp" type="image/webp" />
+            <img 
+              src="/zahra.jpg" 
+              alt="Zahra" 
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 25%' }}
+            />
+          </motion.picture>
           <motion.div
             className="absolute -top-1 -right-1 w-3 h-3 bg-[#25D366] rounded-full border-2 border-white z-10"
             animate={{ 
@@ -390,12 +395,15 @@ Feel free to ask if you have other questions about bookings, meals or visits!`,
                 ease: "easeInOut"
               }}
             >
-              <img 
-                src="/zahra.jpg" 
-                alt="Zahra" 
-                className="w-full h-full object-cover"
-                style={{ objectPosition: 'center 25%' }}
-              />
+              <picture>
+                <source srcSet="/zahra.webp" type="image/webp" />
+                <img 
+                  src="/zahra.jpg" 
+                  alt="Zahra" 
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: 'center 25%' }}
+                />
+              </picture>
               <motion.div 
                 className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-[#25D366] rounded-full border-2 border-white flex items-center justify-center"
                 animate={{ 

@@ -34,11 +34,14 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <img
-              src="/logo Klee.png"
-              alt="Logo Klee"
-              className="h-16 sm:h-20 md:h-24 w-auto object-contain"
-            />
+            <picture>
+              <source srcSet="/logo Klee.webp" type="image/webp" />
+              <img
+                src="/logo Klee.png"
+                alt="Logo Klee"
+                className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+              />
+            </picture>
           </motion.div>
           {/* Nom à côté du logo */}
           <motion.div

@@ -100,13 +100,18 @@ const About = () => {
                       }}
                       transition={{ duration: 0.4 }}
                     >
-                      <motion.img
-                        src="/galerie/imagegalerie5.jpg"
-                        alt="Salle à manger de Dar Dhiafa Klee - Hospitalité tunisienne authentique"
-                        className="w-full h-full object-cover"
+                      <motion.picture
+                        className="w-full h-full"
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.6 }}
-                      />
+                      >
+                        <source srcSet="/galerie/imagegalerie5.webp" type="image/webp" />
+                        <img
+                          src="/galerie/imagegalerie5.jpg"
+                          alt="Salle à manger de Dar Dhiafa Klee - Hospitalité tunisienne authentique"
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.picture>
                     </motion.div>
                   </motion.div>
                 </div>
