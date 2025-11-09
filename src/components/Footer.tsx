@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Facebook, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Linkedin, Instagram, Mail, Phone, MapPin, FileText, Download } from "lucide-react";
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
 
@@ -110,7 +110,17 @@ const Footer = () => {
                 <ul className="space-y-2">
                   {links.map((link) => (
                     <li key={link.name}>
-                      {link.href.startsWith('/') ? (
+                      {link.isExternal ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-indigo-medina/80 hover:text-terre-cuite transition-colors duration-300 font-medium text-sm hover:underline flex items-center gap-2"
+                        >
+                          {link.name}
+                          <FileText className="w-3 h-3" />
+                        </a>
+                      ) : link.href.startsWith('/') ? (
                         <Link
                           to={link.href}
                           className="text-indigo-medina/80 hover:text-terre-cuite transition-colors duration-300 font-medium text-sm hover:underline"
@@ -131,6 +141,25 @@ const Footer = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Brochure Download Button */}
+          <motion.div
+            className="mb-8 flex justify-center"
+            variants={fadeInUp}
+          >
+            <motion.a
+              href="/brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-vert-porte hover:bg-vert-porte-hover text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FileText className="w-6 h-6" />
+              <span className="text-lg">📘 Télécharger notre brochure</span>
+              <Download className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </motion.a>
+          </motion.div>
 
           {/* Divider */}
           <motion.div

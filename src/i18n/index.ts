@@ -17,7 +17,6 @@ const resources = {
       "nav.contact": "Contact",
       "nav.book": "Book Now",
       "nav.booking": "Booking",
-      "nav.maison": "The House",
       "nav.sejour": "Stay",
       "nav.apropos": "About",
       
@@ -267,7 +266,6 @@ const resources = {
       "nav.contact": "Contact",
       "nav.book": "Réserver",
       "nav.booking": "Réservation",
-      "nav.maison": "La Maison",
       "nav.sejour": "Séjour",
       "nav.apropos": "À Propos",
       
@@ -517,7 +515,6 @@ const resources = {
       "nav.contact": "اتصل بنا",
       "nav.book": "احجز الآن",
       "nav.booking": "الحجز",
-      "nav.maison": "البيت",
       "nav.sejour": "الإقامة",
       "nav.apropos": "حولنا",
       

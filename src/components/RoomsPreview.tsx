@@ -110,17 +110,101 @@ const RoomsPreview = () => {
     };
   }, []);
 
-  // Afficher les 3 chambres les plus chères sur la page d'accueil
-  const featuredRooms = roomsDataState
-    .sort((a, b) => b.pricePerNight - a.pricePerNight) // Trier par prix décroissant
-    .slice(0, 3); // Prendre les 3 plus chères
+  // Afficher les 5 chambres sur la page d'accueil
+  // Position 1: Suite royale la plus chère
+  // Position 2: Chambre familiale
+  // Position 3: Chambre double
+  // Position 4: Chambre twin
+  // Position 5: Chambre triple
   
-  const rooms: Room[] = featuredRooms.map(room => ({
-    ...room,
-    pricePerNight: formatPrice(room.pricePerNight),
-    description: t(`rooms.${room.id}.description`) || room.description,
-    amenities: room.amenities.slice(0, 4) // Limiter à 4 équipements pour l'affichage
-  }));
+  const suites = roomsDataState
+    .filter(room => room.category === "S.ROYALE")
+    .sort((a, b) => b.pricePerNight - a.pricePerNight);
+  
+  const chambresFamiliales = roomsDataState
+    .filter(room => room.category === "FAMILIALE")
+    .sort((a, b) => b.pricePerNight - a.pricePerNight);
+  
+  const chambresDoubles = roomsDataState
+    .filter(room => room.category === "DOUBLE")
+    .sort((a, b) => b.pricePerNight - a.pricePerNight);
+  
+  const chambresTwin = roomsDataState
+    .filter(room => room.category === "TWIN")
+    .sort((a, b) => b.pricePerNight - a.pricePerNight);
+  
+  const chambresTriples = roomsDataState
+    .filter(room => (room.category === "DOUBLE+L.B" || room.capacity >= 3) && room.category !== "S.ROYALE" && room.category !== "FAMILIALE")
+    .sort((a, b) => b.pricePerNight - a.pricePerNight);
+  
+  // Construire le tableau des 5 chambres à afficher
+  const featuredRooms = [];
+  
+  // Position 1: Suite royale
+  if (suites.length > 0) {
+    featuredRooms.push(suites[0]);
+  }
+  
+  // Position 2: Chambre familiale
+  if (chambresFamiliales.length > 0) {
+    featuredRooms.push(chambresFamiliales[0]);
+  }
+  
+  // Position 3: Chambre double
+  if (chambresDoubles.length > 0) {
+    featuredRooms.push(chambresDoubles[0]);
+  }
+  
+  // Position 4: Chambre twin
+  if (chambresTwin.length > 0) {
+    featuredRooms.push(chambresTwin[0]);
+  }
+  
+  // Position 5: Chambre triple
+  if (chambresTriples.length > 0) {
+    featuredRooms.push(chambresTriples[0]);
+  }
+  
+  const rooms: Room[] = featuredRooms.map((room, index) => {
+    // Utiliser les images de suite pour les suites royales
+    let imagePath = room.image;
+    let displayTitle = room.title;
+    
+    if (room.category === "S.ROYALE") {
+      if (room.id === "ch-17") {
+        imagePath = "/suite3.jpg"; // ICHK
+        displayTitle = "Suites Royales"; // Remplacer ICHK par Suites Royales
+      } else if (room.id === "ch-22") {
+        imagePath = "/suite2.jpg"; // SEHR
+        displayTitle = "Suites Royales"; // Remplacer SEHR par Suites Royales
+      }
+    } else if (room.category === "FAMILIALE") {
+      // Utiliser l'image chambre-filial1.jpg pour la chambre familiale
+      imagePath = "/chambre-filial1.jpg";
+      displayTitle = "Chambres Familiales"; // Remplacer HAYET par Chambres Familiales
+    } else if (room.category === "DOUBLE") {
+      // Utiliser l'image chambre-double1.jpg pour la chambre double
+      imagePath = "/chambre-double1.jpg";
+      displayTitle = "Chambres Doubles"; // Remplacer KOTB par Chambres Doubles
+    } else if (room.category === "TWIN") {
+      // Utiliser l'image chambretwin1.jpg pour la chambre twin
+      imagePath = "/chambretwin1.jpg";
+      displayTitle = "Chambres Twin"; // Remplacer le nom par Chambres Twin
+    } else if (room.category === "DOUBLE+L.B" || room.capacity >= 3) {
+      // Utiliser l'image chambre3.jpg pour la chambre triple
+      imagePath = "/chambre3.jpg";
+      displayTitle = "Chambres Triples"; // Remplacer le nom par Chambres Triples
+    }
+    
+    return {
+      ...room,
+      title: displayTitle,
+      pricePerNight: formatPrice(room.pricePerNight),
+      description: t(`rooms.${room.id}.description`) || room.description,
+      amenities: room.amenities.slice(0, 4), // Limiter à 4 équipements pour l'affichage
+      image: imagePath
+    };
+  });
 
   const getAmenityIcon = (amenity: string) => {
     if (amenity.includes("Wifi")) return Wifi;
@@ -158,11 +242,11 @@ const RoomsPreview = () => {
 
           {/* Rooms Grid */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
             variants={staggerContainer}
           >
             {rooms.map((room, index) => (
-              <motion.div
+                  <motion.div
                 key={room.id}
                 className="group bg-card rounded-2xl overflow-hidden shadow-medium hover:shadow-strong transition-all duration-500"
                 variants={staggerItem}
@@ -179,18 +263,6 @@ const RoomsPreview = () => {
                     whileHover="hover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-indigo-medina/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Price Badge */}
-                  <div className="absolute top-4 right-4 flex flex-col gap-2">
-                    <div className="bg-terre-cuite text-white px-3 py-1 rounded-full font-medium font-semibold text-sm shadow-soft">
-                      {room.pricePerNight}/{t("rooms.perNight")}
-                    </div>
-                    {room.pricePerNight && parseFloat(room.pricePerNight.replace(/[^\d]/g, '')) >= 350 && (
-                      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full font-medium font-bold text-xs shadow-soft">
-                        ⭐ Premium
-                      </div>
-                    )}
-                  </div>
                   
                   {/* Status Badge */}
                   <div className="absolute top-4 left-4">
@@ -237,7 +309,21 @@ const RoomsPreview = () => {
                       variant="outline"
                       size="sm"
                       className="flex-1 border-terre-cuite text-terre-cuite hover:bg-terre-cuite hover:text-white font-medium font-medium transition-all duration-300"
-                      onClick={() => navigate('/rooms')}
+                      onClick={() => {
+                        if (room.category === "S.ROYALE") {
+                          navigate('/suites');
+                        } else if (room.category === "FAMILIALE") {
+                          navigate('/chambres-familiales');
+                        } else if (room.category === "DOUBLE") {
+                          navigate('/chambres-doubles');
+                        } else if (room.category === "TWIN") {
+                          navigate('/chambres-twin');
+                        } else if (room.category === "DOUBLE+L.B" || room.capacity >= 3) {
+                          navigate('/chambres-triples');
+                        } else {
+                          navigate('/rooms');
+                        }
+                      }}
                     >
                       <Eye className="w-4 h-4 mr-2" />
                       {t("rooms.details")}

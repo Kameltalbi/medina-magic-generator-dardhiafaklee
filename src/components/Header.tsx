@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Menu, X, Home, Camera, Eye, Bed, Star, Info, Phone, ChevronDown, Building2 } from "lucide-react";
+import { Menu, X, Home, Camera, Bed, Star, Info, Phone, FileText } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,16 +14,8 @@ const Header = () => {
   const menuItems = [
     { label: "Accueil", href: "/", icon: Home },
     { label: "À propos", href: "/about", icon: Info },
-    { 
-      label: "La maison", 
-      icon: Building2, 
-      hasSubmenu: true,
-      submenu: [
-        { label: "Chambres", href: "/rooms", icon: Bed },
-        { label: "Expériences", href: "/experiences", icon: Star },
-        { label: "Tour 360°", href: "/gallery#virtual-tour", icon: Eye },
-      ]
-    },
+    { label: "Chambres", href: "/rooms", icon: Bed },
+    { label: "Expériences", href: "/experiences", icon: Star },
     { label: "Galerie", href: "/gallery", icon: Camera },
     { label: "Contact", href: "/contact", icon: Phone },
   ];
@@ -141,8 +133,17 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Bouton Réserver - Desktop */}
-        <div className="hidden lg:block">
+        {/* Boutons Actions - Desktop */}
+        <div className="hidden lg:flex items-center gap-3">
+          <a
+            href="/brochure.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-terre-cuite hover:text-terre-cuite-hover border border-terre-cuite/30 hover:border-terre-cuite rounded-lg transition-colors"
+          >
+            <FileText className="w-4 h-4" />
+            <span>Brochure</span>
+          </a>
           <Link to="/rooms">
             <Button
               size="sm"
@@ -255,7 +256,17 @@ const Header = () => {
                 ))}
               </div>
               
-              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200">
+              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200 space-y-3">
+                <a
+                  href="/brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm sm:text-base font-semibold bg-vert-porte hover:bg-vert-porte-hover text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                >
+                  <FileText className="w-5 h-5" />
+                  <span>📘 Télécharger notre brochure</span>
+                </a>
                 <Link to="/rooms" onClick={() => setIsMenuOpen(false)}>
                   <Button
                     size="lg"

@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { FileText } from "lucide-react";
 import Header from "@/components/Header";
 import PaulKleeSection from "@/components/PaulKleeSection";
 import DjerbaBanner from "@/components/DjerbaBanner";
@@ -39,6 +40,17 @@ const About = () => {
               >
                 {t("about.subtitle") || "Une maison d'hôtes unique où l'art de Paul Klee rencontre l'hospitalité tunisienne"}
               </motion.p>
+              <motion.div variants={staggerItem} className="flex justify-center">
+                <a
+                  href="/brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-terre-cuite hover:bg-terre-cuite-hover text-white font-semibold rounded-lg transition-colors shadow-medium hover:shadow-lg"
+                >
+                  <FileText className="w-5 h-5" />
+                  <span>📘 Télécharger notre brochure</span>
+                </a>
+              </motion.div>
             </motion.div>
           </div>
         </section>
