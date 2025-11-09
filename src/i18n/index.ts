@@ -194,9 +194,6 @@ const resources = {
       "gallery.image6.category": "Interior",
       "gallery.launch360": "Launch 360° tour",
       
-      // Contact
-      "contact.title": "Contact & Location",
-      "contact.subtitle": "We are here to welcome you",
       "contact.name": "Your name",
       "contact.email": "Your email",
       "contact.phone": "Your phone",
@@ -214,13 +211,6 @@ const resources = {
       "footer.legal": "Legal Notice",
       "footer.privacy": "Privacy Policy",
       "footer.terms": "Terms of Service",
-      
-      // Hero
-      "hero.alt": "Dar Dhiafa Klee - Traditional guesthouse in the medina of Kairouan",
-      "hero.title": "Art and hospitality in the heart of Kairouan",
-      "hero.subtitle": "Discover a unique guesthouse where Paul Klee's artistic legacy meets the thousand-year-old tradition of Tunisian hospitality.",
-      "hero.bookNow": "Book Now",
-      "hero.explore360": "Explore in 360°",
       
       // Footer sections
       "footer.discover": "Discover",
@@ -443,9 +433,6 @@ const resources = {
       "gallery.image6.category": "Intérieur",
       "gallery.launch360": "Lancer la visite 360°",
       
-      // Contact
-      "contact.title": "Contact & Localisation",
-      "contact.subtitle": "Nous sommes là pour vous accueillir",
       "contact.name": "Votre nom",
       "contact.email": "Votre email",
       "contact.phone": "Votre téléphone",
@@ -463,13 +450,6 @@ const resources = {
       "footer.legal": "Mentions légales",
       "footer.privacy": "Politique de confidentialité",
       "footer.terms": "Conditions générales",
-      
-      // Hero
-      "hero.alt": "Dar Dhiafa Klee - Maison d'hôtes traditionnelle dans la médina de Kairouan",
-      "hero.title": "L'art et l'hospitalité au cœur de Kairouan",
-      "hero.subtitle": "Découvrez une maison d'hôtes unique où l'héritage artistique de Paul Klee rencontre la tradition millénaire de l'hospitalité tunisienne.",
-      "hero.bookNow": "Réserver maintenant",
-      "hero.explore360": "Explorer en 360°",
       
       // Footer sections
       "footer.discover": "Découvrir",
@@ -692,9 +672,6 @@ const resources = {
       "gallery.image6.category": "داخلية",
       "gallery.launch360": "ابدأ الجولة 360°",
       
-      // Contact
-      "contact.title": "الاتصال والموقع",
-      "contact.subtitle": "نحن هنا لاستقبالكم",
       "contact.name": "اسمك",
       "contact.email": "بريدك الإلكتروني",
       "contact.phone": "هاتفك",
@@ -712,13 +689,6 @@ const resources = {
       "footer.legal": "الإشعار القانوني",
       "footer.privacy": "سياسة الخصوصية",
       "footer.terms": "شروط الخدمة",
-      
-      // Hero
-      "hero.alt": "دار ضيافة كلي - بيت ضيافة تقليدي في مدينة القيروان",
-      "hero.title": "الفن والضيافة في قلب القيروان",
-      "hero.subtitle": "اكتشف بيت ضيافة فريد حيث يلتقي الإرث الفني لبول كلي مع تقليد الضيافة التونسية العريق الذي يمتد لألف عام.",
-      "hero.bookNow": "احجز الآن",
-      "hero.explore360": "استكشف بزاوية 360°",
       
       // Footer sections
       "footer.discover": "اكتشف",

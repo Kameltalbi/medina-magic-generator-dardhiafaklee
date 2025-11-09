@@ -98,7 +98,7 @@ const Rooms = () => {
         en: "Our royal suites offer generous space with double bed and private lounge. Perfect for an exceptional stay in a luxurious and refined setting.",
         ar: "أجنحتنا الملكية توفر مساحة واسعة مع سرير مزدوج وصالة خاصة. مثالية لإقامة استثنائية في إطار فاخر ومتطور."
       },
-      image: "/chambre 2.png",
+      image: "/suite3.jpg",
       rooms: roomsByCategory["S.ROYALE"],
       features: {
         fr: ["Lit double confortable", "Salon privé spacieux", "Service VIP", "Minibar", "Salle de bain privée avec peignoirs", "45-48m²"],
@@ -127,7 +127,7 @@ const Rooms = () => {
         en: "Rooms with two separate single beds, ideal for friends or traveling colleagues. Comfortable and functional with all necessary amenities.",
         ar: "غرف مع سريرين منفصلين، مثالية للأصدقاء أو الزملاء المسافرين. مريحة وعملية مع جميع المرافق اللازمة."
       },
-      image: "/chambre 1.png",
+      image: "/chambretwin1.jpg",
       rooms: roomsByCategory["TWIN"],
       features: {
         fr: ["2 lits simples séparés", "Parfait pour 2 personnes", "Wi-Fi gratuit", "Climatisation", "Salle de bain privée", "24-26m²"],
@@ -156,7 +156,7 @@ const Rooms = () => {
         en: "Double rooms with comfortable double bed, decorated in traditional Tunisian spirit. Ideal for couples seeking comfort and authenticity.",
         ar: "غرف مزدوجة مع سرير مزدوج مريح، مزينة بروح تونسية تقليدية. مثالية للأزواج الذين يبحثون عن الراحة والأصالة."
       },
-      image: "/chambre 1.png",
+      image: "/chambre-double1.jpg",
       rooms: roomsByCategory["DOUBLE"],
       features: {
         fr: ["Lit double confortable", "Décoration traditionnelle", "Wi-Fi gratuit", "Climatisation", "Salle de bain privée", "25-28m²"],
@@ -185,7 +185,7 @@ const Rooms = () => {
         en: "Spacious family rooms with two large beds, perfect for families with children. Offer comfort and space for everyone.",
         ar: "غرف عائلية فسيحة مع سريرين كبيرين، مثالية للعائلات مع الأطفال. توفر الراحة والمساحة للجميع."
       },
-      image: "/chambre 2.png",
+      image: "/chambre-filial1.jpg",
       rooms: roomsByCategory["FAMILIALE"],
       features: {
         fr: ["2 grands lits confortables", "Espace famille généreux", "Parfait pour enfants", "Wi-Fi gratuit", "Climatisation", "35-38m²"],
