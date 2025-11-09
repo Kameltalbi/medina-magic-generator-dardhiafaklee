@@ -49,13 +49,15 @@ interface Transaction {
   clientName: string;
   clientEmail: string;
   reservationId?: string;
-  experienceId?: string;
-  type: 'accommodation' | 'experience' | 'extra';
+  type: 'accommodation' | 'extra' | 'online'; // 'online' pour paiement en ligne futur
   amount: number;
   status: 'paid' | 'pending' | 'cancelled';
   date: string;
-  paymentMethod: string;
+  paymentMethod: 'cash' | 'bank_transfer' | 'card' | 'online' | 'other'; // Méthodes de paiement
   description: string;
+  roomType?: string;
+  checkIn?: string;
+  checkOut?: string;
 }
 
 interface MonthlyRevenue {
@@ -68,153 +70,338 @@ const Sales = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [monthlyRevenue, setMonthlyRevenue] = useState<MonthlyRevenue[]>([]);
   const [filterStatus, setFilterStatus] = useState("all");
-  const [filterDate, setFilterDate] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Données simulées
-  const mockTransactions: Transaction[] = [
-    {
-      id: "1",
-      invoiceId: "INV-2024-001",
-      clientName: "Marie Dubois",
-      clientEmail: "marie.dubois@example.com",
-      reservationId: "RES-001",
-      type: "accommodation",
-      amount: 600,
-      status: "paid",
-      date: "2024-01-15T10:30:00Z",
-      paymentMethod: "Carte bancaire",
-      description: "Chambre Traditionnelle - 3 nuits"
-    },
-    {
-      id: "2",
-      invoiceId: "INV-2024-002",
-      clientName: "Ahmed Ben Ali",
-      clientEmail: "ahmed.ali@example.com",
-      experienceId: "EXP-001",
-      type: "experience",
-      amount: 35,
-      status: "paid",
-      date: "2024-01-14T14:15:00Z",
-      paymentMethod: "Espèces",
-      description: "Visite Grande Mosquée"
-    },
-    {
-      id: "3",
-      invoiceId: "INV-2024-003",
-      clientName: "Sophie Martin",
-      clientEmail: "sophie.martin@example.com",
-      reservationId: "RES-002",
-      type: "accommodation",
-      amount: 1200,
-      status: "pending",
-      date: "2024-01-13T09:45:00Z",
-      paymentMethod: "Virement",
-      description: "Suite Royale - 5 nuits"
-    },
-    {
-      id: "4",
-      invoiceId: "INV-2024-004",
-      clientName: "Jean-Pierre Moreau",
-      clientEmail: "jeanpierre.moreau@example.com",
-      type: "extra",
-      amount: 150,
-      status: "paid",
-      date: "2024-01-12T16:20:00Z",
-      paymentMethod: "Carte bancaire",
-      description: "Transfert aéroport + Petit-déjeuner"
-    },
-    {
-      id: "5",
-      invoiceId: "INV-2024-005",
-      clientName: "Fatma Khelil",
-      clientEmail: "fatma.khelil@example.com",
-      experienceId: "EXP-002",
-      type: "experience",
-      amount: 50,
-      status: "cancelled",
-      date: "2024-01-11T11:30:00Z",
-      paymentMethod: "Carte bancaire",
-      description: "Atelier tissage de tapis"
-    },
-    {
-      id: "6",
-      invoiceId: "INV-2024-006",
-      clientName: "Pierre Durand",
-      clientEmail: "pierre.durand@example.com",
-      reservationId: "RES-003",
-      type: "accommodation",
-      amount: 400,
-      status: "paid",
-      date: "2024-01-10T13:15:00Z",
-      paymentMethod: "Espèces",
-      description: "Chambre Double - 2 nuits"
-    }
-  ];
-
-  const mockMonthlyRevenue: MonthlyRevenue[] = [
-    { month: "Jan", revenue: 12500, reservations: 45 },
-    { month: "Fév", revenue: 11800, reservations: 42 },
-    { month: "Mar", revenue: 14200, reservations: 48 },
-    { month: "Avr", revenue: 16800, reservations: 52 },
-    { month: "Mai", revenue: 19500, reservations: 58 },
-    { month: "Jun", revenue: 22300, reservations: 65 },
-    { month: "Jul", revenue: 25600, reservations: 72 },
-    { month: "Aoû", revenue: 28900, reservations: 78 },
-    { month: "Sep", revenue: 21200, reservations: 61 },
-    { month: "Oct", revenue: 18600, reservations: 55 },
-    { month: "Nov", revenue: 15200, reservations: 48 },
-    { month: "Déc", revenue: 13800, reservations: 44 }
-  ];
-
+  // Charger les réservations et générer les transactions
   useEffect(() => {
-    // Charger les données depuis localStorage
+    // Nettoyer TOUTES les anciennes données mockées au chargement initial
     const savedTransactions = localStorage.getItem('salesTransactions');
-    const savedRevenue = localStorage.getItem('salesRevenue');
-
     if (savedTransactions) {
-      setTransactions(JSON.parse(savedTransactions));
-    } else {
-      setTransactions(mockTransactions);
-      localStorage.setItem('salesTransactions', JSON.stringify(mockTransactions));
+      try {
+        const transactions = JSON.parse(savedTransactions);
+        // Supprimer TOUTES les transactions mockées (détection par invoiceId, ID numérique, ou email mocké)
+        const cleanedTransactions = transactions.filter((t: Transaction) => {
+          // Supprimer les transactions avec invoiceId mockés (INV-2024-xxx, etc.)
+          if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) {
+            return false;
+          }
+          // Supprimer les transactions avec IDs numériques simples (1, 2, 3, etc.)
+          if (t.id && /^\d+$/.test(t.id) && !t.reservationId) {
+            return false;
+          }
+          // Supprimer les transactions avec emails mockés (@example.com)
+          if (t.clientEmail && (t.clientEmail.includes('@example.com') || t.clientEmail.includes('example.com'))) {
+            if (!t.reservationId || !t.id?.startsWith('TXN-')) {
+              return false;
+            }
+          }
+          // Garder uniquement les transactions valides
+          return (t.id && t.id.startsWith('TXN-')) || 
+                 (t.reservationId && t.reservationId.startsWith('RES-')) || 
+                 (t.type === 'extra' && !t.reservationId && t.id && !/^\d+$/.test(t.id) && !t.clientEmail?.includes('example.com'));
+        });
+        // Toujours sauvegarder les transactions nettoyées
+        localStorage.setItem('salesTransactions', JSON.stringify(cleanedTransactions));
+        if (cleanedTransactions.length !== transactions.length) {
+          console.log(`Nettoyé ${transactions.length - cleanedTransactions.length} transactions mockées`);
+        }
+      } catch (error) {
+        console.error('Error cleaning transactions on load:', error);
+        // En cas d'erreur, supprimer complètement les transactions mockées
+        localStorage.removeItem('salesTransactions');
+      }
     }
-
-    if (savedRevenue) {
-      setMonthlyRevenue(JSON.parse(savedRevenue));
-    } else {
-      setMonthlyRevenue(mockMonthlyRevenue);
-      localStorage.setItem('salesRevenue', JSON.stringify(mockMonthlyRevenue));
-    }
+    
+    loadTransactionsFromReservations();
+    calculateMonthlyRevenue();
+    
+    // Écouter les changements de réservations
+    const handleStorageChange = () => {
+      loadTransactionsFromReservations();
+      calculateMonthlyRevenue();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('reservationUpdated', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('reservationUpdated', handleStorageChange);
+    };
   }, []);
+
+  const loadTransactionsFromReservations = () => {
+    // Charger les réservations depuis localStorage
+    const savedReservations = localStorage.getItem('reservations');
+    const savedTransactions = localStorage.getItem('salesTransactions');
+    
+    let allTransactions: Transaction[] = [];
+    
+    // NETTOYAGE STRICT : Ne charger QUE les transactions valides
+    if (savedTransactions) {
+      try {
+        const existingTransactions = JSON.parse(savedTransactions);
+        // Filtrer strictement : ne garder QUE les transactions générées depuis les réservations
+        allTransactions = existingTransactions.filter((t: Transaction) => {
+          // SUPPRIMER toutes les transactions mockées
+          if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) {
+            return false;
+          }
+          if (t.id && /^\d+$/.test(t.id) && !t.reservationId) {
+            return false;
+          }
+          // SUPPRIMER les transactions avec des emails mockés
+          if (t.clientEmail && (t.clientEmail.includes('@example.com') || t.clientEmail.includes('example.com'))) {
+            if (!t.reservationId || !t.id?.startsWith('TXN-')) {
+              return false;
+            }
+          }
+          // GARDER uniquement les transactions valides
+          if (t.id && t.id.startsWith('TXN-')) return true;
+          if (t.reservationId && t.reservationId.startsWith('RES-')) return true;
+          if (t.type === 'extra' && !t.reservationId && t.id && !/^\d+$/.test(t.id) && !t.clientEmail?.includes('example.com')) return true;
+          // Supprimer tout le reste
+          return false;
+        });
+      } catch (error) {
+        console.error('Error loading transactions:', error);
+        // En cas d'erreur, vider complètement
+        allTransactions = [];
+      }
+    }
+    
+    // Générer les transactions à partir des réservations
+    if (savedReservations) {
+      try {
+        const reservations = JSON.parse(savedReservations);
+        
+        reservations.forEach((reservation: any) => {
+          // Créer une transaction pour le montant total payé
+          if (reservation.depositPaid > 0) {
+            const existingTransaction = allTransactions.find(
+              t => t.reservationId === reservation.id && t.type === 'accommodation' && t.id.includes('deposit')
+            );
+            
+            if (!existingTransaction) {
+              allTransactions.push({
+                id: `TXN-${reservation.id}-deposit`,
+                invoiceId: `INV-${reservation.id}`,
+                clientName: reservation.guestName,
+                clientEmail: reservation.email,
+                reservationId: reservation.id,
+                type: 'accommodation',
+                amount: reservation.depositPaid,
+                status: reservation.paymentStatus === 'paid' ? 'paid' : 
+                        reservation.paymentStatus === 'partial' ? 'pending' : 'pending',
+                date: reservation.createdAt,
+                paymentMethod: mapPaymentMethod(reservation.source),
+                description: `${reservation.roomType} - ${reservation.roomNumber}`,
+                roomType: reservation.roomType,
+                checkIn: reservation.checkIn,
+                checkOut: reservation.checkOut
+              });
+            } else {
+              // Mettre à jour la transaction existante
+              const index = allTransactions.indexOf(existingTransaction);
+              allTransactions[index] = {
+                ...existingTransaction,
+                amount: reservation.depositPaid,
+                status: reservation.paymentStatus === 'paid' ? 'paid' : 
+                        reservation.paymentStatus === 'partial' ? 'pending' : 'pending',
+                paymentMethod: mapPaymentMethod(reservation.source),
+              };
+            }
+          }
+          
+          // Si le solde est payé, créer une transaction pour le solde
+          if (reservation.paymentStatus === 'paid' && reservation.totalAmount > reservation.depositPaid) {
+            const balance = reservation.totalAmount - reservation.depositPaid;
+            const existingBalanceTransaction = allTransactions.find(
+              t => t.reservationId === reservation.id && t.id.includes('balance')
+            );
+            
+            if (!existingBalanceTransaction && balance > 0) {
+              allTransactions.push({
+                id: `TXN-${reservation.id}-balance`,
+                invoiceId: `INV-${reservation.id}-B`,
+                clientName: reservation.guestName,
+                clientEmail: reservation.email,
+                reservationId: reservation.id,
+                type: 'accommodation',
+                amount: balance,
+                status: 'paid',
+                date: new Date().toISOString(),
+                paymentMethod: mapPaymentMethod(reservation.source),
+                description: `Solde - ${reservation.roomType}`,
+                roomType: reservation.roomType,
+                checkIn: reservation.checkIn,
+                checkOut: reservation.checkOut
+              });
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Error processing reservations:', error);
+      }
+    }
+    
+    // Filtrer et supprimer TOUTES les transactions mockées
+    // On ne garde QUE les transactions générées depuis les réservations ou les extras manuels
+    allTransactions = allTransactions.filter((t: Transaction) => {
+      // Supprimer toutes les transactions avec des IDs mockés (INV-2024-xxx, INV-2023-xxx, etc.) sans reservationId
+      if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) {
+        return false; // Supprimer les transactions mockées
+      }
+      // Supprimer les transactions avec des IDs numériques simples (1, 2, 3, etc.) - anciennes données mockées
+      if (t.id && /^\d+$/.test(t.id) && !t.reservationId) {
+        return false;
+      }
+      // Garder les transactions avec des IDs TXN- (générées depuis les réservations)
+      if (t.id && t.id.startsWith('TXN-')) return true;
+      // Garder les transactions liées aux réservations (avec reservationId qui commence par RES-)
+      if (t.reservationId && t.reservationId.startsWith('RES-')) return true;
+      // Garder les extras manuels (type 'extra' sans reservationId et avec un ID valide)
+      if (t.type === 'extra' && !t.reservationId && t.id && !/^\d+$/.test(t.id)) return true;
+      // Supprimer tout le reste (anciennes données mockées)
+      return false;
+    });
+    
+    // Trier par date (plus récentes en premier)
+    allTransactions.sort((a, b) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    
+    // S'assurer qu'il n'y a plus de transactions mockées avant de sauvegarder
+    const finalTransactions = allTransactions.filter((t: Transaction) => {
+      // Supprimer toutes les transactions mockées
+      if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) {
+        return false;
+      }
+      if (t.id && /^\d+$/.test(t.id) && !t.reservationId) {
+        return false;
+      }
+      return true;
+    });
+    
+    setTransactions(finalTransactions);
+    localStorage.setItem('salesTransactions', JSON.stringify(finalTransactions));
+  };
+
+  const mapPaymentMethod = (source: string): Transaction['paymentMethod'] => {
+    const sourceLower = source.toLowerCase();
+    if (sourceLower.includes('carte') || sourceLower.includes('card')) return 'card';
+    if (sourceLower.includes('virement') || sourceLower.includes('transfer')) return 'bank_transfer';
+    if (sourceLower.includes('espèces') || sourceLower.includes('cash')) return 'cash';
+    if (sourceLower.includes('online') || sourceLower.includes('site')) return 'online';
+    return 'other';
+  };
+
+  const calculateMonthlyRevenue = () => {
+    const savedTransactions = localStorage.getItem('salesTransactions');
+    if (!savedTransactions) {
+      // Données par défaut pour l'affichage
+      const defaultRevenue: MonthlyRevenue[] = [
+        { month: "Jan", revenue: 0, reservations: 0 },
+        { month: "Fév", revenue: 0, reservations: 0 },
+        { month: "Mar", revenue: 0, reservations: 0 },
+        { month: "Avr", revenue: 0, reservations: 0 },
+        { month: "Mai", revenue: 0, reservations: 0 },
+        { month: "Jun", revenue: 0, reservations: 0 },
+        { month: "Jul", revenue: 0, reservations: 0 },
+        { month: "Aoû", revenue: 0, reservations: 0 },
+        { month: "Sep", revenue: 0, reservations: 0 },
+        { month: "Oct", revenue: 0, reservations: 0 },
+        { month: "Nov", revenue: 0, reservations: 0 },
+        { month: "Déc", revenue: 0, reservations: 0 }
+      ];
+      setMonthlyRevenue(defaultRevenue);
+      return;
+    }
+    
+    try {
+      const transactions = JSON.parse(savedTransactions);
+      const monthlyData: { [key: number]: { revenue: number; reservations: number } } = {};
+      
+      transactions.forEach((transaction: Transaction) => {
+        if (transaction.status === 'paid') {
+          const date = new Date(transaction.date);
+          const month = date.getMonth();
+          
+          if (!monthlyData[month]) {
+            monthlyData[month] = { revenue: 0, reservations: 0 };
+          }
+          
+          monthlyData[month].revenue += transaction.amount;
+          if (transaction.type === 'accommodation') {
+            monthlyData[month].reservations += 1;
+          }
+        }
+      });
+      
+      const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
+      const revenueData: MonthlyRevenue[] = months.map((month, index) => ({
+        month,
+        revenue: monthlyData[index]?.revenue || 0,
+        reservations: monthlyData[index]?.reservations || 0
+      }));
+      
+      setMonthlyRevenue(revenueData);
+      localStorage.setItem('salesRevenue', JSON.stringify(revenueData));
+    } catch (error) {
+      console.error('Error calculating monthly revenue:', error);
+    }
+  };
 
   // Calculs des KPIs
   const currentMonth = new Date().getMonth();
   const currentMonthRevenue = monthlyRevenue[currentMonth]?.revenue || 0;
-  const totalInvoicedReservations = transactions.filter(t => t.status === 'paid').length;
-  const pendingPayments = transactions.filter(t => t.status === 'pending').length;
-  const pendingAmount = transactions
+  const previousMonthRevenue = monthlyRevenue[currentMonth > 0 ? currentMonth - 1 : 11]?.revenue || 0;
+  const revenueGrowth = previousMonthRevenue > 0 
+    ? ((currentMonthRevenue - previousMonthRevenue) / previousMonthRevenue * 100).toFixed(1)
+    : 0;
+  // Filtrer les transactions mockées pour les KPIs (filtre ultra-strict)
+  const validTransactions = transactions.filter(t => {
+    // Supprimer les transactions avec invoiceId mockés
+    if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) return false;
+    // Supprimer les transactions avec IDs numériques simples
+    if (t.id && /^\d+$/.test(t.id) && !t.reservationId) return false;
+    // Supprimer les transactions avec emails mockés
+    if (t.clientEmail && (t.clientEmail.includes('@example.com') || t.clientEmail.includes('example.com'))) {
+      if (!t.reservationId || !t.id?.startsWith('TXN-')) {
+        return false;
+      }
+    }
+    // Garder uniquement les transactions valides
+    return (t.id && t.id.startsWith('TXN-')) || 
+           (t.reservationId && t.reservationId.startsWith('RES-')) ||
+           (t.type === 'extra' && !t.reservationId && t.id && !/^\d+$/.test(t.id) && !t.clientEmail?.includes('example.com'));
+  });
+  
+  const totalInvoicedReservations = validTransactions.filter(t => t.status === 'paid' && t.type === 'accommodation').length;
+  const pendingPayments = validTransactions.filter(t => t.status === 'pending').length;
+  const pendingAmount = validTransactions
     .filter(t => t.status === 'pending')
     .reduce((sum, t) => sum + t.amount, 0);
 
-  // Filtrage des transactions
-  const filteredTransactions = transactions.filter(transaction => {
+  // Filtrage des transactions (utiliser uniquement les transactions valides)
+  const filteredTransactions = validTransactions.filter(transaction => {
     const matchesStatus = filterStatus === "all" || transaction.status === filterStatus;
     const matchesSearch = searchTerm === "" || 
       transaction.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       transaction.invoiceId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       transaction.description.toLowerCase().includes(searchTerm.toLowerCase());
     
-    return matchesStatus && matchesSearch;
+    return matchesSearch && matchesStatus;
   });
 
-  // Calcul du breakdown des revenus
+  // Calcul du breakdown des revenus (utiliser uniquement les transactions valides)
   const revenueBreakdown = {
-    accommodation: transactions.filter(t => t.type === 'accommodation' && t.status === 'paid').reduce((sum, t) => sum + t.amount, 0),
-    experience: transactions.filter(t => t.type === 'experience' && t.status === 'paid').reduce((sum, t) => sum + t.amount, 0),
-    extra: transactions.filter(t => t.type === 'extra' && t.status === 'paid').reduce((sum, t) => sum + t.amount, 0)
+    accommodation: validTransactions.filter(t => t.type === 'accommodation' && t.status === 'paid').reduce((sum, t) => sum + t.amount, 0),
+    extra: validTransactions.filter(t => t.type === 'extra' && t.status === 'paid').reduce((sum, t) => sum + t.amount, 0),
+    online: validTransactions.filter(t => t.type === 'online' && t.status === 'paid').reduce((sum, t) => sum + t.amount, 0) // Pour futur paiement en ligne
   };
 
-  const totalRevenue = revenueBreakdown.accommodation + revenueBreakdown.experience + revenueBreakdown.extra;
+  const totalRevenue = revenueBreakdown.accommodation + revenueBreakdown.extra + revenueBreakdown.online;
 
   const getStatusIcon = (status: Transaction['status']) => {
     switch (status) {
@@ -237,8 +424,8 @@ const Sales = () => {
   const getTypeLabel = (type: Transaction['type']) => {
     switch (type) {
       case 'accommodation': return 'Hébergement';
-      case 'experience': return 'Expérience';
       case 'extra': return 'Extras';
+      case 'online': return 'Paiement en ligne';
       default: return 'Inconnu';
     }
   };
@@ -246,9 +433,20 @@ const Sales = () => {
   const getTypeColor = (type: Transaction['type']) => {
     switch (type) {
       case 'accommodation': return 'bg-blue-100 text-blue-800';
-      case 'experience': return 'bg-purple-100 text-purple-800';
       case 'extra': return 'bg-orange-100 text-orange-800';
+      case 'online': return 'bg-green-100 text-green-800';
       default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getPaymentMethodLabel = (method: Transaction['paymentMethod']) => {
+    switch (method) {
+      case 'cash': return 'Espèces';
+      case 'bank_transfer': return 'Virement';
+      case 'card': return 'Carte bancaire';
+      case 'online': return 'En ligne';
+      case 'other': return 'Autre';
+      default: return 'Non spécifié';
     }
   };
 
@@ -265,7 +463,45 @@ const Sales = () => {
           </p>
         </div>
         <div className="flex gap-4">
-          <Button variant="outline">
+          <Button 
+            variant="outline"
+            onClick={() => {
+              // Supprimer complètement les transactions mockées et régénérer depuis les réservations
+              const savedTransactions = localStorage.getItem('salesTransactions');
+              if (savedTransactions) {
+                try {
+                  const transactions = JSON.parse(savedTransactions);
+                  // Supprimer TOUTES les transactions mockées (INV-2024-xxx, INV-2023-xxx, etc.)
+                  const cleanedTransactions = transactions.filter((t: Transaction) => {
+                    // Supprimer toutes les transactions avec des IDs mockés (INV-2024-xxx, etc.)
+                    if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) {
+                      return false;
+                    }
+                    // Supprimer les transactions avec des IDs numériques simples (1, 2, 3, etc.)
+                    if (t.id && /^\d+$/.test(t.id) && !t.reservationId) {
+                      return false;
+                    }
+                    // Garder uniquement les transactions valides
+                    return (t.id && t.id.startsWith('TXN-')) || 
+                           (t.reservationId && t.reservationId.startsWith('RES-')) || 
+                           (t.type === 'extra' && !t.reservationId && t.id && !/^\d+$/.test(t.id));
+                  });
+                  const removedCount = transactions.length - cleanedTransactions.length;
+                  localStorage.setItem('salesTransactions', JSON.stringify(cleanedTransactions));
+                  if (removedCount > 0) {
+                    console.log(`Nettoyé ${removedCount} transactions mockées`);
+                    toast.success(`${removedCount} transaction(s) mockée(s) supprimée(s)`);
+                  }
+                } catch (error) {
+                  console.error('Error cleaning transactions:', error);
+                }
+              }
+              // Forcer la régénération depuis les réservations
+              loadTransactionsFromReservations();
+              calculateMonthlyRevenue();
+              toast.success("Données actualisées");
+            }}
+          >
             <RefreshCw className="w-4 h-4 mr-2" />
             Actualiser
           </Button>
@@ -284,10 +520,12 @@ const Sales = () => {
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Chiffre d'Affaires du Mois</p>
                 <p className="text-2xl font-bold text-indigo-medina">{currentMonthRevenue.toLocaleString()} DT</p>
-                <p className="text-xs text-green-600 flex items-center mt-1">
-                  <TrendingUp className="w-3 h-3 mr-1" />
-                  +12% vs mois dernier
-                </p>
+                {previousMonthRevenue > 0 && (
+                  <p className={`text-xs flex items-center mt-1 ${parseFloat(revenueGrowth) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    <TrendingUp className="w-3 h-3 mr-1" />
+                    {parseFloat(revenueGrowth) >= 0 ? '+' : ''}{revenueGrowth}% vs mois dernier
+                  </p>
+                )}
               </div>
               <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
                 <DollarSign className="h-6 w-6 text-blue-600" />
@@ -344,27 +582,36 @@ const Sales = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 flex items-end justify-between space-x-2">
-              {monthlyRevenue.map((month, index) => (
-                <div key={month.month} className="flex flex-col items-center flex-1">
-                  <div
-                    className={`w-full rounded-t transition-all duration-300 ${
-                      index === currentMonth 
-                        ? 'bg-blue-600' 
-                        : 'bg-blue-200 hover:bg-blue-300'
-                    }`}
-                    style={{ 
-                      height: `${(month.revenue / Math.max(...monthlyRevenue.map(m => m.revenue))) * 200}px`,
-                      minHeight: '20px'
-                    }}
-                  />
-                  <span className="text-xs text-muted-foreground mt-2">{month.month}</span>
-                  <span className="text-xs font-medium text-indigo-medina">
-                    {month.revenue.toLocaleString()}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {monthlyRevenue.length > 0 && monthlyRevenue.some(m => m.revenue > 0) ? (
+              <div className="h-64 flex items-end justify-between space-x-2">
+                {monthlyRevenue.map((month, index) => {
+                  const maxRevenue = Math.max(...monthlyRevenue.map(m => m.revenue), 1);
+                  return (
+                    <div key={month.month} className="flex flex-col items-center flex-1">
+                      <div
+                        className={`w-full rounded-t transition-all duration-300 ${
+                          index === currentMonth 
+                            ? 'bg-blue-600' 
+                            : 'bg-blue-200 hover:bg-blue-300'
+                        }`}
+                        style={{ 
+                          height: `${(month.revenue / maxRevenue) * 200}px`,
+                          minHeight: month.revenue > 0 ? '20px' : '0px'
+                        }}
+                      />
+                      <span className="text-xs text-muted-foreground mt-2">{month.month}</span>
+                      <span className="text-xs font-medium text-indigo-medina">
+                        {month.revenue.toLocaleString()}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="h-64 flex items-center justify-center text-muted-foreground">
+                <p>Aucune donnée de revenus disponible</p>
+              </div>
+            )}
             <div className="mt-4 text-center">
               <p className="text-sm text-muted-foreground">
                 Mois actuel mis en évidence en bleu foncé
@@ -400,21 +647,6 @@ const Sales = () => {
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-4 h-4 bg-purple-500 rounded"></div>
-                  <span className="text-sm font-medium">Expériences</span>
-                </div>
-                <div className="text-right">
-                  <div className="font-semibold text-indigo-medina">
-                    {revenueBreakdown.experience.toLocaleString()} DT
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    {totalRevenue > 0 ? Math.round((revenueBreakdown.experience / totalRevenue) * 100) : 0}%
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
                   <div className="w-4 h-4 bg-orange-500 rounded"></div>
                   <span className="text-sm font-medium">Extras</span>
                 </div>
@@ -427,6 +659,23 @@ const Sales = () => {
                   </div>
                 </div>
               </div>
+
+              {revenueBreakdown.online > 0 && (
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 bg-green-500 rounded"></div>
+                    <span className="text-sm font-medium">Paiements en ligne</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="font-semibold text-indigo-medina">
+                      {revenueBreakdown.online.toLocaleString()} DT
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {totalRevenue > 0 ? Math.round((revenueBreakdown.online / totalRevenue) * 100) : 0}%
+                    </div>
+                  </div>
+                </div>
+              )}
 
               <div className="border-t pt-4">
                 <div className="flex items-center justify-between">
@@ -488,7 +737,14 @@ const Sales = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredTransactions.map((transaction) => (
+                {filteredTransactions.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
+                      Aucune transaction pour le moment
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  filteredTransactions.map((transaction) => (
                   <TableRow key={transaction.id}>
                     <TableCell className="font-medium">
                       {transaction.invoiceId}
@@ -505,17 +761,29 @@ const Sales = () => {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <div className="max-w-xs truncate">
-                        {transaction.description}
+                      <div className="max-w-xs">
+                        <div className="truncate">{transaction.description}</div>
+                        {transaction.roomType && (
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {transaction.checkIn && transaction.checkOut && 
+                              `${new Date(transaction.checkIn).toLocaleDateString('fr-FR')} - ${new Date(transaction.checkOut).toLocaleDateString('fr-FR')}`
+                            }
+                          </div>
+                        )}
                       </div>
                     </TableCell>
                     <TableCell className="font-semibold text-indigo-medina">
                       {transaction.amount.toLocaleString()} DT
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2">
-                        {getStatusIcon(transaction.status)}
-                        {getStatusBadge(transaction.status)}
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          {getStatusIcon(transaction.status)}
+                          {getStatusBadge(transaction.status)}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {getPaymentMethodLabel(transaction.paymentMethod)}
+                        </div>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -535,7 +803,8 @@ const Sales = () => {
                       </Button>
                     </TableCell>
                   </TableRow>
-                ))}
+                  ))
+                )}
               </TableBody>
             </Table>
           </div>
@@ -547,7 +816,7 @@ const Sales = () => {
         <Card className="shadow-sm border-0 bg-card">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-indigo-medina">
-              {transactions.length}
+              {validTransactions.length}
             </div>
             <div className="text-sm text-muted-foreground">Total Transactions</div>
           </CardContent>
@@ -555,7 +824,7 @@ const Sales = () => {
         <Card className="shadow-sm border-0 bg-card">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-green-600">
-              {transactions.filter(t => t.status === 'paid').length}
+              {validTransactions.filter(t => t.status === 'paid').length}
             </div>
             <div className="text-sm text-muted-foreground">Transactions Payées</div>
           </CardContent>
@@ -563,7 +832,7 @@ const Sales = () => {
         <Card className="shadow-sm border-0 bg-card">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-yellow-600">
-              {transactions.filter(t => t.status === 'pending').length}
+              {validTransactions.filter(t => t.status === 'pending').length}
             </div>
             <div className="text-sm text-muted-foreground">En Attente</div>
           </CardContent>
@@ -571,7 +840,7 @@ const Sales = () => {
         <Card className="shadow-sm border-0 bg-card">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-red-600">
-              {transactions.filter(t => t.status === 'cancelled').length}
+              {validTransactions.filter(t => t.status === 'cancelled').length}
             </div>
             <div className="text-sm text-muted-foreground">Annulées</div>
           </CardContent>

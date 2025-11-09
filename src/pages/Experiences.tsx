@@ -51,7 +51,6 @@ const Experiences = () => {
         ar: "انغمس في تاريخ إحدى أقدم المساجد في العالم الإسلامي. برفقة مرشد، ستكتشف عمارتها المثيرة للإعجاب وأعمدةها القديمة من قرطاج ودورها المؤسس في إشعاع القيروان."
       },
       duration: "2h",
-      price: 35,
       maxGuests: 15,
       rating: 4.9,
       reviews: 287,
@@ -81,7 +80,6 @@ const Experiences = () => {
         ar: "تجول في متاهة من الأزقة المبطنة بالبيوت المبيضة بالجير والأبواب الملونة وورش الحرفيين. ستلتقي بناسجي السجاد والخزافين وأسياد النحاس، مستمرين في الحفاظ على المعرفة المنقولة من جيل إلى جيل."
       },
       duration: "3h",
-      price: 45,
       maxGuests: 12,
       rating: 4.8,
       reviews: 198,
@@ -111,7 +109,6 @@ const Experiences = () => {
         ar: "اكتشف هذه الخزانات العملاقة التي بنيت في القرن التاسع، إنجاز حقيقي للهندسة الهيدروليكية. تشهد على عبقرية الأغالبة وأهمية الماء في هذه المنطقة شبه القاحلة."
       },
       duration: "1h30",
-      price: 25,
       maxGuests: 20,
       rating: 4.7,
       reviews: 156,
@@ -141,7 +138,6 @@ const Experiences = () => {
         ar: "مكان للتأمل، يضم هذا الضريح آثار صحابي من صحابة النبي. مزين بالخزف والأسقف المنحوتة، يوضح الرقي الروحي والفني للقيروان."
       },
       duration: "1h",
-      price: 20,
       maxGuests: 25,
       rating: 4.6,
       reviews: 134,
@@ -172,7 +168,6 @@ const Experiences = () => {
         ar: "تعلم فن النسيج القيرواني، المشهور في جميع أنحاء العالم العربي. إلى جانب حرفية ناسجة، ستتعلم الحركات الدقيقة والصبر اللازم لإنشاء نمط تقليدي."
       },
       duration: "2h30",
-      price: 50,
       maxGuests: 8,
       rating: 4.9,
       reviews: 89,
@@ -203,7 +198,6 @@ const Experiences = () => {
         ar: "انغمس في الأصالة التونسية مع تجربة الحمام التقليدي. اكتشف طقوس التطهير والعافية القديمة في إطار تاريخي محفوظ منذ قرون."
       },
       duration: "2h",
-      price: 80,
       maxGuests: 6,
       rating: 4.8,
       reviews: 156,
@@ -245,7 +239,7 @@ const Experiences = () => {
     // Load initially
     loadExperiences();
 
-    // Listen for changes in localStorage (when admin updates prices)
+    // Listen for changes in localStorage (when admin updates experiences)
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'experiences' && e.newValue) {
         try {

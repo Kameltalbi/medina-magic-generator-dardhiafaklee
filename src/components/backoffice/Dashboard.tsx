@@ -29,68 +29,264 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const Dashboard = () => {
   const [lastUpdate, setLastUpdate] = useState(new Date());
-
-  // Données simulées - à remplacer par de vraies API calls
-  const dailySummary = {
-    arrivals: 8,
-    departures: 6,
-    pendingReservations: 3,
-    totalGuests: 24
-  };
-
-  const keyIndicators = {
+  const [dailySummary, setDailySummary] = useState({
+    arrivals: 0,
+    departures: 0,
+    pendingReservations: 0,
+    totalGuests: 0
+  });
+  const [keyIndicators, setKeyIndicators] = useState({
     occupancyRate: {
-      today: 78,
-      month: 82,
-      trend: "+5%"
+      today: 0,
+      month: 0,
+      trend: "0%"
     },
     monthlyRevenue: {
-      current: 45680,
+      current: 0,
       target: 50000,
-      trend: "+12%"
+      trend: "0%"
     },
-    bestSources: [
-      { name: "Site Web", percentage: 35, bookings: 45 },
-      { name: "Booking.com", percentage: 28, bookings: 36 },
-      { name: "Airbnb", percentage: 20, bookings: 26 },
-      { name: "Référencement", percentage: 12, bookings: 15 },
-      { name: "Autres", percentage: 5, bookings: 6 }
-    ]
-  };
+    bestSources: [] as Array<{ name: string; percentage: number; bookings: number }>
+  });
+  const [alerts, setAlerts] = useState<Array<{
+    type: string;
+    severity: string;
+    title: string;
+    description: string;
+    count: number;
+  }>>([]);
+  const [recentBookings, setRecentBookings] = useState<Array<{
+    id: string;
+    guest: string;
+    room: string;
+    checkIn: string;
+    status: string;
+  }>>([]);
 
-  const alerts = [
-    {
-      type: "payment",
-      severity: "high",
-      title: "Paiements en retard",
-      description: "3 réservations avec paiements non confirmés",
-      count: 3
-    },
-    {
-      type: "pricing",
-      severity: "medium",
-      title: "Tarifs à mettre à jour",
-      description: "Tarifs haute saison non configurés pour décembre",
-      count: 1
-    },
-    {
-      type: "reviews",
-      severity: "low",
-      title: "Nouveaux avis clients",
-      description: "5 nouveaux avis à traiter",
-      count: 5
+  useEffect(() => {
+    loadDashboardData();
+    
+    // Écouter les changements
+    const handleStorageChange = () => {
+      loadDashboardData();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('reservationUpdated', handleStorageChange);
+    window.addEventListener('reservationRequestAdded', handleStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('reservationUpdated', handleStorageChange);
+      window.removeEventListener('reservationRequestAdded', handleStorageChange);
+    };
+  }, []);
+
+  const loadDashboardData = () => {
+    // Charger les réservations
+    const savedReservations = localStorage.getItem('reservations');
+    const savedRequests = localStorage.getItem('reservationRequests');
+    const savedTransactions = localStorage.getItem('salesTransactions');
+    
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    let arrivals = 0;
+    let departures = 0;
+    let totalGuests = 0;
+    let pendingReservations = 0;
+    const sourcesMap: { [key: string]: number } = {};
+    const recentBookingsList: Array<{
+      id: string;
+      guest: string;
+      room: string;
+      checkIn: string;
+      status: string;
+    }> = [];
+    
+    // Calculer depuis les réservations
+    if (savedReservations) {
+      try {
+        const reservations = JSON.parse(savedReservations);
+        
+        reservations.forEach((reservation: any) => {
+          const checkIn = new Date(reservation.checkIn);
+          const checkOut = new Date(reservation.checkOut);
+          checkIn.setHours(0, 0, 0, 0);
+          checkOut.setHours(0, 0, 0, 0);
+          
+          // Arrivées aujourd'hui
+          if (checkIn.getTime() === today.getTime()) {
+            arrivals++;
+            totalGuests += reservation.guests || 0;
+          }
+          
+          // Départs aujourd'hui
+          if (checkOut.getTime() === today.getTime()) {
+            departures++;
+          }
+          
+          // Compter les sources
+          const source = reservation.source || "Autres";
+          sourcesMap[source] = (sourcesMap[source] || 0) + 1;
+          
+          // Réservations récentes (5 dernières)
+          if (recentBookingsList.length < 5) {
+            const checkInDate = new Date(reservation.checkIn);
+            const daysDiff = Math.ceil((checkInDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+            let checkInText = "";
+            if (daysDiff === 0) checkInText = "Aujourd'hui";
+            else if (daysDiff === 1) checkInText = "Demain";
+            else if (daysDiff > 1) checkInText = `Dans ${daysDiff} jours`;
+            else checkInText = checkInDate.toLocaleDateString('fr-FR');
+            
+            recentBookingsList.push({
+              id: reservation.id,
+              guest: reservation.guestName,
+              room: reservation.roomNumber || reservation.roomType,
+              checkIn: checkInText,
+              status: reservation.status || "pending"
+            });
+          }
+        });
+        
+        // Trier les réservations récentes par date
+        recentBookingsList.sort((a, b) => {
+          const resA = reservations.find((r: any) => r.id === a.id);
+          const resB = reservations.find((r: any) => r.id === b.id);
+          if (!resA || !resB) return 0;
+          return new Date(resB.createdAt).getTime() - new Date(resA.createdAt).getTime();
+        });
+      } catch (error) {
+        console.error('Error loading reservations:', error);
+      }
     }
-  ];
-
-  const recentBookings = [
-    { id: "BK-001", guest: "Marie Dubois", room: "CH 11", checkIn: "Aujourd'hui", status: "confirmed" },
-    { id: "BK-002", guest: "Ahmed Ben Ali", room: "CH 12", checkIn: "Demain", status: "pending" },
-    { id: "BK-003", guest: "Sophie Martin", room: "Suite Klee", checkIn: "Demain", status: "confirmed" }
-  ];
+    
+    // Compter les demandes en attente
+    if (savedRequests) {
+      try {
+        const requests = JSON.parse(savedRequests);
+        pendingReservations = requests.filter((r: any) => r.status === 'pending').length;
+      } catch (error) {
+        console.error('Error loading requests:', error);
+      }
+    }
+    
+    // Calculer les revenus mensuels
+    let monthlyRevenue = 0;
+    if (savedTransactions) {
+      try {
+        const transactions = JSON.parse(savedTransactions);
+        const currentMonth = new Date().getMonth();
+        const currentYear = new Date().getFullYear();
+        
+        monthlyRevenue = transactions
+          .filter((t: any) => {
+            if (t.status !== 'paid') return false;
+            // Supprimer les transactions mockées
+            if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) return false;
+            if (t.id && /^\d+$/.test(t.id) && !t.reservationId) return false;
+            if (t.clientEmail && t.clientEmail.includes('example.com') && (!t.reservationId || !t.id?.startsWith('TXN-'))) return false;
+            
+            const transactionDate = new Date(t.date);
+            return transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear;
+          })
+          .reduce((sum: number, t: any) => sum + (t.amount || 0), 0);
+      } catch (error) {
+        console.error('Error loading transactions:', error);
+      }
+    }
+    
+    // Calculer les sources
+    const totalBookings = Object.values(sourcesMap).reduce((sum, count) => sum + count, 0);
+    const bestSources = Object.entries(sourcesMap)
+      .map(([name, bookings]) => ({
+        name,
+        percentage: totalBookings > 0 ? Math.round((bookings / totalBookings) * 100) : 0,
+        bookings
+      }))
+      .sort((a, b) => b.bookings - a.bookings)
+      .slice(0, 5);
+    
+    // Calculer le taux d'occupation (simplifié)
+    const occupancyRate = 0; // À calculer selon le nombre de chambres disponibles
+    
+    // Créer les alertes
+    const alertsList: Array<{
+      type: string;
+      severity: string;
+      title: string;
+      description: string;
+      count: number;
+    }> = [];
+    
+    if (pendingReservations > 0) {
+      alertsList.push({
+        type: "payment",
+        severity: "high",
+        title: "Demandes en attente",
+        description: `${pendingReservations} demande(s) de réservation en attente de réponse`,
+        count: pendingReservations
+      });
+    }
+    
+    // Compter les paiements en attente
+    if (savedTransactions) {
+      try {
+        const transactions = JSON.parse(savedTransactions);
+        const pendingPayments = transactions.filter((t: any) => {
+          if (t.status !== 'pending') return false;
+          // Exclure les mockées
+          if (t.invoiceId && /INV-20\d{2}-\d{3}/.test(t.invoiceId) && !t.reservationId) return false;
+          if (t.id && /^\d+$/.test(t.id) && !t.reservationId) return false;
+          if (t.clientEmail && t.clientEmail.includes('example.com') && (!t.reservationId || !t.id?.startsWith('TXN-'))) return false;
+          return true;
+        }).length;
+        
+        if (pendingPayments > 0) {
+          alertsList.push({
+            type: "payment",
+            severity: "high",
+            title: "Paiements en attente",
+            description: `${pendingPayments} transaction(s) avec paiement non confirmé`,
+            count: pendingPayments
+          });
+        }
+      } catch (error) {
+        console.error('Error loading transactions for alerts:', error);
+      }
+    }
+    
+    setDailySummary({
+      arrivals,
+      departures,
+      pendingReservations,
+      totalGuests
+    });
+    
+    setKeyIndicators({
+      occupancyRate: {
+        today: occupancyRate,
+        month: occupancyRate,
+        trend: "0%"
+      },
+      monthlyRevenue: {
+        current: monthlyRevenue,
+        target: 50000,
+        trend: "0%"
+      },
+      bestSources: bestSources.length > 0 ? bestSources : [
+        { name: "Aucune donnée", percentage: 0, bookings: 0 }
+      ]
+    });
+    
+    setAlerts(alertsList);
+    setRecentBookings(recentBookingsList.slice(0, 5));
+  };
 
   const refreshData = () => {
     setLastUpdate(new Date());
-    // Ici on ferait un appel API pour actualiser les données
+    loadDashboardData();
   };
 
   const getSeverityColor = (severity: string) => {
@@ -343,24 +539,31 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {alerts.map((alert, index) => (
-                <Alert key={alert.type} className={getSeverityColor(alert.severity)}>
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center space-x-3">
-                      {getSeverityIcon(alert.severity)}
-                      <div>
-                        <AlertDescription className="font-medium font-semibold">
-                          {alert.title}
-                        </AlertDescription>
-                        <p className="text-xs opacity-75 mt-1">{alert.description}</p>
+              {alerts.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground">
+                  <CheckCircle className="w-8 h-8 mx-auto mb-2 text-green-600" />
+                  <p>Aucune alerte pour le moment</p>
+                </div>
+              ) : (
+                alerts.map((alert, index) => (
+                  <Alert key={alert.type} className={getSeverityColor(alert.severity)}>
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center space-x-3">
+                        {getSeverityIcon(alert.severity)}
+                        <div>
+                          <AlertDescription className="font-medium font-semibold">
+                            {alert.title}
+                          </AlertDescription>
+                          <p className="text-xs opacity-75 mt-1">{alert.description}</p>
+                        </div>
                       </div>
+                      <Badge variant="secondary" className="ml-2">
+                        {alert.count}
+                      </Badge>
                     </div>
-                    <Badge variant="secondary" className="ml-2">
-                      {alert.count}
-                    </Badge>
-                  </div>
-                </Alert>
-              ))}
+                  </Alert>
+                ))
+              )}
             </div>
           </CardContent>
         </Card>
@@ -375,25 +578,32 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentBookings.map((booking, index) => (
-                <div key={booking.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-white rounded-full">
-                      <Users className="w-4 h-4 text-indigo-medina" />
-                    </div>
-                    <div>
-                      <p className="font-medium font-semibold text-sm">{booking.guest}</p>
-                      <p className="text-xs text-muted-foreground">{booking.room} • {booking.checkIn}</p>
-                    </div>
-                  </div>
-                  <Badge 
-                    variant={booking.status === 'confirmed' ? 'default' : 'secondary'}
-                    className={booking.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'}
-                  >
-                    {booking.status === 'confirmed' ? 'Confirmée' : 'En attente'}
-                  </Badge>
+              {recentBookings.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground">
+                  <Users className="w-8 h-8 mx-auto mb-2 text-gray-400" />
+                  <p>Aucune réservation récente</p>
                 </div>
-              ))}
+              ) : (
+                recentBookings.map((booking, index) => (
+                  <div key={booking.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-white rounded-full">
+                        <Users className="w-4 h-4 text-indigo-medina" />
+                      </div>
+                      <div>
+                        <p className="font-medium font-semibold text-sm">{booking.guest}</p>
+                        <p className="text-xs text-muted-foreground">{booking.room} • {booking.checkIn}</p>
+                      </div>
+                    </div>
+                    <Badge 
+                      variant={booking.status === 'confirmed' ? 'default' : 'secondary'}
+                      className={booking.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'}
+                    >
+                      {booking.status === 'confirmed' ? 'Confirmée' : 'En attente'}
+                    </Badge>
+                  </div>
+                ))
+              )}
             </div>
           </CardContent>
         </Card>

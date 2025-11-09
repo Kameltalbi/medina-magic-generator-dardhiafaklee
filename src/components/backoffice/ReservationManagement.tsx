@@ -61,6 +61,27 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
+interface ReservationRequest {
+  id: string;
+  firstName: string;
+  lastName: string;
+  nationality: string;
+  roomType: string;
+  numberOfGuests: string;
+  message: string;
+  phone: string;
+  whatsapp: string;
+  email: string;
+  address: string;
+  checkIn: string;
+  checkOut: string;
+  includeMeals: boolean;
+  status: 'pending' | 'confirmed' | 'cancelled' | 'replied';
+  createdAt: string;
+  updatedAt: string;
+  notes?: string; // Notes ajoutées par l'admin
+}
+
 interface Reservation {
   id: string;
   guestName: string;
@@ -82,15 +103,17 @@ interface Reservation {
 }
 
 const ReservationManagement = () => {
+  const [reservationRequests, setReservationRequests] = useState<ReservationRequest[]>([]);
   const [reservations, setReservations] = useState<Reservation[]>([]);
-  const [selectedDate, setSelectedDate] = useState(new Date(2025, 8, 1)); // Septembre 2025
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<'day' | 'week' | 'month'>('month');
+  const [selectedRequest, setSelectedRequest] = useState<ReservationRequest | null>(null);
   const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [activeTab, setActiveTab] = useState("calendar");
+  const [activeTab, setActiveTab] = useState("requests");
 
   // Données simulées - à remplacer par de vraies API calls
   const mockReservations: Reservation[] = [
@@ -385,12 +408,56 @@ const ReservationManagement = () => {
   ];
 
   useEffect(() => {
-    // Forcer le rechargement des données mockées
-    localStorage.removeItem('reservations'); // Vider le cache
-    setReservations(mockReservations);
-    localStorage.setItem('reservations', JSON.stringify(mockReservations));
-    console.log('Réservations mockées rechargées:', mockReservations);
+    loadReservationRequests();
+    loadReservations();
+
+    // Écouter les nouvelles demandes
+    const handleNewRequest = () => {
+      loadReservationRequests();
+    };
+
+    window.addEventListener('reservationRequestAdded', handleNewRequest);
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'reservationRequests') {
+        loadReservationRequests();
+      }
+    });
+
+    return () => {
+      window.removeEventListener('reservationRequestAdded', handleNewRequest);
+    };
   }, []);
+
+  const loadReservationRequests = () => {
+    const saved = localStorage.getItem('reservationRequests');
+    if (saved) {
+      try {
+        const requests = JSON.parse(saved);
+        // Trier par date de création (plus récentes en premier)
+        requests.sort((a: ReservationRequest, b: ReservationRequest) => 
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        setReservationRequests(requests);
+      } catch (error) {
+        console.error('Error loading reservation requests:', error);
+        setReservationRequests([]);
+      }
+    }
+  };
+
+  const loadReservations = () => {
+    const saved = localStorage.getItem('reservations');
+    if (saved) {
+      try {
+        setReservations(JSON.parse(saved));
+      } catch (error) {
+        // Si pas de réservations, utiliser les mockées pour l'exemple
+        setReservations(mockReservations);
+      }
+    } else {
+      setReservations(mockReservations);
+    }
+  };
 
   const saveReservations = (updatedReservations: Reservation[]) => {
     setReservations(updatedReservations);
@@ -403,6 +470,8 @@ const ReservationManagement = () => {
         return <Badge className="bg-green-100 text-green-800">Confirmée</Badge>;
       case 'pending':
         return <Badge className="bg-yellow-100 text-yellow-800">En attente</Badge>;
+      case 'replied':
+        return <Badge className="bg-blue-100 text-blue-800">Répondu</Badge>;
       case 'cancelled':
         return <Badge className="bg-red-100 text-red-800">Annulée</Badge>;
       default:
@@ -423,6 +492,15 @@ const ReservationManagement = () => {
     }
   };
 
+  const filteredRequests = reservationRequests.filter(request => {
+    const fullName = `${request.firstName} ${request.lastName}`.toLowerCase();
+    const matchesSearch = fullName.includes(searchTerm.toLowerCase()) ||
+                        request.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        request.roomType.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = statusFilter === "all" || request.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
+
   const filteredReservations = reservations.filter(reservation => {
     const matchesSearch = reservation.guestName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         reservation.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -430,6 +508,21 @@ const ReservationManagement = () => {
     const matchesStatus = statusFilter === "all" || reservation.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+
+  const saveReservationRequests = (updatedRequests: ReservationRequest[]) => {
+    setReservationRequests(updatedRequests);
+    localStorage.setItem('reservationRequests', JSON.stringify(updatedRequests));
+  };
+
+  const handleRequestStatusChange = (requestId: string, newStatus: string) => {
+    const updatedRequests = reservationRequests.map(request =>
+      request.id === requestId
+        ? { ...request, status: newStatus as ReservationRequest['status'], updatedAt: new Date().toISOString() }
+        : request
+    );
+    saveReservationRequests(updatedRequests);
+    toast.success(`Statut de la demande mis à jour`);
+  };
 
   const handleStatusChange = (reservationId: string, newStatus: string) => {
     const updatedReservations = reservations.map(reservation =>
@@ -439,6 +532,24 @@ const ReservationManagement = () => {
     );
     saveReservations(updatedReservations);
     toast.success(`Statut de la réservation mis à jour`);
+  };
+
+  const handleAddNote = (requestId: string, note: string) => {
+    const updatedRequests = reservationRequests.map(request =>
+      request.id === requestId
+        ? { ...request, notes: note, updatedAt: new Date().toISOString() }
+        : request
+    );
+    saveReservationRequests(updatedRequests);
+    toast.success("Note ajoutée");
+  };
+
+  const handleDeleteRequest = (requestId: string) => {
+    if (confirm("Êtes-vous sûr de vouloir supprimer cette demande ?")) {
+      const updatedRequests = reservationRequests.filter(r => r.id !== requestId);
+      saveReservationRequests(updatedRequests);
+      toast.success("Demande supprimée");
+    }
   };
 
   const handleDeleteReservation = (reservationId: string) => {
@@ -595,16 +706,160 @@ const ReservationManagement = () => {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="requests" className="flex items-center gap-2">
+            <Clock className="w-4 h-4" />
+            Demandes ({reservationRequests.length})
+          </TabsTrigger>
           <TabsTrigger value="calendar" className="flex items-center gap-2">
             <CalendarDays className="w-4 h-4" />
             Calendrier
           </TabsTrigger>
           <TabsTrigger value="list" className="flex items-center gap-2">
             <Users className="w-4 h-4" />
-            Liste
+            Réservations
           </TabsTrigger>
         </TabsList>
+
+        {/* Onglet Demandes de disponibilité */}
+        <TabsContent value="requests" className="mt-6">
+          {/* Filtres */}
+          <Card className="shadow-sm border-0 bg-card mb-6">
+            <CardContent className="p-6">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex-1">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      placeholder="Rechercher par nom, email ou type de chambre..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                </div>
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                  <SelectTrigger className="w-48">
+                    <SelectValue placeholder="Filtrer par statut" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Tous les statuts</SelectItem>
+                    <SelectItem value="pending">En attente</SelectItem>
+                    <SelectItem value="replied">Répondu</SelectItem>
+                    <SelectItem value="confirmed">Confirmé</SelectItem>
+                    <SelectItem value="cancelled">Annulé</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Liste des demandes */}
+          <Card className="shadow-sm border-0 bg-card">
+            <CardContent className="p-0">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Client</TableHead>
+                    <TableHead>Contact</TableHead>
+                    <TableHead>Dates</TableHead>
+                    <TableHead>Chambre</TableHead>
+                    <TableHead>Statut</TableHead>
+                    <TableHead>Date demande</TableHead>
+                    <TableHead>Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredRequests.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                        Aucune demande de réservation pour le moment
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    filteredRequests.map((request) => (
+                      <TableRow key={request.id}>
+                        <TableCell>
+                          <div>
+                            <div className="font-medium font-semibold">{request.firstName} {request.lastName}</div>
+                            <div className="text-sm text-muted-foreground">{request.nationality}</div>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm">
+                            <div className="font-medium">{request.email}</div>
+                            <div className="text-muted-foreground">{request.phone}</div>
+                            {request.whatsapp && (
+                              <div className="text-muted-foreground">WhatsApp: {request.whatsapp}</div>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm">
+                            <div>Arrivée: {formatDate(request.checkIn)}</div>
+                            <div>Départ: {formatDate(request.checkOut)}</div>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div>
+                            <div className="font-medium font-semibold">{request.roomType}</div>
+                            <div className="text-sm text-muted-foreground">{request.numberOfGuests} personne(s)</div>
+                            {request.includeMeals && (
+                              <Badge variant="outline" className="mt-1 text-xs">Repas inclus</Badge>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Select 
+                            value={request.status} 
+                            onValueChange={(value) => handleRequestStatusChange(request.id, value)}
+                          >
+                            <SelectTrigger className="w-32">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="pending">En attente</SelectItem>
+                              <SelectItem value="replied">Répondu</SelectItem>
+                              <SelectItem value="confirmed">Confirmé</SelectItem>
+                              <SelectItem value="cancelled">Annulé</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm text-muted-foreground">
+                            {formatDate(request.createdAt)}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => {
+                                setSelectedRequest(request);
+                                setIsDialogOpen(true);
+                              }}
+                            >
+                              <Eye className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleDeleteRequest(request.id)}
+                              className="text-red-600 hover:text-red-700"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
 
         {/* Calendrier */}
         <TabsContent value="calendar" className="mt-6">
@@ -783,15 +1038,165 @@ const ReservationManagement = () => {
         </TabsContent>
       </Tabs>
 
-      {/* Dialog de détail de réservation */}
+      {/* Dialog de détail de demande */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-indigo-medina">
-              Détail de la réservation
+              {selectedRequest ? "Détail de la demande" : "Détail de la réservation"}
             </DialogTitle>
           </DialogHeader>
-          {selectedReservation && (
+          {selectedRequest ? (
+            <div className="space-y-6">
+              {/* Informations client */}
+              <div>
+                <h3 className="font-medium font-semibold text-lg mb-3">Informations client</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Nom complet</Label>
+                    <div className="font-medium">{selectedRequest.firstName} {selectedRequest.lastName}</div>
+                  </div>
+                  <div>
+                    <Label>Nationalité</Label>
+                    <div className="font-medium">{selectedRequest.nationality}</div>
+                  </div>
+                  <div>
+                    <Label>Email</Label>
+                    <div className="font-medium">{selectedRequest.email}</div>
+                  </div>
+                  <div>
+                    <Label>Téléphone</Label>
+                    <div className="font-medium">{selectedRequest.phone}</div>
+                  </div>
+                  {selectedRequest.whatsapp && (
+                    <div>
+                      <Label>WhatsApp</Label>
+                      <div className="font-medium">{selectedRequest.whatsapp}</div>
+                    </div>
+                  )}
+                  {selectedRequest.address && (
+                    <div className="col-span-2">
+                      <Label>Adresse</Label>
+                      <div className="font-medium">{selectedRequest.address}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Informations séjour */}
+              <div>
+                <h3 className="font-medium font-semibold text-lg mb-3">Détails de la demande</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Dates</Label>
+                    <div className="font-medium">
+                      {formatDate(selectedRequest.checkIn)} - {formatDate(selectedRequest.checkOut)}
+                    </div>
+                  </div>
+                  <div>
+                    <Label>Type de chambre</Label>
+                    <div className="font-medium">{selectedRequest.roomType}</div>
+                  </div>
+                  <div>
+                    <Label>Nombre de personnes</Label>
+                    <div className="font-medium">{selectedRequest.numberOfGuests}</div>
+                  </div>
+                  <div>
+                    <Label>Repas inclus</Label>
+                    <div className="font-medium">{selectedRequest.includeMeals ? "Oui" : "Non"}</div>
+                  </div>
+                  <div>
+                    <Label>Statut</Label>
+                    <Select 
+                      value={selectedRequest.status} 
+                      onValueChange={(value) => {
+                        handleRequestStatusChange(selectedRequest.id, value);
+                        setSelectedRequest({ ...selectedRequest, status: value as ReservationRequest['status'] });
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pending">En attente</SelectItem>
+                        <SelectItem value="replied">Répondu</SelectItem>
+                        <SelectItem value="confirmed">Confirmé</SelectItem>
+                        <SelectItem value="cancelled">Annulé</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label>Date de demande</Label>
+                    <div className="font-medium text-sm">{new Date(selectedRequest.createdAt).toLocaleString('fr-FR')}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Message du client */}
+              {selectedRequest.message && (
+                <div>
+                  <Label>Message du client</Label>
+                  <div className="font-medium p-3 bg-gray-50 rounded-lg mt-2">
+                    {selectedRequest.message}
+                  </div>
+                </div>
+              )}
+
+              {/* Notes admin */}
+              <div>
+                <Label>Notes (admin)</Label>
+                <Textarea
+                  value={selectedRequest.notes || ""}
+                  onChange={(e) => setSelectedRequest({ ...selectedRequest, notes: e.target.value })}
+                  placeholder="Ajouter des notes internes..."
+                  rows={3}
+                  className="mt-2"
+                />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleAddNote(selectedRequest.id, selectedRequest.notes || "")}
+                  className="mt-2"
+                >
+                  Enregistrer les notes
+                </Button>
+              </div>
+
+              {/* Actions */}
+              <div className="flex justify-end gap-4 pt-4 border-t">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    window.location.href = `mailto:${selectedRequest.email}?subject=Demande de réservation - Dar Dhiafa Klee`;
+                  }}
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Envoyer email
+                </Button>
+                {selectedRequest.phone && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      window.location.href = `tel:${selectedRequest.phone}`;
+                    }}
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Appeler
+                  </Button>
+                )}
+                <Button
+                  variant="destructive"
+                  onClick={() => {
+                    handleDeleteRequest(selectedRequest.id);
+                    setIsDialogOpen(false);
+                  }}
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Supprimer
+                </Button>
+              </div>
+            </div>
+          ) : selectedReservation && (
             <div className="space-y-6">
               {/* Informations client */}
               <div>

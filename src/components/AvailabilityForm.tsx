@@ -81,8 +81,26 @@ const AvailabilityForm = ({ isOpen, onClose }: AvailabilityFormProps) => {
     e.preventDefault();
     setIsLoading(true);
 
+    // Créer la demande de réservation
+    const reservationRequest = {
+      id: Date.now().toString(),
+      ...formData,
+      status: "pending", // pending, confirmed, cancelled
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    // Sauvegarder dans localStorage
+    const existingReservations = localStorage.getItem('reservationRequests');
+    const reservations = existingReservations ? JSON.parse(existingReservations) : [];
+    reservations.push(reservationRequest);
+    localStorage.setItem('reservationRequests', JSON.stringify(reservations));
+
+    // Déclencher un événement pour mettre à jour l'administration
+    window.dispatchEvent(new Event('reservationRequestAdded'));
+
     // Simulation d'envoi
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
     setIsLoading(false);
     setIsSubmitted(true);
