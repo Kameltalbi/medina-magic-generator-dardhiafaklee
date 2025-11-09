@@ -76,6 +76,7 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useCurrency } from "@/contexts/CurrencyContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 
 interface User {
@@ -113,6 +114,7 @@ interface SEOConfig {
 }
 
 const Settings = () => {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState("users");
   const [hasChanges, setHasChanges] = useState(false);
   const [isUserDialogOpen, setIsUserDialogOpen] = useState(false);
@@ -120,6 +122,18 @@ const Settings = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [currentPage, setCurrentPage] = useState<SitePage | null>(null);
   const { currency, setCurrency } = useCurrency();
+  
+  // États pour la modification du mot de passe
+  const [passwordForm, setPasswordForm] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: ""
+  });
+  const [showPasswords, setShowPasswords] = useState({
+    current: false,
+    new: false,
+    confirm: false
+  });
 
   // États pour les données
   const [users, setUsers] = useState<User[]>([]);
@@ -189,6 +203,68 @@ const Settings = () => {
       permissions: ["reservations.read", "reservations.create"]
     }
   ];
+
+  // Fonction pour changer le mot de passe
+  const handleChangePassword = () => {
+    // Validation
+    if (!passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword) {
+      toast.error("Veuillez remplir tous les champs");
+      return;
+    }
+
+    if (passwordForm.newPassword.length < 8) {
+      toast.error("Le nouveau mot de passe doit contenir au moins 8 caractères");
+      return;
+    }
+
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      toast.error("Les mots de passe ne correspondent pas");
+      return;
+    }
+
+    // Charger les utilisateurs
+    const savedUsers = localStorage.getItem("users");
+    if (!savedUsers) {
+      toast.error("Erreur : Aucun utilisateur trouvé");
+      return;
+    }
+
+    const users = JSON.parse(savedUsers);
+    const currentUserData = users.find((u: any) => u.email === user?.email);
+
+    if (!currentUserData) {
+      toast.error("Erreur : Utilisateur non trouvé");
+      return;
+    }
+
+    // Vérifier le mot de passe actuel
+    if (currentUserData.password && currentUserData.password !== passwordForm.currentPassword) {
+      toast.error("Le mot de passe actuel est incorrect");
+      return;
+    }
+
+    // Mettre à jour le mot de passe
+    const updatedUsers = users.map((u: any) => {
+      if (u.email === user?.email) {
+        return {
+          ...u,
+          password: passwordForm.newPassword
+        };
+      }
+      return u;
+    });
+
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    
+    // Réinitialiser le formulaire
+    setPasswordForm({
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: ""
+    });
+
+    toast.success("Mot de passe modifié avec succès");
+  };
 
   const defaultPages: SitePage[] = [
     {
@@ -364,7 +440,7 @@ const Settings = () => {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="users" className="flex items-center gap-2">
             <Users className="w-4 h-4" />
             Utilisateurs & Rôles
@@ -372,6 +448,10 @@ const Settings = () => {
           <TabsTrigger value="site" className="flex items-center gap-2">
             <Globe className="w-4 h-4" />
             Site & Communication
+          </TabsTrigger>
+          <TabsTrigger value="security" className="flex items-center gap-2">
+            <Lock className="w-4 h-4" />
+            Sécurité
           </TabsTrigger>
           <TabsTrigger value="general" className="flex items-center gap-2">
             <Settings className="w-4 h-4" />
@@ -749,6 +829,191 @@ const Settings = () => {
                       Les modifications de contenu nécessitent une validation avant publication.
                     </AlertDescription>
                   </Alert>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+
+        {/* Sécurité - Modification du mot de passe */}
+        <TabsContent value="security" className="mt-6">
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-xl font-bold font-bold text-indigo-medina mb-2">
+                Modification du mot de passe
+              </h2>
+              <p className="text-muted-foreground">
+                Changez votre mot de passe pour sécuriser votre compte
+              </p>
+            </div>
+
+            <Card className="shadow-sm border-0 bg-card max-w-2xl">
+              <CardHeader>
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
+                  <Lock className="w-5 h-5" />
+                  Changer le mot de passe
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleChangePassword();
+                  }}
+                  className="space-y-4"
+                >
+                  <div className="space-y-2">
+                    <Label htmlFor="currentPassword">Mot de passe actuel *</Label>
+                    <div className="relative">
+                      <Input
+                        id="currentPassword"
+                        type={showPasswords.current ? "text" : "password"}
+                        placeholder="Entrez votre mot de passe actuel"
+                        value={passwordForm.currentPassword}
+                        onChange={(e) =>
+                          setPasswordForm({ ...passwordForm, currentPassword: e.target.value })
+                        }
+                        required
+                        className="pr-10"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute right-0 top-0 h-full px-3"
+                        onClick={() =>
+                          setShowPasswords({ ...showPasswords, current: !showPasswords.current })
+                        }
+                      >
+                        {showPasswords.current ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="newPassword">Nouveau mot de passe *</Label>
+                    <div className="relative">
+                      <Input
+                        id="newPassword"
+                        type={showPasswords.new ? "text" : "password"}
+                        placeholder="Entrez votre nouveau mot de passe"
+                        value={passwordForm.newPassword}
+                        onChange={(e) =>
+                          setPasswordForm({ ...passwordForm, newPassword: e.target.value })
+                        }
+                        required
+                        minLength={8}
+                        className="pr-10"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute right-0 top-0 h-full px-3"
+                        onClick={() =>
+                          setShowPasswords({ ...showPasswords, new: !showPasswords.new })
+                        }
+                      >
+                        {showPasswords.new ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </Button>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      Le mot de passe doit contenir au moins 8 caractères
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">Confirmer le nouveau mot de passe *</Label>
+                    <div className="relative">
+                      <Input
+                        id="confirmPassword"
+                        type={showPasswords.confirm ? "text" : "password"}
+                        placeholder="Confirmez votre nouveau mot de passe"
+                        value={passwordForm.confirmPassword}
+                        onChange={(e) =>
+                          setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })
+                        }
+                        required
+                        className="pr-10"
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="absolute right-0 top-0 h-full px-3"
+                        onClick={() =>
+                          setShowPasswords({ ...showPasswords, confirm: !showPasswords.confirm })
+                        }
+                      >
+                        {showPasswords.confirm ? (
+                          <EyeOff className="w-4 h-4" />
+                        ) : (
+                          <Eye className="w-4 h-4" />
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end gap-4 pt-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setPasswordForm({
+                          currentPassword: "",
+                          newPassword: "",
+                          confirmPassword: ""
+                        });
+                      }}
+                    >
+                      Annuler
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="bg-terre-cuite hover:bg-terre-cuite-hover text-white"
+                    >
+                      <Key className="w-4 h-4 mr-2" />
+                      Changer le mot de passe
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+
+            {/* Informations de sécurité */}
+            <Card className="shadow-sm border-0 bg-card max-w-2xl">
+              <CardHeader>
+                <CardTitle className="text-lg font-bold text-indigo-medina flex items-center gap-2">
+                  <Shield className="w-5 h-5" />
+                  Informations de sécurité
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                    <div>
+                      <p className="font-medium">Email du compte</p>
+                      <p className="text-sm text-muted-foreground">{user?.email || "N/A"}</p>
+                    </div>
+                    <Badge variant="outline">Actif</Badge>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                    <div>
+                      <p className="font-medium">Rôle</p>
+                      <p className="text-sm text-muted-foreground">
+                        {user?.role === "superadmin" ? "Super Administrateur" : "Administrateur"}
+                      </p>
+                    </div>
+                    <Badge variant="outline">{user?.role || "N/A"}</Badge>
+                  </div>
                 </div>
               </CardContent>
             </Card>

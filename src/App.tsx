@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { BookingProvider } from "@/contexts/BookingContext";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Chatbot from "@/components/Chatbot";
 import Index from "./pages/Index";
 import Rooms from "./pages/Rooms";
@@ -18,6 +19,7 @@ import ChambresDoubles from "./pages/ChambresDoubles";
 import ChambresTwin from "./pages/ChambresTwin";
 import ChambresTriples from "./pages/ChambresTriples";
 import BackOffice from "./pages/BackOffice";
+import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +40,7 @@ const AppContent = () => {
         <Route path="/experiences" element={<Experiences />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/backoffice/login" element={<Login />} />
         <Route path="/backoffice" element={<BackOffice />} />
         {/* Redirections 301 pour les anciennes routes "maison" */}
         <Route path="/maison" element={<Navigate to="/about" replace />} />
@@ -54,11 +57,13 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <CurrencyProvider>
       <BookingProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <AppContent />
-        </TooltipProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <AppContent />
+          </TooltipProvider>
+        </AuthProvider>
       </BookingProvider>
     </CurrencyProvider>
   </QueryClientProvider>

@@ -3,7 +3,9 @@
 // French only - no translations
 
 import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuth } from "@/contexts/AuthContext";
 import Sidebar from "@/components/backoffice/Sidebar";
 import Header from "@/components/backoffice/Header";
 import Dashboard from "@/components/backoffice/Dashboard";
@@ -17,24 +19,24 @@ import UserManagement from "@/components/backoffice/UserManagement";
 import Settings from "@/components/backoffice/Settings";
 
 const BackOffice = () => {
+  const { user, isAuthenticated, isLoading } = useAuth();
   const [activeSection, setActiveSection] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [userRole, setUserRole] = useState<"superadmin" | "admin">("superadmin");
 
-  useEffect(() => {
-    // Charger le rôle depuis localStorage ou utiliser superadmin par défaut
-    const savedUsers = localStorage.getItem('users');
-    if (savedUsers) {
-      try {
-        const users = JSON.parse(savedUsers);
-        // Pour l'instant, utiliser superadmin par défaut
-        // Plus tard, on pourra charger le rôle de l'utilisateur connecté
-        setUserRole("superadmin");
-      } catch (error) {
-        console.error('Error loading user role:', error);
-      }
-    }
-  }, []);
+  // Rediriger vers le login si non authentifié
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-muted-foreground">Chargement...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/backoffice/login" replace />;
+  }
+
+  const userRole = user?.role === "superadmin" ? "superadmin" : "admin";
 
   const renderContent = () => {
     switch (activeSection) {
@@ -77,7 +79,7 @@ const BackOffice = () => {
         {/* Header */}
         <Header 
           onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
-          user={{ name: "Super Admin", email: "superadmin@dardhiafa.com" }}
+          user={{ name: user?.name || "", email: user?.email || "" }}
           role={userRole}
         />
 

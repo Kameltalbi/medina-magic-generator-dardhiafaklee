@@ -142,8 +142,8 @@ const UserManagement = () => {
       // Créer un utilisateur superadmin par défaut si aucun utilisateur n'existe
       const defaultSuperAdmin: User = {
         id: "1",
-        name: "Super Admin",
-        email: "superadmin@dardhiafa.com",
+        name: "Administrateur",
+        email: "contact@dardhiafaklee.com",
         role: "superadmin",
         status: "active",
         lastLogin: null,

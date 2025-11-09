@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useAuth } from "@/contexts/AuthContext";
 import { 
   Search, 
   Calendar, 
@@ -43,6 +44,7 @@ interface HeaderProps {
 }
 
 const Header = ({ onMenuToggle, user, role }: HeaderProps) => {
+  const { logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("current-month");
 
@@ -62,9 +64,7 @@ const Header = ({ onMenuToggle, user, role }: HeaderProps) => {
   };
 
   const handleLogout = () => {
-    // Logout functionality
-    localStorage.removeItem("auth_token");
-    window.location.href = "/";
+    logout();
   };
 
   return (
