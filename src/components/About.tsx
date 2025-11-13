@@ -251,7 +251,7 @@ const About = () => {
                   </motion.picture>
                 </motion.div>
                 <motion.div
-                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium"
+                  className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20 rounded-xl overflow-hidden shadow-medium flex items-center justify-center"
                   whileHover={{ 
                     scale: 1.05,
                     rotateY: -3,
@@ -260,7 +260,7 @@ const About = () => {
                   transition={{ duration: 0.4 }}
                 >
                   <motion.picture
-                    className="w-full h-full"
+                    className="w-full h-full flex items-center justify-center"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.6 }}
                   >
@@ -268,7 +268,7 @@ const About = () => {
                     <img
                       src="/porte-optimized.jpg"
                       alt="Porte traditionnelle de Kairouan"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                   </motion.picture>
                 </motion.div>

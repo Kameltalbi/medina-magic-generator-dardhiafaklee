@@ -7,6 +7,7 @@ import { BookingProvider } from "@/contexts/BookingContext";
 import { CurrencyProvider } from "@/contexts/CurrencyContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Chatbot from "@/components/Chatbot";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Rooms from "./pages/Rooms";
 import Experiences from "./pages/Experiences";
@@ -29,6 +30,7 @@ const queryClient = new QueryClient();
 const AppContent = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
