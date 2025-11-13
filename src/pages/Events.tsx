@@ -126,9 +126,36 @@ const Events = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={staggerContainer}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                {/* Left side - Content */}
-                <motion.div variants={staggerItem} className="space-y-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                {/* Left side - Image */}
+                <motion.div 
+                  variants={staggerItem}
+                  className="order-2 lg:order-1"
+                >
+                  <motion.div
+                    className="relative rounded-2xl overflow-hidden shadow-xl"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <div className="aspect-[4/3] bg-gradient-to-br from-logo-gold/20 to-logo-dark/20">
+                      <picture>
+                        <source srcSet="/galerie/imagegalerie5.webp" type="image/webp" />
+                        <img
+                          src="/galerie/imagegalerie5.jpg"
+                          alt="Espace événementiel Dar Dhiafa - Privatisation complète"
+                          className="w-full h-full object-cover"
+                        />
+                      </picture>
+                    </div>
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                    {/* Decorative corner */}
+                    <div className="absolute top-6 left-6 w-16 h-16 border-t-2 border-l-2 border-logo-gold/70 rounded-tl-xl" />
+                  </motion.div>
+                </motion.div>
+
+                {/* Right side - Content */}
+                <motion.div variants={staggerItem} className="space-y-8 order-1 lg:order-2">
                   <div>
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-16 h-16 bg-gradient-to-br from-logo-gold to-logo-dark rounded-xl flex items-center justify-center shadow-medium">
@@ -185,32 +212,26 @@ const Events = () => {
                       Accompagnement sur mesure pour votre événement
                     </p>
                   </div>
-                </motion.div>
 
-                {/* Right side - Ideal for */}
-                <motion.div variants={staggerItem}>
-                  <Card className="bg-white shadow-lg border-logo-gold/20 h-full">
-                    <CardHeader>
-                      <CardTitle className="text-2xl font-bold text-terre-cuite flex items-center gap-2">
-                        <Sparkles className="w-6 h-6 text-logo-gold" />
-                        Idéal pour
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {fullPrivatizationFeatures.map((feature, index) => (
-                          <motion.div
-                            key={index}
-                            className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
-                            whileHover={{ scale: 1.02 }}
-                          >
-                            <div className="w-2 h-2 bg-terre-cuite rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-foreground font-medium">{feature}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                  {/* Ideal for */}
+                  <div className="bg-white rounded-xl p-6 shadow-lg border-logo-gold/20">
+                    <h3 className="text-xl font-semibold text-indigo-medina mb-4 flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-logo-gold" />
+                      Idéal pour
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {fullPrivatizationFeatures.map((feature, index) => (
+                        <motion.div
+                          key={index}
+                          className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors group"
+                          whileHover={{ scale: 1.02, x: 3 }}
+                        >
+                          <div className="w-2 h-2 bg-terre-cuite rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform" />
+                          <span className="text-foreground font-medium text-sm">{feature}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
               </div>
             </motion.div>
@@ -226,7 +247,7 @@ const Events = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={staggerContainer}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Left side - Content */}
                 <motion.div variants={staggerItem} className="space-y-8">
                   <div>
@@ -252,38 +273,67 @@ const Events = () => {
                   </div>
                 </motion.div>
 
-                {/* Right side - Events */}
-                <motion.div variants={staggerItem}>
-                  <Card className="bg-white shadow-lg border-indigo-medina/20 h-full">
-                    <CardHeader>
-                      <CardTitle className="text-2xl font-bold text-terre-cuite flex items-center gap-2">
-                        <Calendar className="w-6 h-6 text-indigo-medina" />
-                        Événements accueillis
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        {commonSpaceEvents.map((event, index) => {
-                          const icons = [Utensils, Heart, Briefcase, Briefcase, Utensils, Presentation, Palette];
-                          const IconComponent = icons[index] || Calendar;
-                          return (
-                            <motion.div
-                              key={index}
-                              className="flex items-start gap-3 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors group"
-                              whileHover={{ scale: 1.02, x: 5 }}
-                            >
-                              <div className="w-10 h-10 bg-gradient-to-br from-indigo-medina/20 to-terre-cuite/20 rounded-lg flex items-center justify-center group-hover:from-indigo-medina group-hover:to-terre-cuite transition-all duration-300">
-                                <IconComponent className="w-5 h-5 text-indigo-medina group-hover:text-white transition-colors" />
-                              </div>
-                              <span className="text-foreground font-medium flex-1">{event}</span>
-                            </motion.div>
-                          );
-                        })}
-                      </div>
-                    </CardContent>
-                  </Card>
+                {/* Right side - Image */}
+                <motion.div 
+                  variants={staggerItem}
+                >
+                  <motion.div
+                    className="relative rounded-2xl overflow-hidden shadow-xl"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <div className="aspect-[4/3] bg-gradient-to-br from-indigo-medina/20 to-terre-cuite/20">
+                      <picture>
+                        <source srcSet="/galerie/imagegalerie6.webp" type="image/webp" />
+                        <img
+                          src="/galerie/imagegalerie6.jpg"
+                          alt="Espace commun privatisé - Événements Dar Dhiafa"
+                          className="w-full h-full object-cover"
+                        />
+                      </picture>
+                    </div>
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                    {/* Decorative corner */}
+                    <div className="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-indigo-medina/70 rounded-br-xl" />
+                  </motion.div>
                 </motion.div>
               </div>
+
+              {/* Events List Below Image */}
+              <motion.div 
+                variants={staggerItem}
+                className="mt-8"
+              >
+                <Card className="bg-white shadow-lg border-indigo-medina/20">
+                  <CardHeader>
+                    <CardTitle className="text-2xl font-bold text-terre-cuite flex items-center gap-2">
+                      <Calendar className="w-6 h-6 text-indigo-medina" />
+                      Événements accueillis
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {commonSpaceEvents.map((event, index) => {
+                        const icons = [Utensils, Heart, Briefcase, Briefcase, Utensils, Presentation, Palette];
+                        const IconComponent = icons[index] || Calendar;
+                        return (
+                          <motion.div
+                            key={index}
+                            className="flex items-start gap-3 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors group"
+                            whileHover={{ scale: 1.02, x: 5 }}
+                          >
+                            <div className="w-10 h-10 bg-gradient-to-br from-indigo-medina/20 to-terre-cuite/20 rounded-lg flex items-center justify-center group-hover:from-indigo-medina group-hover:to-terre-cuite transition-all duration-300">
+                              <IconComponent className="w-5 h-5 text-indigo-medina group-hover:text-white transition-colors" />
+                            </div>
+                            <span className="text-foreground font-medium flex-1 text-sm">{event}</span>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
           </div>
         </section>
