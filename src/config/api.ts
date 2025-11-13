@@ -9,6 +9,8 @@ export const api = {
     const url = `${API_BASE_URL}${endpoint}`;
     const token = localStorage.getItem('auth_token');
     
+    console.log("🌐 Requête API:", url, options.method || 'GET');
+    
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -18,17 +20,27 @@ export const api = {
       headers['Authorization'] = `Bearer ${token}`;
     }
     
-    const response = await fetch(url, {
-      ...options,
-      headers,
-    });
-    
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ error: 'Erreur serveur' }));
-      throw new Error(error.error || 'Erreur lors de la requête');
+    try {
+      const response = await fetch(url, {
+        ...options,
+        headers,
+      });
+      
+      console.log("📡 Réponse API:", response.status, response.statusText);
+      
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({ error: 'Erreur serveur' }));
+        console.error("❌ Erreur API:", response.status, error);
+        throw new Error(error.error || 'Erreur lors de la requête');
+      }
+      
+      const data = await response.json();
+      console.log("✅ Données reçues:", data);
+      return data;
+    } catch (error: any) {
+      console.error("💥 Erreur fetch:", error);
+      throw error;
     }
-    
-    return response.json();
   },
   
   // Méthodes HTTP

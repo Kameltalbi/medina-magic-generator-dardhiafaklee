@@ -43,6 +43,13 @@ const Hero = () => {
       image: "/peinture-paul-klee.png",
       title: "Œuvre de Paul Klee",
       subtitle: "L'artiste et son inspiration"
+    },
+    {
+      id: 6,
+      image: "/vurexterieure.webp",
+      title: "Dar Dhiafa Paul Klee",
+      subtitle: "Vue extérieure de la maison d'hôtes",
+      photographer: "Mehdi Ben Temessek"
     }
   ];
 
@@ -125,6 +132,18 @@ const Hero = () => {
             
             {/* Subtle overlay for depth */}
             <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-black/20" />
+            
+            {/* Photographer credit */}
+            {slides[currentSlide].photographer && (
+              <motion.div
+                className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium z-20"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                📷 Photo : {slides[currentSlide].photographer}
+              </motion.div>
+            )}
           </motion.div>
         </AnimatePresence>
 
@@ -167,19 +186,36 @@ const Hero = () => {
               </motion.p>
               
               <motion.div
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
-                <Button
-                  size="lg"
-                  className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-semibold px-8 py-4 text-lg transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-terre-cuite/50"
-                  onClick={() => navigate('/rooms')}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Réserver maintenant
-                </Button>
+                  <Button
+                    size="lg"
+                    className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-semibold px-8 py-4 text-lg transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-terre-cuite/50"
+                    onClick={() => navigate('/rooms')}
+                  >
+                    Réserver maintenant
+                  </Button>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border-2 border-white text-white font-semibold px-8 py-4 text-lg transition-all duration-500 shadow-lg hover:shadow-2xl"
+                    onClick={() => navigate('/contact')}
+                  >
+                    Privatiser l'hôtel
+                  </Button>
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>

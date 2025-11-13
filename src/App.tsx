@@ -13,6 +13,7 @@ import Experiences from "./pages/Experiences";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Events from "./pages/Events";
 import Suites from "./pages/Suites";
 import ChambresFamiliales from "./pages/ChambresFamiliales";
 import ChambresDoubles from "./pages/ChambresDoubles";
@@ -38,6 +39,7 @@ const AppContent = () => {
         <Route path="/chambres-twin" element={<ChambresTwin />} />
         <Route path="/chambres-triples" element={<ChambresTriples />} />
         <Route path="/experiences" element={<Experiences />} />
+        <Route path="/evenements" element={<Events />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/backoffice/login" element={<Login />} />

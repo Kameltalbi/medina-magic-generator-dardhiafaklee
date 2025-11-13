@@ -7,6 +7,7 @@ import PaulKleeSection from "@/components/PaulKleeSection";
 import About from "@/components/About";
 import RoomsPreview from "@/components/RoomsPreview";
 import ExperiencesPreview from "@/components/Experiences";
+import PrivatizationSection from "@/components/PrivatizationSection";
 import ContactMap from "@/components/ContactMap";
 import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
@@ -22,6 +23,7 @@ const Index = () => {
         <PaulKleeSection />
         <About />
         <RoomsPreview />
+        <PrivatizationSection />
         <ExperiencesPreview />
         <ContactMap />
       </main>

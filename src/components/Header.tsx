@@ -5,17 +5,24 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Menu, X, Home, Camera, Bed, Star, Info, Phone, FileText } from "lucide-react";
+import { Menu, X, Home, Camera, Bed, Star, Info, Phone, FileText, Calendar, ChevronDown } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   const menuItems = [
-    { label: "Accueil", href: "/", icon: Home },
     { label: "À propos", href: "/about", icon: Info },
     { label: "Chambres", href: "/rooms", icon: Bed },
-    { label: "Expériences", href: "/experiences", icon: Star },
+    { 
+      label: "Découvrir", 
+      icon: Star, 
+      hasSubmenu: true,
+      submenu: [
+        { label: "Expériences", href: "/experiences", icon: Star },
+        { label: "Événements", href: "/evenements", icon: Calendar },
+      ]
+    },
     { label: "Galerie", href: "/gallery", icon: Camera },
     { label: "Contact", href: "/contact", icon: Phone },
   ];
@@ -91,7 +98,11 @@ const Header = () => {
                             {subItem.href.startsWith('/') && !subItem.href.includes('#') ? (
                               <Link
                                 to={subItem.href}
-                                className="flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-terre-cuite transition-colors"
+                                className={`flex items-center space-x-3 px-4 py-2 transition-colors ${
+                                  subItem.label === "Événements"
+                                    ? "text-vert-porte hover:bg-vert-porte/10 hover:text-vert-porte-hover font-semibold"
+                                    : "text-gray-700 hover:bg-gray-50 hover:text-terre-cuite"
+                                }`}
                               >
                                 <subItem.icon className="w-4 h-4" />
                                 <span>{subItem.label}</span>
@@ -99,7 +110,11 @@ const Header = () => {
                             ) : (
                               <a
                                 href={subItem.href}
-                                className="flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-terre-cuite transition-colors"
+                                className={`flex items-center space-x-3 px-4 py-2 transition-colors ${
+                                  subItem.label === "Événements"
+                                    ? "text-vert-porte hover:bg-vert-porte/10 hover:text-vert-porte-hover font-semibold"
+                                    : "text-gray-700 hover:bg-gray-50 hover:text-terre-cuite"
+                                }`}
                               >
                                 <subItem.icon className="w-4 h-4" />
                                 <span>{subItem.label}</span>
@@ -204,22 +219,46 @@ const Header = () => {
                               {subItem.href.startsWith('/') && !subItem.href.includes('#') ? (
                                 <Link
                                   to={subItem.href}
-                                  className="flex items-center space-x-3 p-2 pl-4 rounded-lg hover:bg-gray-50 transition-colors group"
+                                  className={`flex items-center space-x-3 p-2 pl-4 rounded-lg transition-colors group ${
+                                    subItem.label === "Événements"
+                                      ? "bg-vert-porte/10 hover:bg-vert-porte/20"
+                                      : "hover:bg-gray-50"
+                                  }`}
                                   onClick={() => setIsMenuOpen(false)}
                                 >
-                                  <subItem.icon className="w-4 h-4 text-terre-cuite group-hover:text-indigo-medina transition-colors flex-shrink-0" />
-                                  <span className="text-gray-600 group-hover:text-indigo-medina font-medium text-sm transition-colors">
+                                  <subItem.icon className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                                    subItem.label === "Événements"
+                                      ? "text-vert-porte group-hover:text-vert-porte-hover"
+                                      : "text-terre-cuite group-hover:text-indigo-medina"
+                                  }`} />
+                                  <span className={`font-medium text-sm transition-colors ${
+                                    subItem.label === "Événements"
+                                      ? "text-vert-porte group-hover:text-vert-porte-hover font-semibold"
+                                      : "text-gray-600 group-hover:text-indigo-medina"
+                                  }`}>
                                     {subItem.label}
                                   </span>
                                 </Link>
                               ) : (
                                 <a
                                   href={subItem.href}
-                                  className="flex items-center space-x-3 p-2 pl-4 rounded-lg hover:bg-gray-50 transition-colors group"
+                                  className={`flex items-center space-x-3 p-2 pl-4 rounded-lg transition-colors group ${
+                                    subItem.label === "Événements"
+                                      ? "bg-vert-porte/10 hover:bg-vert-porte/20"
+                                      : "hover:bg-gray-50"
+                                  }`}
                                   onClick={() => setIsMenuOpen(false)}
                                 >
-                                  <subItem.icon className="w-4 h-4 text-terre-cuite group-hover:text-indigo-medina transition-colors flex-shrink-0" />
-                                  <span className="text-gray-600 group-hover:text-indigo-medina font-medium text-sm transition-colors">
+                                  <subItem.icon className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                                    subItem.label === "Événements"
+                                      ? "text-vert-porte group-hover:text-vert-porte-hover"
+                                      : "text-terre-cuite group-hover:text-indigo-medina"
+                                  }`} />
+                                  <span className={`font-medium text-sm transition-colors ${
+                                    subItem.label === "Événements"
+                                      ? "text-vert-porte group-hover:text-vert-porte-hover font-semibold"
+                                      : "text-gray-600 group-hover:text-indigo-medina"
+                                  }`}>
                                     {subItem.label}
                                   </span>
                                 </a>

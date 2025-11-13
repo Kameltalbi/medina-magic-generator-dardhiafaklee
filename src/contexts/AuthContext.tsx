@@ -62,8 +62,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
+      console.log("🔐 Tentative de connexion avec:", email);
       // Appeler l'API de login
       const response = await api.post('/auth/login', { email, password });
+      console.log("✅ Réponse API reçue:", response);
       
       // Stocker le token
       localStorage.setItem("auth_token", response.token);
@@ -73,7 +75,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       
       return true;
     } catch (error: any) {
-      console.error("Login error:", error);
+      console.error("❌ Erreur de connexion:", error);
+      console.error("📝 Message d'erreur:", error.message);
+      console.error("📦 Détails complets:", error);
       return false;
     }
   };
