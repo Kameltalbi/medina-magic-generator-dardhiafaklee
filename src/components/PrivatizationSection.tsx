@@ -2,7 +2,7 @@
 // Uses the same design patterns as other sections with brand colors
 
 import { motion } from "framer-motion";
-import { Users, Building2, Utensils, Briefcase, Presentation, ArrowRight, Calendar } from "lucide-react";
+import { Users, Building2, Utensils, Briefcase, Presentation, ArrowRight, Calendar, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { staggerContainer, staggerItem, fadeInUp } from "@/lib/animations";
@@ -218,10 +218,10 @@ const PrivatizationSection = () => {
               <Button
                 size="lg"
                 className="bg-terre-cuite hover:bg-terre-cuite-hover text-white font-semibold px-8 py-4 transition-all duration-300 shadow-soft hover:shadow-medium"
-                onClick={() => navigate('/evenements')}
+                onClick={() => navigate('/contact')}
               >
-                <Calendar className="w-5 h-5 mr-2" />
-                Découvrir nos offres
+                <FileText className="w-5 h-5 mr-2" />
+                Demander un devis
               </Button>
               <Button
                 variant="outline"

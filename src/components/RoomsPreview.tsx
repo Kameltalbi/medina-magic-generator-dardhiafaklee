@@ -4,13 +4,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Wifi, Coffee, Tv, Bath, Eye, Calendar, XCircle, Clock, Wrench, CheckCircle } from "lucide-react";
+import { Wifi, Coffee, Tv, Bath, Eye, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { staggerContainer, staggerItem, imageHoverZoom } from "@/lib/animations";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { roomsData } from "@/data/rooms";
-import { getRoomStatus } from "@/data/roomAvailability";
 import type { Room } from "@/lib/types";
 // import roomTraditional from "@/assets/room-traditional.jpg";
 // import roomSuite from "@/assets/room-suite.jpg";
@@ -20,46 +19,6 @@ const RoomsPreview = () => {
   const { t } = useTranslation();
   const { formatPrice } = useCurrency();
   const navigate = useNavigate();
-  
-  // Fonction pour obtenir le statut d'une chambre
-  const getRoomStatusInfo = (roomId: string) => {
-    const today = new Date().toISOString().split('T')[0];
-    const status = getRoomStatus(roomId, today);
-    return status;
-  };
-
-  // Fonction pour obtenir le badge de statut
-  const getStatusBadge = (status: string) => {
-    const variants = {
-      available: "bg-green-100 text-green-800",
-      occupied: "bg-red-100 text-red-800",
-      reserved: "bg-yellow-100 text-yellow-800",
-      maintenance: "bg-gray-100 text-gray-800",
-    };
-    return variants[status as keyof typeof variants] || "bg-gray-100 text-gray-800";
-  };
-
-  // Fonction pour obtenir l'icône de statut
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'available': return <CheckCircle className="w-3 h-3" />;
-      case 'occupied': return <XCircle className="w-3 h-3" />;
-      case 'reserved': return <Clock className="w-3 h-3" />;
-      case 'maintenance': return <Wrench className="w-3 h-3" />;
-      default: return <Clock className="w-3 h-3" />;
-    }
-  };
-
-  // Fonction pour obtenir le texte de statut
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'available': return 'Disponible';
-      case 'occupied': return 'Occupée';
-      case 'reserved': return 'Réservée';
-      case 'maintenance': return 'Maintenance';
-      default: return 'Inconnu';
-    }
-  };
   
   // État pour les données des chambres avec synchronisation
   const [roomsDataState, setRoomsDataState] = useState(roomsData);
@@ -110,12 +69,11 @@ const RoomsPreview = () => {
     };
   }, []);
 
-  // Afficher les 5 chambres sur la page d'accueil
+  // Afficher les 4 chambres sur la page d'accueil
   // Position 1: Suite royale la plus chère
   // Position 2: Chambre familiale
   // Position 3: Chambre double
   // Position 4: Chambre twin
-  // Position 5: Chambre triple
   
   const suites = roomsDataState
     .filter(room => room.category === "S.ROYALE")
@@ -133,11 +91,7 @@ const RoomsPreview = () => {
     .filter(room => room.category === "TWIN")
     .sort((a, b) => b.pricePerNight - a.pricePerNight);
   
-  const chambresTriples = roomsDataState
-    .filter(room => (room.category === "DOUBLE+L.B" || room.capacity >= 3) && room.category !== "S.ROYALE" && room.category !== "FAMILIALE")
-    .sort((a, b) => b.pricePerNight - a.pricePerNight);
-  
-  // Construire le tableau des 5 chambres à afficher
+  // Construire le tableau des 4 chambres à afficher
   const featuredRooms = [];
   
   // Position 1: Suite royale
@@ -145,24 +99,19 @@ const RoomsPreview = () => {
     featuredRooms.push(suites[0]);
   }
   
-  // Position 2: Chambre familiale
-  if (chambresFamiliales.length > 0) {
-    featuredRooms.push(chambresFamiliales[0]);
-  }
-  
-  // Position 3: Chambre double
+  // Position 2: Chambre double
   if (chambresDoubles.length > 0) {
     featuredRooms.push(chambresDoubles[0]);
+  }
+  
+  // Position 3: Chambre triple (familiale)
+  if (chambresFamiliales.length > 0) {
+    featuredRooms.push(chambresFamiliales[0]);
   }
   
   // Position 4: Chambre twin
   if (chambresTwin.length > 0) {
     featuredRooms.push(chambresTwin[0]);
-  }
-  
-  // Position 5: Chambre triple
-  if (chambresTriples.length > 0) {
-    featuredRooms.push(chambresTriples[0]);
   }
   
   const rooms: Room[] = featuredRooms.map((room, index) => {
@@ -181,7 +130,7 @@ const RoomsPreview = () => {
     } else if (room.category === "FAMILIALE") {
       // Utiliser l'image chambre-filial1.jpg pour la chambre familiale
       imagePath = "/chambre-filial1.jpg";
-      displayTitle = "Chambres Familiales"; // Remplacer HAYET par Chambres Familiales
+      displayTitle = "Chambres Triples"; // Remplacer HAYET par Chambres Triples
     } else if (room.category === "DOUBLE") {
       // Utiliser l'image chambre-double1.jpg pour la chambre double
       imagePath = "/chambre-double1.jpg";
@@ -190,10 +139,6 @@ const RoomsPreview = () => {
       // Utiliser l'image chambretwin1.jpg pour la chambre twin
       imagePath = "/chambretwin1.jpg";
       displayTitle = "Chambres Twin"; // Remplacer le nom par Chambres Twin
-    } else if (room.category === "DOUBLE+L.B" || room.capacity >= 3) {
-      // Utiliser l'image chambre3.jpg pour la chambre triple
-      imagePath = "/chambre3.jpg";
-      displayTitle = "Chambres Triples"; // Remplacer le nom par Chambres Triples
     }
     
     return {
@@ -263,19 +208,6 @@ const RoomsPreview = () => {
                     whileHover="hover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-indigo-medina/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Status Badge */}
-                  <div className="absolute top-4 left-4">
-                    {(() => {
-                      const status = getRoomStatusInfo(room.id);
-                      return (
-                        <div className={`${getStatusBadge(status)} px-2 py-1 rounded-full font-medium font-medium text-xs flex items-center gap-1 shadow-soft`}>
-                          {getStatusIcon(status)}
-                          {getStatusText(status)}
-                        </div>
-                      );
-                    })()}
-                  </div>
                 </div>
 
                 {/* Room Content */}
