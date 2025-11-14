@@ -1,6 +1,7 @@
 // Contact page - Contact information and form
 // Features contact details, location, and contact form
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
@@ -12,9 +13,63 @@ import Header from "@/components/Header";
 import DjerbaBanner from "@/components/DjerbaBanner";
 import Footer from "@/components/Footer";
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/animations";
+import { useToast } from "@/hooks/use-toast";
+import api from "@/config/api";
 
 const Contact = () => {
   const { t } = useTranslation();
+  const { toast } = useToast();
+  
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Combiner prénom et nom pour le champ name
+      const name = `${formData.firstName} ${formData.lastName}`.trim();
+      
+      await api.post('/contact', {
+        name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+      });
+      
+      toast({
+        title: "Message envoyé !",
+        description: "Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.",
+        variant: "default",
+      });
+      
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error: any) {
+      console.error("Erreur lors de l'envoi du formulaire:", error);
+      toast({
+        title: "Erreur",
+        description: error.message || "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const contactInfo = [
     {
@@ -26,7 +81,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Téléphone",
-      content: "+216 XX XXX XXX",
+      content: "+216 92 556 301 / +216 94 190 026",
       description: "Disponible 24h/24"
     },
     {
@@ -124,36 +179,45 @@ const Contact = () => {
                       </p>
                     </CardHeader>
                     <CardContent>
-                      <form className="space-y-6">
+                      <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-medium text-foreground mb-2">
-                              Prénom
+                              Prénom *
                             </label>
                             <Input 
                               placeholder="Votre prénom"
                               className="border-logo-gold/30 focus:border-logo-gold"
+                              value={formData.firstName}
+                              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                              required
                             />
                           </div>
                           <div>
                             <label className="block text-sm font-medium text-foreground mb-2">
-                              Nom
+                              Nom *
                             </label>
                             <Input 
                               placeholder="Votre nom"
                               className="border-logo-gold/30 focus:border-logo-gold"
+                              value={formData.lastName}
+                              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                              required
                             />
                           </div>
                         </div>
                         
                         <div>
                           <label className="block text-sm font-medium text-foreground mb-2">
-                            Email
+                            Email *
                           </label>
                           <Input 
                             type="email"
                             placeholder="votre@email.com"
                             className="border-logo-gold/30 focus:border-logo-gold"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            required
                           />
                         </div>
                         
@@ -162,27 +226,44 @@ const Contact = () => {
                             Téléphone
                           </label>
                           <Input 
+                            type="tel"
                             placeholder="+216 XX XXX XXX"
                             className="border-logo-gold/30 focus:border-logo-gold"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           />
                         </div>
                         
                         <div>
                           <label className="block text-sm font-medium text-foreground mb-2">
-                            Message
+                            Message *
                           </label>
                           <Textarea 
                             placeholder="Décrivez votre demande ou vos questions..."
                             className="min-h-[120px] border-logo-gold/30 focus:border-logo-gold"
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            required
                           />
                         </div>
                         
                         <Button 
-                          className="w-full bg-terre-cuite hover:bg-terre-cuite-hover text-white font-semibold py-3"
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-terre-cuite hover:bg-terre-cuite-hover text-white font-semibold py-3 disabled:opacity-50"
                           size="lg"
                         >
-                          <Send className="w-5 h-5 mr-2" />
-                          Envoyer le message
+                          {isSubmitting ? (
+                            <div className="flex items-center space-x-2">
+                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                              <span>Envoi en cours...</span>
+                            </div>
+                          ) : (
+                            <>
+                              <Send className="w-5 h-5 mr-2" />
+                              Envoyer le message
+                            </>
+                          )}
                         </Button>
                       </form>
                       

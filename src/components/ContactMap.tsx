@@ -10,10 +10,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { slideInLeft, slideInRight, staggerContainer, staggerItem } from "@/lib/animations";
 import { useTranslation } from "react-i18next";
+import { useToast } from "@/hooks/use-toast";
+import api from "@/config/api";
 import type { ContactForm } from "@/lib/types";
 
 const ContactMap = () => {
   const { t } = useTranslation();
+  const { toast } = useToast();
   
   const [formData, setFormData] = useState<ContactForm>({
     name: "",
@@ -28,14 +31,27 @@ const ContactMap = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // TODO: Implement form submission logic
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-    
-    console.log("Contact form submitted:", formData);
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    try {
+      const response = await api.post('/contact', formData);
+      
+      toast({
+        title: "Message envoyé !",
+        description: "Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.",
+        variant: "default",
+      });
+      
+      // Reset form
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error: any) {
+      console.error("Erreur lors de l'envoi du formulaire:", error);
+      toast({
+        title: "Erreur",
+        description: error.message || "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [

@@ -490,7 +490,7 @@ const SEO = () => {
     "addressCountry": "Tunisia"
   },
   "telephone": "+216-20-987-654",
-  "email": "info@dardhiafaklee.com"
+  "email": "contact@dardhiafaklee.com"
 }`}
                     className="font-mono text-sm"
                   />
